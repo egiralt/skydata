@@ -31,13 +31,16 @@
 		<p>SkyData está diseñado pensando en desarrolladores que requieren productividad. El modelo es sencillo y completamente intuitivo. Se utiliza
 		lo mejor de MVC, lo mejor de la orientación a servicios y lo mejor de un sistema gestionado por eventos.</p>
 		<p>Veamos un <b>servicio</b> (<code>/SkyData/Core/Service/Controller/SkyDataServiceController</code>) de una clase cualquiera:</p>
-		<pre><code>			...
-/** 	
- * @ajaxMethod 
- * @runOnLoad
- */ 	
-public function GetModelos ()
+		<pre><code>	
+class CochesServiceController extends /SkyData/Core/Service/Controller/SkyDataServiceController
 {
+			...
+  /** 	
+   * @ajaxMethod 
+   * @runOnLoad
+  **/ 	
+  public function GetModelos ()
+  {
 	$result = array();
 	$result[] = $this->NewDataRow ('Modelos', array ('id' => 1, 'descripcion' => 'Nissan'));
 	$result[] = $this->NewDataRow ('Modelos', array ('id' => 2, 'descripcion' => 'Touran'));
@@ -45,20 +48,32 @@ public function GetModelos ()
 	$result[] = $this->NewDataRow ('Modelos', array ('id' => 4, 'descripcion' => 'Volkswagen'));
 	
 	return $result;
-}
-		...</code></pre>
+  }
+		...
+}</code></pre>
 		<p>Y ahora el código de la plantilla Twig en la <b>página</b> (<code>/SkyData/Core/Page/SkyDataPage</code>) :</p>
 		<pre><code>
 			...
-<select  id='modelos' name="modeloSelected" ng-model="Modelos" class="span6">
-	<option value="-1" selected='selected'>-- Elija un modelo --</option>
-	<option ng-repeat="modelo in Modelos" value="[[modelo.id]]">[[modelo.descripcion]]</option>
-</select>
+&lt;select  id='modelos' name="modeloSelected" ng-model="Modelos" class="span6"&gt;
+	&lt;option value="-1" selected='selected'&gt;-- Elija un modelo --&lt;/option&gt;
+	&lt;option ng-repeat="modelo in Modelos" value="[[modelo.id]]"&gt;[[modelo.descripcion]]&lt;/option&gt;
+&lt;/select&gt;
 			...
 		</code></pre>
 		<p>Voilá! El framework genera todo el código javascript necesario para que Angular haga su magia. El script auto generado utiliza <code>$http</code>
 		para hacer la solicitud al servicio en el framework, genera la actualización de las variables, crea los controllers de Angular, etc.</p>
-	  
+		<p>Realmente no es todo: en el directorio de la clase de la página se coloca este fichero YAML (Sí!, se usa YAML también!): </p>
+		<pre><code>		
+services:
+  use: [CochesService]
+	</code></pre>
+	<p> Y en el directorio de la clase del servicio indicamos el modelo de datos:</p>
+	<pre><code>
+datamodel:
+  Modelos: [id, descripcion]
+</code></pre>
+
+
 <!--	  
         <h3>
 <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
