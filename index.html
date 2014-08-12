@@ -23,6 +23,7 @@
         </header>
 
         <section id="downloads" class="clearfix">
+          <a href="docs" id="docs" class="button"><span>Documentación</span></a>
           <a href="https://github.com/egiralt/skydata" id="view-on-github" class="button"><span>Ver en GitHub</span></a>
         </section>
 
@@ -32,9 +33,8 @@
 		<h3><a name="skydata-is-easy" class="anchor" href="#skydata-is-easy"><span class="octicon octicon-link"></span></a>SkyData es fácil</h3>
 		<p>SkyData está diseñado pensando en desarrolladores que requieren productividad. El modelo es sencillo y completamente intuitivo. Se utiliza
 		lo mejor de MVC, lo mejor de la orientación a servicios y lo mejor de un sistema gestionado por eventos.</p>
-		<p>Veamos un <b>servicio</b> (<i>/SkyData/Core/Service/Controller/SkyDataServiceController</i>) de una clase cualquiera:</p>
-		<pre><code>
-			...
+		<p>Veamos un <b>servicio</b> (<code>/SkyData/Core/Service/Controller/SkyDataServiceController</code>) de una clase cualquiera:</p>
+		<pre><code>			...
 /** 	
  * @ajaxMethod 
  * @runOnLoad
@@ -49,15 +49,14 @@ public function GetModelos ()
 	
 	return $result;
 }
-		...
-		</code></pre>
-		<p>Y ahora el código de la plantilla Twig en la <b>página</b> (<i>/SkyData/Core/Page/SkyDataPage</i>) :</p>
+		...</code></pre>
+		<p>Y ahora el código de la plantilla Twig en la <b>página</b> (<code>/SkyData/Core/Page/SkyDataPage</code>) :</p>
 		<pre><code>
 			...
 <select  id='modelos' name="modeloSelected" ng-model="Modelos" class="span6">
 	<option value="-1" selected='selected'>-- Elija un modelo --</option>
 	<option ng-repeat="modelo in Modelos" value="[[modelo.id]]">[[modelo.descripcion]]</option>
-</select
+</select>
 			...
 		</code></pre>
 		<p>Voilá! El framework genera todo el código javascript necesario para que Angular haga su magia. El script auto generado utiliza <code>$http</code>
