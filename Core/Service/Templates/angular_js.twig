@@ -1,0 +1,89 @@
+{#
+	**header**
+#}
+
+angular.module('SkyDataApp')
+	.controller ('{{ serviceName }}SvcCtrl', ['$scope', '$http',
+		function ($scope, $http) {
+			{% for table in tables %}
+			{# Inicializar la variable del modelo. Si son varios parámetros se asigna en un array, si no, un objeto simple #}
+			{% if table.fields|length > 1 %} 
+			$scope.{{ table.name }} ={% if table.is_enumerable %} []{% else %} {}{% endif %};
+			{% else  %} 
+			$scope.{{ table.name }} ={% if table.is_enumerable %} []{% else %} null{% endif %};
+			{% endif %}
+			{% for method in table.methods %}
+			$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
+				$http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %},
+				 {
+					params: {
+					{% for parameter in method.parameters %}
+					{{ parameter }} : _{{ parameter }} {% if parameter != (method.parameters|last) %}, {% endif %} 
+					{% endfor %}
+				}
+				{% endif %} {#  method.parameters #}
+				). success ( function (data) {
+					{% if table.is_enumerable %} 	{# Si es una tabla enumerable se genera un ciclo para agregar cada uno de los registros #}
+					for (idx in data) {
+						{% if table.fields|length > 1 %}  		{# ¿Hay muchos campos o solo 1? #}
+						$scope.{{ table.name }}.push({
+						{% for field in table.fields %}
+							{{ field }}: data[idx].{{ field }}{% if field != table.fields|last %},{% endif %}
+						{% endfor %} 	{# table.fields #}
+						});
+						{% else %}	{# solo un campo #}
+						$scope.{{ table.name }}.push(data.{{ table.fields[0] }});
+						{% endif %}
+					}
+					{% else %} {# No, no es enumerable .. es un valor simple #}
+						{% if table.fields|length > 1 %} 		{# ¿Hay muchos campos o solo 1? #}
+						$scope.{{ table.name }} = {
+						{% for field in table.fields %}
+							{{ field }}: data.{{ field }}{% if field != table.fields|last %},{% endif %}
+						{% endfor %} {# table.fields #}
+						};
+						{% else %} 		{# solo un campo #}
+						$scope.{{ table.name }}.{{ table.fields[0] }} = data.{{ table.fields[0] }};
+						{% endif %}
+					{% endif %} {# if table.is_enumerable #}
+				});
+			};			
+			{% endfor %} {# methods #}
+			{% endfor %} {# tables #}
+		{# Definir el resto de métodos que no están conectados a datos #}
+		{% for method in methods %}
+			{% if method.bind_variable|length > 0 %}
+			$scope.{{ method.bind_variable }} = null; {# Se inicializa la variable conectada al método #}
+			{% endif %}
+			$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
+				$http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %},
+				 {
+					params: {
+					{% for parameter in method.parameters %}
+					{{ parameter }} : _{{ parameter }} {% if parameter != method.parameters|last %}, {% endif %} 
+					{% endfor %}
+					}
+				}
+				{% endif %}){% if method.bind_variable|length > 0 %}.success(function (data) {
+				$scope.{{ method.bind_variable }} = data;
+			}){% endif %};
+			};
+		{% endfor %}			
+		{# Se deben ejecutar los métodos que fueron marcados para ejecutarse al cargar el controller #}
+		{% for table in tables %}
+			{% for method in table.methods %}
+				{% if method.run_on_load %}
+				$scope.{{ method.name }}();
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
+		{# Y ahora los métodos no asociados #}
+		{% for method in methods %}
+			{% if method.run_on_load %}
+			$scope.{{ method.name }}();
+			{% endif %}
+		{% endfor %}
+		
+		}
+	]);
+

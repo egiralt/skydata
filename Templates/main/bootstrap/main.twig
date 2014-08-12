@@ -1,0 +1,17 @@
+<div id="main" role="main" class="container-fluid">
+	<div class="contained">			
+		
+		{% module MainMenu %}
+		<div id="page-content">
+			<div class="fluid-container">
+				<section id="widget-grid" class="">
+					<div class="row-fluid">
+						<article class="span12">
+						{{ page_content | raw }}
+						</article>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

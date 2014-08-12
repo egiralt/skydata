@@ -1,0 +1,54 @@
+metadata:
+  headers:
+    http-equiv:
+      name: Content-Type
+      content: text/html; charset=UTF-8
+    keyword: Application
+    copyright:
+      name: copyright
+      content: SkyData (c) 2014
+      lang: es
+      
+  styles:
+    - UI/css/bootstrap.min.css
+    - UI/bootstrap/css/master-css.min.css
+    - UI/css/font-awesome.min.css
+    - UI/bootstrap/css/themes/blue.css
+    - UI/bootstrap/css/jasny-bootstrap.min.css
+    - UI/css/custom.css
+  
+  scripts:
+    - UI/js/angular.min.js
+    - UI/bootstrap/js/libs/jquery.min.js
+    - UI/bootstrap/js/libs/jquery.ui.min.js
+    - UI/bootstrap/js/include/selectnav.min.js
+    - UI/bootstrap/js/include/jquery.accordion.min.js
+    - UI/bootstrap/js/include/toastr.min.js
+    - UI/bootstrap/js/include/jquery.jgrowl.min.js
+    - UI/bootstrap/js/include/slimScroll.min.js
+    - UI/bootstrap/js/include/jquery.dataTables.min.js
+    - UI/bootstrap/js/include/DT_bootstrap.min.js
+    - UI/bootstrap/js/include/jquery.uniform.min.js
+    - UI/bootstrap/js/include/amchart/amcharts.js
+    - UI/bootstrap/js/include/amchart/amchart-draw1.js
+    - UI/bootstrap/js/include/raphael.2.1.0.min.js
+    - UI/bootstrap/js/include/justgage.min.js
+    - UI/bootstrap/js/include/jquery.easy-pie-chart.min.js
+    - UI/bootstrap/js/include/jarvis.widget.min.js
+    - UI/bootstrap/js/include/mobiledevices.min.js
+    - UI/bootstrap/js/include/jquery.fullcalendar.min.js
+    - UI/bootstrap/js/include/jquery.flot.cust.min.js
+    - UI/bootstrap/js/include/jquery.flot.resize.min.js
+    - UI/bootstrap/js/include/jquery.flot.tooltip.min.js
+    - UI/bootstrap/js/include/jquery.flot.pie.min.js
+    - UI/bootstrap/js/include/jquery.flot.valuelabels.js
+    - UI/bootstrap/js/include/jquery.flot.categories.js
+    - UI/bootstrap/js/include/jquery.sparkline.min.js
+    - UI/bootstrap/js/include/bootstrap-progressbar.min.js
+    - UI/bootstrap/js/include/wysihtml5-0.3.0.min.js
+    - UI/bootstrap/js/include/bootstrap-wysihtml5.min.js
+    - UI/bootstrap/js/include/bootstrap-datepicker.min.js
+    - UI/bootstrap/js/include/bootbox.min.js
+    - UI/bootstrap/js/include/bootstrap.min.js
+    - UI/bootstrap/js/include/jasny-bootstrap.min.js
+    - UI/bootstrap/js/config.js

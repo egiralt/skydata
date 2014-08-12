@@ -1,0 +1,20 @@
+<aside>
+	<div class="divider"></div>
+	<div class="sidebar-nav-fixed phone-visible indented" >
+		<ul class='menu'>
+		{% for page in pages %}
+	        <li>
+	        	<a href='{{ page.route }}'>{{ page.label }}</a>
+	        	{#
+	        	{capture name=moduleTabId assign=moduleTabId}moduleTab_{$smarty.foreach.moduleList.index}_{$module}{/capture}
+	        	{if ($smarty.request.module == $modulekey && $smarty.request.parentTab == $group )} 
+	        		{sugar_link id=$moduleTabId module=$modulekey data=$module extraparams=$extraparams class=expanded}
+	        	{else}
+	        		{sugar_link id=$moduleTabId module=$modulekey data=$module extraparams=$extraparams}
+	        	{/if}
+	        	#}
+	        </li>
+		{% endfor %}
+		</ul>
+	</div>
+</aside>				

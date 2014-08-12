@@ -1,0 +1,172 @@
+<h2>Presupuestos de mantenimiento</h2>
+
+<div class="fluid-container" >
+	<div id="invoice-bar" class="btn-toolbar no-print">
+		<!--
+		<div class="btn-group">
+			<select id='storedPresupuestoSelected' name="storedPresupuestoSelected" ng-model="storedPresupuestoSelected" ng-change="getAllPresupuestos(storedPresupuestoSelected)">
+				<option value="-1" selected='selected'>-- Puede elegir un presupuesto guardado --</option>
+				<option ng-repeat="storedPresupuestosList in storedPresupuesto" value="[[storedPresupuesto.id]]">[[storedPresupuesto.nombre]]</option>
+			</select>
+		</div>
+		-->
+        <div class="btn-group">
+            <button type="button" class="btn btn-small" ng-click='askRemoveAll()'>
+            	<i class="cus-cross"></i>
+            	Borrar todo
+            </button>
+            <!-- <button type="button" class="btn btn-small"><i class="cus-pencil"></i></button> -->
+            <button type="button" id="invoice-print" class="btn btn-small">
+                <i class="cus-printer"></i> Imprimir presupuesto
+            </button>
+        </div>
+        <div class="btn-group">
+        	<button type="button" class="btn btn-small" id='save-invoice' ng-click='saveInvoice()'>
+            	<i class="cus-database"></i>
+            	Guardar presupuesto
+        	</button>
+        	<button type="button" class="btn btn-small" id='save-invoice' ng-click='removeInvoice()' ng-show='document_id'>
+            	<i class="cus-database"></i>
+            	Borrar presupuesto
+        	</button>
+        </div>
+    </div>
+    <!-- search box -->
+	<div class="well well-sm light no-print">
+		<h3 ng-show='document_name'>Nombre del presupuesto: [[ document_name ]]</h3>
+		<h5 class="no-print">Elija el modelo y la acción a realizar, y luego use el botón "Agregar...".</h5> 
+		<form class="form-horizontal themed">
+			<div class="control-group">
+				<label class="control-label" for="modeloSelected">Modelos:</label>
+				<button ng-click='SelectServicio(22)'>Buscar modelos</button>
+				<span>[[ servicioNombre.value ]]</span>
+				<div class="controls">
+					<select  id='modelos' name="modeloSelected" ng-model="Modelos" ng-change="searchServicios(modeloSelected)" class="span6" ng-disabled='modeloLocked'>
+						<option value="-1" selected='selected'>-- Elija un modelo --</option>
+						<option ng-repeat="modelo in Modelos" value="[[modelo.id]]">[[modelo.descripcion]]</option>
+					</select>
+					<button title="Cambiar el modelo" type="button" class="btn btn-danger" ng-click="unlockModelo()" ng-show="modeloLocked"><i class="icon-edit"></i></button>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="accionSelected">Acciones:</label>
+				<div class="controls">
+					<select id='acciones' ng-model="accionSelected" ng-change="searchPrecio(modeloSelected, accionSelected)" name="accionSelected" class="span6" ng-disabled="modeloSelected < 0">
+						<option value="-1" selected='selected'>-- Elija una acción --</option>
+						<option ng-repeat="accion in accionesList" value="[[accion.id]]">[[accion.descripcion]]</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<span style='font-size: 20px; font-weight: bold; color: red; font-variant: small-caps;'>Precio<small>*</small>: [[precio | currency : '€']]</span>
+				<br/>
+				<small><strong>*Recambios, mano de obra y 21% IVA incluidos</strong></small>
+				<button ng-click="addNewLine (modeloSelected, accionSelected, precio)" class="btn btn-success pull-right no-print">
+					<i class="icon-ok icon-white"></i>
+					Agregar al presupuesto
+				</button>
+			</div>
+		</form>
+	</div><!-- end search box -->
+	<br/>
+	<div id="invoice-id-01" class="invoice">
+		<div class="invoice-header">
+			<!-- <img src="themes/Sugar5/images/company_logo.png" class='inverse' width="114" height="114" alt="invoice icon" /> -->
+			<div class="invoice-company-info pull-right">
+				<!--
+				46 Hamilton Crescent<br />
+				Toronto, ON - M1B7T9<br />
+				Canada<br />
+				-->
+			</div>
+		</div>
+
+    	<div class="invoice-client-info">
+    		<?php if ($vehiculo !== null) { ?>
+				
+			<div class="client-info">
+				<h5>Vehículo:</h5>
+				<span style='width: 100px; display: inline-block'>Matrícula:</span> <?php echo $vehiculoPopOverHTML ?><br />
+				<span style='width: 100px; display: inline-block'>Titular:</span> <?php echo $titularPopOverHTML ?><br />
+				<span style='width: 100px; display: inline-block'>Conductor:</span> <?php echo $conductorPopOverHTML ?><br />
+				<span style='width: 100px; display: inline-block'>Cliente:</span> <?php echo $clientePopOverHTML ?><br/>
+				<form>
+					<input type="text" id='bastidor_input' ng-model='bastidor' name='bastidor' style="display: none;" value="<?php echo $veh_bastidor;?>"></input>
+					<input type="text" id='current_user_id_input' ng-model='current_user_id' name='current_user_id' style="display: none;" value=""></input>
+					<input type="text" id='concesionario_input' ng-model='concesionario' name='concesionario' style="display: none;" value=""></input>
+				</form>
+			</div>
+			
+			<?php } ?>
+			<div class="invoice-info">
+				<h3>PRESUPUESTO</h3>
+				<ul>
+					<li>
+						<strong>Fecha: <span><?php echo date('d/m/Y'); ?> </span></strong>
+					</li>
+					<li>
+						<strong>Asesor de Servicio: <span><i><?php echo $current_user->full_name; ?></i></span></strong>
+					</li>
+					<li>
+						<strong>Concesionario: <span><i><?php echo $concesionario->name; ?></i></span></strong>
+					</li>
+				</ul>
+			</div>	
+    	</div>
+    	<div class="invoice-body">
+			<table class="table table-striped responsive">
+                <thead>
+                    <tr>
+                        <th class="item">Línea</th>
+                        <th class="desc">Descripción</th>
+                        <th class="price">Precio</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="linea in lineasPresupuestoList">
+                    	<td>[[ linea.index ]]</td>
+                    	<td>[[ linea.texto ]]</td>
+                    	<td class="price">[[ linea.precio | currency : '€' ]]</td>
+                    	<td><button title="Eliminar esta línea del presupuesto" ng-click='deleteLinea(linea.id)' type="button" class="btn btn-danger btn-mini no-print"><i class="icon-trash"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td class="invoice-sub" colspan="2">Total</td>
+                        <td class="price"><strong>[[ totalPresupuesto | currency : '€' ]]</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+    	</div>
+    	<div class="invoice-footer">        		
+    		<div class="payment-methods"></div>
+    		<div class="invoice-sum-total">
+    			<h3 class="red">Total: [[ totalPresupuesto | currency : '€' ]]</h3>
+    		</div>
+    	</div>
+	</div>
+</div>
+
+<script>
+/*
+$(document).ready (function() 
+{
+	
+	//*********** OTHER DEFINITIONS *************************
+	var scope = angular.element($("#concesionario_input")).scope();
+	scope.bastidor = '<?php echo $veh_bastidor;?>';
+	scope.current_user_id = '<?php echo $current_user->id; ?>';
+	scope.concesionario = '<?php echo $concesionario->codigo_c;?>';
+	
+	scope.init ();
+	<?php if ($record_id !== null) { ?>
+		scope.loadRecord ('<?php echo $record_id; ?>');
+	<?php } ?>
+	
+	$('#invoice-print').on('click', function() { window.print(); });
+	
+});
+*/
+</script>

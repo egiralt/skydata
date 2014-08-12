@@ -1,0 +1,47 @@
+application:
+  home: SkyData\Modules\Home\Home
+  title: Frontend de Postventa
+
+navigation:
+  Home:
+    title: Inicio
+    class: Home
+    route: /
+    # TODO: Agregar la gestión de roles
+    roles: ASP,DPV
+    # TODO: Hacer que las páginas puedan recibir un template distinto al default
+    template: main/bootstrap
+  FichaASP:
+    title: Ficha ASP
+    class: FichaASP
+    route: ficha_asp
+    # TODO: Agregar la gestión de roles
+    roles: ASP,DPV
+    # TODO: Hacer que las páginas puedan recibir un template distinto al default
+    template: main/bootstrap
+  Presupuestador:
+    title: Presupuestos
+    class: Presupuestador
+    route: presupuestos
+    subnav:
+      PresupuestosMenores:
+        title: 2
+        class: Presupuestador
+        route: 2
+  
+templates:
+  main:
+    styles:
+      bootstrap:
+        default: true
+        cached: false
+        debug: false
+      
+#TODO: Agregar soporte al dataType 'image'      
+services:
+  PresupuestadorData:
+    dataType: json
+    #TODO: Hay que programar el código que manejar los headers 
+    headers:
+      Cache-Control: no-cache, must-revalidate
+      Expires: Mon, 01 Jul 1900 00:00:00 GMT
