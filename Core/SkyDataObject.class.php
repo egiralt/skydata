@@ -22,17 +22,17 @@
 		return \SkyData\Core\BootFactory::GetApplication();
 	}
 	
-	protected function GetClassShortName ()
+	public function GetClassShortName ()
 	{
 		return ReflectionFactory::getClassShortName (get_class($this));		
 	}
 
-	protected function GetClassNamespace ()
+	public function GetClassNamespace ()
 	{
 		return ReflectionFactory::getClassNamespace (get_class($this));		
 	}
 	
-	protected function getClassDirectory ()
+	public function getClassDirectory ()
 	{
 		return ReflectionFactory::getClassDirectory (get_class($this));		
 	}

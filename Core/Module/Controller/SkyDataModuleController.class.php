@@ -13,6 +13,5 @@ class SkyDataModuleController extends SkyDataController
 {
 	public function Run ()
 	{
-		
 	}
 }

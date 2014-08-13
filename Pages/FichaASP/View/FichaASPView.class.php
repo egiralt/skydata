@@ -6,9 +6,9 @@
  */
  namespace SkyData\Pages\FichaASP\View;
  
- use \SkyData\Core\Page\View\SkyDataPageView;
+ use \SkyData\Core\View\TwigView;
  
- class FichaASPView extends SkyDataPageView
+ class FichaASPView extends TwigView
  {
  	public function Render ()
  	{

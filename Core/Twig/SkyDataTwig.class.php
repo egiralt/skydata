@@ -14,10 +14,28 @@
 	public static function getTwigInstance ($templateDirectory, $options = null)
 	{
 		$loader = new \Twig_Loader_Filesystem($templateDirectory);
-		$twig = new \Twig_Environment($loader, $options);
-		$twig->addTokenParser ( new TwigModuleTokenParser() );
+		$options = array_filter($options, 'strlen');
 		
-		return $twig;
+		$result = new \Twig_Environment($loader);
+		$result->addTokenParser ( new TwigModuleTokenParser() );
+		
+		return $result;
 	}
+	
+	public static function RenderTemplate ($templateFullPath, $params = array(), $cache = false, $debug = false)
+	{
+		$options = array();
+		$options = $cache ? $options['cache'] = SKYDATA_PATH_CACHE : $options;
+		$options = $cache ? $options['debug'] = true : $options;
+		$options = count($options) === 0 ? null : $options;
+		
+		$twig = static::getTwigInstance(dirname($templateFullPath), $options);
+		$template = $twig->loadTemplate(basename($templateFullPath));
+		
+		$result = $template->render ($params);
+		
+		return $result;
+	}
+	
 	
  }

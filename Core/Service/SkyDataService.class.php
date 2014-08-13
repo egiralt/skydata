@@ -4,18 +4,19 @@
  */
  namespace SkyData\Core\Service;
 
- use \SkyData\Core\Module\SkyDataModule;
+ use \SkyData\Core\SkyDataResponseResource;
  use \SkyData\Core\Service\Controller\SkyDataServiceController;
  use \SkyData\Core\Service\View\SkyDataServiceView;
  use \SkyData\Core\Http\Http;
  use \SkyData\Core\ReflectionFactory;
+ use \SkyData\Core\Twig\SkyDataTwig;
 
 define ('DOC_COMMENT_AJAX_METHOD_PATTERN', '/\@ajaxMethod/');
 define ('DOC_COMMENT_RUN_ON_LOAD_PATTERN', '/\@runOnLoad/');
 define ('DOC_COMMENT_BIND_VARIABLE_PATTERN', '/\@bindVariable\s*([^\W]*)/');
 define ('DOC_COMMENT_BIND_DATA_MODEL_PATTERN', '/\@bindModel\s*([^\W]*)/');
  
-class SkyDataService extends SkyDataModule implements IService
+class SkyDataService extends SkyDataResponseResource implements IService
 {
 	
 	const DATATYPE_JSON 		= 'json';
@@ -43,7 +44,7 @@ class SkyDataService extends SkyDataModule implements IService
 	 */
 	public function GetInstanceDefaultViewClass()
 	{
-		return new SkyDataServiceView ();
+		return new \SkyData\Core\View\NullView ();
 	}
 	
 	/**
@@ -101,11 +102,6 @@ class SkyDataService extends SkyDataModule implements IService
 	 */
 	public function RenderServiceJavascript()
 	{
-		// Se utilizarán las plantillas predeterminadas guardas, y generadas con Twig
-		$loader = new \Twig_Loader_Filesystem(SKYDATA_PATH_CORE.'/Service/Templates');
-		$twig = new \Twig_Environment($loader, array('cache' => SKYDATA_PATH_CACHE));
-		$template = $twig->loadTemplate('angular_js.twig');
-		
 		// Se construye un objeto que contiene cada uno de las tablas y los métodos que contiene
 		$ajaxMethods = $this->GetAjaxMethods();
 		$dataModel = array();
@@ -154,7 +150,8 @@ class SkyDataService extends SkyDataModule implements IService
 			'methods' 		=> $otherMethods
 		);		
 		
-		$result = $template->render ($params);
+		// Se utilizarán las plantillas predeterminadas guardas, y generadas con Twig
+		$result = SkyDataTwig::RenderTemplate (SKYDATA_PATH_CORE.'/Service/Templates/angular_js.twig', $params);
 		
 		return $result;		
 	}

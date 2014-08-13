@@ -79,21 +79,18 @@ use \SkyData\Core\Http\Http;
 	 */
 	protected function ManagePageRequest ($pageInstance)
 	{
-		// Preparar los metadatos
-		$this->GetApplication()->LoadMetadata();
+		$this->GetApplication()->MergeMetadata($pageInstance);
 		$this->PublishCustomMetadata(); // Los metadatos requeridos por la aplicación
-		// Preparar el contenido y las variables
-		$result = $pageInstance->GetView()->Render(); //!! el contenido de la página que se muestra
-		
-		$template = $this->GetSelectedTemplate();
-		$template->Assign ('page_content', $result);							// El contenido de la propia página	
-		$template->Assign ('page_headers', $this->RenderMetadataHeaders()); 	// Lista de metadatos para la página
-		$template->Assign ('page_styles', $this->RenderMetadataStyles()); 		// Lista de metadatos para la página
-		$template->Assign ('page_scripts', $this->RenderMetadataScripts()); 	// Lista de metadatos para la página
-		
 		$this->SetMetadataHeaders();
-		//echo '<pre>';print_r ($template);die();
-		return $template->Render();
+				
+		$content = $pageInstance->GetView()->Render(); //!! el contenido de la página que se muestra
+		$content = $pageInstance->GetView()->RenderServices($content);
+				
+		$template = $this->GetSelectedTemplate();
+		$template->Assign ('page_content', $content); // El contenido de la propia página	
+		$result = $template->Render();
+		
+		return $result;
 	}
 	
 	/**
@@ -101,8 +98,8 @@ use \SkyData\Core\Http\Http;
 	 */
 	protected function PublishCustomMetadata()
 	{
-		$manager = $this->GetApplication()->GetMetadataManager();
-		$manager->AddScript ('Core/Application/Scripts/module_app.js');
+		$this->GetApplication()->GetMetadataManager()
+			->AddScript ('Core/Application/Scripts/module_app.js');
 	}
 	
 	/**
@@ -241,71 +238,6 @@ use \SkyData\Core\Http\Http;
 	}
 	
 	
-	protected function RenderMetadataHeaders()
-	{
-		// Generar la lista de metadatos de aplicación (incluye las de la página) como marcas META para los templates de la aplicación
-		$result = null;
-		
-		$application = $this->GetApplication ();
-		$metadata = $application->GetMetadataManager();
-		foreach ($metadata->GetHeaders() as $item) 
-		{
-			
-			if (!empty($item->content))
-			{
-				$result .= "<meta ";
-				if (isset($item->http_equiv))
-				{
-					/**
-					 *  No se hace nada, se dejan estos meta para generarlos directamente al server mediante headers
-					 *  Se podrían generar al cliente mediante la línea siguiente, pero ya se verá su conveniencia:
-					 * 		$result .= sprintf(' http-equiv="%s" content="%s"', $item->http_equiv, $item->content);
-					 */
-				}
-				else
-					$result .= sprintf(' name="%s" content="%s"', $item->name, $item->content);
-				if (isset($item->lang))
-					$result .= sprintf(' lang="%s"', $item->lang);
-				
-				$result .= " />\n\t";
-			}		
-		}
-		
-		
-		return $result;
-	}
-
-	/**
-	 * Genera el HTML de la lista de links de los metadatos de la página
-	 */	
-	protected function RenderMetadataStyles ()
-	{
-		$result = null;
-		
-		$application = $this->GetApplication ();
-		$metadata = $application->GetMetadataManager();
-		foreach ($metadata->GetStyles() as $item)
-			if (!empty($item))
-				$result .= sprintf ("<link rel=\"stylesheet\" href=\"%s\" >\n\t", $item);
-		
-		return $result;
-	}
-
-	/**
-	 * Genera el HTML de la lista scripts de los metadatos de la página
-	 */	
-	protected function RenderMetadataScripts ()
-	{
-		$result = null;
-		
-		$application = $this->GetApplication ();
-		$metadata = $application->GetMetadataManager();
-		foreach ($metadata->GetScripts() as $item)
-			if (!empty($item))
-				$result .= sprintf ("<script type=\"text/javascript\" src=\"%s\" ></script>\n\t", $item);
-		
-		return $result;
-	}
 	
 	/**
 	 * Modifica el estado de 

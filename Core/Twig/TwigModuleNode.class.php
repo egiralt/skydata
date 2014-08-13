@@ -13,6 +13,10 @@
 
     public function compile(\Twig_Compiler $compiler)
     {
+    	/*
+		$application = BootFactory::GetApplication(); 
+		$content = $application->GetCacheManager()->Get (md5($className).'.html');
+		 */
         $compiler
             ->addDebugInfo($this)
             ->write('$instance = new \\SkyData\\Modules\\'.$this->getAttribute('className').'\\'.$this->getAttribute('className').'(); ')

@@ -1,22 +1,22 @@
 <?php
 /**
  * Generada por workbench.php ()
- * clase MainMenuController (MainMenuController.class.php)
+ * clase AngularNavigationRoutingView (AngularNavigationRoutingView.class.php)
  *
  */
- namespace SkyData\Modules\MainMenu\Controller;
+ namespace SkyData\Modules\AngularNavigationRouting\View;
   
- use \SkyData\Core\Module\Controller\SkyDataModuleController;
+use \SkyData\Core\View\HTMLView;
+use \SkyData\Core\Twig\SkyDataTwig;
 
  /**
   *
   */
- class MainMenuController extends SkyDataModuleController
+ class AngularNavigationRoutingView extends HTMLView 
  {
- 	public function Run ()
- 	{
- 		parent::Run();
-		
+ 	
+	public function Render()
+	{
 		$pages = array();
 		// Recorrer la lista de elementos de navegación, extrayendo el nombre y la ruta
 		$application = $this->GetApplication ();
@@ -27,8 +27,14 @@
 			$pages[$navName] = $node;
 		}
 		
-		$view = $this->GetView();
-		$view->Assign ('pages', $pages);
+		$params = array('pages' => $pages);
+		$script = SkyDataTwig::RenderTemplate (realpath(__DIR__.'/../Templates').'/routing_js.twig', $params);
+		// Se genera el valor de este módulo a un fichero en el caché
+		$cacheID = $this->GetApplication()->GetCacheManager()->Store ($script, 'navigation_routing.js');
+		
+		//return "<script type=\"text/javascript\" src=\"Cache/{$cacheID}.js\" ></script>";
+		$this->GetApplication()->GetMetadataManager()->AddScript ("Cache/{$cacheID}.js");
+		
  	}
 	
 	/**
@@ -37,9 +43,9 @@
 	private function buildNode ($navNode)
 	{
 		$result = new \stdClass();
-		$result->label = $navNode['title'];
+		$result->class = $navNode['class'];
 		if ($navNode['route'] == '/')
-			$result->route = $_SERVER['REQUEST_URI'].'/';
+			$result->route = $_SERVER['REQUEST_URI'];
 		else
 			$result->route =  $navNode['route'];
 		if ($navNode['subnav'])
@@ -54,4 +60,5 @@
 		
 		return $result;
 	}
+ 	
  }

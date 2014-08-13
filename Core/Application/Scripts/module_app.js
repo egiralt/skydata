@@ -2,7 +2,7 @@
  * **header** 
  */
 if (typeof SkyDataApp == 'undefined' )
-	SkyDataApp = {}
+	SkyDataApp = {};
 	
 SkyDataApp.AngularModuleServices = angular.module ('SkyDataApp.services', []);
 SkyDataApp.AngularModuleFilters = angular.module ('SkyDataApp.filters', []);

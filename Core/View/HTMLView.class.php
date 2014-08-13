@@ -4,9 +4,8 @@
  */
  namespace SkyData\Core\View;
  
-use \SkyData\Core\SkyDataObject;
-use \SkyData\Core\ReflectionFactory;
-
+ use \SkyData\Core\ReflectionFactory;
+ 
  class HTMLView extends SkyDataView
  {
 	/**
@@ -32,10 +31,7 @@ use \SkyData\Core\ReflectionFactory;
 	{
 		$htmlFile = $this->GetTemplateDirectory().'/'.$this->GetDefaultTemplateFileName();
 		if (is_file($htmlFile))
-		{
 			$result = file_get_contents($htmlFile);
-			$result = $this->RenderServices($result);
-		}
 		
 		// y se retorna al siguiente
 		return $result;

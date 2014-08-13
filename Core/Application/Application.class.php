@@ -7,13 +7,14 @@
  use \SkyData\Core\Configuration\ConfigurationManager;
  use \SkyData\Core\Http\Request;
  use \SkyData\Core\ReflectionFactory;
- use \SkyData\Core\Configuration\IConfigurable;
  use \SkyData\Core\Metadata\MetadataManager;
  use \SkyData\Core\Http\Http;
  use \SkyData\Core\Cache\File\FileCacheManager;
  
  use \SkyData\Core\Metadata\IMetadataContainer;
-  use \SkyData\Core\Cache\ICacheContainer;
+ use \SkyData\Core\Cache\ICacheContainer;
+ use \SkyData\Core\Configuration\IConfigurable;
+ use \SkyData\Core\Module\IModule;
  
  
   /**
@@ -35,6 +36,7 @@
 		$this->View = new ApplicationView();
 		$this->MetadataManager = new MetadataManager ();
 		$this->CacheManager = new FileCacheManager (SKYDATA_PATH_CACHE);
+		$this->ModuleChain = array();
 
 		$this->LoadConfiguration();
 	}
@@ -46,10 +48,10 @@
 	 */
 	public function Run ()
 	{
+		$this->GetMetadataManager()->ClearAll(); // Se invalidan los metadatos para que se lean otra vez
+		$this->LoadMetadata();
 		// Organizar el routing de la página según la solicitud
 		$this->CurrentNavigationNode = $this->ManageRouteRequest();
-		$this->GetMetadataManager()->ClearAll(); // Se invalidan los metadatos para que se lean otra vez
-
 		$currentPage = $this->GetCurrentRequest();
 		$currentPage->GetController()->Run();
 		//TODO: Lanzar eventos, que reciben tanto los headers como el contenido. Como idea: beforeRender, beforeHeaders, 
@@ -187,11 +189,12 @@
 	public function LoadMetadata()
 	{
 		// Extraer la lista de metadatos de la aplicación
-		$this->MetadataManager->LoadFromConfiguration ($this->GetConfigurationManager()->GetMapping('metadata'));
-		//echo "<pre>"; print_r ($this->CurrentNavigationNode->GetObject()); die();
-		// Y ahora se mezcla con la lista de metadatos de la página activa, si hay alguna
-		if (isset($this->CurrentNavigationNode))
-			$this->MetadataManager->Merge( $this->CurrentNavigationNode->GetObject()->GetMetadataManager() );
+		$this->GetMetadataManager()->LoadFromConfiguration ($this->GetConfigurationManager()->GetMapping('metadata'));
+	}
+	
+	public function MergeMetadata (IMetadataContainer $object)
+	{
+		$this->GetMetadataManager()->Merge( $object->GetMetadataManager());
 	}
 	
 	public function GetCacheManager ()

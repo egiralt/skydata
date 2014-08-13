@@ -43,6 +43,102 @@
 		$this->Name = $name;
 		$this->ReadConfiguration($configurationData);
 	}
+
+	public function Render()
+	{
+		$this->PrepareRender();
+		
+		// Primer pase: La cabecera primero
+		$this->RenderPageMetadata();
+		$head = $this->TwigEnvironment->loadTemplate ('html_head.twig');
+		$content_head = $head->render ($this->GetMappings());
+		
+		// Segundo pase: el cuerpo de la página
+		$body = $this->TwigEnvironment->loadTemplate ('html_body.twig');
+		$content_body = $body->render ($this->GetMappings());
+		
+		// Ultimo pase: el cuerpo de la página
+		$this->RenderPageMetadata(); // Por si algo cambió
+		$end = $this->TwigEnvironment->loadTemplate ('html_end.twig');
+		$content_end = $end->render ($this->GetMappings());
+		
+		
+		return sprintf ('%s%s%s', $content_head, $content_body, $content_end);
+	}
+	
+	public function RenderPageMetadata ()
+	{
+		$this->Assign ('page_headers', $this->RenderMetadataHeaders()); 	// Lista de metadatos para la página
+		$this->Assign ('page_styles', $this->RenderMetadataStyles()); 		// Lista de metadatos para la página
+		$this->Assign ('page_scripts', $this->RenderMetadataScripts()); 	// Lista de metadatos para la página
+	}
+	
+	protected function RenderMetadataHeaders()
+	{
+		// Generar la lista de metadatos de aplicación (incluye las de la página) como marcas META para los templates de la aplicación
+		$result = null;
+		
+		$application = $this->GetApplication ();
+		$metadata = $application->GetMetadataManager();
+		foreach ($metadata->GetHeaders() as $item) 
+		{
+			
+			if (!empty($item->content))
+			{
+				$result .= "<meta ";
+				if (isset($item->http_equiv))
+				{
+					/**
+					 *  No se hace nada, se dejan estos meta para generarlos directamente al server mediante headers
+					 *  Se podrían generar al cliente mediante la línea siguiente, pero ya se verá su conveniencia:
+					 * 		$result .= sprintf(' http-equiv="%s" content="%s"', $item->http_equiv, $item->content);
+					 */
+				}
+				else
+					$result .= sprintf(' name="%s" content="%s"', $item->name, $item->content);
+				if (isset($item->lang))
+					$result .= sprintf(' lang="%s"', $item->lang);
+				
+				$result .= " />\n\t";
+			}		
+		}
+		
+		
+		return $result;
+	}
+
+	/**
+	 * Genera el HTML de la lista de links de los metadatos de la página
+	 */	
+	protected function RenderMetadataStyles ()
+	{
+		$result = null;
+		
+		$application = $this->GetApplication ();
+		$metadata = $application->GetMetadataManager();
+		foreach ($metadata->GetStyles() as $item)
+			if (!empty($item))
+				$result .= sprintf ("<link rel=\"stylesheet\" href=\"%s\" >\n\t", $item);
+		
+		return $result;
+	}
+
+	/**
+	 * Genera el HTML de la lista scripts de los metadatos de la página
+	 */	
+	protected function RenderMetadataScripts ()
+	{
+		$result = null;
+		
+		$application = $this->GetApplication ();
+		$metadata = $application->GetMetadataManager();
+		foreach ($metadata->GetScripts() as $item)
+			if (!empty($item))
+				$result .= sprintf ("<script type=\"text/javascript\" src=\"%s\" ></script>\n\t", $item);
+		
+		return $result;
+	}
+	
 	
 	private function ReadConfiguration($configurationData)
 	{

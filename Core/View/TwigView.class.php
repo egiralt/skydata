@@ -11,7 +11,8 @@ use \SkyData\Core\ReflectionFactory;
  
  class TwigView extends SkyDataView
  {
-	private $twig;
+	protected $TwigInstance;
+	protected $TwigEnvironment;
 
 	/**
 	 * Retorna el directorio desde donde se cargarán los templates de la clase
@@ -35,7 +36,7 @@ use \SkyData\Core\ReflectionFactory;
 	 */
 	protected function PrepareRender ()
 	{
-		if (!isset($this->twig))
+		if (!isset($this->TwigEnvironment))
 		{
 			$templateDirectory = $this->GetTemplateDirectory();
 			$templateFile = $this->GetDefaultTemplateFileName();
@@ -46,15 +47,13 @@ use \SkyData\Core\ReflectionFactory;
 				'optimizations' => \Twig_NodeVisitor_Optimizer::OPTIMIZE_ALL
 			);
 			
-			$templateEngine = SkyDataTwig::getTwigInstance ($templateDirectory, $twigOptions);		
+			$this->TwigEnvironment = SkyDataTwig::getTwigInstance ($templateDirectory, $twigOptions);		
 			
 			// Intentar cargar el template del módulo
 			$defaultTemplateFullFilePath = $templateDirectory.'/'.$templateFile;
-			if (is_file($defaultTemplateFullFilePath) && $templateEngine !== null)
-			{
-				// Se crea la instancia del render para crear todos los objetos
-				$this->twig = $templateEngine->loadTemplate ($templateFile);
-			}
+			
+			if (is_file($defaultTemplateFullFilePath))
+				$this->TwigInstance = $this->TwigEnvironment->loadTemplate ($templateFile); 
 		}
 	}
 	
@@ -64,15 +63,9 @@ use \SkyData\Core\ReflectionFactory;
 	public function Render ()
 	{
 		$this->PrepareRender();
-		
 		// Se genera el HTML correspondiente al template
-		$result = $this->twig->render ($this->GetMappings());
+		return $this->TwigInstance->render ($this->GetMappings());
 		
-		// Si la clase del padre de esta view puede estar asociado a servicios se generan los scripts y HTML necesarios 
-		$result = $this->RenderServices($result);
-		
-		// y se retorna al siguiente
-		return $result;
 	}
 	
  } 

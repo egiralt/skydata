@@ -25,10 +25,8 @@ use \SkyData\Core\ILayoutNode;
 		
 		$this->Mappings = array();	
 	}
-	/**
-	 * Genera la vista de la clase. 
-	 */ 	
-	public abstract function Render ();
+
+	abstract public function Render ();
 	
 	public function RenderServices ($pageContent)
 	{

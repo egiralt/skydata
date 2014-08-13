@@ -38,8 +38,6 @@ use \SkyData\Core\ReflectionFactory;
 			include $pageFile;
 			$result = ob_get_contents();
 			ob_end_clean();
-			
-			$result = $this->RenderServices($result);
 		}
 		
 		// y se retorna al siguiente
