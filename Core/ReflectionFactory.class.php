@@ -21,13 +21,14 @@ DEFINE ('SKYDATA_ROOT_DOMAIN', 'SkyData');
 	{
 		return "\\SkyData\\Services\\{$className}\\{$className}";
 	} 	
+
 	/**
 	 * Retorna el nombre del controller asociado a la clase. Se asume el convenio de que los nombres de clases controller es el mismo
 	 * que tiene la clase del modulo, agregándole el sufijo Controller y que se encuentran en el directorio 'Controller/' del propio módulo.
 	 * 
 	 * @param string $className Nombre de la clase del módulo para la cual se desea construir el nombre de la clase Controller
 	 */
-	public static function getModuleControllerClassName ($className)
+	public static function getControllerClassName ($className)
 	{
 		return static::getClassNamespace($className).'\\Controller\\'.static::getClassShortName($className).'Controller';
 	}

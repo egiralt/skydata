@@ -38,48 +38,12 @@ use \SkyData\Core\Http\Http;
 				// Solo se cargarán los templates que tengan la marca de active
 				if ($newTemplate->IsActive())
 				{
-					$newTemplate->View = $this;
+					$newTemplate->SetView($this);
 					$this->Templates[$templateName] = $newTemplate;
 				}				 				
 			}
 		}
 	}	
-	
-	/**
-	 * Retorna el directorio del template activo
-	 */
-	protected function GetTemplateDirectory ()
-	{
-		$template = $this->GetSelectedTemplate();
-		if ($template != null)
-		{
-			$style = $template->GetSelectedStyle();
-			if ($style != null)
-				return $style->GetTemplateDirectory ();// Se toma el template seleccionado
-			else 
-				throw new \Exception("Se requiere un estilo activo", 1);
-		}
-		else 
-			throw new \Exception("Se requiere un template activo", -100);
-	}
-	
-	/**
-	 * Retorna el nombre del template por defecto usando el nombre de la clase como base
-	 */
-	protected function GetDefaultTemplateFileName ()
-	{
-		$template = $this->GetSelectedTemplate();
-		if ($template != null)
-		{
-			$style = $template->GetSelectedStyle(); // Se toma el estilo seleccionado
-			if ($style != null)
-				return $style->GetTemplateFile ();
-			else 
-				throw new \Exception("Se requiere un estilo activo", 1);
-		}
-		else 
-			throw new \Exception("Se requiere un template activo", -100);
-	}
 	
 	public function Render()
 	{
@@ -87,20 +51,17 @@ use \SkyData\Core\Http\Http;
 			$this->LoadTemplates();
 		
 		$currentRequest = $this->GetApplication()->GetCurrentRequest();
+		
 		if ($currentRequest!= null)
 		{
-			// Se construye una lista de interfaces que implementa esta clase
 			$interfaces = class_implements($currentRequest, FALSE);
-			$interfacesNames = array();
-			foreach($interfaces as $interface) // Hacer una lista plana, solo con los nombres, sin los dominios
-				$interfacesNames[] = ReflectionFactory::getClassShortName ($interface);
 			
 			// Segun la interface que implemente la clase, se decide qué tipo de solicitud y cómo se gestiona
-			if (in_array('IPage', $interfacesNames))
+			if (in_array('SkyData\Core\Page\IPage', $interfaces))
 			{ // Se trata de una solicitud de una página HTTP
-				$this->ManagePageRequest($currentRequest);
+				 return $this->ManagePageRequest($currentRequest);
 			}
-			else if (in_array('IService', $interfacesNames))
+			else if (in_array('SkyData\Core\Service\IService', $interfaces))
 			{
 				// Una solicitud Ajax
 				$this->ManageAjaxRequest($currentRequest);
@@ -111,7 +72,6 @@ use \SkyData\Core\Http\Http;
 			$this->Assign ('application_name', $this->GetApplication()->GetApplicationName()); // El nombre de la aplicación
 		}		
 		
-		return parent::Render();
 	}
 	
 	/**
@@ -123,15 +83,17 @@ use \SkyData\Core\Http\Http;
 		$this->GetApplication()->LoadMetadata();
 		$this->PublishCustomMetadata(); // Los metadatos requeridos por la aplicación
 		// Preparar el contenido y las variables
-		$result = $pageInstance->GetView()->Render();
-		$this->Assign ('page_content', $result);							// El contenido de la propia página	
-		$this->Assign ('page_headers', $this->RenderMetadataHeaders()); 	// Lista de metadatos para la página
-		$this->Assign ('page_styles', $this->RenderMetadataStyles()); 		// Lista de metadatos para la página
-		$this->Assign ('page_scripts', $this->RenderMetadataScripts()); 	// Lista de metadatos para la página
+		$result = $pageInstance->GetView()->Render(); //!! el contenido de la página que se muestra
+		
+		$template = $this->GetSelectedTemplate();
+		$template->Assign ('page_content', $result);							// El contenido de la propia página	
+		$template->Assign ('page_headers', $this->RenderMetadataHeaders()); 	// Lista de metadatos para la página
+		$template->Assign ('page_styles', $this->RenderMetadataStyles()); 		// Lista de metadatos para la página
+		$template->Assign ('page_scripts', $this->RenderMetadataScripts()); 	// Lista de metadatos para la página
 		
 		$this->SetMetadataHeaders();
-		
-		return $result;
+		//echo '<pre>';print_r ($template);die();
+		return $template->Render();
 	}
 	
 	/**

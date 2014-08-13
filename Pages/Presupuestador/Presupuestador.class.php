@@ -16,6 +16,7 @@
  	 */
  	public function Run ()
  	{
+ 		echo "Hola";
  		parent::Run();
  	}
  	

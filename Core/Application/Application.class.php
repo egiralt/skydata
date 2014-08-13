@@ -50,6 +50,8 @@
 		$this->CurrentNavigationNode = $this->ManageRouteRequest();
 		$this->GetMetadataManager()->ClearAll(); // Se invalidan los metadatos para que se lean otra vez
 
+		$currentPage = $this->GetCurrentRequest();
+		$currentPage->GetController()->Run();
 		//TODO: Lanzar eventos, que reciben tanto los headers como el contenido. Como idea: beforeRender, beforeHeaders, 
 		//  	afterHeaders, afterRender
 		echo $this->GetView()->Render();

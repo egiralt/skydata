@@ -6,12 +6,12 @@
  */
  namespace SkyData\Modules\{$moduleName}\View;
   
-use \SkyData\Core\Module\View\SkyDataModuleView;
+use \SkyData\Core\View\HTMLView;
 
  /**
   *
   */
- class {$moduleName}View extends SkyDataModuleView
+ class {$moduleName}View extends HTMLView
  {
  	public function Render ()
  	{

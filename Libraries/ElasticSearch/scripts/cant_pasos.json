@@ -1,0 +1,15 @@
+{
+    "query": {
+        "match": {
+           "recepcionista": "{{recepcionista}}"
+        }
+    }, 
+   "aggs": {
+      "cant_pasos": {
+         "terms": {
+            "field": "estado"
+         }
+      }
+   },
+   "size": 0
+}

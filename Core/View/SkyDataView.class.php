@@ -13,92 +13,39 @@ use \SkyData\Core\ILayoutNode;
  abstract class SkyDataView extends SkyDataObject implements IRenderable, ILayoutNode
  {
 	
-	protected $UseCache = false;
-	protected $UseDebug = false;
-
+	private $UseCache = false;
+	private $UseDebug = false;
 	private $twig;
 	private $Parent;
 	private $Mappings 	= array();
 
-	/**
-	 * Retorna el directorio desde donde se cargarán los templates de la clase 
-	 */
-	protected function GetTemplateDirectory ()
+	public function __construct()
 	{
-		return ReflectionFactory::getClassDirectory (get_class($this->GetParent())).'/Templates';		
+		parent::__construct();
+		
+		$this->Mappings = array();	
 	}
-	
-	/**
-	 * Retorna el nombre del template de la clase
-	 */
-	protected function GetDefaultTemplateFileName ()
-	{
-		return ReflectionFactory::getClassShortName (get_class($this->GetParent())).'.twig';
-	}
-	
-	/**
-	 * Prepara el engine del template para que identifique los directorios de cache, templates, etc..
-	 * Este método se ha de llamar siempre antes ejecutar el método Render 
-	 */
-	protected function PrepareRender ()
-	{
-		if (!isset($this->twig))
-		{
-			$templateDirectory = $this->GetTemplateDirectory();
-			$templateFile = $this->GetDefaultTemplateFileName();
-			
-			$twigOptions = array(
-			 	'cache' => $this->GetCache() ? $this->GetCacheDirectory() : false,
-				'debug' => $this->GetDebug(),
-				'optimizations' => \Twig_NodeVisitor_Optimizer::OPTIMIZE_ALL
-			);
-			
-			$templateEngine = SkyDataTwig::getTwigInstance ($templateDirectory, $twigOptions);		
-			
-			// Intentar cargar el template del módulo
-			$defaultTemplateFullFilePath = $templateDirectory.'/'.$templateFile;
-			if (is_file($defaultTemplateFullFilePath) && $templateEngine !== null)
-			{
-				// Se crea la instancia del render para crear todos los objetos
-				$this->twig = $templateEngine->loadTemplate ($templateFile);
-			}
-		}
-	}
-	
 	/**
 	 * Genera la vista de la clase. 
 	 */ 	
-	public function Render ()
-	{
-		$result = null;
-		
-		$this->PrepareRender();
-		// Se genera el HTML correspondiente al template
-		if ($this->twig !== null)
-			$result = $this->twig->render ($this->Mappings);
-		
-		// Si la clase del padre de esta view puede estar asociado a servicios se generan los scripts y HTML necesarios 
-		if (in_array('SkyData\Core\Service\IServicesBindable', class_implements($this->GetParent())))
-			$result = $this->RenderServices($result);
-		
-		// y se retorna al siguiente
-		return $result;
-	}
+	public abstract function Render ();
 	
 	public function RenderServices ($pageContent)
 	{
 		$result = $pageContent; 
-		$pageName = $this->GetParent()->GetClassShortName();
-		foreach ($this->GetParent()->GetServices() as $serviceName => $serviceInstance) 
+		if (in_array('SkyData\Core\Service\IServicesBindable', class_implements($this->GetParent())))
 		{
-			// Se genera el código JS de este servicio y se agrega a la lista de scripts de la página
-			$serviceScript = $serviceInstance->RenderServiceJavascript ();
-			$cacheID = $this->GetApplication()->GetCacheManager()->Store ($serviceScript, $serviceName.'_service_script.js');
-			$this->GetApplication()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
-			
-			$result = "<div ng-controller='{$serviceName}SvcCtrl as {$pageName}'>{$result}</div>";
+			$pageName = $this->GetParent()->GetClassShortName();
+			foreach ($this->GetParent()->GetServices() as $serviceName => $serviceInstance) 
+			{
+				// Se genera el código JS de este servicio y se agrega a la lista de scripts de la página
+				$serviceScript = $serviceInstance->RenderServiceJavascript ();
+				$cacheID = $this->GetApplication()->GetCacheManager()->Store ($serviceScript, $serviceName.'_service_script.js');
+				$this->GetApplication()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
+				
+				$result = "<div ng-controller='{$serviceName}SvcCtrl as {$pageName}'>{$result}</div>";
+			}
 		}
-		
 		return $result;		
 	}
 	

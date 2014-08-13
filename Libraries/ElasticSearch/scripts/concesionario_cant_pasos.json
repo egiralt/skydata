@@ -1,0 +1,15 @@
+{
+    "query": {
+        "match": {
+           "id_concesionario": "{{id_concesionario}}"
+        }
+    }, 
+   "aggs": {
+      "cant_pasos": {
+         "terms": {
+            "field": "estado"
+         }
+      }
+   },
+   "size": 0
+}

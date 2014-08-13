@@ -6,14 +6,18 @@
  
  use \SkyData\Core\SkyDataObject;
  use \SkyData\Core\Configuration;
+ use \SkyData\Core\View\TwigView;
+  
+ use \SkyData\Core\View\IRenderable; 
+ 
  
  /**
   * Clase principal que contiene la gestión de la apariencia de la aplicación. 
   */
- class SkyDataTemplate extends SkyDataObject
+ class SkyDataTemplate extends TwigView
  {
  	
-	public $View;
+	private $View;
 	
 	/**
 	 * Indica si este template es el seleccionado en el View padre
@@ -68,6 +72,25 @@
 		}
 	}
 
+	public function GetTemplateDirectory ()
+	{
+		$style = $this->GetSelectedStyle();
+		if ($style != null)
+			return $style->GetTemplateDirectory ();// Se toma el template seleccionado
+		else 
+			throw new \Exception("Se requiere un estilo activo", 1);
+	}
+	
+	public function GetDefaultTemplateFileName ()
+	{
+		$style = $this->GetSelectedStyle(); // Se toma el estilo seleccionado
+		if ($style != null)
+			return $style->GetTemplateFile ();
+		else 
+			throw new \Exception("Se requiere un estilo activo", 1);
+	}
+	
+	
 	public function GetStyles ()
 	{
 		return $this->Styles;
@@ -145,5 +168,9 @@
 		return $this->IsDefault;
 	}
 	
+	public function SetView (IRenderable $view)
+	{
+		$this->View = $view;
+	}	
 	
  }

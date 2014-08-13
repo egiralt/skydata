@@ -6,12 +6,12 @@
  */
  namespace SkyData\Modules\MainMenu\View;
   
-use \SkyData\Core\Module\View\SkyDataModuleView;
+use \SkyData\Core\View\TwigView;
 
  /**
   *
   */
- class MainMenuView extends SkyDataModuleView
+ class MainMenuView extends TwigView
  {
  	public function Render ()
  	{

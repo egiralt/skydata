@@ -4,22 +4,15 @@
  */
 namespace SkyData\Core\Module\Controller;
 
-use \SkyData\Core\SkyDataObject;
 use \SkyData\Core\Controller\SkyDataController;
-use \SkyData\Core\Module\SkyDataModule;
-
-use \SkyData\Core\View\IRenderable;
-use \SkyData\Core\Module\IModule;
  
 /**
- * Clase base para todos los controladores
+ * Clase base para todos los controladores de los modulos
  */
 class SkyDataModuleController extends SkyDataController
 {
-	
- 	public function Run()
+	public function Run ()
 	{
-		$this->GetParent()->GetView()->Render();
-	}	
-	
+		
+	}
 }

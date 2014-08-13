@@ -4,9 +4,9 @@
  */
  namespace SkyData\Pages\Home\View;
  
- use \SkyData\Core\Page\View\SkyDataPageView;
+ use \SkyData\Core\View\PHPView;
  
- class HomeView extends SkyDataPageView
+ class HomeView extends PHPView
  {
  	
  }

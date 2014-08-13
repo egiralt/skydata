@@ -1,0 +1,78 @@
+<?php
+/**
+ * **header**
+ */
+ namespace SkyData\Core\View;
+ 
+use \SkyData\Core\SkyDataObject;
+use \SkyData\Core\Twig\SkyDataTwig;
+use \SkyData\Core\ReflectionFactory;
+
+ 
+ class TwigView extends SkyDataView
+ {
+	private $twig;
+
+	/**
+	 * Retorna el directorio desde donde se cargarán los templates de la clase
+	 */
+	public function GetTemplateDirectory ()
+	{
+		return ReflectionFactory::getClassDirectory (get_class($this->GetParent())).'/Templates';		
+	}
+	
+	/**
+	 * Retorna el nombre del template de la clase
+	 */
+	public function GetDefaultTemplateFileName ()
+	{
+		return ReflectionFactory::getClassShortName (get_class($this->GetParent())).'.twig';
+	}
+	
+	/**
+	 * Prepara el engine del template para que identifique los directorios de cache, templates, etc..
+	 * Este método se ha de llamar siempre antes ejecutar el método Render 
+	 */
+	protected function PrepareRender ()
+	{
+		if (!isset($this->twig))
+		{
+			$templateDirectory = $this->GetTemplateDirectory();
+			$templateFile = $this->GetDefaultTemplateFileName();
+			
+			$twigOptions = array(
+			 	'cache' => $this->GetCache() ? $this->GetCacheDirectory() : false,
+				'debug' => $this->GetDebug(),
+				'optimizations' => \Twig_NodeVisitor_Optimizer::OPTIMIZE_ALL
+			);
+			
+			$templateEngine = SkyDataTwig::getTwigInstance ($templateDirectory, $twigOptions);		
+			
+			// Intentar cargar el template del módulo
+			$defaultTemplateFullFilePath = $templateDirectory.'/'.$templateFile;
+			if (is_file($defaultTemplateFullFilePath) && $templateEngine !== null)
+			{
+				// Se crea la instancia del render para crear todos los objetos
+				$this->twig = $templateEngine->loadTemplate ($templateFile);
+			}
+		}
+	}
+	
+	/**
+	 * Genera la vista de la clase. 
+	 */ 	
+	public function Render ()
+	{
+		$this->PrepareRender();
+		
+		// Se genera el HTML correspondiente al template
+		$result = $this->twig->render ($this->GetMappings());
+		
+		// Si la clase del padre de esta view puede estar asociado a servicios se generan los scripts y HTML necesarios 
+		$result = $this->RenderServices($result);
+		
+		// y se retorna al siguiente
+		return $result;
+	}
+	
+ } 

@@ -6,12 +6,12 @@
  */
  namespace SkyData\Modules\CompanyLogo\View;
   
-use \SkyData\Core\Module\View\SkyDataModuleView;
+use \SkyData\Core\View\TwigView;
 
  /**
   *
   */
- class CompanyLogoView extends SkyDataModuleView
+ class CompanyLogoView extends TwigView
  {
  	public function Render ()
  	{
