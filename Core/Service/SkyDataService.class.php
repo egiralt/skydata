@@ -15,6 +15,7 @@ define ('DOC_COMMENT_AJAX_METHOD_PATTERN', '/\@ajaxMethod/');
 define ('DOC_COMMENT_RUN_ON_LOAD_PATTERN', '/\@runOnLoad/');
 define ('DOC_COMMENT_BIND_VARIABLE_PATTERN', '/\@bindVariable\s*([^\W]*)/');
 define ('DOC_COMMENT_BIND_DATA_MODEL_PATTERN', '/\@bindModel\s*([^\W]*)/');
+define ('DOC_COMMENT_CONTENT_TYPE_PATTERN', '/\@contentType\s*([^\W]*)/');
  
 class SkyDataService extends SkyDataResponseResource implements IService
 {
@@ -22,7 +23,7 @@ class SkyDataService extends SkyDataResponseResource implements IService
 	const DATATYPE_DATA 		= 'data';
 	const DATATYPE_JSON 		= 'json';
 	const DATATYPE_HTML 		= 'html';
-	const DATATYPE_XML 			= 'html';
+	const DATATYPE_XML 			= 'xml';
 	const DATATYPE_TEXT			= 'text';
 	const DATATYPE_IMAGE_JPG	= 'image/jpeg';
 	const DATATYPE_IMAGE_PNG	= 'image/png';
@@ -129,7 +130,6 @@ class SkyDataService extends SkyDataResponseResource implements IService
 				if ($methodInfo->bind_model == $modelName)
 					$modelInfo->methods[] = $methodInfo;
 			}
-						
 			$dataModel[] = $modelInfo;
 		}
 		// Ahora hay que hacer una lista con el resto de métodos, eliminando los que están asociados al modelo de datos
@@ -189,7 +189,11 @@ class SkyDataService extends SkyDataResponseResource implements IService
 				//Está conectado al modelo de datos?
 				if (preg_match(DOC_COMMENT_BIND_DATA_MODEL_PATTERN, $methodDocumentation, $matches))
 					$methodInfo->bind_model =$matches[1]; // Se toma el nombre de la variable que genera este valor
-					
+
+				//Qué tipo de salida tiene?
+				if (preg_match(DOC_COMMENT_CONTENT_TYPE_PATTERN, $methodDocumentation, $matches))
+					$methodInfo->contentType =$matches[1]; // Se toma el nombre de la variable que genera este valor
+										
 				// No pueden coexistir bindVariable y bindModel!
 				if (isset($methodInfo->bind_variable) && isset($methodInfo->bind_model))
 					throw new \Exception("El método '{$methodInfo->name}' no puede estar ligado a una variable y a un modelo al mismo tiempo.", -100);

@@ -138,6 +138,12 @@ use \SkyData\Core\Http\Http;
 		
 		// Y finalmente, se ejecuta el método y se envía al browser
 		$result = $serviceInstance->Exec ($ajaxInfo->method, $ajaxInfo->params);
+		
+		// Identificar el tipo de dato que retorna el método, por si es diferente al del servicio
+		$allMethods=$serviceInstance->GetAjaxMethods();
+		if (isset ($allMethods[$ajaxInfo->method]) && isset($allMethods[$ajaxInfo->method]->contentType))
+			$dataType = $allMethods[$ajaxInfo->method]->contentType;
+		
 		$this->RenderAjaxResult ($result, $dataType, $serviceConfig);
 	}
 	

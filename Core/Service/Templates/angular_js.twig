@@ -1,7 +1,21 @@
 {#
 	**header**
 #}
+{% macro responseType(method_contentType) %}
+ 	{% if method_contentType == 'json' or method_contentType == 'data'  %}
+ 		responseType: 'json',
+ 	{% elseif method_contentType == 'html' %}
+ 		responseType: 'document',
+ 	{% elseif method_contentType == 'text' or method_contentType == 'xml' %}
+ 		responseType: 'text',
+ 	{% elseif method_contentType|slice(1,5) == 'image' %}
+ 		responseType: 'blob',
+ 	{% else %}
+ 		responseType: 'json',
+ 	{% endif %}
+{% endmacro %}
 
+{% import _self as __ %}
 angular.module('SkyDataApp')
 	.controller ('{{ serviceName }}SvcCtrl', ['$scope', '$http',
 		function ($scope, $http) {
@@ -16,6 +30,7 @@ angular.module('SkyDataApp')
 			$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
 				$http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %},
 				 {
+				 	{{ __.responseType(method.contentType) }}
 					params: {
 					{% for parameter in method.parameters %}
 					{{ parameter }} : _{{ parameter }} {% if parameter != (method.parameters|last) %}, {% endif %} 
@@ -58,7 +73,8 @@ angular.module('SkyDataApp')
 			$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
 				$http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %},
 				 {
-					params: {
+				 	{{ __.responseType(method.contentType) }}
+				 	params: {
 					{% for parameter in method.parameters %}
 					{{ parameter }} : _{{ parameter }} {% if parameter != method.parameters|last %}, {% endif %} 
 					{% endfor %}
