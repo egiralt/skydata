@@ -23,7 +23,8 @@ use \Yaec\Yaec_ESClient;
 	 */ 	
 	public function GetVehiculosPopup ($matricula)
 	{
+		echo (new \DateTime())->format('Y-m-d');
 		$es = new Yaec_ESClient ('vgrs');
-		return $es->GetItem ('vehiculos', 'WVGZZZ1TZ6W121160');				
+		return $es->MatchOne ('vehiculos', 'WVGZZZ1TZ6W121160');				
 	}
  }
