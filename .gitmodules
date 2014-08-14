@@ -1,0 +1,3 @@
+[submodule "Libraries/Yaec"]
+	path = Libraries/Yaec
+	url = https://github.com/egiralt/yaec

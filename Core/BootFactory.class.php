@@ -21,7 +21,8 @@ include_once 'ReflectionFactory.class.php';
 use \SkyData\Core\Application\Application;
 
 // Inicializar el engine de twig
-require_once SKYDATA_PATH_ROOT.'/Libraries/Twig/Autoloader.php';
+require_once SKYDATA_PATH_LIBRARIES.'/Twig/Autoloader.php';
+require_once SKYDATA_PATH_LIBRARIES.'/Yaec/Autoloader.php';
 
  class BootFactory 
  {
@@ -43,6 +44,7 @@ require_once SKYDATA_PATH_ROOT.'/Libraries/Twig/Autoloader.php';
 			
 			// Iniciar el cargador del Twig
 			\Twig_Autoloader::register();
+			\Yaec_Loader::register();
 			
 			// Instalar un gestor de errores
 			//set_error_handler(array(__CLASS__, '__errorhandler'), E_ERROR);
@@ -82,6 +84,9 @@ require_once SKYDATA_PATH_ROOT.'/Libraries/Twig/Autoloader.php';
 	 */
 	private static function __classloader ($class)
 	{
+      	if (0 !== strpos($class, 'SkyData\\')) 
+            return;
+		
 		$className = ReflectionFactory::getClassShortName($class);
 		// Las interfaces deben comenzar con I y el nombre a continuación el nombre con al menos la primera letra mayúscula
 		if (preg_match('/^I[A-Z]/', $className))

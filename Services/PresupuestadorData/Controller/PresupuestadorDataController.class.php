@@ -7,13 +7,15 @@
   
  use \SkyData\Core\Service\Controller\SkyDataServiceController;
  use \SkyData\LibrariES\ElasticSearch\Elements as es;
+use \SkyData\Core\Model\SkyDataModelRecord;
 
  /**
   *
   */
  class PresupuestadorDataController extends SkyDataServiceController
  {
-
+	private $value;
+	
 	/** 	
 	 * @ajaxMethod 
 	 * @runOnLoad
@@ -35,25 +37,11 @@
 	 */ 	
 	function SelectServicio ()
 	{
-		$query = new ES\DSL(
-			new ES\Query(
-				new ES\Bool(
-					new ES\Must (
-						new ES\Match(array('field' => 'name', 'query' => 'Ernesto Giralt', 'type' => 'match_phrase_prefix',	'analyzer' => 'my_analyzer'))
-					),
-					new ES\Must_not (
-						new ES\Match(array(	'field' => 'id', 'query' => '1000'))
-					),
-					new ES\Boost('1.0'),
-					new ES\Minimum_should_match (1)
-				)
-			),
-			new ES\Size(200)
-		);
+		$register = new SkyDataModelRecord (array('id', 'descripcion'));
+		//echo '<pre>'; print_r ($register); die();
+		$register->setId (0);
+		$register->setDescripcion('Esto es una prueba');
 		
-		echo "<pre>";
-		print_r ($query->GetJSON());
-		print_r ($query->GetStdObject());
-		die();
+		echo $register->getDescripcion().PHP_EOL;
 	}
  }
