@@ -16,6 +16,15 @@
 		$loader = new \Twig_Loader_Filesystem($templateDirectory);
 		$options = array_filter($options, 'strlen');
 		
+		// Agregar directorios generales, donde se pueden usar macros y otras herramientas
+		$loader->prependPath(SKYDATA_PATH_TEMPLATES.'/Twig', 'global');
+		$currentTemplateDirectory = \SkyData\Core\BootFactory::GetApplication()
+			->GetView()
+			->GetSelectedTemplate()
+			->GetTemplateDirectory();
+		if ($currentTemplateDirectory != $templateDirectory)
+			$loader->prependPath($currentTemplateDirectory, 'style');
+		 
 		$result = new \Twig_Environment($loader);
 		$result->addTokenParser ( new TwigModuleTokenParser() );
 		

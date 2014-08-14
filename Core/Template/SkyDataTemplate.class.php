@@ -54,7 +54,7 @@
 		$content_head = $head->render ($this->GetMappings());
 		
 		// Segundo pase: el cuerpo de la página
-		$body = $this->TwigEnvironment->loadTemplate ('html_body.twig');
+		$body = $this->TwigEnvironment->loadTemplate ('html_body.twig'); // Este es el template de la página
 		$content_body = $body->render ($this->GetMappings());
 		
 		// Ultimo pase: el cuerpo de la página
