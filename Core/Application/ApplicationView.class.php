@@ -168,6 +168,7 @@ use \SkyData\Core\Http\Http;
 		//TODO: Se han de agregar otros tipos: imágenes, videos.. ¿?
 		switch ($dataType) 
 		{
+			case SkyDataService::DATATYPE_DATA:
 			case SkyDataService::DATATYPE_JSON:
 				$this->OutputAjaxJsonResult($result, $serviceConfig);
 				break;

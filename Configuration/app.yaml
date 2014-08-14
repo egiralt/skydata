@@ -39,6 +39,9 @@ templates:
       
 #TODO: Agregar soporte al dataType 'image'      
 services:
+  HTMLServices:
+    dataType: json
+    
   PresupuestadorData:
     dataType: json
     #TODO: Hay que programar el código que manejar los headers 

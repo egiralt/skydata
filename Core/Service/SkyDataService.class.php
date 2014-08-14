@@ -19,6 +19,7 @@ define ('DOC_COMMENT_BIND_DATA_MODEL_PATTERN', '/\@bindModel\s*([^\W]*)/');
 class SkyDataService extends SkyDataResponseResource implements IService
 {
 	
+	const DATATYPE_DATA 		= 'data';
 	const DATATYPE_JSON 		= 'json';
 	const DATATYPE_HTML 		= 'html';
 	const DATATYPE_XML 			= 'html';
@@ -88,6 +89,9 @@ class SkyDataService extends SkyDataResponseResource implements IService
 				}
 				// Ya se puede llamar el método
 				$result = $method->invokeArgs ($this->GetController(), $passParam);
+				$interfaces= class_implements($result);
+				if (in_array('SkyData\Core\Model\IDataRow', $interfaces)) //TODO: Por ahora solo considerar los rows, luego las tablas
+					$result = $result->GetRawClass();
 			}			
 		}	
 		
