@@ -1,0 +1,16 @@
+{
+   "query": {
+     "match": {
+       "id_concesionario": "{{id_concesionario}}"
+     }
+     
+   },
+   "aggs": {
+     "sexos": {
+       "terms": {
+         "script": "_source.sexo != null ? _source.sexo : 'No informado' "
+       }
+     }
+   },
+   "size": 0
+}

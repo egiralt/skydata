@@ -1,0 +1,14 @@
+{
+   "query": {
+      "bool": {
+         "must": [
+            {
+               "match": { "estado": "5" }
+            },
+            {
+               "match": { "recepcionista_codigo": "{{recepcionista_codigo}}" }
+            }
+         ]
+      }
+   }
+}

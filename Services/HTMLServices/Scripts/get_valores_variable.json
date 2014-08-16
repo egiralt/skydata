@@ -1,0 +1,13 @@
+{
+   "size": 0,
+   "query": {
+      "match_all": {}
+   },
+   "aggs": {
+      "variables": {
+         "terms": {
+            "script": "_source['{{variable}}']"
+         }
+      }
+   }
+}
