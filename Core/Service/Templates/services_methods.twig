@@ -1,0 +1,159 @@
+
+{% macro buildLocalDataMethod (serviceName, table, method) %}
+	$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
+		return $http.get ('/postventa/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %},
+		 {
+		 	{{ __.responseType(method.contentType) }}
+			params: {
+			{% for parameter in method.parameters %}
+				{{ parameter }} : _{{ parameter }} {% if parameter != (method.parameters|last) %}, {% endif %} 
+			{% endfor %}
+		}
+		{% endif %}} {#  method.parameters #}
+		). success ( function (data, status, headers, config) {
+			{% if table.is_enumerable %} 	{# Si es una tabla enumerable se genera un ciclo para agregar cada uno de los registros #}
+			for (idx in data) {
+				{% if table.fields|length > 1 %}  		{# ¿Hay muchos campos o solo 1? #}
+				$scope.{{ table.name }}.push({
+				{% for field in table.fields %}
+					{{ field }}: data[idx].{{ field }}{% if field != table.fields|last %},{% endif %}
+				{% endfor %} 	{# table.fields #}
+				});
+				{% else %}	{# solo un campo #}
+					$scope.{{ table.name }}.push(data.{{ table.fields[0] }});
+				{% endif %}
+			}
+			{% else %} {# No, no es enumerable .. es un valor simple #}
+				{% if table.fields|length > 1 %} 		{# ¿Hay muchos campos o solo 1? #}
+					$scope.{{ table.name }} = {
+				{% for field in table.fields %}
+					{{ field }}: data.{{ field }}{% if field != table.fields|last %},{% endif %}
+				{% endfor %} {# table.fields #}
+				};
+				{% else %} 		{# solo un campo #}
+					$scope.{{ table.name }}.{{ table.fields[0] }} = data.{{ table.fields[0] }};
+				{% endif %}
+			{% endif %} {# if table.is_enumerable #}
+		});
+	};	
+{% endmacro %}
+
+{% macro buildBindableLocalMethod (serviceName, method) %}
+	{% if method.bind_variable|length > 0 %}
+		$scope.{{ method.bind_variable }} = null; {# Se inicializa la variable conectada al método #}
+	{% endif %}
+	$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
+	
+		{% if method.bind_variable|length > 0 %} {#  Si hay algo que retornar #}
+		{% endif  %}
+		{# Llamar al método #}
+		return $http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %},
+		 {
+		 	{{ __.responseType(method.contentType) }}
+		 	params: {
+			{% for parameter in method.parameters %}
+				{{ parameter }} : _{{ parameter }} {% if parameter != method.parameters|last %}, {% endif %} 
+			{% endfor %}
+			}
+		}
+		{% endif %}){% if method.bind_variable|length > 0 %}.success(function (data, status, headers, config	) { {# tiene una variable que asignar! #}
+			
+			{# Si es un contenido HTML hay que pasarlo por trustHTML para evitar errores de angular#}
+			{% if method.contentType == 'html' %}
+				$scope.{{ method.bind_variable }} = $sce.trustAsHtml(data);
+			{% else %} {# Es cualquier otro contenido #}
+				$scope.{{ method.bind_variable }} = data;				
+			{% endif %}
+		
+		});
+		{% endif %};
+	};
+
+{% endmacro %}
+
+{% import _self as this %}
+
+{% macro runHTMLMethod (method) %}
+	$($element.get()).html ('<span class="popover-html-label" style="color:#ddd">Leyendo...<i class="fa fa-refresh fa-spin"></i></span>');
+	 $scope.{{ method.name }}({% if method.parameters|length > 0 %}$attrs.{{ method.parameters|join(', $attrs.') }}{% endif %})
+		.then (function (response) {
+				console.log ($response);
+				{# 
+				$($element.get()).html ($compile(response)($scope));
+				$($element.find('.popover-html-label')).popover();
+				#}
+			});
+
+{% endmacro %}
+
+{% macro renderAsTag (serviceName, method) %}
+	{% if method.render_tag or method.render_attribute or method.render_class  %}
+		.directive('{{ method.tag.name }}', ['$rootScope', '$compile', '$sce', function ($rootScope, $compile, $sce) {
+			return {
+				restrict: '{{ method.type_of_render }}',
+				replace: true,
+				{% if method.tag.template_url|length > 0  %}templateUrl: '{{ method.tag.template_url }}',{% endif %}
+				{% if method.tag.template|length > 0  %}template: '{{ method.tag.template|raw }}',{% endif %}
+				scope: {},
+				{% if method.tag.is_html %} {# Si es un objeto que genera HMTL el tratamiento es distinto #}
+				link: function ($scope, $element, $attrs) {
+						{# publicar los atributos en el modelo de datos para que funcionen los templates #}
+						for( var attr in $attrs)
+							if (!attr.match (/^\$/))
+								$scope[attr] = $attrs[attr];
+						{# función para ejectar.. es más legible #}
+						var do_{{ method.name }} = function ()
+						{
+							if (!$scope.loading{{ method.name }} && !$scope.loaded{{ method.name }} )
+							{
+								$($element).append('<span class="loading-data"><i class="fa fa-refresh fa-spin"></i></span>');
+								$scope.loading{{ method.name }} = true;
+								$scope.{{ method.name }}({% if method.parameters|length > 0 %}$attrs.{{ method.parameters|join(', $attrs.') }}{% endif %})
+								.then (function (response) {
+											$($element).html (response.data);
+											$($element).find('.popover-js').popover();
+											
+										$scope.loading{{ method.name }} = false;
+										$scope.loaded{{ method.name }} = true;
+									});
+							}
+						}; 						
+						{% if method.tag.trigger == 'hover' %} {# Al mover el mouse sobre el objeto #}
+							$element.bind ('mouseenter', function (event) {
+								if (!$scope.loaded{{ method.name }})
+									do_{{ method.name }}();
+								event.preventDefault();
+								return false;
+							});
+						{% elseif method.tag.trigger == 'click' %} {# Con un click#}
+							$element.bind ('click', function (event) {
+								if (!$scope.loaded{{ method.name }})
+									do_{{ method.name }}();
+								event.preventDefault();
+								return false;
+							});
+						{% else %} {# Cuando se ha solicitado cuando se muestre el elemento #}
+							do_{{ method.name }}();
+						{% endif %}
+					},
+				{% else %}
+				link: function ($scope, $element, $attrs) {
+					var do_{{ method.name }} = function () 	{
+					 	$scope.{{ method.name }}({% if method.parameters|length > 0 %}$attrs.{{ method.parameters|join(', $attrs.') }}{% endif %});
+					};
+					{% if method.tag.trigger == 'hover' %}
+						$element.on ('mouseenter', function (event) {
+							do_{{ method.name }}();
+						});
+					{% else %}
+						do_{{ method.name }}();
+					{% endif %}
+				},
+				{% endif %}
+				 controller: '{{ serviceName }}Controller'					
+				
+			};
+		}])
+	{% endif %}
+{% endmacro %}
+

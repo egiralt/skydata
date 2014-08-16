@@ -145,6 +145,7 @@
 		// Ahora crear la clase del servicio y actualizar el nodo de navigación
 		try
 		{
+			
 			$serviceInstance = new $serviceClass();
 		}
 		catch (\Exception $e)

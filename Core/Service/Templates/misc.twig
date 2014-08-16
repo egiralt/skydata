@@ -1,0 +1,11 @@
+{% macro responseType(method_contentType) %}
+ 	{% if method_contentType == 'json' or method_contentType == 'data'  %}
+ 		responseType: 'json',
+ 	{% elseif method_contentType == 'text' or method_contentType == 'xml' or method_contentType == 'html'%}
+ 		responseType: 'text',
+ 	{% elseif method_contentType|slice(1,5) == 'image' %}
+ 		responseType: 'blob',
+ 	{% else %}
+ 		responseType: 'json',
+ 	{% endif %}
+{% endmacro %}

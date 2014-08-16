@@ -40,7 +40,8 @@ templates:
 #TODO: Agregar soporte al dataType 'image'      
 services:
   HTMLServices:
-    dataType: html
+    defaultType: html
+    global: true
     
   PresupuestadorData:
     dataType: json

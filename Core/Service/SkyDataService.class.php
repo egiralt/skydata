@@ -16,6 +16,10 @@ define ('DOC_COMMENT_RUN_ON_LOAD_PATTERN', '/\@runOnLoad/');
 define ('DOC_COMMENT_BIND_VARIABLE_PATTERN', '/\@bindVariable\s*([^\W]*)/');
 define ('DOC_COMMENT_BIND_DATA_MODEL_PATTERN', '/\@bindModel\s*([^\W]*)/');
 define ('DOC_COMMENT_CONTENT_TYPE_PATTERN', '/\@contentType\s*([^\W]*)/');
+define ('DOC_COMMENT_RENDER_TAG_PATTERN', "/\@renderTag\s*([^\n]*)/");
+define ('DOC_COMMENT_RENDER_CLASS_PATTERN', "/\@renderClass\s*([^\n]*)/");
+define ('DOC_COMMENT_RENDER_ATTRIBUTE_PATTERN', "/\@renderAttribute\s*([^\n]*)/");
+define ('DOC_COMMENT_RENDER_TAG_PARAMETERS_PATTERN', "/([^\W]*)\s*=\s*('[^']*'|[^\W]*)/");
  
 class SkyDataService extends SkyDataResponseResource implements IService
 {
@@ -102,6 +106,27 @@ class SkyDataService extends SkyDataResponseResource implements IService
 		return $result;
 	}
 
+	public function IsGlobal()
+	{
+		$serviceConfig = $this->GetApplication()->GetConfigurationManager()->GetMapping('services') [$this->GetClassShortName()];
+		return true;		
+		return isset($serviceConfig) && ($serviceConfig['global'] === true); 
+	}
+
+	//TODO: Este método será para futuros desarrollos: permitir que un servicio sea declarado global para que se genere
+	// con un factory en el módulo general y que pueda ser reusable. Un servicio global, se genera desde la aplicación
+	// y puede no ser usado por páginas o módulos. Si un servicio global se usa en una página, se genera un código específico 
+	// para reusar ese código global y no se generará igual que se fuera local
+	public function RenderGlobalServiceJavascript()
+	{
+		$result = null;
+		if ($this->IsGlobal())
+		{
+		}	
+		
+		return $result;	
+	}
+	
 	/**
 	 * Genera el código javascript de este servicio, compatible con Angular
 	 */
@@ -151,11 +176,12 @@ class SkyDataService extends SkyDataResponseResource implements IService
 		$params = array (
 			'serviceName' 	=> $this->GetClassShortName(),
 			'tables' 		=> $dataModel,
-			'methods' 		=> $otherMethods
-		);		
+			'methods' 		=> $otherMethods,
+			'is_global'		=> $this->IsGlobal()
+		);	
 		
 		// Se utilizarán las plantillas predeterminadas guardas, y generadas con Twig
-		$result = SkyDataTwig::RenderTemplate (SKYDATA_PATH_CORE.'/Service/Templates/angular_js.twig', $params);
+		$result = SkyDataTwig::RenderTemplate (SKYDATA_PATH_CORE.'/Service/Templates/service_controller_factory.twig', $params);
 		
 		return $result;		
 	}
@@ -182,6 +208,7 @@ class SkyDataService extends SkyDataResponseResource implements IService
 			{
 				$methodInfo = new \stdClass();
 				$methodInfo->name = $method->getName();
+				$methodInfo->is_global = $this->IsGlobal(); // Para garantizar que el servicio se genere o local o usando el global.
 				$methodInfo->run_on_load = preg_match(DOC_COMMENT_RUN_ON_LOAD_PATTERN, $methodDocumentation);
 				// Tiene variables asociadas?
 				if (preg_match(DOC_COMMENT_BIND_VARIABLE_PATTERN, $methodDocumentation, $matches))
@@ -193,7 +220,44 @@ class SkyDataService extends SkyDataResponseResource implements IService
 				//Qué tipo de salida tiene?
 				if (preg_match(DOC_COMMENT_CONTENT_TYPE_PATTERN, $methodDocumentation, $matches))
 					$methodInfo->contentType =$matches[1]; // Se toma el nombre de la variable que genera este valor
-										
+
+				// Generará un tag?
+				if (preg_match(DOC_COMMENT_RENDER_TAG_PATTERN, $methodDocumentation, $matches))
+				{
+					$methodInfo->render_tag = true;
+					$methodInfo->type_of_render = 'E';
+					$methodInfo->tag = new \stdClass();
+					$methodInfo->tag->render_as = array();
+					$this->BuildRenderDecorator($matches[1], $methodInfo);
+					//echo "<pre>";print_r ($methodInfo); 
+				} 
+				// Generará una clase?
+				if (preg_match(DOC_COMMENT_RENDER_CLASS_PATTERN, $methodDocumentation, $matches))
+				{
+					$methodInfo->render_class = true;
+					$methodInfo->type_of_render = 'C';
+					$methodInfo->tag = new \stdClass();
+					$methodInfo->tag->render_as = array();
+					$this->BuildRenderDecorator($matches[1], $methodInfo);
+					//echo "<pre>";print_r ($methodInfo); 
+				} 
+				// Generará un atributo?
+				if (preg_match(DOC_COMMENT_RENDER_ATTRIBUTE_PATTERN, $methodDocumentation, $matches))
+				{
+					$methodInfo->render_attribute = true;
+					$methodInfo->type_of_render = 'A';
+					$methodInfo->tag = new \stdClass();
+					$methodInfo->tag->render_as = array();
+					$this->BuildRenderDecorator($matches[1], $methodInfo);
+					//echo "<pre>";print_r ($methodInfo); 
+				} 
+				// Solo uno a la vez
+				if ( ($methodInfo->render_tag + $methodInfo->render_class + $methodInfo->render_attribute) > 1)
+					throw new \Exception("Solo puede haber una declaración de renderTar, renderAttribute o renderClass", 1);
+				
+				if  (!isset($methodInfo->tag->name))
+					throw new \Exception("El servicio debe dar un nombre al atributo, elemento o clase (use name en el métod {$methodInfo->name})", 1);
+					 								
 				// No pueden coexistir bindVariable y bindModel!
 				if (isset($methodInfo->bind_variable) && isset($methodInfo->bind_model))
 					throw new \Exception("El método '{$methodInfo->name}' no puede estar ligado a una variable y a un modelo al mismo tiempo.", -100);
@@ -214,6 +278,40 @@ class SkyDataService extends SkyDataResponseResource implements IService
 		}
 		
 		return $result;
+	}
+
+	private function BuildRenderDecorator ($renderOptions, &$methodInfo)
+	{
+		// El siguiente patrón extraerá todos los campos de la línea de parámetros del método
+		if(preg_match_all(DOC_COMMENT_RENDER_TAG_PARAMETERS_PATTERN, $renderOptions, $paramMatches))
+			foreach ($paramMatches[0] as $order => $dumb)
+			{
+				$field = strtolower($paramMatches[1][$order]);
+				$value = $paramMatches[2][$order];
+				switch ($field)
+				{
+					case 'fullhtml' :
+						// Validaciones
+						if (!isset($methodInfo->contentType))
+							$methodInfo->contentType = SkyDataService::DATATYPE_HTML;
+						elseif ($methodInfo->contentType != SkyDataService::DATATYPE_HTML)
+							throw new \Exception('El método fue marcado con "fullHtml" pero el tipo de respuesta (contentType) no es HTML.', -100);
+						if (!empty($methodInfo->bind_model))
+							throw new \Exception('El método no puede estar asociado a un modelo de datos si ha sido marcado con "fullHtml" ', -100);
+						// Ya se puede confirmar que genera HTML
+						$methodInfo->tag->is_html = $value == 'true' ; 
+						break;
+					case 'name'			: $methodInfo->tag->name = $value; break;
+					case 'templateurl'	: $methodInfo->tag->template_url = trim (ltrim(rtrim($value,"'"), "'")); break;
+					case 'template'		: $methodInfo->tag->template = trim (ltrim(rtrim($value,"'"), "'")); break;
+					case 'presentation'	: $methodInfo->tag->presentation = trim (ltrim(rtrim($value,"'"), "'")); break;
+					case 'renderas'		: $methodInfo->tag->render_as[] = $value; break;
+					case 'trigger'		: $methodInfo->tag->trigger = $value; break;
+				}
+				
+			}
+		else
+			throw new \Exception("Error de sintaxis definiendo 'renderTag'.", -100);
 	}
 	
 } 

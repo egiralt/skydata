@@ -1,0 +1,41 @@
+'use strict';
+
+var SkyDataApp = {};
+
+SkyDataApp.services = angular.module ('SkyDataApp.services', []);
+SkyDataApp.filters = angular.module ('SkyDataApp.filters', []);
+SkyDataApp.directives = angular.module ('SkyDataApp.directives', []);
+SkyDataApp.module = angular.module ('SkyDataApp', [
+	'SkyDataApp.services',
+	'SkyDataApp.filters',
+	'SkyDataApp.directives', 
+//	'ui.bootstrap',
+	{% for service in services %}
+	'{{ service }}'{% if service != services|last %},{% endif %}
+	{% endfor	 %}
+]);
+
+
+angular.module ('SkyDataApp')
+	.config(function($interpolateProvider) {
+  		$interpolateProvider.startSymbol('[[');
+  		$interpolateProvider.endSymbol(']]');
+	});
+
+
+SkyDataApp.controller =  SkyDataApp.module
+	.controller ('SkyDataAppController', ['$scope', function ($scope) {
+	}
+]);
+	
+
+SkyDataApp.module
+	.directive ('doPopover', function () {
+		return {
+			restrict: 'A',
+			link: function (scope, element, attrs) 
+			{
+				$(element.get()).popover();
+			}
+	};
+});

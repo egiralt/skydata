@@ -10,6 +10,7 @@ use \SkyData\Core\Template\SkyDataTemplate;
 use \SkyData\Core\Service\SkyDataService;
 use \SkyData\Core\ReflectionFactory;
 use \SkyData\Core\Http\Http;
+use \SkyData\Core\Twig\SkyDataTwig;
 
 /**
  * Clase principal que gestiona la vista global de la aplicación
@@ -80,11 +81,11 @@ use \SkyData\Core\Http\Http;
 	protected function ManagePageRequest ($pageInstance)
 	{
 		$this->GetApplication()->MergeMetadata($pageInstance);
-		$this->PublishCustomMetadata(); // Los metadatos requeridos por la aplicación
 		$this->SetMetadataHeaders();
 				
 		$content = $pageInstance->GetView()->Render(); //!! el contenido de la página que se muestra
 		$content = $pageInstance->GetView()->RenderServices($content);
+		$this->PublishCustomMetadata(); // Los metadatos requeridos por la aplicación, después de los servicios
 				
 		$template = $this->GetSelectedTemplate();
 		$template->Assign ('page_content', $content); // El contenido de la propia página	
@@ -98,8 +99,19 @@ use \SkyData\Core\Http\Http;
 	 */
 	protected function PublishCustomMetadata()
 	{
-		$this->GetApplication()->GetMetadataManager()
-			->AddScript ('Core/Application/Scripts/module_app.js');
+		$currentRequest = $this->GetApplication()->GetCurrentRequest();
+		//echo "<pre>";print_r (class_implements($currentRequest)); die();
+		if (in_array('SkyData\Core\Page\IPage', class_implements($currentRequest)))
+		{
+			$servicesNames = array();
+			$services = $currentRequest->GetServices();
+			foreach ($services as $name => $instance) 
+				$servicesNames[] = $name;
+			
+			$script = SkyDataTwig::RenderTemplate (SKYDATA_PATH_CORE.'/Application/Scripts/main_module.twig', array ('services' => $servicesNames), true);
+			$cacheID = $this->GetApplication()->GetCacheManager()->Store ($script, 'mainmodule_script.js');
+			$this->GetApplication()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
+		}
 	}
 	
 	/**
@@ -109,7 +121,7 @@ use \SkyData\Core\Http\Http;
 	protected function ManageAjaxRequest ($serviceInstance)
 	{
 		// Defaults
-		$dataType = SkyDataService::DATATYPE_JSON;
+		$defaultDataType = SkyDataService::DATATYPE_JSON;
 		$acceptedVerbs = array(
 			SkyDataService::HTTP_VERB_GET, 
 			SkyDataService::HTTP_VERB_PUT, 
@@ -126,7 +138,7 @@ use \SkyData\Core\Http\Http;
 		// Si hay configuración para el servicio, se intentan actualizar sus parámetros con esos valores
 		if (isset($serviceConfig))
 		{
-			$dataType = isset($serviceConfig['dataType']) ? $serviceConfig['dataType'] : $dataType;
+			$defaultDataType = isset($serviceConfig['defaultType']) ? $serviceConfig['defaultType'] : $defaultDataType;
 			$acceptedVerbs = isset($serviceConfig['accepts']) ? $serviceConfig['accepts'] : $acceptedVerbs;
 			if (!is_array($acceptedVerbs))
 				$acceptedVerbs = array($acceptedVerbs);
@@ -142,9 +154,9 @@ use \SkyData\Core\Http\Http;
 		// Identificar el tipo de dato que retorna el método, por si es diferente al del servicio
 		$allMethods=$serviceInstance->GetAjaxMethods();
 		if (isset ($allMethods[$ajaxInfo->method]) && isset($allMethods[$ajaxInfo->method]->contentType))
-			$dataType = $allMethods[$ajaxInfo->method]->contentType;
+			$defaultDataType = $allMethods[$ajaxInfo->method]->contentType;
 		
-		$this->RenderAjaxResult ($result, $dataType, $serviceConfig);
+		$this->RenderAjaxResult ($result, $defaultDataType, $serviceConfig);
 	}
 	
 	/**

@@ -37,11 +37,22 @@ use \SkyData\Core\ILayoutNode;
 			foreach ($this->GetParent()->GetServices() as $serviceName => $serviceInstance) 
 			{
 				// Se genera el código JS de este servicio y se agrega a la lista de scripts de la página
+				$globalServiceScript =  $serviceInstance->RenderGlobalServiceJavascript ();
 				$serviceScript = $serviceInstance->RenderServiceJavascript ();
-				$cacheID = $this->GetApplication()->GetCacheManager()->Store ($serviceScript, $serviceName.'_service_script.js');
-				$this->GetApplication()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
 				
-				$result = "<div ng-controller='{$serviceName}SvcCtrl as {$pageName}'>{$result}</div>";
+				if (!empty($globalServiceScript))
+				{
+					$cacheID = $this->GetApplication()->GetCacheManager()->Store ($globalServiceScript, $serviceName.'_globalservice_script.js');
+					$this->GetApplication()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
+				}
+				if (!empty($serviceScript))
+				{
+					$cacheID = $this->GetApplication()->GetCacheManager()->Store ($serviceScript, $serviceName.'_service_script.js');
+					$this->GetApplication()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
+				}
+				
+				
+				$result = "<div ng-controller='{$serviceName}Controller'>{$result}</div>";
 			}
 		}
 		return $result;		

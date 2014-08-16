@@ -34,7 +34,7 @@
 	public static function RenderTemplate ($templateFullPath, $params = array(), $cache = false, $debug = false)
 	{
 		$options = array();
-		$options = $cache ? $options['cache'] = SKYDATA_PATH_CACHE : $options;
+		//$options = $cache ? $options['cache'] = SKYDATA_PATH_CACHE : $options;
 		$options = $cache ? $options['debug'] = true : $options;
 		$options = count($options) === 0 ? null : $options;
 		
