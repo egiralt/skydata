@@ -65,4 +65,9 @@
 		header('Content-type: image/tiff');
 	}
 	
+	public static function GetRequestMethod ()
+	{
+		return $_SERVER['REQUEST_METHOD'];		
+	}
+	
  }
