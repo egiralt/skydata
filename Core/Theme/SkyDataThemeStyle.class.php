@@ -2,7 +2,7 @@
 /**
  * **header**
  */
- namespace SkyData\Core\Template;
+ namespace SkyData\Core\Theme;
 
  define ('TEMPLATE_DEFAULT_FILENAME', 'template.twig');
  
@@ -12,19 +12,21 @@
  /**
   * Guarda el contenido y la gestión de los estilos asociados a un templates.
   */
- class SkyDataTemplateStyle extends SkyDataObject
+ class SkyDataThemeStyle extends SkyDataObject
  {
  	
 	/**
 	 * El template al que pertenece este estilo
 	 */
-	public $Template;
+	private $Theme;
 
-	protected $UseDebug 	= false;
-	protected $UseCache 		= false;
-	protected $IsDefault	= false;
-	protected $IsActive		= true;
-	protected $Name;
+	private $UseDebug 	= false;
+	private $UseCache 	= false;
+	private $IsDefault	= false;
+	private $IsActive		= false;
+	private $Name;
+	private $Description	= '';
+	private $Styles;
 	
 	public function __construct($styleName, $configurationData= null)
 	{
@@ -38,6 +40,17 @@
 	{
 		if (!empty($configurationData))
 		{
+			$this->Description = $configurationData['description'];
+			$this->CssStyles = array();
+			$this->Scripts = array();
+			// Estilos css
+			foreach ($configurationData['css'] as $style)
+				$this->CSSStyles[] = $style;
+		
+			// Scripts	
+			foreach ($configurationData['css'] as $script)
+				$this->Scripts[] = $script;
+				
 			$this->UseCache = $configurationData['cache'] == 'true' ? true : false;
 			$this->UseDebug = $configurationData['debug'] == 'true' ? true : false;
 			$this->IsDefault = $configurationData['default'] == 'true' ? true : false;
@@ -66,7 +79,7 @@
 	 */	
 	public function GetTemplateDirectory()
 	{
-		$result = SKYDATA_PATH_TEMPLATES.'/'.$this->Template->GetName().'/'.$this->GetName();
+		$result = SKYDATA_PATH_THEMES.'/'.$this->Template->GetName().'/Styles/'.$this->GetName();
 		return $result;		
 	}
 	
@@ -116,5 +129,30 @@
 	{
 		return $this->UseDebug;
 	}
+	
+	/**
+	 * Retorna la lista de metadatos 
+	 */
+	public function GetMetadataManager() 
+	{
+		return $this->MetadataManager;
+	}
+	
+	public function LoadMetadata()
+	{
+		// Extraer la lista de metadatos de la aplicación
+		$this->GetMetadataManager()->LoadFromConfiguration ($this->GetConfigurationManager()->GetMapping('metadata'));
+	}
+	
+	public function GetTheme()
+	{
+		return $this->Theme;
+	}
+	
+	public function SetTheme(ITheme $theme)
+	{
+		$this->Theme = $theme;		
+	}
+	
 	
  }
