@@ -1,43 +1,44 @@
 application:
-  home: SkyData\Modules\Home\Home
+  # Título de la aplicación
   title: Frontend de Postventa
+  
+  # El formato a usar para nombrar las páginas. Con este formato se arman el campo 'title' de los encabezados de la página activa.
+  title_format: '{app_title}::{page_title}'
+  
+  # El url que se usará para armar todos los paths. Por defecto es /. Ponga un valor aquí solo se está
+  # usando su aplicacion dentro de un sub path del server (ej: /web)
+  base_url: /postventa
 
+# Lista de páginas de la aplicación
 navigation:
   Home:
-    title: Inicio
-    class: Home
     route: /
-    # TODO: Agregar la gestión de roles
-    roles: ASP,DPV
-    # TODO: Hacer que las páginas puedan recibir un template distinto al default
-    template: main/bootstrap
   FichaASP:
     title: Ficha ASP
     class: FichaASP
-    route: ficha_asp
+    route: /ficha_asp
     # TODO: Agregar la gestión de roles
     roles: ASP,DPV
     # TODO: Hacer que las páginas puedan recibir un template distinto al default
     template: main/bootstrap
   Presupuestador:
     title: Presupuestos
-    class: Presupuestador
-    route: presupuestos
+    route: /presupuestos
     subnav:
       PresupuestosMenores:
         title: 2
         class: Presupuestador
         route: 2
-  
-templates:
-  main:
-    styles:
-      bootstrap:
-        default: true
-        cached: false
-        debug: false
+
+# Todos los temas de la aplicación.   
+themes:
+  BinaryAdmin:
+    default: true
+    cached: false
+    debug: false  
       
-#TODO: Agregar soporte al dataType 'image'      
+#TODO: Agregar soporte al dataType 'image'
+# Todos los servicios      
 services:
   HTMLServices:
     defaultType: html
@@ -49,3 +50,18 @@ services:
     headers:
       Cache-Control: no-cache, must-revalidate
       Expires: Mon, 01 Jul 1900 00:00:00 GMT
+
+
+# Definición de rutas especiales de la aplicación
+routes:
+# Sección de rutas de la aplicacion. No cambiar las siguientes a menos que se sepa que se está haciendo
+# ============================== Core routing =========================================
+  services: 
+      methods: GET|POST|DELETE|PUT
+      route: /service/[a:name]/[a:method]?/[*:params]?
+      target: /Services
+# ============================== End core routing =========================================
+      
+            
+        
+  
