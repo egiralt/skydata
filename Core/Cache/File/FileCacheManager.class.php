@@ -125,10 +125,13 @@
 	{
 		$result = null;
 		$filePath = $this->GetFilePath($uniqueID).'.idx';
+		
 		if (is_file($filePath))
 		{
 			$cachedContent = file_get_contents($filePath);
 			$cachedObject = unserialize($cachedContent);
+			//echo "<pre>";print_r ($cachedObject); die();
+			
 			// Hay que averiguar si ha pasado el tiempo de expiración indicado
 			$cachedTime = new \DateTime (); // Por defecto igual que ahora
 			$now = new \DateTime();
@@ -138,9 +141,14 @@
 			$cachedSecondsDiff = $cachedTime->diff($now)->format('%R%s') * 1;
 			if ($cachedSecondsDiff <= 0)
 			{
-				$contentFilePath = $filePath.'.val';
+				$contentFilePath = $this->GetFilePath($cachedObject->id);
+				//echo $contentFilePath; die();
+				if (preg_match("/\.js$|\.html$/", $cachedObject->id, $extension))
+					$contentFilePath .= $extension[0];
+				else
+					$contentFilePath .= '.val';
 				
-				$result = file_get_contents($cachedContent);
+				$result = file_get_contents($contentFilePath);
 				if ($cachedObject->is_serialized)
 					$result = unserialize($result);
 			}
@@ -158,6 +166,6 @@
 	{
 		return sprintf('%s/%s',$this->Directory, md5($uniqueID));		
 	}
- 	
+	
  }
  
