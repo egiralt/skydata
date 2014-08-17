@@ -16,13 +16,23 @@
 	/**
 	 * Retorna el título de la pagina
 	 */
-	protected function GetPageTitle()
+	public function GetPageTitle()
 	{
-		$appConfiguration = $this->Application->GetConfigurationManager()->GetMapping ('application');
+		$appConfiguration = $this->GetApplication()->GetConfigurationManager()->GetMapping ('application');
 		$format = $appConfiguration['title_format'];
+		$app_title = $appConfiguration['title'];
 		
-		$result = str_replace('{app_name}', $format, $appConfiguration['title']);
-		$result = str_replace('{module_name}', $format, $appConfiguration['title']);
+		$navConfiguration = $this->GetApplication()->GetConfigurationManager()->GetMapping ('navigation');
+		$page_title = $navConfiguration[$this->GetClassShortName()][title];
+		
+		if (!empty($format))
+		{
+			$result = str_replace('{app_title}', $format, $app_title);
+			$result = str_replace('{page_title}', $result, $page_title);
+		}
+		else $result = $page_title;
+
+		return $result;		
 	}
 
 	/**

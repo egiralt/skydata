@@ -43,12 +43,12 @@ use \SkyData\Core\ILayoutNode;
 				if (!empty($globalServiceScript))
 				{
 					$cacheID = $this->GetApplication()->GetCacheManager()->Store ($globalServiceScript, $serviceName.'_globalservice_script.js');
-					$this->GetApplication()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
+					$this->GetApplicationView()->GetSelectedTemplate()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
 				}
 				if (!empty($serviceScript))
 				{
 					$cacheID = $this->GetApplication()->GetCacheManager()->Store ($serviceScript, $serviceName.'_service_script.js');
-					$this->GetApplication()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
+					$this->GetApplicationView()->GetSelectedTemplate()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
 				}
 				
 				

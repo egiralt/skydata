@@ -6,8 +6,6 @@
  namespace SkyData\Core;
 
 
-DEFINE ('SKYDATA_ROOT_DOMAIN', 'SkyData');
- 
  /**
   * Clase utilitaria usada para obtener información de las clases y su ubicación física, etc.
   */
@@ -19,7 +17,15 @@ DEFINE ('SKYDATA_ROOT_DOMAIN', 'SkyData');
 	 */
 	public static function getFullServiceClassName ($className)
 	{
-		return "\\SkyData\\Services\\{$className}\\{$className}";
+		return SKYDATA_NAMESPACE_SERVICES."\\{$className}\\{$className}";
+	}
+	
+	/**
+	 * Retorna el nombre completo de una clase de servicios a partir de su nombre corto
+	 */
+	public static function getFullPageClassName ($className)
+	{
+		return SKYDATA_NAMESPACE_PAGES."\\{$className}\\{$className}";
 	} 	
 
 	/**
@@ -57,10 +63,9 @@ DEFINE ('SKYDATA_ROOT_DOMAIN', 'SkyData');
 	public static function getInterfaceFilePath ($className)
 	{
 		return static::getClassDirectory($className).'/'.static::getClassShortName($className).'.php';		
-	}		
-
-
+	}
 	
+			
 	/**
 	 * Retorna el directorio donde se puede encontrar el fichero de la clase indicada
 	 */
@@ -69,7 +74,7 @@ DEFINE ('SKYDATA_ROOT_DOMAIN', 'SkyData');
 		$names = explode('\\', static::getClassNamespace($className));
 		$className = static::getClassShortName($className);
 		// Se usa el namespace de la clase para determinar su ubicación
-		if ($names[0] == SKYDATA_ROOT_DOMAIN) // Si comienza con el namespace raíz, 
+		if ($names[0] == SKYDATA_NAMESPACE_ROOT) // Si comienza con el namespace raíz, 
 			unset($names[0]);		// se ha de eliminar, porque no existe un camino con ese nombre
 		// La ruta se crea a partir de los nombres del dominio 
 		return SKYDATA_PATH_ROOT.'/'.implode('/', $names);

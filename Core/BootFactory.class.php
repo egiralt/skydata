@@ -8,13 +8,21 @@
 /**
  * Definiciones esenciales para fijar los paths
  */
-define ('SKYDATA_PATH_ROOT', 		realpath(dirname(__FILE__).'/..'));
-define ('SKYDATA_PATH_MODULES', 	SKYDATA_PATH_ROOT.'/Modules');
-define ('SKYDATA_PATH_LIBRARIES', 	SKYDATA_PATH_ROOT.'/Libraries');
-define ('SKYDATA_PATH_CORE',		SKYDATA_PATH_ROOT.'/Core');
-define ('SKYDATA_PATH_CACHE',		SKYDATA_PATH_ROOT.'/Cache');
-define ('SKYDATA_PATH_PAGES',		SKYDATA_PATH_ROOT.'/Pages');
-define ('SKYDATA_PATH_TEMPLATES',	SKYDATA_PATH_ROOT.'/Templates');
+define ('SKYDATA_PATH_ROOT', 			realpath(dirname(__FILE__).'/..'));
+define ('SKYDATA_PATH_CONFIGURATION', 	SKYDATA_PATH_ROOT.'/Configuration');
+define ('SKYDATA_PATH_MODULES', 		SKYDATA_PATH_ROOT.'/Modules');
+define ('SKYDATA_PATH_LIBRARIES', 		SKYDATA_PATH_ROOT.'/Libraries');
+define ('SKYDATA_PATH_CORE',			SKYDATA_PATH_ROOT.'/Core');
+define ('SKYDATA_PATH_CACHE',			SKYDATA_PATH_ROOT.'/Cache');
+define ('SKYDATA_PATH_PAGES',			SKYDATA_PATH_ROOT.'/Pages');
+define ('SKYDATA_PATH_THEMES',			SKYDATA_PATH_ROOT.'/Themes');
+define ('SKYDATA_PATH_UI',				SKYDATA_PATH_ROOT.'/UI');
+
+define ('SKYDATA_NAMESPACE_ROOT',		'SkyData');
+define ('SKYDATA_NAMESPACE_CORE',		SKYDATA_NAMESPACE_ROOT.'\\Core');
+define ('SKYDATA_NAMESPACE_PAGES',		SKYDATA_NAMESPACE_ROOT.'\\Pages');
+define ('SKYDATA_NAMESPACE_SERVICES',	SKYDATA_NAMESPACE_ROOT.'\\Services');
+define ('SKYDATA_NAMESPACE_THEMES',		SKYDATA_NAMESPACE_ROOT.'\\Themes');
 
 include_once 'ReflectionFactory.class.php';
 

@@ -17,7 +17,7 @@
 		$options = array_filter($options, 'strlen');
 		
 		// Agregar directorios generales, donde se pueden usar macros y otras herramientas
-		$loader->prependPath(SKYDATA_PATH_TEMPLATES.'/Twig', 'global');
+		$loader->prependPath(SKYDATA_PATH_UI.'/Global', 'global');
 		$currentTemplateDirectory = \SkyData\Core\BootFactory::GetApplication()
 			->GetView()
 			->GetSelectedTemplate()

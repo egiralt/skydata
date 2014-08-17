@@ -26,8 +26,7 @@
 			if (is_file($fileFullPath) && strpos ($file, '.yaml') > 0)
 			{
 				$configData = \SkyData\Libraries\Yaml\Spyc::YAMLLoad ($fileFullPath);
-				foreach ($configData as $configSection => $value)
-					$result->$configSection =$value; // Se guarda dentro de este mismo objeto
+				static::ParseMetadataConfiguration($configData, $result);
 			}
 		}
 		
@@ -51,13 +50,25 @@
 	static public function ReadLocalMetadata ($metadataFileName)
 	{
 		$result = null;
-		
 		if (is_file($metadataFileName))
 		{
 			$config = \SkyData\Libraries\Yaml\Spyc::YAMLLoad ($metadataFileName);
-			$result = static::ParseMetadataConfiguration($config);
+			static::ParseMetadataConfiguration($config, $result);
 		}
+		return $result;
+	}
+
+	/**
+	 * Convierte a una clase el array de la configuración
+	 */	
+	static private function ParseMetadataConfiguration($config, &$result)
+	{
+		if (!isset($result))
+			$result = new \stdClass();
 		
+		foreach ($config as $configSection => $value)
+			$result->$configSection =$value; // Se guarda dentro de este mismo objeto
+			
 		return $result;
 	}
 	
