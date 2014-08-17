@@ -4,9 +4,9 @@
  */
  namespace SkyData\Pages\Home\View;
  
- use \SkyData\Core\View\PHPView;
+ use \SkyData\Core\View\MarkdownView;
  
- class HomeView extends PHPView
+ class HomeView extends MarkdownView
  {
  	
  }

@@ -23,7 +23,7 @@
 		$navigation = $application->GetConfigurationManager()->GetMapping ('navigation');
 		foreach ($navigation as $navName => $navNode) 
 		{
-			$node = $this->buildNode($navNode);			
+			$node = $this->buildNode($naveName, $navNode);			
 			$pages[$navName] = $node;
 		}
 		
@@ -34,14 +34,14 @@
 	/**
 	 * Crea el árbol de nodos recursivamente
 	 */
-	private function buildNode ($navNode)
+	private function buildNode ($naveName, $navNode)
 	{
 		$result = new \stdClass();
 		$result->label = $navNode['title'];
 		if ($navNode['route'] == '/')
 			$result->route = $_SERVER['REQUEST_URI'].'/';
 		else
-			$result->route =  $navNode['route'];
+			$result->route =  $this->GetApplication()->GetConfigurationManager()->GetMapping('application')['base_url'].$navNode['route'];
 		if ($navNode['subnav'])
 		{
 			$result->childs = array();

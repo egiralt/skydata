@@ -1,20 +1,13 @@
-<aside>
-	<div class="divider"></div>
-	<div class="sidebar-nav-fixed phone-visible indented" >
-		<ul class='menu'>
+<div class="sidebar-collapse">
+	<ul class="nav" id="main-menu">	
+		<li class="text-center">
+			<avatar email='egiralt@gmail.com' size='120'></avatar>
+		</li>
+
 		{% for page in pages %}
-	        <li>
-	        	<a href='{{ page.route }}'>{{ page.label }}</a>
-	        	{#
-	        	{capture name=moduleTabId assign=moduleTabId}moduleTab_{$smarty.foreach.moduleList.index}_{$module}{/capture}
-	        	{if ($smarty.request.module == $modulekey && $smarty.request.parentTab == $group )} 
-	        		{sugar_link id=$moduleTabId module=$modulekey data=$module extraparams=$extraparams class=expanded}
-	        	{else}
-	        		{sugar_link id=$moduleTabId module=$modulekey data=$module extraparams=$extraparams}
-	        	{/if}
-	        	#}
-	        </li>
+		<li>
+			<a class="active-menu" href="{{ page.route }}"><i class="fa fa-dashboard fa-3x"></i> {{ page.label }}</a>
+		</li>
 		{% endfor %}
-		</ul>
-	</div>
-</aside>				
+	</ul>
+</div>
