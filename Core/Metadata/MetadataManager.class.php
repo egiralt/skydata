@@ -33,10 +33,9 @@
 	
 	private function buildStylesList ($config)
 	{
-		$result = array();
-		if (!empty($config) && !empty($config['styles']))
+		if (!empty($config) && !empty($config['css']))
 		{
-			foreach ($config['styles'] as $style)
+			foreach ($config['css'] as $style)
 			{
 				$result[$this->GetStyleID($style)] = $style;
 			}
@@ -119,9 +118,12 @@
 			$otherScripts = $anotherMetadataManager->GetScripts();
 			$otherStyles = $anotherMetadataManager->GetStyles();
 			
-			$this->Headers = array_merge ($this->Headers, $otherHeaders);
-			$this->Styles = array_merge ($this->Styles, $otherStyles);
-			$this->Scripts = array_merge ($this->Scripts, $otherScripts);
+			if (!empty($otherHeaders))
+				$this->Headers = array_merge ($this->Headers, $otherHeaders);
+			if (!empty($otherStyles))
+				$this->Styles = array_merge ($this->Styles, $otherStyles);
+			if (!empty($otherScripts))
+				$this->Scripts = array_merge ($this->Scripts, $otherScripts);
 		}
 	}
 
