@@ -1,18 +1,11 @@
 
 {% macro buildLocalDataMethod (serviceName, table, method) %}
 	$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
-		return $http.get ('/postventa/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %},
-		 {
-		 	{{ __.responseType(method.contentType) }}
-			params: {
-			{% for parameter in method.parameters %}
-				{{ parameter }} : _{{ parameter }} {% if parameter != (method.parameters|last) %}, {% endif %} 
-			{% endfor %}
-		}
-		{% endif %}} {#  method.parameters #}
-		). success ( function (data, status, headers, config) {
+		return $http.get ('/postventa/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + _{{ method.parameters|join("+ '/' + _") }},{% if method.parameters|length > 0 %} + "/" + {{ method.parameters|join('+ "/" + _')|raw }}{% endif %}, 
+			{ {{ __.responseType(method.contentType) }} }
+		{% endif %}). success ( function (data, status, headers, config) {
 			{% if table.is_enumerable %} 	{# Si es una tabla enumerable se genera un ciclo para agregar cada uno de los registros #}
-			for (idx in data) {
+			for (var idx in data) {
 				{% if table.fields|length > 1 %}  		{# ¿Hay muchos campos o solo 1? #}
 				$scope.{{ table.name }}.push({
 				{% for field in table.fields %}
@@ -47,15 +40,8 @@
 		{% if method.bind_variable|length > 0 %} {#  Si hay algo que retornar #}
 		{% endif  %}
 		{# Llamar al método #}
-		return $http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %},
-		 {
-		 	{{ __.responseType(method.contentType) }}
-		 	params: {
-			{% for parameter in method.parameters %}
-				{{ parameter }} : _{{ parameter }} {% if parameter != method.parameters|last %}, {% endif %} 
-			{% endfor %}
-			}
-		}
+		return $http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + _{{ method.parameters|join(' + "/" + _')|raw }},
+		{ {{ __.responseType(method.contentType) }} }
 		{% endif %}){% if method.bind_variable|length > 0 %}.success(function (data, status, headers, config	) { {# tiene una variable que asignar! #}
 			
 			{# Si es un contenido HTML hay que pasarlo por trustHTML para evitar errores de angular#}
