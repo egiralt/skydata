@@ -19,16 +19,14 @@
 	 */
 	public function LoadFromConfiguration ($config)
 	{
-		$result = new \stdClass();
-		$result->Headers = null;
-		$result->Styles = null;
-		$result->Scripts = null;
 		if (!empty($config))
 		{
-			$this->Headers = $this->buildHeaderList($config);
-			$this->Styles = $this->buildStylesList($config);
-			$this->Scripts = $this->buildScriptsList($config);
+			$this->ClearAll();
+			$this->buildHeaderList($config);
+			$this->buildStylesList($config);
+			$this->buildScriptsList($config);
 		}
+		
 	}
 	
 	private function buildStylesList ($config)
@@ -36,9 +34,7 @@
 		if (!empty($config) && !empty($config['css']))
 		{
 			foreach ($config['css'] as $style)
-			{
-				$result[$this->GetStyleID($style)] = $style;
-			}
+				$this->AddStyle($style);
 		}
 		
 		return $result;
@@ -46,33 +42,20 @@
 
 	private function buildScriptsList ($config)
 	{
-		$result = array();
-		
 		if (!empty($config) && !empty($config['scripts']))
 		{
 			foreach ($config['scripts'] as $script)
-			{
-				$result[$this->GetScriptID($script)] = $script;
-			}
+				$this->AddScript($script);
 		}
-		
-		return $result;
 	}
 	
 	private function buildHeaderList($config)
 	{
-		$result = array();
-		
 		if (!empty($config) && !empty($config['headers']))
 		{
 			foreach ($config['headers'] as $name => $content) 
-			{
-				$metadatNode = $this->parseHeader($name, $content);
-				$result[$name] = $metadataNode;
-			}
+				$this->AddHeader($name, $content);
 		}
-		
-		return $result;
 	}
 
 	/**
