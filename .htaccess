@@ -1,9 +1,5 @@
-RewriteEngine on
 RewriteBase /postventa
 
-# If the requested path and file doesn't directly match a physical file
+RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-# and the requested path and file doesn't directly match a physical folder
-RewriteCond %{REQUEST_FILENAME} !-d
-# internally rewrite the request to the index.php script
-RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+RewriteRule .* index.php [L]
