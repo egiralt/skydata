@@ -1,0 +1,27 @@
+theme:
+  manifest:
+    author-URI: www.binarycart.com
+    license: Commons Attribution 3.0 (http://creativecommons.org/licenses/by/3.0/)
+    author-name: www.binarycart.com
+    
+    
+  styles:
+    main:
+      description: Main style
+      cache: true
+      debug: false
+      default: true    
+      css:
+        - assets/css/bootstrap.css
+        - assets/css/font-awesome.css
+        - assets/js/morris/morris-0.4.3.min.css
+        - assets/css/custom.css
+        - assets/css/google-fonts.css
+        
+      scripts:
+        - assets/js/jquery-1.10.2.js
+        - assets/js/bootstrap.min.js
+        - assets/js/jquery.metisMenu.js
+        - assets/js/morris/raphael-2.1.0.min.js
+        - assets/js/custom.js
+    

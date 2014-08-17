@@ -1,0 +1,23 @@
+{% block html_head %}
+{% block doctype %}<!DOCTYPE html>{% endblock %}
+<html  {% block html_declarations %}xmlns:ng="http://angularjs.org"{% endblock %}>
+	<head>
+		{% block page_headers %}
+		{{ page_headers | raw }}
+		{% endblock %}
+	
+		<!-- <link rel="SHORTCUT ICON" href="{$FAVICON_URL}"> -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>{% block page_title  %}{{ title }}{% endblock %}</title>
+		<!-- http://davidbcalhoun.com/2010/viewport-metatag -->
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	
+		{% block page_styles %}
+		{{ page_styles | raw }}
+		{% endblock %}
+	</head>
+	<body {% block body_declarations %}ng-app='SkyDataApp' ng-controller='SkyDataAppController'{% endblock %}>
+{% endblock %}
