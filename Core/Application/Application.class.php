@@ -4,8 +4,9 @@
  */
  namespace SkyData\Core\Application;
  
+ include SKYDATA_PATH_LIBRARIES.'/AltoRouter/AltoRouter.php';
+ 
  use \SkyData\Core\Configuration\ConfigurationManager;
- use \SkyData\Core\Http\Request;
  use \SkyData\Core\ReflectionFactory;
  use \SkyData\Core\Metadata\MetadataManager;
  use \SkyData\Core\Http\Http;
@@ -20,7 +21,7 @@
   /**
   * Clase usada para controlar el flujo de la aplicación 
   */
- class Application implements IConfigurable, IMetadataContainer, ICacheContainer 
+ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer 
  {
  	
 	private $Configuration = null;
@@ -30,15 +31,20 @@
 	
 	private $CacheManager;
 	private $TemplatesCache;
+	private $Router;
 	
 	public function __construct ()
 	{
 		$this->View = new ApplicationView();
+
 		$this->MetadataManager = new MetadataManager ();
 		$this->CacheManager = new FileCacheManager (SKYDATA_PATH_CACHE);
 		$this->ModuleChain = array();
-
+		
 		$this->LoadConfiguration();
+		/** Las rutas de la aplicación */
+		$this->LoadRoutes();
+		$this->LoadMetadata();
 	}
 	 
 	/**
@@ -48,8 +54,6 @@
 	 */
 	public function Run ()
 	{
-		$this->GetMetadataManager()->ClearAll(); // Se invalidan los metadatos para que se lean otra vez
-		$this->LoadMetadata();
 		// Organizar el routing de la página según la solicitud
 		$this->CurrentNavigationNode = $this->ManageRouteRequest();
 		$currentPage = $this->GetCurrentRequest();
@@ -57,6 +61,36 @@
 		//TODO: Lanzar eventos, que reciben tanto los headers como el contenido. Como idea: beforeRender, beforeHeaders, 
 		//  	afterHeaders, afterRender
 		echo $this->GetView()->Render();
+	}
+	
+	protected function LoadRoutes ()
+	{
+		// Las rutas declaradas en el fichero de configuración
+		$appConfig = $this->GetConfigurationManager ()->GetMapping('routes');
+		if (isset($appConfig))
+		{
+			// Cargar las rutas usando Altoroute
+			$this->Router = new \AltoRouter ();
+			
+			// El url de base parala aplicación
+			$base_path = $this->GetConfigurationManager ()->GetMapping('application')['base_url'];
+			if (!empty($base_path))
+				$this->Router->setBasePath ($base_path);
+			
+			// Primero las rutas declaradas
+			foreach ($appConfig as $routeName => $routeConfig)
+				$this->Router->map($routeConfig['methods'], $routeConfig['route'], $routeConfig['target'], $routeName);
+		}
+		/** Ahora las de las páginas **/
+		if (($pages = $this->GetConfigurationManager()->GetMapping ('navigation')) != null)
+		{
+			foreach ($pages as $pageName => $pageNode)
+			{
+				$className = !empty($pageNode['class']) ? $pageNode['class'] : $pageName; // Se pueda usar el nombre de la clase
+				$this->Router->map('GET', $pageNode['route'], SKYDATA_NAMESPACE_PAGES.'\\'.$className.'\\'.$className, $pageName);	
+			}
+		} 
+		 
 	}
 	
 	/**
@@ -100,16 +134,17 @@
 	protected function ManageRouteRequest()
 	{
 		$result = null;
-		$request = new Request();
-		//echo "<pre>"; print_r ($request); die();
-		switch (strtolower($request->url_elements[0]))
+		$match = $this->Router->match();
+		//echo "<pre>"; print_r ($match); die();
+		switch ($match['name'])
 		{
-			case 'service' : // Se está recibiendo la solicitud de un servicio
-				$result = $this->HandleServiceRequest($request);
+			case 'services' : // Se está recibiendo la solicitud de un servicio
+				$result = $this->HandleServiceRequest($match);
 				break;
 			default:	// Se gestiona como una página "normal"
-				$result = $this->HandlePageRequest($request);			
+				$result = $this->HandlePageRequest($match);			
 				break;
+				
 		}
 
 		return $result;
@@ -118,29 +153,22 @@
 	/**
 	 * Prepara el nodo de navegación para que se atienda la solicitud de un registro
 	 */
-	protected function HandleServiceRequest ($request)
+	protected function HandleServiceRequest ($routeMatch)
 	{
-		if (count($request->url_elements) < 2) // Al menos se requiere el nombre del método
-			throw new \Exception("Solicitud de servicio no valida. Falta el nombre del metodo", 1);
-			
 		// Crear el nodo de información de la solicitud
-		$serviceClass = ReflectionFactory::getFullServiceClassName ($request->url_elements[1]);
-		$jsonNode->serviceName = $request->url_elements[1];
+		$serviceClass = ReflectionFactory::getFullServiceClassName ($routeMatch['params']['name']);
+		$jsonNode->serviceName = $routeMatch['params']['name'];
 		$jsonNode->fullServiceName = $serviceClass;
 		
 		// Si no hay método explícito, se usa el nombre del verb como método, ej: Get, Put, Delete... etc.
-		if (isset($request->url_elements[2]))
-			$jsonNode->method = $request->url_elements[2];
+		if (isset($routeMatch['params']['method']))
+			$jsonNode->method = $routeMatch['params']['method'];
 		else
-			$jsonNode->method = ucfirst(strtolower($request->verb));
+			$jsonNode->method = ucfirst(strtolower(Http::GetRequestMethod()));
 		
-		$jsonNode->verb = $request->verb;
+		$jsonNode->verb = Http::GetRequestMethod();
 		// Convertir los parámetros en un array listo para que lo evalue el servicio
-		foreach ($request->parameters as $key => $value)
-		{
-			if ($key !== 'url')  
-				$jsonNode->params[$key] = $value;
-		}
+		$jsonNode->params = explode('/', $routeMatch['params']['params']);
 		
 		// Ahora crear la clase del servicio y actualizar el nodo de navigación
 		try
@@ -156,46 +184,26 @@
 		return new NavigationResponseNode ($serviceInstance, $jsonNode);
 	}
 	
-	protected function HandlePageRequest ($request)
+	protected function HandlePageRequest ($routeMatch)
 	{
-		$pages = $this->GetConfigurationManager()->GetMapping ('navigation');
 		
-		// Se ha de preparar una lista con todos los nodos, pero sin jerarquías y con las rutas ya calculadas
-		$flatList = array(); 
-		$this->buildFlatList($pages, $flatList, '/');
-		foreach ($flatList as $pageName => $pageNode) 
-		{
-			if ($pageNode->path === $request->uri)
-			{
-				$pageClassName = "\SkyData\Pages\\{$pageNode->class}\\{$pageNode->class}";
-				$classParam = array_slice($request->url_elements, 1, count($request->url_elements));
-				$pageInstance = new $pageClassName ($classParam);
-				
-				// Se construye el nodo activo de navegación
-				return new NavigationResponseNode($pageInstance, $pageNode);
-			} 
-		}
+		if (isset($routeMatch['target']))
+			$pageClassName = $routeMatch['target'];
+		else
+			$pageClassName = ReflectionFactory::getFullPageClassName ($routeMatch[params]['name']);
 		
-		Http::Raise404();		
-	}
-	
-	/**
-	 * Retorna la lista de metadatos 
-	 */
-	public function GetMetadataManager() 
-	{
-		return $this->MetadataManager;
-	}
-	
-	public function LoadMetadata()
-	{
-		// Extraer la lista de metadatos de la aplicación
-		$this->GetMetadataManager()->LoadFromConfiguration ($this->GetConfigurationManager()->GetMapping('metadata'));
-	}
-	
-	public function MergeMetadata (IMetadataContainer $object)
-	{
-		$this->GetMetadataManager()->Merge( $object->GetMetadataManager());
+		$pageInstance = new $pageClassName();
+
+		$navConfig = $this->GetConfigurationManager()->GetMapping ('navigation');
+		
+		// Un nodo para informacion de la navegación		
+		$pageNode = new \stdClass();
+		$pageNode->path = $routeMatch['route'];
+		$pageNode->class = $pageClassName;
+		$pageNode->title = $navConfig[$routeMatch['name']]['title']; // El titulo se saca de la configuración de la app
+		$pageNode->params = $routeMatch['params']['params'];
+		
+		return new NavigationResponseNode($pageInstance, $pageNode);
 	}
 	
 	public function GetCacheManager ()
@@ -229,5 +237,33 @@
 	{
 		return $this->View;
 	}
+	
+	public function GetRouter ()
+	{
+		return $this->Router;		
+	}
+	
+	public function AddRoute ($route, $target, $name, $method = 'GET')
+	{
+		return $this->GetRouter()->map ($method, $route, $target, $name);
+	}
+	
+	public function GetRouteTarget ($name)
+	{
+		return $this->GetRouter()->generate ($name);
+	}
+	
+	public function LoadMetadata ()
+	{
+		$config = ConfigurationManager::ReadLocalMetadata(SKYDATA_PATH_CONFIGURATION.'/metadata.yaml')->metadata;
+		//echo "<pre>"; print_r ($config);die();
+		$this->GetMetadataManager()->LoadFromConfiguration ($config);
+	}
+	
+	public function GetMetadataManager ()
+	{
+		return $this->MetadataManager;
+	}
+	
  }
  

@@ -76,22 +76,21 @@ class SkyDataService extends SkyDataResponseResource implements IService
 				$methodExists = true;
 				// El método invokeArks necesita los parámetros como array
 				$passParam = [];
-				foreach ($method->getParameters() as $param)
+				foreach ($method->getParameters() as $order => $param)
 				{
-					if (isset($requestParams[ $param->getName() ]))
-						$passParam[] = $requestParams[ $param->getName() ];
+					if (order < count($requestParams))
+						$passParam[] = $requestParams[ $order ]; // El valor que se indicó en el request
 					else
 						try
 						{
-							// Se le asigna su valor por defecto (si lo tiene!)
-							$passParam[] = $param->getDefaultValue();
+							$passParam[] = $param->getDefaultValue(); // El valor por defecto del campo (si lo tiene!)
 						}
 						catch (\Exception $e) 
 						{
-							// No tiene valor por defecto, se le asigna null
-							$passParam[] = null;								
+							$passParam[] = null;	// No tiene valor por defecto, se le asigna null								
 						} 
 				}
+				//echo "<pre>"; print_r ($class);die();
 				// Ya se puede llamar el método
 				$result = $method->invokeArgs ($this->GetController(), $passParam);
 				$interfaces= class_implements($result);
@@ -255,9 +254,6 @@ class SkyDataService extends SkyDataResponseResource implements IService
 				if ( ($methodInfo->render_tag + $methodInfo->render_class + $methodInfo->render_attribute) > 1)
 					throw new \Exception("Solo puede haber una declaración de renderTar, renderAttribute o renderClass", 1);
 				
-				if  (!isset($methodInfo->tag->name))
-					throw new \Exception("El servicio debe dar un nombre al atributo, elemento o clase (use name en el métod {$methodInfo->name})", 1);
-					 								
 				// No pueden coexistir bindVariable y bindModel!
 				if (isset($methodInfo->bind_variable) && isset($methodInfo->bind_model))
 					throw new \Exception("El método '{$methodInfo->name}' no puede estar ligado a una variable y a un modelo al mismo tiempo.", -100);
@@ -308,6 +304,9 @@ class SkyDataService extends SkyDataResponseResource implements IService
 					case 'renderas'		: $methodInfo->tag->render_as[] = $value; break;
 					case 'trigger'		: $methodInfo->tag->trigger = $value; break;
 				}
+
+				if  (!isset($methodInfo->tag->name))
+					throw new \Exception("El servicio debe dar un nombre al atributo, elemento o clase (use name en el métod {$methodInfo->name})", 1);
 				
 			}
 		else

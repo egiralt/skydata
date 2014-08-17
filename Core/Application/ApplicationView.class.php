@@ -6,7 +6,7 @@
 
 use \SkyData\Core\View\SkyDataView;
 use \SkyData\Core\Application\Page\SkyDataPage;
-use \SkyData\Core\Template\SkyDataTemplate;
+use \SkyData\Core\Theme\SkyDataTheme;
 use \SkyData\Core\Service\SkyDataService;
 use \SkyData\Core\ReflectionFactory;
 use \SkyData\Core\Http\Http;
@@ -30,18 +30,21 @@ use \SkyData\Core\Twig\SkyDataTwig;
 	protected function LoadTemplates()
 	{
 		$application = $this->GetApplication();
-		$templatesConfiguration = $application->GetConfigurationManager()->GetMapping('templates');
+		$templatesConfiguration = $application->GetConfigurationManager()->GetMapping('themes');
 		if (!empty($templatesConfiguration))
 		{
 			foreach ($templatesConfiguration as $templateName => $templateConfig) 
 			{
-				$newTemplate = new SkyDataTemplate ($templateName, $templateConfig);
+				$applicationThemeClassName = SKYDATA_NAMESPACE_THEMES.'\\'.$templateName.'\\Theme';
+				// Si no hay una clase personalizada se crea un tema con la clase genérica
+				if (is_file(ReflectionFactory::getClassDirectory($applicationThemeClassName).'/Theme.class.php'))
+					$newTemplate = new $applicationThemeClassName ($templateName);
+				else
+					$newTemplate = new SkyDataTheme($templateName);
+				
 				// Solo se cargarán los templates que tengan la marca de active
 				if ($newTemplate->IsActive())
-				{
-					$newTemplate->SetView($this);
 					$this->Templates[$templateName] = $newTemplate;
-				}				 				
 			}
 		}
 	}	
@@ -80,38 +83,11 @@ use \SkyData\Core\Twig\SkyDataTwig;
 	 */
 	protected function ManagePageRequest ($pageInstance)
 	{
-		$this->GetApplication()->MergeMetadata($pageInstance);
-		$this->SetMetadataHeaders();
-				
-		$content = $pageInstance->GetView()->Render(); //!! el contenido de la página que se muestra
-		$content = $pageInstance->GetView()->RenderServices($content);
-		$this->PublishCustomMetadata(); // Los metadatos requeridos por la aplicación, después de los servicios
-				
 		$template = $this->GetSelectedTemplate();
-		$template->Assign ('page_content', $content); // El contenido de la propia página	
+		$template->SetPage ($pageInstance);// Esta es la página que están visualizando
 		$result = $template->Render();
 		
 		return $result;
-	}
-	
-	/**
-	 * Este método publica los scripts y estilos utilizados por todas las páginas
-	 */
-	protected function PublishCustomMetadata()
-	{
-		$currentRequest = $this->GetApplication()->GetCurrentRequest();
-		//echo "<pre>";print_r (class_implements($currentRequest)); die();
-		if (in_array('SkyData\Core\Page\IPage', class_implements($currentRequest)))
-		{
-			$servicesNames = array();
-			$services = $currentRequest->GetServices();
-			foreach ($services as $name => $instance) 
-				$servicesNames[] = $name;
-			
-			$script = SkyDataTwig::RenderTemplate (SKYDATA_PATH_CORE.'/Application/Scripts/main_module.twig', array ('services' => $servicesNames), true);
-			$cacheID = $this->GetApplication()->GetCacheManager()->Store ($script, 'mainmodule_script.js');
-			$this->GetApplication()->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
-		}
 	}
 	
 	/**
@@ -157,23 +133,6 @@ use \SkyData\Core\Twig\SkyDataTwig;
 			$defaultDataType = $allMethods[$ajaxInfo->method]->contentType;
 		
 		$this->RenderAjaxResult ($result, $defaultDataType, $serviceConfig);
-	}
-	
-	/**
-	 * Este método extrae los headers http-equiv de la lista de metadatos de la página y genera las strings necesarias para pasarlas
-	 * al server http usando la funciónn "header" de PHP.
-	 */
-	protected function SetMetadataHeaders()
-	{
-		foreach ($this->GetApplication()->GetMetadataManager()->GetHeaders() as $metadataItem) 
-		{
-			if (isset($metadataItem->http_equiv))
-			{
-				$headersString = sprintf ('%s: %s', $metadataItem->http_equiv, $metadataItem->content);
-				// Ahora se pasan los headers al server HTTP
-				header($headersString);		
-			}							
-		}		
 	}
 	
 	/**
@@ -303,13 +262,14 @@ use \SkyData\Core\Twig\SkyDataTwig;
 		
 		if ($this->SelectedTemplate == null)
 		{
+			$templates = $this->GetTemplates();
 			$selection = null;
 			
 			if ($this->GetDefaultTemplate() != null)
 				$selection = $this->GetDefaultTemplate();
-			else if (count($this->GetTemplates()) > 0)
+			else if (count($templates) > 0)
 			{
-				$list = array_values($this->GetTemplates());
+				$list = array_values($templates);
 				$selection = $list[0];
 			}
 			
@@ -336,6 +296,12 @@ use \SkyData\Core\Twig\SkyDataTwig;
 	public function GetTemplates()
 	{
 		return $this->Templates;		
+	}	
+
+	
+	public function MergeMetadata (IMetadataContainer $object)
+	{
+		
 	}	
 	 	
  } 
