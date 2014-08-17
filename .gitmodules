@@ -1,3 +1,9 @@
 [submodule "Libraries/Yaec"]
 	path = Libraries/Yaec
 	url = https://github.com/egiralt/yaec.git
+[submodule "Libraries/AltoRouter"]
+	path = Libraries/AltoRouter
+	url = https://github.com/dannyvankooten/AltoRouter.git
+[submodule "Libraries/ParseDown"]
+	path = Libraries/ParseDown
+	url = https://github.com/erusev/parsedown.git
