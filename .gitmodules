@@ -4,6 +4,9 @@
 [submodule "Libraries/AltoRouter"]
 	path = Libraries/AltoRouter
 	url = https://github.com/dannyvankooten/AltoRouter.git
-[submodule "Libraries/ParseDown"]
-	path = Libraries/ParseDown
+[submodule "Libraries/Yaml"]
+	path = Libraries/Yaml
+	url = https://github.com/mustangostang/spyc.git
+[submodule "Libraries/Parsedown"]
+	path = Libraries/Parsedown
 	url = https://github.com/erusev/parsedown.git
