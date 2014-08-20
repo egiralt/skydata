@@ -1,3 +1,4 @@
 .settings
 .project
 Cache/*
+Configuration/app.yaml
