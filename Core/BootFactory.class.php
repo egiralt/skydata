@@ -41,6 +41,8 @@ define ('SKYDATA_NAMESPACE_PAGES',		SKYDATA_NAMESPACE_ROOT.'\\Pages');
 define ('SKYDATA_NAMESPACE_SERVICES',	SKYDATA_NAMESPACE_ROOT.'\\Services');
 define ('SKYDATA_NAMESPACE_THEMES',		SKYDATA_NAMESPACE_ROOT.'\\Themes');
 
+define ('DEBUG', true);
+
 include_once 'ReflectionFactory.class.php';
 
 use \SkyData\Core\Application\Application;
@@ -53,13 +55,36 @@ require_once SKYDATA_PATH_LIBRARIES.'/Yaec/Autoloader.php';
  {
 	
 	private static $applicationInstance;
+	
+	private static function initPHPEnvironment ()
+	{
+
+		if(DEBUG == true)
+		{
+			ini_set('display_errors', 'On');
+			error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+		}
+		else
+		{
+			ini_set('display_errors', 'Off');
+			error_reporting(0);
+		}
+		// Iniciar las sesiones de PHP	
+		session_start();
+		
+	}
+	
 	/**
 	 * Registra la aplicacion y establece el cargador automático de clases al principio de la pila del PHP
 	 */
 	public static function init ()
 	{
+		static::initPHPEnvironment();
+		
 		if (!isset(static::$applicationInstance))
 		{
+			// Sesiones de usuario
+				
 			// Agregar el cargador de clases automáticos		
 	       	if (version_compare(phpversion(), '5.3.0', '>=')) {
 	            spl_autoload_register(array(__CLASS__, '__classloader'), true, true);
@@ -76,9 +101,12 @@ require_once SKYDATA_PATH_LIBRARIES.'/Yaec/Autoloader.php';
 			
 			// Crea una nueva aplicación que servirá como base para ejecutar todo el framework
 			static::$applicationInstance = new Application ();
-			// Sesiones de usuario
-			session_start();
-			
+
+			// Otras inicializaciones para el PHP
+			$timezone = static::$applicationInstance->GetTimeZone();
+			if (isset($timezone))
+				date_default_timezone_set($timezone);
+
 			return static::$applicationInstance;
 		}
 		else 

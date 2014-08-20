@@ -22,7 +22,7 @@
  */
  namespace SkyData\Core\View;
 
- include_once SKYDATA_PATH_LIBRARIES.'/ParseDown/Parsedown.php';
+ include_once SKYDATA_PATH_LIBRARIES.'/Parsedown/Parsedown.php';
  
  use \SkyData\Core\ReflectionFactory;
  

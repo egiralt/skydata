@@ -23,6 +23,8 @@
  
  namespace SkyData\Core\Configuration;
  
+ include_once dirname(__FILE__).'/../../Libraries/Yaml/Spyc.php';
+ 
  use \SkyData\Core\IManager;
  
  class ConfigurationManager implements IManager
@@ -44,7 +46,7 @@
 			$fileFullPath = "$configurationFullPath/$file";
 			if (is_file($fileFullPath) && strpos ($file, '.yaml') > 0)
 			{
-				$configData = \SkyData\Libraries\Yaml\Spyc::YAMLLoad ($fileFullPath);
+				$configData = \Spyc::YAMLLoad ($fileFullPath);
 				static::ParseMetadataConfiguration($configData, $result);
 			}
 		}
@@ -71,7 +73,7 @@
 		$result = null;
 		if (is_file($metadataFileName))
 		{
-			$config = \SkyData\Libraries\Yaml\Spyc::YAMLLoad ($metadataFileName);
+			$config = \Spyc::YAMLLoad ($metadataFileName);
 			static::ParseMetadataConfiguration($config, $result);
 		}
 		return $result;
