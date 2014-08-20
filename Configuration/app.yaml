@@ -7,7 +7,7 @@ application:
 
   # El url que se usará para armar todos los paths. Por defecto es /. Ponga un valor aquí solo se está
   # usando su aplicacion dentro de un sub path del server (ej: /web)
-  base_url: /postventa
+  #base_url: /
 
   # Zona horaria usada principalmente para el formato de fechas 
   time_zone: 'Europe/Madrid'

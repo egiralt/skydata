@@ -49,7 +49,7 @@ class FichaASPServicesController extends SkyDataServiceController {
 
 			$es->SetScriptsDirectory( $this->GetParent()->GetClassDirectory().'/Scripts');
 			$result = $es->ExecScript('get_salidas_citas.json', array('user_codigo', $user_codigo), 'citas');
-			
+			echo "<pre>"; print_r ($result); die();
 
 			/*
 			 $user = $_GET['record'];

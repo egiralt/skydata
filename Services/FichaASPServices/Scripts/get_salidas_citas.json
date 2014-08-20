@@ -4,7 +4,7 @@
       "must": [
         {
           "range": {
-            "fecha_final": {
+             "fecha_final": {
               "from": "18/07/2014",
               "to": "{{#today, d/m/Y}}"
             }
