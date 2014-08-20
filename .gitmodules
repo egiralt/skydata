@@ -7,3 +7,6 @@
 [submodule "Libraries/Parsedown"]
 	path = Libraries/Parsedown
 	url = https://github.com/erusev/parsedown.git
+[submodule "Libraries/Yaec"]
+	path = Libraries/Yaec
+	url = git@github.com:egiralt/yaec.git
