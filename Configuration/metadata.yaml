@@ -11,6 +11,7 @@ metadata:
       
   css:
     - UI/js/jquery/jquery-ui-1.11.1/jquery-ui.min.css
+    - Libraries/Toastr/toastr.css
     - UI/css/custom.css
   
   scripts:
@@ -18,7 +19,7 @@ metadata:
 #    - UI/bootstrap/js/libs/jquery.ui.min.js
 #    - UI/bootstrap/js/include/selectnav.min.js
 #    - UI/bootstrap/js/include/jquery.accordion.min.js
-#    - UI/bootstrap/js/include/toastr.min.js
+     - Libraries/Toastr/toastr.min.js
 #    - UI/bootstrap/js/include/jquery.jgrowl.min.js
 #    - UI/bootstrap/js/include/slimScroll.min.js
 #    - UI/bootstrap/js/include/jquery.dataTables.min.js

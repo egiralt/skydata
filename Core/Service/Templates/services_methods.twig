@@ -65,7 +65,8 @@
 	{% import 'prerender.twig' as preRenderView %}
 
 	{% if method.render_tag or method.render_attribute or method.render_class  %}
-		.directive('{{ method.tag.name }}', ['$rootScope', '$compile', '$sce', '$timeout', '$http', function ($rootScope, $compile, $sce, $timeout, $http) {
+		.directive('{{ method.tag.name }}', ['$rootScope', '$compile', '$sce', '$timeout', '$http', 'skydataPageServices', 
+			function ($rootScope, $compile, $sce, $timeout, $http, skydataPageServices) {
 			return {
 				restrict: '{{ method.type_of_render }}',
 				replace: true,
@@ -111,7 +112,7 @@
 										if (typeof response.data == "object")
 										{
 											if (response.data.error != null)
-												$scope.error = error;
+												skydataPageServices.showError(response.data, 'Error');;
 										} 
 										else
 										{

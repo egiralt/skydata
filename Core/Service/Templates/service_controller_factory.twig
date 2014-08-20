@@ -8,8 +8,8 @@ var module_{{ serviceName }} = angular.module ('{{ serviceName }}',['SkyDataApp'
 {% import 'misc.twig' as __ %}
 {% import 'services_methods.twig' as factory %}
 
-  	module_{{ serviceName }}.controller ('{{ serviceName }}Controller', ['$scope', '$http', '$sce','$q', 
-  	function ($scope, $http, $sce, $q) 
+  	module_{{ serviceName }}.controller ('{{ serviceName }}Controller', ['$scope', '$http', '$sce','$q', 'skydataPageServices', 
+  	function ($scope, $http, $sce, $q, pageServices) 
  	{
 			{% for table in tables %}
 				{# Inicializar la variable del modelo. Si son varios parámetros se asigna en un array, si no, un objeto simple #}
