@@ -2,3 +2,6 @@
 .project
 Cache/*
 Configuration/app.yaml
+Pages/*
+Services/*
+
