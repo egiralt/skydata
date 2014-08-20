@@ -1,2 +1,0 @@
-services:
-  use: [HTMLServices, FichaASPServices]

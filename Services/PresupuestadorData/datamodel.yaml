@@ -1,7 +1,0 @@
-datamodel:
-  Modelos: [id, descripcion]
-  Servicio: [id, precio, descripcion]
-      
-  
-      
-    
