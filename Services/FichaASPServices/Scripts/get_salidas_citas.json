@@ -1,0 +1,26 @@
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "range": {
+            "fecha_final": {
+              "from": "18/07/2014",
+              "to": "{{#today, d/m/Y}}"
+            }
+          }
+        },
+        {
+          "match": {
+            "recepcionista_codigo": "{{user_codigo}}"
+          }
+        }
+      ]
+    }
+  },
+  "sort": {
+    "fecha_final": {
+      "order": "asc"
+    }
+  }
+}

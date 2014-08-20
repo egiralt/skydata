@@ -1,7 +1,7 @@
 
 {% macro buildLocalDataMethod (serviceName, table, method) %}
 	$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
-		return $http.get ('/postventa/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + _{{ method.parameters|join("+ '/' + _") }},{% if method.parameters|length > 0 %} + "/" + {{ method.parameters|join('+ "/" + _')|raw }}{% endif %}, 
+		return $http.get ('/postventa/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(") + '/' + encodeURIComponent(_") }}),{% if method.parameters|length > 0 %} + "/" + {{ method.parameters|join('+ "/" + _')|raw }}{% endif %}, 
 			{ {{ __.responseType(method.contentType) }} }
 		{% endif %}). success ( function (data, status, headers, config) {
 			{% if table.is_enumerable %} 	{# Si es una tabla enumerable se genera un ciclo para agregar cada uno de los registros #}
@@ -40,7 +40,7 @@
 		{% if method.bind_variable|length > 0 %} {#  Si hay algo que retornar #}
 		{% endif  %}
 		{# Llamar al método #}
-		return $http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + _{{ method.parameters|join(' + "/" + _')|raw }},
+		return $http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(') + "/" + encodeURIComponent(_')|raw }}),
 		{ {{ __.responseType(method.contentType) }} }
 		{% endif %}){% if method.bind_variable|length > 0 %}.success(function (data, status, headers, config	) { {# tiene una variable que asignar! #}
 			
@@ -59,22 +59,13 @@
 
 {% import _self as this %}
 
-{% macro runHTMLMethod (method) %}
-	$($element.get()).html ('<span class="popover-html-label" style="color:#ddd">Leyendo...<i class="fa fa-refresh fa-spin"></i></span>');
-	 $scope.{{ method.name }}({% if method.parameters|length > 0 %}$attrs.{{ method.parameters|join(', $attrs.') }}{% endif %})
-		.then (function (response) {
-				console.log ($response);
-				{# 
-				$($element.get()).html ($compile(response)($scope));
-				$($element.find('.popover-html-label')).popover();
-				#}
-			});
-
-{% endmacro %}
-
 {% macro renderAsTag (serviceName, method) %}
+
+	{% import 'triggers.twig' as triggers %}
+	{% import 'prerender.twig' as preRenderView %}
+
 	{% if method.render_tag or method.render_attribute or method.render_class  %}
-		.directive('{{ method.tag.name }}', ['$rootScope', '$compile', '$sce', function ($rootScope, $compile, $sce) {
+		.directive('{{ method.tag.name }}', ['$rootScope', '$compile', '$sce', '$timeout', '$http', function ($rootScope, $compile, $sce, $timeout, $http) {
 			return {
 				restrict: '{{ method.type_of_render }}',
 				replace: true,
@@ -87,40 +78,80 @@
 						for( var attr in $attrs)
 							if (!attr.match (/^\$/))
 								$scope[attr] = $attrs[attr];
-						{# función para ejectar.. es más legible #}
+						{# función usada para refrescarel método #}		
+						{% if method.refresh > 0 %}
+							var refresh_{{ method.name }} = function () {
+								$scope.loading{{ method.name }} = false;
+								$scope.loaded{{ method.name }} = false;
+								do_{{ method.name }}();
+							};
+							$timeout (refresh_{{ method.name }}, {{ method.refresh }});
+						{% endif %}
+						
+						{# función para ejecutar el metodo#}
 						var do_{{ method.name }} = function ()
 						{
 							if (!$scope.loading{{ method.name }} && !$scope.loaded{{ method.name }} )
 							{
-								$($element).append('<span class="loading-data"><i class="fa fa-refresh fa-spin"></i></span>');
+								{% if method.showLoading %}
+									$($element).append('<span class="loading-data-icon"><i class="fa fa-refresh fa-spin"></i></span>');
+								{% endif %}
 								$scope.loading{{ method.name }} = true;
-								$scope.{{ method.name }}({% if method.parameters|length > 0 %}$attrs.{{ method.parameters|join(', $attrs.') }}{% endif %})
+								{# una lista de parámetros que hay que controlar si son undefined para que se pase un valor nulo o vacío #}
+								{% if method.parameters|length > 0 %}
+									{% for parameter in method.parameters %}
+										var __{{ parameter }} = 'undefined' !== typeof $attrs.{{ parameter }} ? $attrs.{{ parameter }}
+											.replace(/\//g,'.')
+											.replace(/\?/g,'&#63;')
+											.replace(/\&/g,'&amp;') : null; 
+									{% endfor %}
+								{% endif %}
+								$scope.{{ method.name }}({% if method.parameters|length > 0 %}__{{ method.parameters|join(', __') }}{% endif %})
 								.then (function (response) {
-											$($element).html (response.data);
-											$($element).find('.popover-js').popover();
-											
+										if (typeof response.data == "object")
+										{
+											if (response.data.error != null)
+												$scope.error = error;
+										} 
+										else
+										{
+											try {
+												var el = angular.element(response.data), compiled = $compile(el);
+												$($element)
+													.html (el)
+													.find('.pop').popover();
+												compiled($scope);
+											} 
+											catch(e)	{
+												$($element).html(response.data);
+											}
+										}
 										$scope.loading{{ method.name }} = false;
 										$scope.loaded{{ method.name }} = true;
 									});
 							}
-						}; 						
+							{% if method.refresh > 0 %}
+								$timeout (refresh_{{ method.name }}, {{ method.refresh }});
+							{% endif %}
+						}; 		
+						{# Métodos de triggers #}				
 						{% if method.tag.trigger == 'hover' %} {# Al mover el mouse sobre el objeto #}
-							$element.bind ('mouseenter', function (event) {
-								if (!$scope.loaded{{ method.name }})
-									do_{{ method.name }}();
-								event.preventDefault();
-								return false;
-							});
+							{{ triggers.mouseenter(method)  }}
 						{% elseif method.tag.trigger == 'click' %} {# Con un click#}
-							$element.bind ('click', function (event) {
-								if (!$scope.loaded{{ method.name }})
-									do_{{ method.name }}();
-								event.preventDefault();
-								return false;
-							});
+							{{ triggers.click(method) }}
 						{% else %} {# Cuando se ha solicitado cuando se muestre el elemento #}
-							do_{{ method.name }}();
+							$(document).ready( function () {
+								do_{{ method.name }}();
+							});
 						{% endif %}
+						{# Refresh de los datos #}
+						{% if method.refresh > 0 %}
+							$(document).ready (function () {
+								$timeout (do_{{ method.name }}, {{ method.refresh }});
+							});
+						{% endif %}
+						{# Pre-Render View #}
+						{{ preRenderView.generate(method) }}
 					},
 				{% else %}
 				link: function ($scope, $element, $attrs) {

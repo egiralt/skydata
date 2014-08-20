@@ -63,6 +63,7 @@ use \SkyData\Core\ReflectionFactory;
 	public function Render ()
 	{
 		$this->PrepareRender();
+		//echo '<pre>'; print_r ($this->GetMappings());
 		// Se genera el HTML correspondiente al template
 		return $this->TwigInstance->render ($this->GetMappings());
 		

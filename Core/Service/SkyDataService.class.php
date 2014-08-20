@@ -1,6 +1,26 @@
 <?php
 /**
- * **header**
+ *  SkyData: CMS Framework   -  12/Aug/2014
+ * 
+ * Copyright (C) 2014  Ernesto Giralt (egiralt@gmail.com) 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * SkyDataService.class.php
+ *
+ * @Author: E. Giralt
+ * @Date:   12/Aug/2014
+ * @Last Modified by:   E. Giralt
+ * @Last Modified time: 18/Aug/2014
  */
  namespace SkyData\Core\Service;
 
@@ -78,8 +98,8 @@ class SkyDataService extends SkyDataResponseResource implements IService
 				$passParam = [];
 				foreach ($method->getParameters() as $order => $param)
 				{
-					if (order < count($requestParams))
-						$passParam[] = $requestParams[ $order ]; // El valor que se indicó en el request
+					if (order < count($requestParams) && $requestParams[ $order ] != 'null' )
+						$passParam[] = urldecode($requestParams[ $order ]); // El valor que se indicó en el request
 					else
 						try
 						{
@@ -278,6 +298,8 @@ class SkyDataService extends SkyDataResponseResource implements IService
 
 	private function BuildRenderDecorator ($renderOptions, &$methodInfo)
 	{
+		// Defaults
+		$methodInfo->showLoading = true;
 		// El siguiente patrón extraerá todos los campos de la línea de parámetros del método
 		if(preg_match_all(DOC_COMMENT_RENDER_TAG_PARAMETERS_PATTERN, $renderOptions, $paramMatches))
 			foreach ($paramMatches[0] as $order => $dumb)
@@ -298,13 +320,30 @@ class SkyDataService extends SkyDataResponseResource implements IService
 						$methodInfo->tag->is_html = $value == 'true' ; 
 						break;
 					case 'name'			: $methodInfo->tag->name = $value; break;
-					case 'templateurl'	: $methodInfo->tag->template_url = trim (ltrim(rtrim($value,"'"), "'")); break;
-					case 'template'		: $methodInfo->tag->template = trim (ltrim(rtrim($value,"'"), "'")); break;
-					case 'presentation'	: $methodInfo->tag->presentation = trim (ltrim(rtrim($value,"'"), "'")); break;
+					case 'templateurl'	: $methodInfo->tag->template_url = trim ($value,"'"); break;
+					case 'template'		: $methodInfo->tag->template = trim ($value,"'"); break;
+					case 'presentation'	: $methodInfo->tag->presentation = trim ($value,"'"); break;
 					case 'renderas'		: $methodInfo->tag->render_as[] = $value; break;
 					case 'trigger'		: $methodInfo->tag->trigger = $value; break;
+					case 'refresh'		:
+						if (preg_match('/(\d*)(ms|s|m|h)/i', $value, $matches))
+						{
+							$count = 0;
+							switch ($matches[2])
+							{
+								case 'ms' : $count = $matches[1]; break; 				// milisegundos
+								case 's' : $count = $matches[1] * 1000; break; 			// segundos
+								case 'm' : $count = $matches[1] * 1000 * 60; break; 	// minutos
+								case 'h' : $count = $matches[1] * 1000 * 60 * 60; break;// horas
+								default:
+									throw new \Exception("El tiempo indicado para el refresh no es válido", -100);
+							}
+							$methodInfo->refresh = $count;
+						}						 
+						break;
+					case 'showloading': $methodInfo->showLoading = (empty($value) || $value == 'true'); break;
+					case 'prerenderview' : $methodInfo->preRenderView = trim ($value,"'"); break;
 				}
-
 				if  (!isset($methodInfo->tag->name))
 					throw new \Exception("El servicio debe dar un nombre al atributo, elemento o clase (use name en el métod {$methodInfo->name})", 1);
 				

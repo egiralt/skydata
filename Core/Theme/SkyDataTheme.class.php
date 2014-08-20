@@ -1,6 +1,24 @@
 <?php
 /**
- * **header**
+ *  SkyData: CMS Framework   -  12/Aug/2014
+ * 
+ * Copyright (C) 2014  Ernesto Giralt (egiralt@gmail.com) 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @Author: E. Giralt
+ * @Date:   12/Aug/2014
+ * @Last Modified by:   E. Giralt
+ * @Last Modified time: 18/Aug/2014
  */
  namespace SkyData\Core\Theme;
  
@@ -86,7 +104,7 @@
 			
 			$this->PublishServicesMainScript($pageInstance); // Se publica solo en caso de que haya una página publicándose 
 		}
-				
+		 
 		// Primer pase: La cabecera primero
 		$this->RenderPageMetadata();
 		$head = $this->TwigEnvironment->loadTemplate ('html_head.twig');
@@ -159,7 +177,9 @@
 		// Generar la lista de metadatos de aplicación (incluye las de la página) como marcas META para los templates de la aplicación
 		$result = null;
 		
-		foreach ($this->GetMetadataManager()->GetHeaders() as $item) 
+		$headers= $this->GetMetadataManager()->GetHeaders();
+		//echo "<pre>"; print_r ($headers); die();
+		foreach ($headers as $item) 
 		{
 			
 			if (!empty($item->content))
@@ -167,11 +187,7 @@
 				$result .= "<meta ";
 				if (isset($item->http_equiv))
 				{
-					/**
-					 *  No se hace nada, se dejan estos meta para generarlos directamente al server mediante headers
-					 *  Se podrían generar al cliente mediante la línea siguiente, pero ya se verá su conveniencia:
-					 * 		$result .= sprintf(' http-equiv="%s" content="%s"', $item->http_equiv, $item->content);
-					 */
+					 $result .= sprintf(' http-equiv="%s" content="%s"', $item->http_equiv, $item->content);
 				}
 				else
 					$result .= sprintf(' name="%s" content="%s"', $item->name, $item->content);

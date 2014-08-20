@@ -1,13 +1,16 @@
 application:
   # Título de la aplicación
-  title: Frontend de Postventa
-  
+  title: Posventa
+
   # El formato a usar para nombrar las páginas. Con este formato se arman el campo 'title' de los encabezados de la página activa.
   title_format: '{app_title}::{page_title}'
-  
+
   # El url que se usará para armar todos los paths. Por defecto es /. Ponga un valor aquí solo se está
   # usando su aplicacion dentro de un sub path del server (ej: /web)
   base_url: /postventa
+
+  # Zona horaria usada principalmente para el formato de fechas 
+  time_zone: 'Europe/Madrid'
 
 # Lista de páginas de la aplicación
 navigation:
@@ -36,14 +39,14 @@ themes:
     default: true
     cached: false
     debug: false  
-      
+
 #TODO: Agregar soporte al dataType 'image'
 # Todos los servicios      
 services:
   HTMLServices:
     defaultType: html
     global: true
-    
+
   PresupuestadorData:
     dataType: json
     #TODO: Hay que programar el código que manejar los headers 
@@ -58,10 +61,6 @@ routes:
 # ============================== Core routing =========================================
   services: 
       methods: GET|POST|DELETE|PUT
-      route: /service/[a:name]/[a:method]?/[*:params]?
+      route: /service/[a:name]/[*:method]/[*:params]?
       target: /Services
 # ============================== End core routing =========================================
-      
-            
-        
-  

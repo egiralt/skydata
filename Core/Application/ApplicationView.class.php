@@ -1,7 +1,26 @@
 <?php
-/*
- *  **header**
+/**
+ *  SkyData: CMS Framework   -  12/Aug/2014
+ * 
+ * Copyright (C) 2014  Ernesto Giralt (egiralt@gmail.com) 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * @Author: E. Giralt
+ * @Date:   12/Aug/2014
+ * @Last Modified by:   E. Giralt
+ * @Last Modified time: 18/Aug/2014
  */
+ 
  namespace SkyData\Core\Application;
 
 use \SkyData\Core\View\SkyDataView;
@@ -18,19 +37,20 @@ use \SkyData\Core\Twig\SkyDataTwig;
  class ApplicationView extends SkyDataView
  {
  	
- 	protected $Templates;
-	protected $SelectedTemplate;
-	protected $DefaultTemplate;
+ 	protected $Theme;
+	protected $SelectedTheme;
+	protected $DefaultTheme;
 	
 	public function __construct()
 	{
 		parent::__construct();
 	}
 	
-	protected function LoadTemplates()
+	protected function LoadThemes()
 	{
 		$application = $this->GetApplication();
 		$templatesConfiguration = $application->GetConfigurationManager()->GetMapping('themes');
+		
 		if (!empty($templatesConfiguration))
 		{
 			foreach ($templatesConfiguration as $templateName => $templateConfig) 
@@ -44,18 +64,19 @@ use \SkyData\Core\Twig\SkyDataTwig;
 				
 				// Solo se cargarán los templates que tengan la marca de active
 				if ($newTemplate->IsActive())
-					$this->Templates[$templateName] = $newTemplate;
+					$this->Themes[$templateName] = $newTemplate;
 			}
 		}
 	}	
 	
 	public function Render()
 	{
-		if (!isset($this->Templates))
-			$this->LoadTemplates();
+		if (!isset($this->Themes))
+			$this->LoadThemes();
 		
-		$currentRequest = $this->GetApplication()->GetCurrentRequest();
+		$application = $this->GetApplication();
 		
+		$currentRequest = $application->GetCurrentRequest();
 		if ($currentRequest!= null)
 		{
 			$interfaces = class_implements($currentRequest, FALSE);
@@ -73,7 +94,6 @@ use \SkyData\Core\Twig\SkyDataTwig;
 			else
 				$this->Assign ('page_content', null);
 			
-			$this->Assign ('application_name', $this->GetApplication()->GetApplicationName()); // El nombre de la aplicación
 		}		
 		
 	}
@@ -83,8 +103,12 @@ use \SkyData\Core\Twig\SkyDataTwig;
 	 */
 	protected function ManagePageRequest ($pageInstance)
 	{
-		$template = $this->GetSelectedTemplate();
+		$application = $this->GetApplication();
+		$template = $this->GetSelectedTheme();
+		$template->Assign ('application_title', $application->GetApplicationName()); // El nombre de la aplicación
+		$template->Assign ('timezone', $application->GetTimeZone()); // El nombre de la aplicación
 		$template->SetPage ($pageInstance);// Esta es la página que están visualizando
+		
 		$result = $template->Render();
 		
 		return $result;
@@ -123,7 +147,7 @@ use \SkyData\Core\Twig\SkyDataTwig;
 		// Verificar que la solicitud esté dentro de la lista aceptada por el servicio
 		if (!in_array($ajaxInfo->verb, $acceptedVerbs))
 			throw new \Exception(sprintf("El método '%s' no es aceptado por el servicio %s", $ajaxInfo->verb, $ajaxInfo->serviceName, -1));
-		
+		//echo "<pre>"; print_r ($ajaxInfo); die();
 		// Y finalmente, se ejecuta el método y se envía al browser
 		$result = $serviceInstance->Exec ($ajaxInfo->method, $ajaxInfo->params);
 		
@@ -131,6 +155,9 @@ use \SkyData\Core\Twig\SkyDataTwig;
 		$allMethods=$serviceInstance->GetAjaxMethods();
 		if (isset ($allMethods[$ajaxInfo->method]) && isset($allMethods[$ajaxInfo->method]->contentType))
 			$defaultDataType = $allMethods[$ajaxInfo->method]->contentType;
+		// Si es un error...
+		if (isset($result->error))
+			$defaultDataType = SkyDataService::DATATYPE_JSON;
 		
 		$this->RenderAjaxResult ($result, $defaultDataType, $serviceConfig);
 	}
@@ -172,7 +199,7 @@ use \SkyData\Core\Twig\SkyDataTwig;
 		Http::SetContentTypeJsonHeader();
 		if (is_array($value) || is_object($value)) // Si es un dato simple, 
 			$value = json_encode($value);				 // se prepara un wrapper
-		
+			
 		echo $value;
 		exit();
 	}
@@ -220,23 +247,23 @@ use \SkyData\Core\Twig\SkyDataTwig;
 	/**
 	 * Modifica el estado de 
 	 */
-	public function SetSelectedTemplate($name)
+	public function SetSelectedTheme($name)
 	{
 		$selection = null;
-		foreach ($this->GetTemplates() as $storedTemplateName => $templateInstance)
+		foreach ($this->GetThemes() as $storedTemplateName => $templateInstance)
 			if ($storedTemplateName === $name)
 			{
 				$selection = $templateInstance;
 				break;
 			}
 			
-		if (($selection != $this->SelectedTemplate) && $selection !== null)
+		if (($selection != $this->SelectedTheme) && $selection !== null)
 		{
-			// Hay que cambiar el estado seleccionado al último Template
-			if ($this->SelectedTemplate != null)
-				$this->SelectedTemplate->Selected = false;				
-			$this->SelectedTemplate = $selection;
-			$this->SelectedTemplate->Selected = true;
+			// Hay que cambiar el estado seleccionado al último tema
+			if ($this->SelectedTheme != null)
+				$this->SelectedTheme->Selected = false;				
+			$this->SelectedTheme = $selection;
+			$this->SelectedTheme->Selected = true;
 			$selectedStyle = $selection->GetSelectedStyle();
 			if ($selectedStyle != null)
 			{
@@ -248,60 +275,68 @@ use \SkyData\Core\Twig\SkyDataTwig;
 		else
 			throw new \Exception("El template indicado no pudo ser hallado en la configuración", -100);
 		
-		return $this->SelectedTemplate;
+		return $this->SelectedTheme;
 	} 
 	
 	/**
 	 * Retorna el template seleccionado. Si no hay ninguno se elige el que está por defecto,  y si no hay ninguno marcado, 
 	 * se toma el primero de la lista 	
 	 */
-	public function GetSelectedTemplate()
+	public function GetSelectedTheme()
 	{
-		if (!isset($this->Templates))
-			$this->LoadTemplates();
+		if (!isset($this->Themes))
+			$this->LoadThemes();
 		
-		if ($this->SelectedTemplate == null)
+		if ($this->SelectedTheme == null)
 		{
-			$templates = $this->GetTemplates();
+			$themes = $this->GetThemes();
 			$selection = null;
 			
-			if ($this->GetDefaultTemplate() != null)
-				$selection = $this->GetDefaultTemplate();
-			else if (count($templates) > 0)
+			if ($this->GetDefaultTheme() != null)
+				$selection = $this->GetDefaultTheme();
+			else if (count($themes) > 0)
 			{
-				$list = array_values($templates);
+				$list = array_values($themes);
 				$selection = $list[0];
 			}
 			
 			if ($selection != null)
-				$this->SetSelectedTemplate($selection->GetName());
+				$this->SetSelectedTheme($selection->GetName());
 			else
 				throw new \Exception("La aplicación no tiene templates para mostrar.", -100);
 		}
 		
-		return $this->SelectedTemplate;
+		return $this->SelectedTheme;
 	}
 	
 	/**
 	 * 
 	 */
-	public function GetDefaultTemplate ()
+	public function GetDefaultTheme ()
 	{
-		return $this->DefaultTemplate;
+		return $this->DefaultTheme;
 	}
 	
 	/**
 	 * 
 	 */
-	public function GetTemplates()
+	public function GetThemes()
 	{
-		return $this->Templates;		
+		return $this->Themes;		
 	}	
 
 	
 	public function MergeMetadata (IMetadataContainer $object)
 	{
 		
+	}
+	
+	/**
+	 * Un alias del assign de template
+	 */
+	public function Assign ($name, $object)
+	{
+		$this->GetSelectedTheme()->Assign ($name, $object);		
 	}	
 	 	
  } 

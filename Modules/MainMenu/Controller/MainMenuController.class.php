@@ -34,7 +34,7 @@
 	/**
 	 * Crea el árbol de nodos recursivamente
 	 */
-	private function buildNode ($naveName, $navNode)
+	private function buildNode ($navName, $navNode)
 	{
 		$result = new \stdClass();
 		$result->label = $navNode['title'];
@@ -45,9 +45,9 @@
 		if ($navNode['subnav'])
 		{
 			$result->childs = array();
-			foreach ($navNode['subnav'] as $navName => $subNavNode)
+			foreach ($navNode['subnav'] as $subNavName => $subNavNode)
 			{
-				$subNode = $this->buildNode($subNavNode);
+				$subNode = $this->buildNode($subNavName, $subNavNode);
 				$result->childs[$navName] = $subNode;			
 			} 
 		}

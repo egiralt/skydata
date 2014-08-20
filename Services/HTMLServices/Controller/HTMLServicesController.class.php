@@ -1,26 +1,40 @@
 <?php
 /**
- * **header**
+ *  SkyData: CMS Framework   -  13/Aug/2014
+ * 
+ * Copyright (C) 2014  Ernesto Giralt (egiralt@gmail.com) 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @Author: E. Giralt
+ * @Date:   13/Aug/2014
+ * @Last Modified by:   E. Giralt
+ * @Last Modified time: 18/Aug/2014
  */
-
  namespace SkyData\Services\HTMLServices\Controller;
   
- use \SkyData\Core\Service\Controller\SkyDataServiceController;
- use \SkyData\LibrariES\ElasticSearch\Elements as es;
+use \SkyData\Core\Service\Controller\SkyDataServiceController;
 use \SkyData\Core\Model\SkyDataModelRecord;
-
-use \SkyData\Libraries\ElasticSearch\ElasticSearchManager;
 use \Yaec\Yaec_ESClient;
 
- /**
-  *
-  */
+/**
+ * 
+ */
  class HTMLServicesController extends SkyDataServiceController
  {
 	/** 	
 	 * @ajaxMethod 
 	 * @contentType html
-	 * @renderTag name=vehinfo, fullHTML=true, trigger=hover, templateUrl='Services/HTMLServices/Templates/vehiculo_popup.html'
+	 * @renderTag name=vehinfo, fullHTML=true, trigger=hover, template='<span class="vehiculo-html-label low">[[matricula]]</span>'
 	 * 	 */ 	
 	public function GetVehiculoPopup ($bastidor)
 	{
@@ -28,9 +42,9 @@ use \Yaec\Yaec_ESClient;
 		$es->SetScriptsDirectory (realpath(__DIR__.'/../Scripts'));
 		
 		$vehiculo = $es->GetItem('vehiculos', $bastidor);
-		
+		//echo "<pre>"; print_r ($vehiculo);die();
 		$result = '';
-		if (!empty($vehiculo))
+		if (!empty($vehiculo) && !isset($vehiculo->error))
 		{
 			// *********************** Seguro ****************************************************
 			$seguro = $es->MatchOne ("seguros", array("bastidor" => $vehiculo->bastidor));
@@ -130,11 +144,43 @@ use \Yaec\Yaec_ESClient;
 			 */
 			$popOverURL = "index.php?module=GESCO_Vehiculos&action=DetailView&record={$vehiculo->uuid}";
 			$result = 
-		"<div class=\"popover-html-label\"><a href='$popOverURL' class='popover-js' data-html='true' data-trigger='hover' data-placement='left' data-container='body'
-	 data-content='{$popOverHTML}' title='<div style=\"width:100%\">$marcaLogo&nbsp;Vehículo: <strong>{$matricula}</strong>{$segmentoHTML}</div>'>{$smallMarcaLogo}<strong>{$matricula}</strong></a>{$budgetIconHTML}{$fichaTallerIcon}</div>";
+				"<div><a href='$popOverURL' class='pop' data-html='true' data-trigger='hover' data-placement='left' data-container='body' data-content='{$popOverHTML}' title='<div style=\"width:100%\">$marcaLogo&nbsp;Vehículo: <strong>{$matricula}</strong>{$segmentoHTML}</div>'>{$smallMarcaLogo}<strong>{$matricula}</strong></a>{$budgetIconHTML}{$fichaTallerIcon}</div>";
 
 		}
+		elseif (!isset($vehiculo->error)) 
+			$result = "<span class=\"vehiculo-html-label no-data\">No informado</span>";
+		else 
+			$result = $vehiculo; // Vehiculo trae el error
 
+		return $result;
+	}
+
+	/**
+	 * @ajaxMethod
+	 * @contentType html
+	 * @renderTag name=description template='<span>[[text]]</span>', fullHTML=true
+	 */
+	public function GetOverDescription ($text, $maxLength = 50)
+	{
+		$result = '';
+		if (strlen($text) > $maxLength)
+		{
+			$tempStr = substr($text, 0, $maxLength);
+			$tempStr = substr($text, 0, strrpos($tempStr, ' ')).'...';
+			
+			$result ="<div class='description-html-label'>$tempStr <a
+				href='javascript:void();'
+				class='pop' 
+				data-trigger='hover' 
+				data-placement='right' 
+				data-container='body' 
+				data-content='$text' 
+				data-html='true'
+				title='<strong>Descripción:</strong>'><i class='fa fa-plus-circle'></i></div>";		
+		}
+		else
+			$result = $text;
+		
 		return $result;
 	}
 
@@ -142,12 +188,25 @@ use \Yaec\Yaec_ESClient;
 	 * @ajaxMethod 
 	 * @bindVariable gravatarurl
 	 * @contentType json
-	 * @renderAttribute name=avatar, template='<img ng-src="[[gravatarurl]]">', presentation='<span>Pase el Mouse</span>'
+	 * @renderAttribute name=avatar, template='<img ng-src="[[gravatarurl]]">'
 	 */
 	public function GetAvatar ($email, $size)
 	{
 		$result = 'http://www.gravatar.com/avatar/'.md5(strtolower(trim($email))).".jpg?s={$size}&d=mm";
 		
 		return $result;
+	}
+
+	/**
+	 * @ajaxMethod
+	 * @contentType html
+	 * @bindVariable resultTime
+	 * @renderTag name=livetime, fullHTML= true, refresh=5s, template='<span>[[resultTime]]</span>', showLoading=false
+	 */
+	public function LiveTime ()
+	{
+		
+		
+		return (new \DateTime())->format ('d/m/Y H:i:s');
 	}
  }

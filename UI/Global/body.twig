@@ -1,4 +1,9 @@
-{% block html_body %}
+{% if error.error|length > 0 %}
+	<div class="alert alert-info alert-dismissable">
+    	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        Error ({{ error.error_number }}): {{ error.error }}
+	</div>
+{% endif %}{% block html_body %}
 
 
 {% endblock %}

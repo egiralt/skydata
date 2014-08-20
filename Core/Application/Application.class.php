@@ -1,11 +1,28 @@
 <?php
-/*
- *  **header**
+/**
+ *  SkyData: CMS Framework   -  12/Aug/2014
+ * 
+ * Copyright (C) 2014  Ernesto Giralt (egiralt@gmail.com)
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @Author: E. Giralt
+ * @Date:   12/Aug/2014
+ * @Last Modified by:   E. Giralt
+ * @Last Modified time: 18/Aug/2014
  */
  namespace SkyData\Core\Application;
- 
- include SKYDATA_PATH_LIBRARIES.'/AltoRouter/AltoRouter.php';
- 
+  
+ include SKYDATA_PATH_LIBRARIES.'/AltoRouter/AltoRouter.php'; 
  use \SkyData\Core\Configuration\ConfigurationManager;
  use \SkyData\Core\ReflectionFactory;
  use \SkyData\Core\Metadata\MetadataManager;
@@ -15,32 +32,31 @@
  use \SkyData\Core\Metadata\IMetadataContainer;
  use \SkyData\Core\Cache\ICacheContainer;
  use \SkyData\Core\Configuration\IConfigurable;
- use \SkyData\Core\Module\IModule;
- 
+ use \SkyData\Core\Module\IModule; 
  
   /**
   * Clase usada para controlar el flujo de la aplicación 
   */
- class Application implements IConfigurable,  ICacheContainer, IMetadataContainer 
- {
- 	
+class Application implements IConfigurable,  ICacheContainer, IMetadataContainer 
+{
+  
 	private $Configuration = null;
 	private $View = null;
 	private $CurrentNavigationNode = null;
- 	private $MetadataManager;
+ 	private $MetadataManager; 
 	
 	private $CacheManager;
 	private $TemplatesCache;
 	private $Router;
 	
-	public function __construct ()
+	public function __construct()
 	{
 		$this->View = new ApplicationView();
 
 		$this->MetadataManager = new MetadataManager ();
 		$this->CacheManager = new FileCacheManager (SKYDATA_PATH_CACHE);
 		$this->ModuleChain = array();
-		
+
 		$this->LoadConfiguration();
 		/** Las rutas de la aplicación */
 		$this->LoadRoutes();
@@ -50,10 +66,14 @@
 	/**
 	 * Este método es el centro de la gestión del framework. Aquí se decide:
 	 * El routing
-	 *  
+	 *
 	 */
 	public function Run ()
 	{
+		$timezone = $this->GetTimeZone();
+		if (isset($timezone))
+			date_default_timezone_set($timezone);
+		
 		// Organizar el routing de la página según la solicitud
 		$this->CurrentNavigationNode = $this->ManageRouteRequest();
 		$currentPage = $this->GetCurrentRequest();
@@ -101,9 +121,9 @@
 		$applicationConfig = $this->GetConfigurationManager()->GetMapping ('application');
 		return $applicationConfig['title'];
 	}
-
+ 
 	/**
-	 * Genera una lista plana del árbol de navigación
+	 * Genera una lista plana del árbol de navigación 
 	 */
 	private function buildFlatList ($configData, &$list, $currentPath)
 	{
@@ -157,18 +177,19 @@
 	{
 		// Crear el nodo de información de la solicitud
 		$serviceClass = ReflectionFactory::getFullServiceClassName ($routeMatch['params']['name']);
+		$jsonNode = new \stdClass();
 		$jsonNode->serviceName = $routeMatch['params']['name'];
 		$jsonNode->fullServiceName = $serviceClass;
 		
 		// Si no hay método explícito, se usa el nombre del verb como método, ej: Get, Put, Delete... etc.
 		if (isset($routeMatch['params']['method']))
-			$jsonNode->method = $routeMatch['params']['method'];
+			$jsonNode->method = trim($routeMatch['params']['method'], '/');
 		else
 			$jsonNode->method = ucfirst(strtolower(Http::GetRequestMethod()));
 		
 		$jsonNode->verb = Http::GetRequestMethod();
 		// Convertir los parámetros en un array listo para que lo evalue el servicio
-		$jsonNode->params = explode('/', $routeMatch['params']['params']);
+		$jsonNode->params = !empty($routeMatch['params']['params']) ? explode('/', $routeMatch['params']['params']) : array();
 		
 		// Ahora crear la clase del servicio y actualizar el nodo de navigación
 		try
@@ -263,6 +284,11 @@
 	public function GetMetadataManager ()
 	{
 		return $this->MetadataManager;
+	}
+	
+	public function GetTimeZone ()
+	{
+		return $this->GetConfigurationManager()->GetMapping('application')['time_zone'];
 	}
 	
  }

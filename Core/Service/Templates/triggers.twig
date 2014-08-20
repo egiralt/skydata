@@ -1,0 +1,17 @@
+{% macro mouseenter (method) %}
+	$element.bind ('mouseenter', function (event) {
+		if (!$scope.loaded{{ method.name }})
+			do_{{ method.name }}();
+		event.preventDefault();
+		return false;
+	});
+{% endmacro %}
+
+{% macro click (method) %}
+	$element.bind ('click', function (event) {
+		if (!$scope.loaded{{ method.name }})
+			do_{{ method.name }}();
+		event.preventDefault();
+		return false;
+	});
+{% endmacro %}

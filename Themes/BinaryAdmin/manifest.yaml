@@ -17,6 +17,7 @@ theme:
         - assets/js/morris/morris-0.4.3.min.css
         - assets/css/custom.css
         - assets/css/google-fonts.css
+        - assets/custom/css/custom.css
         
       scripts:
         - assets/js/jquery-1.10.2.js
@@ -24,4 +25,5 @@ theme:
         - assets/js/jquery.metisMenu.js
         - assets/js/morris/raphael-2.1.0.min.js
         - assets/js/custom.js
+        - assets/js/dataTables/dataTables.bootstrap.js
     

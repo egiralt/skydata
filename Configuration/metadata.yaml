@@ -11,6 +11,7 @@ metadata:
       
   css:
     - UI/js/jquery/jquery-ui-1.11.1/jquery-ui.min.css
+    - UI/css/custom.css
   
   scripts:
 #    - UI/bootstrap/js/libs/jquery.min.js

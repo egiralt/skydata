@@ -149,13 +149,19 @@ abstract class SkyDataResponseResource extends SkyDataObject
 	 */
 	protected function CreateView ()
 	{
+		$view = null;
 		// Crear la clase view (si existe) de esta página
 		$viewClassName = ReflectionFactory::getViewClassName (get_class($this));
 		$viewClassFile = ReflectionFactory::getClassFilePath ($viewClassName);
 		if (is_file($viewClassFile))
-			$this->SetView (new $viewClassName ());
+			$view = new $viewClassName ();
 		else 
-			$this->SetView($this->GetInstanceDefaultViewClass());
+			$view =	$this->GetInstanceDefaultViewClass();
+		
+		if ($view !== null)
+			$this->SetView($view);
+		else
+			throw new \Exception("Debe indicarse en la configuración algun tipo de vista o heredar de alguna clase para la clase ".get_class($this), -1000);
 	}
 	
 	/**
@@ -171,9 +177,6 @@ abstract class SkyDataResponseResource extends SkyDataObject
 			$result = new $fullViewClass();
 		}
 		
-		if (!isset($result))
-			throw new \Exception("Debe indicarse en la configuración algun tipo de vista o heredar de alguna clase para la clase ".get_class($this), -1000);
-			 
 		return $result;
 	}
 	
