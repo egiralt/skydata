@@ -10,3 +10,6 @@
 [submodule "Libraries/Yaec"]
 	path = Libraries/Yaec
 	url = git@github.com:egiralt/yaec.git
+[submodule "Libraries/Toastr"]
+	path = Libraries/Toastr
+	url = https://github.com/CodeSeven/toastr.git
