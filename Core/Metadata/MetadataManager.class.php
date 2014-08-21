@@ -121,11 +121,11 @@
 			$otherStyles = $anotherMetadataManager->GetStyles();
 			
 			if (!empty($otherHeaders))
-				$this->Headers = array_merge ($this->Headers, $otherHeaders);
+				$this->Headers = array_merge ($otherHeaders, $this->Headers);
 			if (!empty($otherStyles))
-				$this->Styles = array_merge ($this->Styles, $otherStyles);
+				$this->Styles = array_merge ($otherStyles, $this->Styles );
 			if (!empty($otherScripts))
-				$this->Scripts = array_merge ($this->Scripts, $otherScripts);
+				$this->Scripts = array_merge ($otherScripts, $this->Scripts);
 		}
 	}
 
