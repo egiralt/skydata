@@ -93,8 +93,8 @@
 		if ($pageInstance != null)
 		{
 			// Se mezclan los metadatos de la página con los del estilo
+            $this->GetMetadataManager()->Merge ($this->GetApplication()->GetMetadataManager());
 			$this->GetMetadataManager()->Merge ($pageInstance->GetMetadataManager());
-			$this->GetMetadataManager()->Merge ($this->GetApplication()->GetMetadataManager());
 					
 			$content = $pageInstance->GetView()->Render(); //!! el contenido de la página que se muestra
 			$content = $pageInstance->GetView()->RenderServices($content);
@@ -236,16 +236,18 @@
 		if (!isset($themeName))
 			$themeName = $this->GetClassShortName();
 			
-		$configurationData = $this->GetApplication()->GetConfigurationManager()->GetMapping('themes')[$themeName];
+        $themeConfig = $this->GetApplication()->GetConfigurationManager()->GetMapping('themes');
+		$configurationData = $themeConfig[$themeName];
 		
 		$this->IsDefault = $configurationData['default'] == 'true' ? true : false;
 		$this->IsActive = ($configurationData['active'] == 'true') || empty($configurationData['active']) ? true : false;
 		// Hay que recuperar los estilos
-		if (!empty($this->GetManifest()['styles']))
+		$manifest = $this->GetManifest();
+		if (!empty($manifest['styles']))
 		{
 			$this->Styles = array();
 			$this->DefaultStyle = null; // Se inicializa el campo para garantizar que toma los valores reales en el fichero
-			foreach ($this->GetManifest()['styles'] as $styleName => $styleConfig) 
+			foreach ($manifest['styles'] as $styleName => $styleConfig) 
 			{
 				$newStyle = new SkyDataThemeStyle ($styleName, $styleConfig);
 				$newStyle->SetTheme($this); // Se conecta con el tema actual
@@ -371,17 +373,18 @@
 	
 	public function GetBasePath ()
 	{
-		return sprintf ('Themes/%s/Styles/%s/', $this->GetName(), $this->GetSelectedStyle()->GetName());
+		return sprintf ('%s/%s/Styles/%s/', SKYDATA_URL_THEMES,$this->GetName(), $this->GetSelectedStyle()->GetName());
 	}
 	
 	public function LoadMetadata()
 	{
-		$configStyle = $this->GetManifest()['styles'][ $this->GetSelectedStyle()->GetName()];
+	    $manifest = $this->GetManifest();
+		$configStyle = $manifest['styles'][ $this->GetSelectedStyle()->GetName()];
 		$this->GetMetadataManager()->LoadFromConfiguration ($configStyle);
 		// Ahora hay que corregir los paths de los scripts que vienen del estilo
 		
 		$metadataManager = $this->GetMetadataManager();
-		$path = sprintf ('Themes/%s/Styles/%s/', $this->GetName(), $this->GetSelectedStyle()->GetName());
+		$path = sprintf ('%s/%s/Styles/%s/', SKYDATA_URL_THEMES, $this->GetName(), $this->GetSelectedStyle()->GetName());
 		$scripts = $metadataManager->GetScripts();
 		$styles = $metadataManager->GetStyles();
 		$metadataManager->ClearAll();

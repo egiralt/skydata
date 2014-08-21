@@ -95,7 +95,7 @@ class SkyDataService extends SkyDataResponseResource implements IService
 			{
 				$methodExists = true;
 				// El método invokeArks necesita los parámetros como array
-				$passParam = [];
+				$passParam = array();
 				foreach ($method->getParameters() as $order => $param)
 				{
 					if (order < count($requestParams) && $requestParams[ $order ] != 'null' )
@@ -127,9 +127,10 @@ class SkyDataService extends SkyDataResponseResource implements IService
 
 	public function IsGlobal()
 	{
-		$serviceConfig = $this->GetApplication()->GetConfigurationManager()->GetMapping('services') [$this->GetClassShortName()];
-		return true;		
-		return isset($serviceConfig) && ($serviceConfig['global'] === true); 
+        return true;        
+	    //$this->GetApplication()->GetConfigurationManager()->GetMapping('services') 
+		//$serviceConfig = [$this->GetClassShortName()];
+		//return isset($serviceConfig) && ($serviceConfig['global'] === true); 
 	}
 
 	//TODO: Este método será para futuros desarrollos: permitir que un servicio sea declarado global para que se genere

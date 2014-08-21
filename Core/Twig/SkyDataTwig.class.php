@@ -22,6 +22,8 @@
  */
  namespace SkyData\Core\Twig;
  
+ use \SkyData\Core\BootFactory;
+ 
  class SkyDataTwig 
  {
 	/**
@@ -31,7 +33,8 @@
 	
 	public static function getTwigInstance ($templateDirectory, array $options = null)
 	{
-		$appTimeZone = \SkyData\Core\BootFactory::GetApplication()->GetConfigurationManager()->GetMapping ('application')['time_zone'];
+	    $appConfig = BootFactory::GetApplication()->GetConfigurationManager()->GetMapping ('application');
+		$appTimeZone = $appConfig['time_zone'];
 		
 		$loader = new \Twig_Loader_Filesystem($templateDirectory);
 		if (!empty($options))
