@@ -43,45 +43,52 @@
 	  	header("Cache-Control: no-cache");
 	  	header("Pragma: no-cache");
   	}
+    
+    public static function SetCacheHeaders ()
+    {
+        header('Cache-Control: max-age=86400');
+        header('Expires:Sat, 1 Jan 2050 01:00:00 GMT');
+    }
+    
 	
-	public static function SetContentTypeJsonHeader()
+	public static function GetContentTypeJson()
 	{
-		header('Content-type: application/json');
+		return 'Content-type: application/json';
 	}
 	
-	public static function SetContentTypeHtmlHeader()
+	public static function GetContentTypeHtml()
 	{
-		header('Content-type: text/html');
+		return 'Content-type: text/html';
 	}
 	
-	public static function SetContentTypeTextHeader()
+	public static function GetContentTypeText()
 	{
-		header('Content-type: text/plain');
+		return 'Content-type: text/plain';
 	}
 	
-	public static function SetContentTypeXmlHeader()
+	public static function GetContentTypeXml()
 	{
-		header('Content-type: text/xml');
+		return 'Content-type: text/xml';
 	}
 
-	public static function SetContentTypeImageJpegHeader()
+	public static function GetContentTypeImageJpeg()
 	{
-		header('Content-type: image/jpeg');
+		return 'Content-type: image/jpeg';
 	}
 	
-	public static function SetContentTypeImagePngHeader()
+	public static function GetContentTypeImagePng()
 	{
-		header('Content-type: image/png');
+		return 'Content-type: image/png';
 	}
 	
-	public static function SetContentTypeImageGifHeader()
+	public static function GetContentTypeImageGif()
 	{
-		header('Content-type: image/gif');
+		return 'Content-type: image/gif';
 	}
 	
-	public static function SetContentTypeImageTiffHeader()
+	public static function GetContentTypeImageTiff()
 	{
-		header('Content-type: image/tiff');
+		return 'Content-type: image/tiff';
 	}
 	
 	public static function GetRequestMethod ()
