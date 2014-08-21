@@ -12,6 +12,7 @@ metadata:
   css:
     - UI/js/jquery/jquery-ui-1.11.1/jquery-ui.min.css
     - Libraries/Toastr/toastr.css
+    - UI/css/font-awesome.css
     - UI/css/custom.css
   
   scripts:
