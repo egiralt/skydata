@@ -16,10 +16,13 @@ application:
 navigation:
   Home:
     route: /
+    icon: fa fa-home icon-large
+    title: Inicio
   FichaASP:
     title: Ficha ASP
     class: FichaASP
     route: /ficha_asp
+    icon: fa fa-tasks icon-large
     # TODO: Agregar la gestión de roles
     roles: ASP,DPV
     # TODO: Hacer que las páginas puedan recibir un template distinto al default
@@ -27,6 +30,7 @@ navigation:
   Presupuestador:
     title: Presupuestos
     route: /presupuestos
+    icon: fa fa-briefcase icon-large
     subnav:
       PresupuestosMenores:
         title: 2
@@ -35,7 +39,7 @@ navigation:
 
 # Todos los temas de la aplicación.   
 themes:
-  BinaryAdmin:
+  CleanDashboard:
     default: true
     cached: false
     debug: false  
