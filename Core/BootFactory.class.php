@@ -41,6 +41,11 @@ define ('SKYDATA_NAMESPACE_PAGES',		SKYDATA_NAMESPACE_ROOT.'\\Pages');
 define ('SKYDATA_NAMESPACE_SERVICES',	SKYDATA_NAMESPACE_ROOT.'\\Services');
 define ('SKYDATA_NAMESPACE_THEMES',		SKYDATA_NAMESPACE_ROOT.'\\Themes');
 
+define ('SKYDATA_URL_THEMES',           'Themes');
+define ('SKYDATA_URL_PAGES',            'Pages');
+define ('SKYDATA_URL_SERVICES',         'Services');
+define ('SKYDATA_URL_MODULES',          'Modules');
+
 define ('DEBUG', true);
 
 include_once 'ReflectionFactory.class.php';
