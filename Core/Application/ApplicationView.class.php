@@ -195,13 +195,10 @@ use \SkyData\Core\Twig\SkyDataTwig;
 	protected function OutputAjaxJsonResult($value, $serviceConfig)
 	{
 		//TODO: Leer los headers que están en la configuración
-		Http::SetNoCacheHeaders();
-		Http::SetContentTypeJsonHeader();
 		if (is_array($value) || is_object($value)) // Si es un dato simple, 
 			$value = json_encode($value);				 // se prepara un wrapper
 			
-		echo $value;
-		exit();
+		$this->GetApplication()->GetDeliverChannel()->DeliverContent ($value, Http::GetContentTypeJson());
 	}
 	
 	/**
@@ -209,31 +206,23 @@ use \SkyData\Core\Twig\SkyDataTwig;
 	 */
 	protected function OutputAjaxTextResult($value, $serviceConfig)
 	{
-		//TODO: Leer los headers que están en la configuración
-		Http::SetContentTypeTextHeader();
-		
 		if (is_array($value) || is_object($value))
 			$output = print_r ($value, true);
 		else 
 			$output = $value;
 		
-		echo $output;
-		exit();
+        $this->GetApplication()->GetDeliverChannel()->DeliverContent ($output, Http::GetContentTypeText());
 	}
 
 		
 	protected function OutputAjaxHtmlResult($value, $serviceConfig)
 	{
-		//TODO: Leer los headers que están en la configuración
-		Http::SetContentTypeHtmlHeader();
-		
 		if (is_array($value) || is_object($value))
 			$output = print_r ($value, true);
 		else 
 			$output = $value;
 		
-		echo $output;
-		exit();
+        $this->GetApplication()->GetDeliverChannel()->DeliverContent ($output, Http::GetContentTypeHtml());
 	}
 	
 	protected function OutputAjaxXmlResult($value, $serviceConfig)

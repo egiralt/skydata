@@ -28,6 +28,7 @@ use \SkyData\Core\ReflectionFactory;
 use \SkyData\Core\Metadata\MetadataManager;
 use \SkyData\Core\Http\Http;
 use \SkyData\Core\Cache\File\FileCacheManager;
+use \SkyData\Core\ContentDeliveryChannel\Http\HttpFilesystemChannel;
 
 use \SkyData\Core\Metadata\IMetadataContainer;
 use \SkyData\Core\Cache\ICacheContainer;
@@ -48,6 +49,7 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 	private $CacheManager;
 	private $TemplatesCache;
 	private $Router;
+    private $DeliverChannel;
 
 	public function __construct()
 	{
@@ -55,6 +57,7 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 
 		$this->MetadataManager = new MetadataManager ();
 		$this->CacheManager = new FileCacheManager (SKYDATA_PATH_CACHE);
+        $this->DeliverChannel = new HttpFilesystemChannel(); 
 		$this->ModuleChain = array();
 
 		$this->LoadConfiguration();
@@ -78,20 +81,13 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 		//  	afterHeaders, afterRender
 		$content = $this->GetView()->Render();
         
-        //TODO: Desarrollar ResourceDownloader y generar el contenido a través de esas clases, para que siempre genere
-        // los headers correctamente, etc...
-        // Headers para optimizar el contenido
-        header('Content-Length: ' . strlen($content));
-        header('Etag: '. md5($content)); // Marcamos el contenido
-        header('X-Content-GearedBy: SkyData'); // La marca de SkyData ;)
-                
-        echo $content;
+        $this->GetDeliverChannel()->DeliverContent ($content); //TODO: Agregar modification time                
 	}
 
-    protected function GetApplicationBaseUrl ()
+    public function GetApplicationBaseUrl ()
     {
         $mainConfig = $this->GetConfigurationManager ()->GetMapping('application');
-        return isset($mainConfig) && !empty($mainConfig['base_url']) ? $mainConfig['base_url'] : '/';
+        return isset($mainConfig) && !empty($mainConfig['base_url']) ? $mainConfig['base_url'] : null;
     }
     
 	protected function LoadRoutes ()
@@ -195,39 +191,7 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 			    if (substr($name, 0,1) == '@')
                 {// Se trata de un fichero que se ha solicitado y que pertenece a algun tema. Se devuelve directamente al browser
                     // sin hacer nada mas.. Lo más veloz posible
-                    
-                    //TODO: Usar el código que sigue como base para ResourceDownloader.. Una clase que gestione todo 
-                    // lo que se envía al browser 
-                    $path = realpath(dirname($_SERVER['SCRIPT_FILENAME'])); //No sé si es muy correcto confiar en la variable Server
-                    $file = sprintf('%s/%s/%s', $path, $match['target'], $match['params']['path']);
-                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-                    $mimeType = finfo_file($finfo, $file); 
-                    finfo_close($finfo);
-                                      
-                    $last_modified_time = filemtime($file); 
-                    $etag = md5_file($file);
-                    // Siempre se envían los headers para qeu se sepa cuando cachear
-                    header("Last-Modified: ".gmdate("D, d M Y H:i:s", $last_modified_time)." GMT"); 
-                    header("Etag: $etag"); // Marcamos el contenido
-                    header('Cache-Control: public');
-                    header('X-Content-GearedBy: SkyData'); // La marca de SkyData ;)
-                    
-                    foreach (array('/^image/', '/^text\/css/', '/^text\/javascript/', '/application\/javascript/', '/^font/') as $test)
-                        if (preg_match($test, $mimeType)) { 
-                            header('Cache-Control: max-age=86400');
-                            header('Expires:Sat, 1 Jan 2050 01:00:00 GMT');
-                            break;
-                        }
-                                        
-                    // Si el browser puede hacer caching y está solicitando un GET condicional, se revisa
-                    if (strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time || 
-                        trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) { 
-                        header("HTTP/1.1 304 Not Modified"); // Es el mismo que ya envíamos, no se vuelve a tocar
-                        exit; 
-                    }                    
-                    header("Content-type: ". $mimeType );
-                    echo file_get_contents($file); // Se envía el contenido
-                    exit;
+                    $this->GetDeliverChannel()->DeliverUrlResource ($match['target'], $match['params']['path']);
                 }
                 else {
                     // Es una solicitud de una página
@@ -289,7 +253,9 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 
 		// Un nodo para informacion de la navegación
 		$pageNode = new \stdClass();
-		$pageNode->path = $routeMatch['route'];
+        
+		$pageNode->path = $this->GetRouter()->generate($routeMatch['name']);
+        //echo "<pre>"; print_r ($pageNode);die();
 		$pageNode->class = $pageClassName;
 		$pageNode->title = $navConfig[$routeMatch['name']]['title']; // El titulo se saca de la configuración de la app
 		$pageNode->params = $routeMatch['params']['params'];
@@ -361,6 +327,11 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 	    $appConfig = $this->GetConfigurationManager()->GetMapping('application');
 		return $appConfig['time_zone'];
 	}
+    
+    public function GetDeliverChannel() 
+    {
+        return $this->DeliverChannel;
+    }
 
 }
 
