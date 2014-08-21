@@ -21,9 +21,10 @@
 		// Recorrer la lista de elementos de navegación, extrayendo el nombre y la ruta
 		$application = $this->GetApplication ();
 		$navigation = $application->GetConfigurationManager()->GetMapping ('navigation');
+        $currentPage = $application->GetCurrentRequestInfo();
 		foreach ($navigation as $navName => $navNode) 
 		{
-			$node = $this->buildNode($naveName, $navNode);			
+			$node = $this->buildNode($naveName, $navNode, $currentPage);			
 			$pages[$navName] = $node;
 		}
 		
@@ -34,14 +35,16 @@
 	/**
 	 * Crea el árbol de nodos recursivamente
 	 */
-	private function buildNode ($navName, $navNode)
+	private function buildNode ($navName, $navNode, $currentPage)
 	{
 		$result = new \stdClass();
 		$result->label = $navNode['title'];
+        $result->icon = $navNode['icon'];
+        $result->active = $navNode['route'] == $currentPage->path;
 		if ($navNode['route'] == '/')
-			$result->route = $_SERVER['REQUEST_URI'].'/';
+			$result->route = $this->GetApplication()->GetApplicationBaseUrl().'/';
 		else
-			$result->route =  $this->GetApplication()->GetConfigurationManager()->GetMapping('application')['base_url'].$navNode['route'];
+			$result->route =  $this->GetApplication()->GetApplicationBaseUrl().$navNode['route'];
 		if ($navNode['subnav'])
 		{
 			$result->childs = array();

@@ -1,13 +1,12 @@
-<div class="sidebar-collapse">
-	<ul class="nav" id="main-menu">	
-		<li class="text-center">
-			<avatar email='egiralt@gmail.com' size='120'></avatar>
-		</li>
-
-		{% for page in pages %}
-		<li>
-			<a class="active-menu" href="{{ page.route }}"><i class="fa fa-dashboard fa-3x"></i> {{ page.label }}</a>
-		</li>
-		{% endfor %}
-	</ul>
-</div>
+<ul>
+	{% for page in pages %}
+	<li>
+		<a href="{{ page.route }}">
+			{% if page.icon|length > 0 %}
+				<i class="{{ page.icon }}"></i>
+			{% endif %}
+			{{ page.label }}
+		</a>
+	</li>
+	{% endfor %}
+</ul>
