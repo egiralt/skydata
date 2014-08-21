@@ -59,7 +59,6 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 
 		$this->LoadConfiguration();
 		/** Las rutas de la aplicación */
-		$this->LoadRoutes();
 		$this->LoadMetadata();
 	}
 
@@ -70,15 +69,31 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 	 */
 	public function Run ()
 	{
+        $this->LoadRoutes();
 		// Organizar el routing de la página según la solicitud
 		$this->CurrentNavigationNode = $this->ManageRouteRequest();
 		$currentPage = $this->GetCurrentRequest();
 		$currentPage->GetController()->Run();
 		//TODO: Lanzar eventos, que reciben tanto los headers como el contenido. Como idea: beforeRender, beforeHeaders,
 		//  	afterHeaders, afterRender
-		echo $this->GetView()->Render();
+		$content = $this->GetView()->Render();
+        
+        //TODO: Desarrollar ResourceDownloader y generar el contenido a través de esas clases, para que siempre genere
+        // los headers correctamente, etc...
+        // Headers para optimizar el contenido
+        header('Content-Length: ' . strlen($content));
+        header('Etag: '. md5($content)); // Marcamos el contenido
+        header('X-Content-GearedBy: SkyData'); // La marca de SkyData ;)
+                
+        echo $content;
 	}
 
+    protected function GetApplicationBaseUrl ()
+    {
+        $mainConfig = $this->GetConfigurationManager ()->GetMapping('application');
+        return isset($mainConfig) && !empty($mainConfig['base_url']) ? $mainConfig['base_url'] : '/';
+    }
+    
 	protected function LoadRoutes ()
 	{
 		// Las rutas declaradas en el fichero de configuración
@@ -90,7 +105,7 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 			$this->Router = new \AltoRouter ();
 
 			// El url de base parala aplicación
-			$base_path = $this->GetConfigurationManager ()->GetMapping('application')['base_url'];
+			$base_path = $this->GetApplicationBaseUrl();
 			if (!empty($base_path))
 				$this->Router->setBasePath ($base_path);
 
@@ -107,6 +122,21 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 				$this->Router->map('GET', $pageNode['route'], SKYDATA_NAMESPACE_PAGES.'\\'.$className.'\\'.$className, $pageName);
 			}
 		}
+		// Ahora las de los temas, se carga desde ya el tema activo
+		$selectedTheme = $this->GetView()->GetSelectedTheme();
+        $manifest = $selectedTheme->GetManifest();
+        $themeName = $selectedTheme->GetName();
+        if (isset($manifest) && !empty($manifest['routes']))
+        {
+            
+            foreach ($manifest['routes'] as $routeName => $routeConfig)
+            {
+                $methods = !empty($routeConfig['methods']) ? $routeConfig['methods'] : 'GET'; // GET por defecto
+                $targetUrl = 'Themes/'.$themeName.'/Styles/'.$routeConfig['target'];
+                $this->Router->map($methods, $routeConfig['route'], $targetUrl, '@'.$routeName);
+            }
+        }
+		//echo "<pre>";print_r ($this->Router);die();
 			
 	}
 
@@ -155,13 +185,54 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 		$match = $this->Router->match();
 
 		//echo "<pre>==>"; print_r ($match); die();
-		switch ($match['name'])
+        $name = $match['name'];
+		switch ($name)
 		{
 			case 'services' : // Se está recibiendo la solicitud de un servicio
 				$result = $this->HandleServiceRequest($match);
 				break;
-			default:	// Se gestiona como una página "normal"
-				$result = $this->HandlePageRequest($match);
+			default:	
+			    if (substr($name, 0,1) == '@')
+                {// Se trata de un fichero que se ha solicitado y que pertenece a algun tema. Se devuelve directamente al browser
+                    // sin hacer nada mas.. Lo más veloz posible
+                    
+                    //TODO: Usar el código que sigue como base para ResourceDownloader.. Una clase que gestione todo 
+                    // lo que se envía al browser 
+                    $path = realpath(dirname($_SERVER['SCRIPT_FILENAME'])); //No sé si es muy correcto confiar en la variable Server
+                    $file = sprintf('%s/%s/%s', $path, $match['target'], $match['params']['path']);
+                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                    $mimeType = finfo_file($finfo, $file); 
+                    finfo_close($finfo);
+                                      
+                    $last_modified_time = filemtime($file); 
+                    $etag = md5_file($file);
+                    // Siempre se envían los headers para qeu se sepa cuando cachear
+                    header("Last-Modified: ".gmdate("D, d M Y H:i:s", $last_modified_time)." GMT"); 
+                    header("Etag: $etag"); // Marcamos el contenido
+                    header('Cache-Control: public');
+                    header('X-Content-GearedBy: SkyData'); // La marca de SkyData ;)
+                    
+                    foreach (array('/^image/', '/^text\/css/', '/^text\/javascript/', '/application\/javascript/', '/^font/') as $test)
+                        if (preg_match($test, $mimeType)) { 
+                            header('Cache-Control: max-age=86400');
+                            header('Expires:Sat, 1 Jan 2050 01:00:00 GMT');
+                            break;
+                        }
+                                        
+                    // Si el browser puede hacer caching y está solicitando un GET condicional, se revisa
+                    if (strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time || 
+                        trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) { 
+                        header("HTTP/1.1 304 Not Modified"); // Es el mismo que ya envíamos, no se vuelve a tocar
+                        exit; 
+                    }                    
+                    header("Content-type: ". $mimeType );
+                    echo file_get_contents($file); // Se envía el contenido
+                    exit;
+                }
+                else {
+                    // Es una solicitud de una página
+			        $result = $this->HandlePageRequest($match);
+                }
 				break;
 
 		}
@@ -287,7 +358,8 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 
 	public function GetTimeZone ()
 	{
-		return $this->GetConfigurationManager()->GetMapping('application')['time_zone'];
+	    $appConfig = $this->GetConfigurationManager()->GetMapping('application');
+		return $appConfig['time_zone'];
 	}
 
 }

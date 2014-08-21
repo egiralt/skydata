@@ -30,6 +30,8 @@
  use \SkyData\Core\Page\View\SkyDataPageView;
  use \SkyData\Core\Page\Controller\SkyDataPageController;
  
+ //TODO: Las clases deben implementar un campo de LastModification, para que pueda saberse cuándo se ha generado la página 
+ // de "verdad" por última vez. Dependerá de si está cacheada o no, si es puro HTML, plantilla, etc.
  class SkyDataPage extends SkyDataResponseResource implements IPage 
  {
 	
