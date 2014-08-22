@@ -1,7 +1,7 @@
 
 {% macro buildLocalDataMethod (serviceName, table, method) %}
 	$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
-		return $http.get ('/postventa/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(") + '/' + encodeURIComponent(_") }}),{% if method.parameters|length > 0 %} + "/" + {{ method.parameters|join('+ "/" + _')|raw }}{% endif %}, 
+		return $http.get ('/postventa/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(") + '/' + encodeURIComponent(_") }}),{% if method.parameters|length > 0 %} + "/" + {{ method.parameters|join('+ "/" + _')|raw }}{% endif %},
 			{ {{ __.responseType(method.contentType) }} }
 		{% endif %}). success ( function (data, status, headers, config) {
 			{% if table.is_enumerable %} 	{# Si es una tabla enumerable se genera un ciclo para agregar cada uno de los registros #}
@@ -28,7 +28,7 @@
 				{% endif %}
 			{% endif %} {# if table.is_enumerable #}
 		});
-	};	
+	};
 {% endmacro %}
 
 {% macro buildBindableLocalMethod (serviceName, method) %}
@@ -36,21 +36,21 @@
 		$scope.{{ method.bind_variable }} = null; {# Se inicializa la variable conectada al método #}
 	{% endif %}
 	$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
-	
+
 		{% if method.bind_variable|length > 0 %} {#  Si hay algo que retornar #}
 		{% endif  %}
 		{# Llamar al método #}
 		return $http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(') + "/" + encodeURIComponent(_')|raw }}),
 		{ {{ __.responseType(method.contentType) }} }
 		{% endif %}){% if method.bind_variable|length > 0 %}.success(function (data, status, headers, config	) { {# tiene una variable que asignar! #}
-			
+
 			{# Si es un contenido HTML hay que pasarlo por trustHTML para evitar errores de angular#}
 			{% if method.contentType == 'html' %}
 				$scope.{{ method.bind_variable }} = $sce.trustAsHtml(data);
 			{% else %} {# Es cualquier otro contenido #}
-				$scope.{{ method.bind_variable }} = data;				
+				$scope.{{ method.bind_variable }} = data;
 			{% endif %}
-		
+
 		});
 		{% endif %};
 	};
@@ -62,10 +62,10 @@
 {% macro renderAsTag (serviceName, method) %}
 
 	{% import 'triggers.twig' as triggers %}
-	{% import 'prerender.twig' as preRenderView %}
+	{% import 'renderviews.twig' as views %}
 
 	{% if method.render_tag or method.render_attribute or method.render_class  %}
-		.directive('{{ method.tag.name }}', ['$rootScope', '$compile', '$sce', '$timeout', '$http', 'skydataPageServices', 
+		.directive('{{ method.tag.name }}', ['$rootScope', '$compile', '$sce', '$timeout', '$http', 'skydataPageServices',
 			function ($rootScope, $compile, $sce, $timeout, $http, skydataPageServices) {
 			return {
 				restrict: '{{ method.type_of_render }}',
@@ -79,7 +79,7 @@
 						for( var attr in $attrs)
 							if (!attr.match (/^\$/))
 								$scope[attr] = $attrs[attr];
-						{# función usada para refrescarel método #}		
+						{# función usada para refrescarel método #}
 						{% if method.refresh > 0 %}
 							var refresh_{{ method.name }} = function () {
 								$scope.loading{{ method.name }} = false;
@@ -88,7 +88,7 @@
 							};
 							$timeout (refresh_{{ method.name }}, {{ method.refresh }});
 						{% endif %}
-						
+
 						{# función para ejecutar el metodo#}
 						var do_{{ method.name }} = function ()
 						{
@@ -104,7 +104,7 @@
 										var __{{ parameter }} = 'undefined' !== typeof $attrs.{{ parameter }} ? $attrs.{{ parameter }}
 											.replace(/\//g,'.')
 											.replace(/\?/g,'&#63;')
-											.replace(/\&/g,'&amp;') : null; 
+											.replace(/\&/g,'&amp;') : null;
 									{% endfor %}
 								{% endif %}
 								$scope.{{ method.name }}({% if method.parameters|length > 0 %}__{{ method.parameters|join(', __') }}{% endif %})
@@ -112,8 +112,11 @@
 										if (typeof response.data == "object")
 										{
 											if (response.data.error != null)
-												skydataPageServices.showError(response.data, 'Error');;
-										} 
+											{
+												skydataPageServices.showError(response.data, 'Error');
+												{{ views.getErrorView(method) }}
+											}
+										}
 										else
 										{
 											try {
@@ -122,7 +125,7 @@
 													.html (el)
 													.find('.pop').popover();
 												compiled($scope);
-											} 
+											}
 											catch(e)	{
 												$($element).html(response.data);
 											}
@@ -134,16 +137,16 @@
 							{% if method.refresh > 0 %}
 								$timeout (refresh_{{ method.name }}, {{ method.refresh }});
 							{% endif %}
-						}; 		
-						{# Métodos de triggers #}				
+						};
+						{# Pre-Render View #}
+						{{ views.getPreRenderView(method) }}
+						{# Métodos de triggers #}
 						{% if method.tag.trigger == 'hover' %} {# Al mover el mouse sobre el objeto #}
 							{{ triggers.mouseenter(method)  }}
 						{% elseif method.tag.trigger == 'click' %} {# Con un click#}
 							{{ triggers.click(method) }}
 						{% else %} {# Cuando se ha solicitado cuando se muestre el elemento #}
-							$(document).ready( function () {
 								do_{{ method.name }}();
-							});
 						{% endif %}
 						{# Refresh de los datos #}
 						{% if method.refresh > 0 %}
@@ -151,8 +154,6 @@
 								$timeout (do_{{ method.name }}, {{ method.refresh }});
 							});
 						{% endif %}
-						{# Pre-Render View #}
-						{{ preRenderView.generate(method) }}
 					},
 				{% else %}
 				link: function ($scope, $element, $attrs) {
@@ -168,8 +169,8 @@
 					{% endif %}
 				},
 				{% endif %}
-				 controller: '{{ serviceName }}Controller'					
-				
+				 controller: '{{ serviceName }}Controller'
+
 			};
 		}])
 	{% endif %}

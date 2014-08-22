@@ -1,0 +1,23 @@
+{% macro getPreRenderView(method) %}
+
+	{% if method.preRenderView|length > 0 %}
+		$http.get ('{{ method.preRenderView }}')
+			.then (function (response)
+			{
+				$($element).html(response.data);
+			});
+	{% endif %}
+
+{% endmacro %}
+
+{% macro getErrorView(method) %}
+
+	{% if method.onErrorView|length > 0 %}
+		$http.get ('{{ method.onErrorView }}')
+			.then (function (response)
+			{
+				$($element).html(response.data);
+			});
+	{% endif %}
+
+{% endmacro %}

@@ -344,6 +344,7 @@ class SkyDataService extends SkyDataResponseResource implements IService
 						break;
 					case 'showloading': $methodInfo->showLoading = (empty($value) || $value == 'true'); break;
 					case 'prerenderview' : $methodInfo->preRenderView = trim ($value,"'"); break;
+                    case 'onerrorview' : $methodInfo->onErrorView = trim ($value,"'"); break;
 				}
 				if  (!isset($methodInfo->tag->name))
 					throw new \Exception("El servicio debe dar un nombre al atributo, elemento o clase (use name en el métod {$methodInfo->name})", 1);
@@ -351,6 +352,8 @@ class SkyDataService extends SkyDataResponseResource implements IService
 			}
 		else
 			throw new \Exception("Error de sintaxis definiendo 'renderTag'.", -100);
+        
+        //echo "<pre>";print_r ($methodInfo); die();
 	}
 	
 } 
