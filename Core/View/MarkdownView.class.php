@@ -57,6 +57,6 @@
 	 */
 	public function GetDefaultTemplateFileName ()
 	{
-		return ReflectionFactory::getClassShortName (get_class($this->GetParent())).'.md';
+		return 'default.md';
 	}	
  }  
