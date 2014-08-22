@@ -33,28 +33,29 @@ echo "\nGenerador de modulos para SkyData  (version ".VERSION.")\n--------------
 
 if (count($argv) == 1)
 {
-	echo "Use: workbench  <NombreModulo>\n\t NombreModulo: Identificador del modulo que se se desea crear\n\n";
-	die(-1);
+    echo "Use: workbench  <NombreModulo>\n\t NombreModulo: Identificador del modulo que se se desea crear\n\n";
+    die(-1);
 }
 
 $cmd = $argv[1];
 $itemName = $argv[2];
-$today = (new DateTime())->format ('d/m/Y H:i');
+$todayDT = new DateTime();
+$today = $todayDT->format ('d/m/Y H:i');
 
 switch ($cmd)
 {
-	case 'module' :
-		$itemPath = MODULES_PATH.'/'.$itemName;
-		generateModule ($itemName, $itemPath);
-		break;	
-	case 'page' :
-		$itemPath = PAGES_PATH.'/'.$itemName;
-		generatePage ($itemName, $itemPath);
-		break;	
-	default:
-		echo "ERROR! <{$cmd}> no es un comando valido.";
-		die(-1);
-		break;
+    case 'module' :
+        $itemPath = MODULES_PATH.'/'.$itemName;
+        generateModule ($itemName, $itemPath);
+        break;  
+    case 'page' :
+        $itemPath = PAGES_PATH.'/'.$itemName;
+        generatePage ($itemName, $itemPath);
+        break;  
+    default:
+        echo "ERROR! <{$cmd}> no es un comando valido.";
+        die(-1);
+        break;
 }
 
 echo "Terminado.\n";
