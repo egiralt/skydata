@@ -1,6 +1,6 @@
 <ul>
 	{% for page in pages %}
-	<li>
+	<li {% if page.active %} class='selected-menu' {% endif %}>
 		<a href="{{ page.route }}">
 			{% if page.icon|length > 0 %}
 				<i class="{{ page.icon }}"></i>
