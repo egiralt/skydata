@@ -11,7 +11,7 @@ metadata:
       
   css:
     - UI/js/jquery/jquery-ui-1.11.1/jquery-ui.min.css
-    - Libraries/Toastr/toastr.css
+    - Libraries/Toastr/toastr.min.css
     - UI/css/font-awesome.css
     - UI/css/custom.css
   
@@ -20,7 +20,6 @@ metadata:
 #    - UI/bootstrap/js/libs/jquery.ui.min.js
 #    - UI/bootstrap/js/include/selectnav.min.js
 #    - UI/bootstrap/js/include/jquery.accordion.min.js
-     - Libraries/Toastr/toastr.min.js
 #    - UI/bootstrap/js/include/jquery.jgrowl.min.js
 #    - UI/bootstrap/js/include/slimScroll.min.js
 #    - UI/bootstrap/js/include/jquery.dataTables.min.js
@@ -54,3 +53,6 @@ metadata:
     - UI/js/angular/angular.min.js
 #   - UI/js/angular/ui-bootstrap-tpls-0.11.0.min.js
     #- UI/bootstrap/js/config.js
+    - Libraries/Toastr/toastr.min.js
+    - Libraries/Moment/moment.js
+    - UI/js/custom.js
