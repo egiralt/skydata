@@ -373,7 +373,8 @@
 	
 	public function GetBasePath ()
 	{
-		return sprintf ('%s/%s/Styles/%s/', SKYDATA_URL_THEMES,$this->GetName(), $this->GetSelectedStyle()->GetName());
+	    $basePath = $this->GetApplication()->GetApplicationBaseUrl(); 
+		return sprintf ('%s/%s/%s/Styles/%s/', $basePath, SKYDATA_URL_THEMES,$this->GetName(), $this->GetSelectedStyle()->GetName());
 	}
 	
 	public function LoadMetadata()
@@ -384,7 +385,7 @@
 		// Ahora hay que corregir los paths de los scripts que vienen del estilo
 		
 		$metadataManager = $this->GetMetadataManager();
-		$path = sprintf ('%s/%s/Styles/%s/', SKYDATA_URL_THEMES, $this->GetName(), $this->GetSelectedStyle()->GetName());
+		$path = $this->GetBasePath();
 		$scripts = $metadataManager->GetScripts();
 		$styles = $metadataManager->GetStyles();
 		$metadataManager->ClearAll();

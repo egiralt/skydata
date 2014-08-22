@@ -112,10 +112,13 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 		/** Ahora las de las páginas **/
 		if (($pages = $this->GetConfigurationManager()->GetMapping ('navigation')) != null)
 		{
-			foreach ($pages as $pageName => $pageNode)
-			{
-				$className = !empty($pageNode['class']) ? $pageNode['class'] : $pageName; // Se pueda usar el nombre de la clase
-				$this->Router->map('GET', $pageNode['route'], SKYDATA_NAMESPACE_PAGES.'\\'.$className.'\\'.$className, $pageName);
+		    $pagesRouteList = array();
+			
+			$this->GetRoutesFlatList ($pages, $pagesRouteList,'/'); // Aplanar la lista jerárquica de los menús
+            foreach ($pagesRouteList as $pageName => $pageNode)
+            {
+				$className = !empty($pageNode->class) ? $pageNode->class : $pageName; // Se pueda usar el nombre de la clase
+				$this->Router->map('GET', $pageNode->route, SKYDATA_NAMESPACE_PAGES.'\\'.$className.'\\'.$className, $pageName);
 			}
 		}
 		// Ahora las de los temas, se carga desde ya el tema activo
@@ -148,26 +151,21 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 	/**
 	 * Genera una lista plana del árbol de navigación
 	 */
-	private function buildFlatList ($configData, &$list, $currentPath)
+	private function GetRoutesFlatList ($configData, &$list, $currentPath)
 	{
 		foreach ($configData as $itemName => $item)
 		{
-			if ($item['route'] != '/') // si no es nodo raíz
-				$nodePath = $currentPath.$item['route'];
-			else
-				$nodePath = '/';
-
 			$nodeBreadcrumb = $breadcrumb.$item['title'];
 
 			// Se crea una clase anónima que puede contener todos los valores del nodo
 			$node = new \stdClass ();
-			$node->path = $nodePath;
+			$node->route = $item['route'];;
 			$node->class = $item['class'];
 			$node->name = $itemName;
 			$node->title = $item['title'];
 			$list[$itemName] = $node;
 			if (!empty($item['subnav']))
-				$this->buildFlatList($item['subnav'], $list, $nodePath.'/');
+				$this->GetRoutesFlatList ($item['subnav'], $list, $nodePath.'/');
 		}
 
 	}
