@@ -13,3 +13,6 @@
 [submodule "Libraries/Toastr"]
 	path = Libraries/Toastr
 	url = https://github.com/CodeSeven/toastr.git
+[submodule "Libraries/Moment"]
+	path = Libraries/Moment
+	url = https://github.com/moment/moment.git
