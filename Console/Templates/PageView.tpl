@@ -4,12 +4,12 @@
  * clase {$pageName}View ({$pageName}View.class.php)
  *
  */
- namespace SkyData\Pages\{$pageName}\View;
+namespace SkyData\Pages\{$pageName}\View;
  
- use \SkyData\Core\Page\View\SkyDataPageView;
+use \SkyData\Core\View\HtmlView;
  
- class {$pageName}View extends SkyDataPageView
- {
+class {$pageName}View extends HtmlView
+{
  	public function Render ()
  	{
  		// Importante: Siempre se ha de llamar al método del parent, a menos que se desee manipular el template directamente
