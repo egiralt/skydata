@@ -1,37 +1,21 @@
 {% extends "@global/body.twig" %}
 
 {% block html_body %}
-	{{ parent() }}
-    <div id="wrapper">
-    	
-        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Binary admin</a> 
-            </div>
-  <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
-        </nav>   
-           <!-- /. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
-        	{% module MainMenu %}    
-        </nav>  
-        <!-- /. NAV SIDE  -->
-        <div id="page-wrapper" >
-            <div id="page-inner">
-            	{{ page_content | raw }}
-		    </div>
-             <!-- /. PAGE INNER  -->
-            </div>
-         <!-- /. PAGE WRAPPER  -->
-        </div>
-     <!-- /. WRAPPER  -->
+	{{ parent()  }}
+	{% include "topnavbar.twig" %}
+	<!-- main body starts -->
+	<div id="body-container">
+		<div id="body-content">
+
+			{% include "horizontalnavbar.twig" %}
+			{# {% include "pagenavbar.twig" %} #}
+
+			<section class="page container">
+				{{ page_content | raw }}
+			</section>
+		</div>
+	</div>
+	<!-- main body ends -->
+	{% include "footer.twig" %}
 
 {% endblock %}

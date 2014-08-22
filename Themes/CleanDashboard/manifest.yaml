@@ -3,7 +3,14 @@ theme:
     author-URI: www.binarycart.com
     license: Commons Attribution 3.0 (http://creativecommons.org/licenses/by/3.0/)
     author-name: www.binarycart.com
-    
+  
+  routes:
+    css:
+      route: /css/[*:path]
+      target: main/css
+    css:
+      route: /js/[*:path]
+      target: main/js
     
   styles:
     main:
@@ -12,16 +19,24 @@ theme:
       debug: false
       default: true    
       css:
-        - assets/css/bootstrap.css
-        - assets/css/font-awesome.css
-        - assets/js/morris/morris-0.4.3.min.css
-        - assets/css/custom.css
-        - assets/css/google-fonts.css
-        
+        - css/customize-template.css
       scripts:
-        - assets/js/jquery-1.10.2.js
-        - assets/js/bootstrap.min.js
-        - assets/js/jquery.metisMenu.js
-        - assets/js/morris/raphael-2.1.0.min.js
-        - assets/js/custom.js
+        - js/bootstrap/bootstrap-transition.js
+        - js/bootstrap/bootstrap-alert.js
+        - js/bootstrap/bootstrap-modal.js
+        - js/bootstrap/bootstrap-dropdown.js
+        - js/bootstrap/bootstrap-scrollspy.js
+        - js/bootstrap/bootstrap-tab.js
+        - js/bootstrap/bootstrap-tooltip.js
+        - js/bootstrap/bootstrap-popover.js
+        - js/bootstrap/bootstrap-button.js
+        - js/bootstrap/bootstrap-collapse.js
+        - js/bootstrap/bootstrap-carousel.js
+        - js/bootstrap/bootstrap-typeahead.js
+        - js/bootstrap/bootstrap-affix.js
+        - js/bootstrap/bootstrap-datepicker.js
+        - js/jquery/jquery-tablesorter.js
+        - js/jquery/jquery-chosen.js
+        - js/jquery/virtual-tour.js
+        - js/custom.js
     

@@ -2,7 +2,7 @@
 /*
  * **header**
  */
-namespace SkyData\Themes\BinaryAdmin;
+namespace SkyData\Themes\CleanDashboard;
 
 use \SkyData\Core\Theme\SkyDataTheme;
 
