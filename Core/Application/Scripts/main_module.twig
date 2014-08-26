@@ -3,7 +3,7 @@
 var SkyDataApp = {};
 
 SkyDataApp.services = angular.module ('SkyDataApp.services', [])
-	.factory ('skydataPageServices', function () {
+	.factory ('skydataPageServices', ["$rootScope", function ($rootScope) {
 		toastr.options =  {
 		  "closeButton": true,
 		  "debug": false,
@@ -19,10 +19,13 @@ SkyDataApp.services = angular.module ('SkyDataApp.services', [])
 		};
 
 		return {
-			showError : function (errorInfo, title) {
+			showError : function (errorInfo) {
 				toastr.options.positionClass = 'toast-top-full-width';
 				toastr.options.showDuration = 0;
 				toastr.options.timeOut = 15000;
+				var title = 'Error';
+				if (errorInfo.error_number != null)
+					title += ' (' + errorInfo.error_number + ')';
 				toastr['error'](errorInfo.error, title);
 			},
 			showWarning : function (errorInfo, title) {
@@ -36,16 +39,69 @@ SkyDataApp.services = angular.module ('SkyDataApp.services', [])
 				toastr.options.showDuration = 300;
 				toastr.options.timeOut = 3000;
 				toastr['info'](errorInfo.error, title);
+			},
+			dispatchServiceStart : function (serviceName, tagName) {
+				var event = new CustomEvent ('skydata.serviceStart', {
+					detail: {
+						time: new Date(),
+						service : serviceName,
+						tag : tagName,
+						downloads_max : $rootScope._max_downloads,
+						downloads: $rootScope._downloads
+					},
+					bubbles : true,
+					cancelable: true
+				});
+				document.body.dispatchEvent (event);
+			},
+			dispatchServiceComplete : function (serviceName, tagName) {
+				var event = new CustomEvent ('skydata.serviceDone', {
+					detail: {
+						time: new Date(),
+						service : serviceName,
+						tag : tagName,
+						downloads_max : $rootScope._max_downloads,
+						downloads: $rootScope._downloads
+					},
+					bubbles : true,
+					cancelable: true
+				});
+				document.body.dispatchEvent (event);
+			},
+			dispatchStartOfLoading : function () {
+				var event = new CustomEvent ('skydata.allStart', {
+					detail: {
+						time: new Date(),
+						downloads_max : 0,
+						downloads: 0
+					},
+					bubbles : true,
+					cancelable: true
+				});
+				document.body.dispatchEvent (event);
+			},
+			dispatchEndOfLoading : function () {
+				var event = new CustomEvent ('skydata.allDone', {
+					detail: {
+						time: new Date(),
+						downloads_max : $rootScope._max_downloads,
+						downloads: $rootScope._downloads
+					},
+					bubbles : true,
+					cancelable: true
+				});
+				document.body.dispatchEvent (event);
 			}
-};
-	});
-	
+
+		};
+}]);
+
 SkyDataApp.filters = angular.module ('SkyDataApp.filters', []);
 SkyDataApp.directives = angular.module ('SkyDataApp.directives', []);
 SkyDataApp.module = angular.module ('SkyDataApp', [
 	'SkyDataApp.services',
 	'SkyDataApp.filters',
-	'SkyDataApp.directives', 
+	'SkyDataApp.directives',
 //	'ui.bootstrap',
 	{% for service in services %}
 	'{{ service }}'{% if service != services|last %},{% endif %}
@@ -64,15 +120,17 @@ SkyDataApp.controller =  SkyDataApp.module
 	.controller ('SkyDataAppController', ['$scope', function ($scope) {
 	}
 ]);
-	
+
 
 SkyDataApp.module
 	.directive ('doPopover', function () {
 		return {
 			restrict: 'A',
-			link: function (scope, element, attrs) 
+			link: function (scope, element, attrs)
 			{
 				$(element.get()).popover();
 			}
 	};
 });
+
+/** eventos **/

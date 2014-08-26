@@ -74,6 +74,7 @@
 				{% if method.tag.template|length > 0  %}template: '{{ method.tag.template|raw }}',{% endif %}
 				scope: {},
 				{% if method.tag.is_html %} {# Si es un objeto que genera HMTL el tratamiento es distinto #}
+
 				link: function ($scope, $element, $attrs) {
 						{# publicar los atributos en el modelo de datos para que funcionen los templates #}
 						for( var attr in $attrs)
@@ -107,32 +108,49 @@
 											.replace(/\&/g,'&amp;') : null;
 									{% endfor %}
 								{% endif %}
+								{# Ahora se cuentan las instancias que se están ejecutando y se lanzan eventos para que los que quieran seguir la pista puedan #}
+								{% if method.tag.trigger|length == 0 or method.tag.trigger == 'init' %}
+									if (typeof $rootScope._downloads == "undefined"|| $rootScope._downloads == 0)
+									{
+										$rootScope._downloads = 0;
+										$rootScope._max_downloads = 0;
+										skydataPageServices.dispatchStartOfLoading ();
+									}
+									$rootScope._downloads += 1;
+									$rootScope._max_downloads = $rootScope._downloads > $rootScope._max_downloads ? $rootScope._downloads : $rootScope._max_downloads;
+									skydataPageServices.dispatchServiceStart ('{{ method.name }}', '{{ method.tag.name }}');
+								{% endif %}
 								$scope.{{ method.name }}({% if method.parameters|length > 0 %}__{{ method.parameters|join(', __') }}{% endif %})
 								.then (function (response) {
-										if (typeof response.data == "object")
-										{
-											if (response.data.error != null)
-											{
-												skydataPageServices.showError(response.data, 'Error');
-												{{ views.getErrorView(method) }}
-											}
+									if (typeof response.data == "object" &&  response.data.error != null)
+									{
+										skydataPageServices.showError(response.data);
+										{{ views.getErrorView(method) }}
+									}
+									else
+									{
+										try {
+											var el = angular.element(response.data);
+											var compiled = $compile(el);
+											var domInserted = $($element).html (el);
+											domInserted.find('.pop').popover()
+											//domInserted.find ('.datatable').dataTable(dataTableConfig);
+
+											compiled($scope);
 										}
-										else
-										{
-											try {
-												var el = angular.element(response.data), compiled = $compile(el);
-												$($element)
-													.html (el)
-													.find('.pop').popover();
-												compiled($scope);
-											}
-											catch(e)	{
-												$($element).html(response.data);
-											}
+										catch(e)	{
+											$($element).html(response.data);
 										}
-										$scope.loading{{ method.name }} = false;
-										$scope.loaded{{ method.name }} = true;
-									});
+									}
+									$scope.loading{{ method.name }} = false;
+									$scope.loaded{{ method.name }} = true;
+									{% if method.tag.trigger|length == 0 or method.tag.trigger == 'init' %}
+										$rootScope._downloads -= 1;
+										skydataPageServices.dispatchServiceComplete ('{{ method.name }}', '{{ method.tag.name }}');
+										if ($rootScope._downloads == 0)
+											skydataPageServices.dispatchEndOfLoading ();
+									{% endif %}
+								});
 							}
 							{% if method.refresh > 0 %}
 								$timeout (refresh_{{ method.name }}, {{ method.refresh }});
