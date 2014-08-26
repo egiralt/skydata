@@ -38,5 +38,5 @@
 	public function GetConfigurationManager(); 
 	
 	
-	public function LoadConfiguration ($reload = FALSE);
+	public function LoadConfiguration ($reload = false);
  }
