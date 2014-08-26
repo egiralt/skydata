@@ -1,32 +1,34 @@
 <?php
 /**
  *  SkyData: CMS Framework   -  12/Aug/2014
- * 
- * Copyright (C) 2014  Ernesto Giralt (egiralt@gmail.com) 
+ *
+ * Copyright (C) 2014  Ernesto Giralt (egiralt@gmail.com)
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
- * 
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @Author: E. Giralt
  * @Date:   12/Aug/2014
  * @Last Modified by:   E. Giralt
  * @Last Modified time: 17/Aug/2014
  */
   namespace SkyData\Core\Cache\File;
- 
+
   use SkyData\Core\SkyDataObject;
-  
+
   use \SkyData\Core\Cache\ICacheManager;
   use \SkyData\Core\IManager;
- 
+
+ define ('PATTERN_IS_HTML_JS', '/(\.js|\.html)$/i');
+
  /**
   * Define una clase como capaz de contener valores tomados de un fichero .yaml. La configuración debe ser solo lectura, por tanto
   * solo se obliga a disponer de un método de retorno de la configuración
@@ -37,19 +39,19 @@
 	protected  $StoreID;
 
 	private $Directory;
-	
+
 	/**
 	 * Prepara la estructura de directorios necesaria para almacenar los valores
 	 */
 	public function __construct($directory = SKYDATA_PATH_CACHE)
 	{
 		parent::__construct();
-		
+
 		$this->InitializeDirectory($directory);
 		$this->Directory = $directory;
-		$this->StoreID = uniqid();	
+		$this->StoreID = uniqid();
 	}
-	
+
 	private function InitializeDirectory ($directory)
 	{
 		if (!is_dir($directory))
@@ -60,16 +62,16 @@
 			}
 			catch (\Exception $e)
 			{
-				throw new \Exception("No se pudo crear el almacen para el caché en <$directory>. Razón: {$e->getMessage()}", -100);				
+				throw new \Exception("No se pudo crear el almacen para el caché en <$directory>. Razón: {$e->getMessage()}", -100);
 			}
-		}	
+		}
 	}
-	
+
  	/**
-	 * Guarda un valor en el cache. Si no se pasa un valor para uniqueID, el método calcula uno. 
+	 * Guarda un valor en el cache. Si no se pasa un valor para uniqueID, el método calcula uno.
 	 * Si el nombre es un nombre de fichero y este termina en .js, .html, esta misma extensión se conservará en el fichero
 	 * final, si no, se usará por defecto la extensión .val
-	 * 
+	 *
 	 * @param mixed $value
 	 * @param string $uniqueID
 	 * @return string El valor del ID único, calculado o el mismo que se pasó a la función
@@ -80,10 +82,12 @@
 		//Calcular el ID si no lo pasan como valor, que es realmente un checksum del valor serializado
 		if (!isset($uniqueID))
 			$uniqueID = md5(serialize($value));
-		else {
-			if (preg_match("/\.js$|\.html$/", $uniqueID, $extension));
+		else
+		{
+			if (preg_match(PATTERN_IS_HTML_JS, $uniqueID, $extension))
 				$defaultStoreExtension = $extension[0];
 		}
+
 		// Preparar el contenido a almacenar
 		$objectToStore = new \stdClass();
 		$objectToStore->id = $uniqueID;
@@ -91,7 +95,7 @@
 		$objectToStore->stored = new \DateTime();
 		$objectToStore->is_serialized = !is_string($value);
 		$objectToStore->file = !is_string($value);
-		
+
 		// El valor se almacena como un valor serializable
 		$contentToStore = serialize($objectToStore);
 		try
@@ -104,16 +108,16 @@
 			if (!is_string($value))
 				$value = serialize($value);
 			file_put_contents($contentFilePath, $value);
-			
+
 		}
 		catch (\Exception $e)
 		{
 			throw new \Exception("No se pudo guardar el objeto <$uniqueID> en el almacen de caché", -1000);
 		}
-		
+
 		return md5($uniqueID);
 	}
-	
+
 	/**
 	 * Elimina un objeto del cache
 	 */
@@ -133,27 +137,27 @@
 			}
 		}
 	}
-	
+
 	/**
 	 * Retorna un objeto del cache de manera "silenciosa", es decir: si el objeto no existe se retorna null, evitando excepciones
-	 * 
+	 *
 	 * @return mixed
 	 */
 	public function Get ($uniqueID)
 	{
 		$result = null;
 		$filePath = $this->GetFilePath($uniqueID).'.idx';
-		
+
 		if (is_file($filePath))
 		{
 			$cachedContent = file_get_contents($filePath);
 			$cachedObject = unserialize($cachedContent);
 			//echo "<pre>";print_r ($cachedObject); die();
-			
+
 			// Hay que averiguar si ha pasado el tiempo de expiración indicado
 			$cachedTime = new \DateTime (); // Por defecto igual que ahora
 			$now = new \DateTime();
-			if ($cachedObject->expiration !== null)
+			if (!empty($cachedObject->expiration))
 				$cachedTime = $cachedObject->stored->add ($cachedObject->expiration);
 			// Solo se retorna el valor si no ha pasado suficiente tiempo para desecharlo o si es "eterno"
 			$cachedSecondsDiff = $cachedTime->diff($now)->format('%R%s') * 1;
@@ -161,29 +165,28 @@
 			{
 				$contentFilePath = $this->GetFilePath($cachedObject->id);
 				//echo $contentFilePath; die();
-				if (preg_match("/\.js$|\.html$/", $cachedObject->id, $extension))
+				if (preg_match(PATTERN_IS_HTML_JS, $cachedObject->id, $extension))
 					$contentFilePath .= $extension[0];
 				else
 					$contentFilePath .= '.val';
-				
+
 				$result = file_get_contents($contentFilePath);
-				if ($cachedObject->is_serialized)
+				if ($result && $cachedObject->is_serialized)
 					$result = unserialize($result);
 			}
 			else
 				$this->Remove($uniqueID); // Se aprovecha y se elimina del cache por que ya está obsoleto
 		}
-		
-		return $result;	
+
+		return $result;
 	}
-	
+
 	/**
 	 * Construye y retorna una ruta para un determinado ID
 	 */
 	protected function GetFilePath ($uniqueID)
 	{
-		return sprintf('%s/%s',$this->Directory, md5($uniqueID));		
+		return sprintf('%s/%s',$this->Directory, md5($uniqueID));
 	}
-	
+
  }
- 
