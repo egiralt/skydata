@@ -34,7 +34,8 @@
  // de "verdad" por última vez. Dependerá de si está cacheada o no, si es puro HTML, plantilla, etc.
  class SkyDataPage extends SkyDataResponseResource implements IPage 
  {
-	
+	private $RequestParams;
+    
 	/**
 	 * Retorna el título de la pagina
 	 */
@@ -45,7 +46,7 @@
 		$app_title = $appConfiguration['title'];
 		
 		$navConfiguration = $this->GetApplication()->GetConfigurationManager()->GetMapping ('navigation');
-		$page_title = $navConfiguration[$this->GetClassShortName()][title];
+		$page_title = $navConfiguration[$this->GetClassShortName()]['title'];
 		
 		if (!empty($format))
 		{
@@ -56,6 +57,16 @@
 
 		return $result;		
 	}
+    
+    /**
+     * Retorna el título de la pagina
+     */
+    public function GetPageIcon()
+    {
+        $navConfiguration = $this->GetApplication()->GetConfigurationManager()->GetMapping ('navigation');
+        return $navConfiguration[$this->GetClassShortName()]['icon'];
+    }
+    
 
 	/**
 	 * Retorna una instancia de la clase por defecto a crear cuando no se encuentre un Controller para el actual módulo
@@ -64,5 +75,15 @@
 	{
 		return new SkyDataPageController ();
 	}	
+    
+    public function SetRequestParams ($params = array()) 
+    {
+        $this->RequestParams = $params;
+    }
+    
+    public function GetRequestParams ()
+    {
+        return $this->RequestParams; 
+    }
 	
  } 

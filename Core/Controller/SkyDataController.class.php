@@ -27,6 +27,7 @@ use \SkyData\Core\SkyDataObject;
 
 use \SkyData\Core\View\IRenderable;
 use \SkyData\Core\ILayoutNode;
+use \SkyData\Core\Page\IPage;
 
 
 /**
@@ -85,4 +86,15 @@ abstract class SkyDataController extends SkyDataObject implements IController, I
 		
 		return $result;
 	}
+    
+    public function GetRequestParams ()
+    {
+        $result = null;
+        $page = $this->GetParent();
+        if (isset($page) && $page instanceof IPage)
+            $result = $page->GetRequestParams();
+        
+        return $result;  
+    }
+    
 }
