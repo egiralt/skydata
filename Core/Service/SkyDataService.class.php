@@ -31,15 +31,15 @@
  use \SkyData\Core\ReflectionFactory;
  use \SkyData\Core\Twig\SkyDataTwig;
 
-define ('DOC_COMMENT_AJAX_METHOD_PATTERN', '/\@ajaxMethod/');
-define ('DOC_COMMENT_RUN_ON_LOAD_PATTERN', '/\@runOnLoad/');
-define ('DOC_COMMENT_BIND_VARIABLE_PATTERN', '/\@bindVariable\s*([^\W]*)/');
-define ('DOC_COMMENT_BIND_DATA_MODEL_PATTERN', '/\@bindModel\s*([^\W]*)/');
-define ('DOC_COMMENT_CONTENT_TYPE_PATTERN', '/\@contentType\s*([^\W]*)/');
-define ('DOC_COMMENT_RENDER_TAG_PATTERN', "/\@renderTag\s*([^\n]*)/");
-define ('DOC_COMMENT_RENDER_CLASS_PATTERN', "/\@renderClass\s*([^\n]*)/");
-define ('DOC_COMMENT_RENDER_ATTRIBUTE_PATTERN', "/\@renderAttribute\s*([^\n]*)/");
-define ('DOC_COMMENT_RENDER_TAG_PARAMETERS_PATTERN', "/([^\W]*)\s*=\s*('[^']*'|[^\W]*)/");
+define ('DOC_COMMENT_AJAX_METHOD_PATTERN',              '/\@ajaxMethod/');
+define ('DOC_COMMENT_RUN_ON_LOAD_PATTERN',              '/\@runOnLoad/');
+define ('DOC_COMMENT_BIND_VARIABLE_PATTERN',            '/\@bindVariable\s*([^\W]*)/');
+define ('DOC_COMMENT_BIND_DATA_MODEL_PATTERN',          '/\@bindModel\s*([^\W]*)/');
+define ('DOC_COMMENT_CONTENT_TYPE_PATTERN',             '/\@contentType\s*([^\W]*)/');
+define ('DOC_COMMENT_RENDER_TAG_PATTERN',               '/\@renderTag\s*([^\n]*)/');
+define ('DOC_COMMENT_RENDER_CLASS_PATTERN',             "/\@renderClass\s*([^\n]*)/");
+define ('DOC_COMMENT_RENDER_ATTRIBUTE_PATTERN',         "/\@renderAttribute\s*([^\n]*)/");
+define ('DOC_COMMENT_RENDER_TAG_PARAMETERS_PATTERN',    "/([^\W]*)\s*=\s*('[^']*'|[^\W]*)/");
  
 class SkyDataService extends SkyDataResponseResource implements IService
 {
@@ -346,6 +346,9 @@ class SkyDataService extends SkyDataResponseResource implements IService
 					case 'prerenderview' : $methodInfo->preRenderView = trim ($value,"'"); break;
                     case 'onerrorview' : $methodInfo->onErrorView = trim ($value,"'"); break;
 				}
+                if (empty($methodInfo->tag->trigger))
+                    $methodInfo->tag->trigger = 'init'; // Por defecto es "init"
+                
 				if  (!isset($methodInfo->tag->name))
 					throw new \Exception("El servicio debe dar un nombre al atributo, elemento o clase (use name en el métod {$methodInfo->name})", 1);
 				
