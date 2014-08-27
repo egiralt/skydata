@@ -98,9 +98,11 @@
 					
 			$content = $pageInstance->GetView()->Render(); //!! el contenido de la página que se muestra
 			$content = $pageInstance->GetView()->RenderServices($content);
+            $thisPage = $this->GetPage();
 			$this->Assign ('page_content', $content);
-			$this->Assign ('page_title', $this->GetPage()->GetPageTitle());
+			$this->Assign ('page_title', $thisPage->GetPageTitle());
 			$this->Assign ('base_path', $this->GetBasePath());
+            $this->Assign ('page_icon', $thisPage->GetPageIcon());
 			
 			$this->PublishServicesMainScript($pageInstance); // Se publica solo en caso de que haya una página publicándose 
 		}
