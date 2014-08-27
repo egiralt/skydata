@@ -65,8 +65,8 @@
 	{% import 'renderviews.twig' as views %}
 
 	{% if method.render_tag or method.render_attribute or method.render_class  %}
-		.directive('{{ method.tag.name }}', ['$rootScope', '$compile', '$sce', '$timeout', '$http', 'skydataPageServices',
-			function ($rootScope, $compile, $sce, $timeout, $http, skydataPageServices) {
+		.directive('{{ method.tag.name }}', ['$rootScope', '$compile', '$sce', '$timeout', '$http', 'skydataPageServices', "$log",
+			function ($rootScope, $compile, $sce, $timeout, $http, skydataPageServices, $log) {
 			return {
 				restrict: '{{ method.type_of_render }}',
 				replace: true,
@@ -109,8 +109,10 @@
 									{% endfor %}
 								{% endif %}
 								{# Ahora se cuentan las instancias que se están ejecutando y se lanzan eventos para que los que quieran seguir la pista puedan #}
+
+								{#TODO: Esto hay que pasarlo a skydataServicios como un método #}
 								{% if method.tag.trigger|length == 0 or method.tag.trigger == 'init' %}
-									if (typeof $rootScope._downloads == "undefined"|| $rootScope._downloads == 0)
+									if ((typeof $rootScope._downloads == "undefined") || ($rootScope._downloads == 0))
 									{
 										$rootScope._downloads = 0;
 										$rootScope._max_downloads = 0;
@@ -118,39 +120,51 @@
 									}
 									$rootScope._downloads += 1;
 									$rootScope._max_downloads = $rootScope._downloads > $rootScope._max_downloads ? $rootScope._downloads : $rootScope._max_downloads;
-									skydataPageServices.dispatchServiceStart ('{{ method.name }}', '{{ method.tag.name }}');
 								{% endif %}
-								$scope.{{ method.name }}({% if method.parameters|length > 0 %}__{{ method.parameters|join(', __') }}{% endif %})
-								.then (function (response) {
-									if (typeof response.data == "object" &&  response.data.error != null)
-									{
-										skydataPageServices.showError(response.data);
-										{{ views.getErrorView(method) }}
-									}
-									else
-									{
-										try {
-											var el = angular.element(response.data);
-											var compiled = $compile(el);
-											var domInserted = $($element).html (el);
-											domInserted.find('.pop').popover()
-											//domInserted.find ('.datatable').dataTable(dataTableConfig);
 
-											compiled($scope);
+								skydataPageServices.dispatchServiceStart ('{{ method.name }}', '{{ method.tag.name }}', $element, '{{ method.tag.trigger }}');
+
+								{# Ejecutar el método solicitado #}
+								$scope.{{ method.name }}({% if method.parameters|length > 0 %}__{{ method.parameters|join(', __') }}{% endif %})
+								.then (
+									function (response) {
+
+										$log.debug(response);
+
+										if (typeof response.data == "object" &&  response.data.error != null)
+										{
+											skydataPageServices.showError(response.data);
+											{{ views.getErrorView(method) }}
 										}
-										catch(e)	{
-											$($element).html(response.data);
+										else
+										{
+											try {
+												var el = angular.element(response.data);
+												$element.html (el);
+												$compile(el)($scope);
+											}
+											catch(e) {
+												$log.error('EXCEPTION', e);
+											}
 										}
+										$scope.loading{{ method.name }} = false;
+										$scope.loaded{{ method.name }} = true;
+
+										{#TODO: Esto hay que pasarlo a skydataServicios como un método #}
+										{% if method.tag.trigger|length == 0 or method.tag.trigger == 'init' %}
+											if ($rootScope._downloads > 0)
+												$rootScope._downloads -= 1;
+											if ($rootScope._downloads == 0)
+												skydataPageServices.dispatchEndOfLoading ();
+										{% endif %}
+
+										skydataPageServices.dispatchServiceComplete ('{{ method.name }}', '{{ method.tag.name }}', $element, '{{ method.tag.trigger }}');
+
+									},
+									function (reason) {
+										$log.error(reason);
 									}
-									$scope.loading{{ method.name }} = false;
-									$scope.loaded{{ method.name }} = true;
-									{% if method.tag.trigger|length == 0 or method.tag.trigger == 'init' %}
-										$rootScope._downloads -= 1;
-										skydataPageServices.dispatchServiceComplete ('{{ method.name }}', '{{ method.tag.name }}');
-										if ($rootScope._downloads == 0)
-											skydataPageServices.dispatchEndOfLoading ();
-									{% endif %}
-								});
+								 );
 							}
 							{% if method.refresh > 0 %}
 								$timeout (refresh_{{ method.name }}, {{ method.refresh }});
@@ -188,7 +202,6 @@
 				},
 				{% endif %}
 				 controller: '{{ serviceName }}Controller'
-
 			};
 		}])
 	{% endif %}
