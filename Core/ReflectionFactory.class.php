@@ -9,9 +9,12 @@
  /**
   * Clase utilitaria usada para obtener información de las clases y su ubicación física, etc.
   */
- class ReflectionFactory
+ final class ReflectionFactory
  {
 
+    // Para evitar instancias
+    private function __constructor () {}
+    
 	/**
 	 * Retorna el nombre completo de una clase de servicios a partir de su nombre corto
 	 */
