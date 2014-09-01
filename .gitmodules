@@ -16,3 +16,6 @@
 [submodule "Libraries/Moment"]
 	path = Libraries/Moment
 	url = https://github.com/moment/moment.git
+[submodule "Libraries/boostrap-vertical-tabs"]
+	path = Libraries/boostrap-vertical-tabs
+	url = https://github.com/dbtek/bootstrap-vertical-tabs.git
