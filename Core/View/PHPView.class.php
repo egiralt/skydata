@@ -25,7 +25,7 @@ namespace SkyData\Core\View;
 use \SkyData\Core\SkyDataObject;
 use \SkyData\Core\ReflectionFactory;
 
- class PHPView extends SkyDataView
+ class PHPView extends HTMLView
  {
 	/**
 	 * Retorna el directorio desde donde se cargarán los templates de la clase 

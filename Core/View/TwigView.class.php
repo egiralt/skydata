@@ -9,7 +9,7 @@ use \SkyData\Core\Twig\SkyDataTwig;
 use \SkyData\Core\ReflectionFactory;
 
  
- class TwigView extends SkyDataView
+ class TwigView extends HTMLView
  {
 	protected $TwigInstance;
 	protected $TwigEnvironment;

@@ -26,7 +26,7 @@
  
  use \SkyData\Core\ReflectionFactory;
  
- class MarkdownView extends SkyDataView
+ class MarkdownView extends HTMLView
  {
  	
 	

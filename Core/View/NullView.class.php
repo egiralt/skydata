@@ -45,7 +45,7 @@ namespace SkyData\Core\View;
 	 */ 	
 	public function Render ()
 	{
-		return null;
+		return ''; // No retorna nada!
 	}
 	
  } 

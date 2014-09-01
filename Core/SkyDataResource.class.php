@@ -6,17 +6,20 @@ namespace SkyData\Core;
 
 use \SkyData\Core\Configuration\ConfigurationManager;
 use \SkyData\Core\Metadata\MetadataManager;
+use \SkyData\Core\Service\SkyDataService;
+use \SkyData\Core\Service\ServicesFactory;
  
 use \SkyData\Core\Service\IServicesBindable;
 use \SkyData\Core\Configuration\IConfigurable;
 use \SkyData\Core\Metadata\IMetadataContainer;
 use \SkyData\Core\Controller\IController;
 use \SkyData\Core\View\IRenderable;
+
  
  /**
   * Clase base para todas las clases del framework, excepto la clase usada
   */
-abstract class SkyDataResponseResource extends SkyDataObject 
+abstract class SkyDataResource extends SkyDataObject 
 	implements IMetadataContainer, IConfigurable, ILayoutNode, IServicesBindable 
  {
 
@@ -99,9 +102,7 @@ abstract class SkyDataResponseResource extends SkyDataObject
 			foreach ($servicesConfig['use'] as $serviceClassName) 
 			{
 				// Construye una clase específica de cada servicio que se encuentra en la lista
-				$fullClassName = ReflectionFactory::getFullServiceClassName ($serviceClassName);
-				$serviceInstance = new $fullClassName();
-				$serviceInstance->SetParent($this);
+				$serviceInstance = ServicesFactory::CreateService($serviceClassName);
 				$this->Services[$serviceClassName] = $serviceInstance; // Y se guarda en la lista de servicios activos de esta página
 			}
 		}		

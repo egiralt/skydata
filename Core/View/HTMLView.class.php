@@ -22,8 +22,9 @@
  */
  namespace SkyData\Core\View;
  
- use \SkyData\Core\ReflectionFactory;
- 
+use \SkyData\Core\ReflectionFactory;
+use \SkyData\Core\RouteFactory;
+
  class HTMLView extends SkyDataView
  {
 	/**
@@ -54,5 +55,37 @@
 		// y se retorna al siguiente
 		return $result;
 	}
+    
+    public function RenderServices ($pageContent)
+    {
+        $result = $pageContent; 
+        $basePath = RouteFactory::ReverseRoute('/');
+        if (in_array('SkyData\Core\Service\IServicesBindable', class_implements($this->GetParent())))
+        {
+            $pageName = $this->GetParent()->GetClassShortName();
+            foreach ($this->GetParent()->GetServices() as $serviceName => $serviceInstance) 
+            {
+                // Se genera el código JS de este servicio y se agrega a la lista de scripts de la página
+                $globalServiceScript =  $serviceInstance->RenderGlobalServiceJavascript ();
+                $serviceScript = $serviceInstance->RenderServiceJavascript ();
+                
+                if (!empty($globalServiceScript))
+                {
+                    $cacheID = $this->GetApplication()->GetCacheManager()->Store ($globalServiceScript, $serviceName.'_globalservice_script.js');
+                    $this->GetApplicationView()->GetSelectedTheme()->GetMetadataManager()->AddScript ($basePath.'Cache/'.$cacheID.'.js');
+                }
+                if (!empty($serviceScript))
+                {
+                    $cacheID = $this->GetApplication()->GetCacheManager()->Store ($serviceScript, $serviceName.'_service_script.js');
+                    $this->GetApplicationView()->GetSelectedTheme()->GetMetadataManager()->AddScript ($basePath.'Cache/'.$cacheID.'.js');
+                }
+                
+                
+                $result = "<div ng-controller='{$serviceName}Controller'>{$result}</div>";
+            }
+        }
+        return $result;     
+    }
+    
 	
  } 
