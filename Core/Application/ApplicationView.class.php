@@ -29,7 +29,7 @@ use \SkyData\Core\Theme\SkyDataTheme;
 use \SkyData\Core\Service\SkyDataService;
 use \SkyData\Core\ReflectionFactory;
 use \SkyData\Core\Http\Http;
-use \SkyData\Core\Twig\SkyDataTwig;
+use \SkyData\Core\Twig\TwigHelper;
 
 /**
  * Clase principal que gestiona la vista global de la aplicación

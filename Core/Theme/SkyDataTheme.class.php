@@ -27,7 +27,7 @@
  use \SkyData\Core\View\TwigView;
  use \SkyData\Core\Configuration\ConfigurationManager;
  use \SkyData\Core\Metadata\MetadataManager;
- use \SkyData\Core\Twig\SkyDataTwig;
+ use \SkyData\Core\Twig\TwigHelper;
  use \SkyData\Core\RouteFactory;
  
  use \SkyData\Core\View\IRenderable;
@@ -165,7 +165,7 @@
 				$servicesNames[] = $name;
 			
             // Se guarda el script en la caché y se agrega a la lista de scripts de la aplicación
-			$script = SkyDataTwig::RenderTemplate (SKYDATA_PATH_CORE.'/Application/Scripts/main_module.twig', array ('services' => $servicesNames), true);
+			$script = TwigHelper::RenderTemplate (SKYDATA_PATH_CORE.'/Application/Scripts/main_module.twig', array ('services' => $servicesNames), true);
 			$cacheID = $this->GetApplication()->GetCacheManager()->Store ($script, 'services_main_script.js');
 			$this->GetMetadataManager()->AddScript ($basePath.'Cache/'.$cacheID.'.js');
 		}

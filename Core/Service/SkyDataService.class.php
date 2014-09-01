@@ -29,7 +29,7 @@
  use \SkyData\Core\Service\View\SkyDataServiceView;
  use \SkyData\Core\Http\Http;
  use \SkyData\Core\ReflectionFactory;
- use \SkyData\Core\Twig\SkyDataTwig;
+ use \SkyData\Core\Twig\TwigHelper;
 
 define ('DOC_COMMENT_AJAX_METHOD_PATTERN',              '/\@ajaxMethod/');
 define ('DOC_COMMENT_RUN_ON_LOAD_PATTERN',              '/\@runOnLoad/');
@@ -201,7 +201,7 @@ class SkyDataService extends SkyDataResource implements IService
 		);	
 		
 		// Se utilizarán las plantillas predeterminadas guardas, y generadas con Twig
-		$result = SkyDataTwig::RenderTemplate (SKYDATA_PATH_CORE.'/Service/Templates/service_controller_factory.twig', $params);
+		$result = TwigHelper::RenderTemplate (SKYDATA_PATH_CORE.'/Service/Templates/service_controller_factory.twig', $params);
 		
 		return $result;		
 	}

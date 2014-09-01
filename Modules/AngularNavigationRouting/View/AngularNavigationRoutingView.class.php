@@ -7,7 +7,7 @@
  namespace SkyData\Modules\AngularNavigationRouting\View;
   
 use \SkyData\Core\View\HTMLView;
-use \SkyData\Core\Twig\SkyDataTwig;
+use \SkyData\Core\Twig\TwigHelper;
 use \SkyData\Core\RouteFactory;
 
  /**
@@ -29,7 +29,7 @@ use \SkyData\Core\RouteFactory;
 		}
 		
 		$params = array('pages' => $pages);
-		$script = SkyDataTwig::RenderTemplate (realpath(__DIR__.'/../Templates').'/routing_js.twig', $params);
+		$script = TwigHelper::RenderTemplate (realpath(__DIR__.'/../Templates').'/routing_js.twig', $params);
 		// Se genera el valor de este módulo a un fichero en el caché
 		$cacheID = $this->GetApplication()->GetCacheManager()->Store ($script, 'navigation_routing.js');
 		

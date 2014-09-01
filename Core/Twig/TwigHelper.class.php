@@ -24,7 +24,7 @@
  
  use \SkyData\Core\BootFactory;
  
- class SkyDataTwig 
+ final class TwigHelper 
  {
 	/**
 	 * Un constructor privador para impedir que se herede de esta clase

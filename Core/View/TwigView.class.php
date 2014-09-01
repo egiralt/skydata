@@ -5,7 +5,7 @@
  namespace SkyData\Core\View;
  
 use \SkyData\Core\SkyDataObject;
-use \SkyData\Core\Twig\SkyDataTwig;
+use \SkyData\Core\Twig\TwigHelper;
 use \SkyData\Core\ReflectionFactory;
 
  
@@ -47,7 +47,7 @@ use \SkyData\Core\ReflectionFactory;
 				'optimizations' => \Twig_NodeVisitor_Optimizer::OPTIMIZE_ALL
 			);
 			
-			$this->TwigEnvironment = SkyDataTwig::getTwigInstance ($templateDirectory, $twigOptions);		
+			$this->TwigEnvironment = TwigHelper::getTwigInstance ($templateDirectory, $twigOptions);		
 			
 			// Intentar cargar el template del módulo
 			$defaultTemplateFullFilePath = $templateDirectory.'/'.$templateFile;
