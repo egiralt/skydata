@@ -20,11 +20,11 @@
  * @Last Modified by:   E. Giralt
  * @Last Modified time: 22/Aug/2014
  */
-namespace SkyData\Core\ContentDeliveryChannel;
+namespace SkyData\Core\Content;
 
 use \SkyData\Core\SkyDataObject;
 
-class Channel extends SkyDataObject implements IChannel
+class DeliveryChannel extends SkyDataObject implements IChannel, IConsumer
 {
 
         

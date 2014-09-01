@@ -20,7 +20,7 @@
  * @Last Modified by:   E. Giralt
  * @Last Modified time: 22/Aug/2014
  */
-namespace SkyData\Core\ContentDeliveryChannel;
+namespace SkyData\Core\Content;
 
 interface IChannel 
 {
