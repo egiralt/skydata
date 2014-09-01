@@ -11,35 +11,51 @@ application:
 
   # Zona horaria usada principalmente para el formato de fechas 
   time_zone: 'Europe/Madrid'
+  
+  # Canal por defecto para le entrega de contenido
+  deliveryChannel: SkyData\Core\Content\HttpDeliveryChannel
+  providerChannel: SkyData\Core\Content\FileContentProvider
 
 # Lista de páginas de la aplicación
 navigation:
   Home:
     route: /
-    icon: fa fa-home icon-large
+    icon: /Themes/Jarvis/Styles/main/img/home.png
     title: Inicio
+
   FichaASP:
     title: Ficha ASP
     class: FichaASP
     route: /ficha_asp
-    icon: fa fa-tasks icon-large
+    icon: /Themes/Jarvis/Styles/main/img/start-icons/stats.png
     # TODO: Agregar la gestión de roles
     roles: ASP,DPV
     # TODO: Hacer que las páginas puedan recibir un template distinto al default
     template: main/bootstrap
+
   Presupuestador:
     title: Presupuestos
     route: /presupuestos
-    icon: fa fa-briefcase icon-large
-    subnav:
-      PresupuestosMenores:
-        title: 2
-        class: Presupuestador
-        route: 2
+    icon: /Themes/Jarvis/Styles/main/img/start-icons/orders.png
 
+  DetalleCliente:
+    title: Resumen del cliente
+    route: /detalles/[*:tipo]/[*:id]
+    public: false
+
+  ResumenVehiculo:
+    title: Ficha Taller
+    route: /resumen/[*:bastidor]
+    public: false
+    icon: /UI/img/ficha_resumen.png
+    
+  Search:
+    title: Resultados de búsqueda
+    route: /search/[*:expresion]/[i:nombres]/[i:matriculas]/[i:dni]/[i:telefonos]
+    
 # Todos los temas de la aplicación.   
 themes:
-  CleanDashboard:
+  Jarvis:
     default: true
     cached: false
     debug: false  
@@ -58,7 +74,6 @@ services:
       Cache-Control: no-cache, must-revalidate
       Expires: Mon, 01 Jul 1900 00:00:00 GMT
 
-
 # Definición de rutas especiales de la aplicación
 routes:
 # Sección de rutas de la aplicacion. No cambiar las siguientes a menos que se sepa que se está haciendo
@@ -68,3 +83,22 @@ routes:
       route: /service/[a:name]/[*:method]/[*:params]?
       target: /Services
 # ============================== End core routing =========================================
+
+storage:
+  mysql:
+    repository:
+      server: localhost
+      user: root
+      password: 
+      database: vars_cargas
+      port: 3306
+    crm:
+      server: localhost
+      port: 3306
+      user: root
+      password: qwerty
+      database: crm
+      
+      
+      
+      
