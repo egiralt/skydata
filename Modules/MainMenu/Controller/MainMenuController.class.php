@@ -24,10 +24,10 @@
         $currentPage = $application->GetCurrentRequestInfo();
 		foreach ($navigation as $navName => $navNode) 
 		{
-			$node = $this->buildNode($naveName, $navNode, $currentPage);			
-			$pages[$navName] = $node;
+			$node = $this->buildNode($naveName, $navNode, $currentPage);
+            if (!empty($node))			
+			     $pages[$navName] = $node;
 		}
-		
 		$view = $this->GetView();
 		$view->Assign ('pages', $pages);
  	}
@@ -38,22 +38,26 @@
 	private function buildNode ($navName, $navNode, $currentPage)
 	{
 		$result = new \stdClass();
-		$result->label = $navNode['title'];
-        $result->icon = $navNode['icon'];
-        $result->active = $navNode['route'] == $currentPage->path;
-		if ($navNode['route'] == '/')
-			$result->route = $this->GetApplication()->GetApplicationBaseUrl().'/';
-		else
-			$result->route =  $this->GetApplication()->GetApplicationBaseUrl().$navNode['route'];
-		if ($navNode['subnav'])
-		{
-			$result->childs = array();
-			foreach ($navNode['subnav'] as $subNavName => $subNavNode)
-			{
-				$subNode = $this->buildNode($subNavName, $subNavNode);
-				$result->childs[$navName] = $subNode;			
-			} 
-		}
+        if ($navNode['public'] !== false)
+        {
+    		$result->label = $navNode['title'];
+            $result->icon = $navNode['icon'];
+            $result->active = $navNode['route'] == $currentPage->path;
+    		if ($navNode['route'] == '/')
+    			$result->route = $this->GetApplication()->GetApplicationBaseUrl().'/';
+    		else
+    			$result->route =  $this->GetApplication()->GetApplicationBaseUrl().$navNode['route'];
+    		if ($navNode['subnav'])
+    		{
+    			$result->childs = array();
+    			foreach ($navNode['subnav'] as $subNavName => $subNavNode)
+    			{
+    				$subNode = $this->buildNode($subNavName, $subNavNode);
+                    if (!empty($subNode))
+    				    $result->childs[$subNavName] = $subNode;			
+    			}
+    		}
+        }
 		
 		return $result;
 	}

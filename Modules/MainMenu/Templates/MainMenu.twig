@@ -1,12 +1,43 @@
-<ul>
+{#
+<ul class="nav navbar-nav indented" >
 	{% for page in pages %}
-	<li {% if page.active %} class='selected-menu' {% endif %}>
-		<a href="{{ page.route }}">
-			{% if page.icon|length > 0 %}
-				<i class="{{ page.icon }}"></i>
+	<li {% if page.active %} class='active' {% endif %}>
+			<a href="{{ page.route }}" class='menu-item'>
+				{% if page.icon|length > 0 %}
+					<i class="{{ page.icon }}"></i>
+				{% endif %}
+				{{ page.label }}
+			</a>
+			{% if page.childs|length > 0 %}
+					<a href="#" class='btn btn-default dropdown-toggle' data-toggle='dropdown'><span class="caret"></span></a>
+					<ul class='dropdown-menu' role='menu'>
+						{% for name,child in page.childs %}
+							<li {% if page.active %} class='active' {% endif %}>
+								<a href="{{ child.route }}">
+									{% if child.icon|length > 0 %}
+										<i class="{{ child.icon }}"></i>
+									{% endif %}
+									{{ child.label }}
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
 			{% endif %}
-			{{ page.label }}
-		</a>
 	</li>
 	{% endfor %}
 </ul>
+#}
+
+<div id="start">
+	<ul>
+	{% for page in pages %}
+		<li>
+			<!--  <label>+548 </label> -->
+			<a href="{{ page.route }}" title="{{ page.label }}">
+				<img style='width: 32px' src="{{ page.icon }}">
+				<span>{{ page.label }}</span>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
