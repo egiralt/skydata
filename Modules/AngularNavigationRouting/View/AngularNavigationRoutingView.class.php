@@ -8,6 +8,7 @@
   
 use \SkyData\Core\View\HTMLView;
 use \SkyData\Core\Twig\SkyDataTwig;
+use \SkyData\Core\RouteFactory;
 
  /**
   *
@@ -33,7 +34,8 @@ use \SkyData\Core\Twig\SkyDataTwig;
 		$cacheID = $this->GetApplication()->GetCacheManager()->Store ($script, 'navigation_routing.js');
 		
 		//return "<script type=\"text/javascript\" src=\"Cache/{$cacheID}.js\" ></script>";
-		$this->GetApplication()->GetMetadataManager()->AddScript ("Cache/{$cacheID}.js");
+		$basePath = RouteFactory::ReverseRoute('/');
+		$this->GetApplication()->GetMetadataManager()->AddScript ($basePath."Cache/{$cacheID}.js");
 		
  	}
 	
