@@ -28,6 +28,7 @@
  use \SkyData\Core\Configuration\ConfigurationManager;
  use \SkyData\Core\Metadata\MetadataManager;
  use \SkyData\Core\Twig\SkyDataTwig;
+ use \SkyData\Core\RouteFactory;
  
  use \SkyData\Core\View\IRenderable;
  use \SkyData\Core\Metadata\IMetadataContainer;
@@ -80,7 +81,7 @@
 		
 		$this->Manifest = ConfigurationManager::ReadLocalMetadata ($defaultThemePath.'/manifest.yaml')->theme;
 	}
-	
+    
 	
 	public function Render()
 	{
@@ -92,13 +93,15 @@
 		$pageInstance = $this->GetPage();
 		if ($pageInstance != null)
 		{
+		    $metadataManager = $this->GetMetadataManager(); 
 			// Se mezclan los metadatos de la página con los del estilo
-            $this->GetMetadataManager()->Merge ($this->GetApplication()->GetMetadataManager());
-			$this->GetMetadataManager()->Merge ($pageInstance->GetMetadataManager());
+            $metadataManager->Merge ($this->GetApplication()->GetMetadataManager());
+			$metadataManager->Merge ($pageInstance->GetMetadataManager());
 					
 			$content = $pageInstance->GetView()->Render(); //!! el contenido de la página que se muestra
 			$content = $pageInstance->GetView()->RenderServices($content);
             $thisPage = $this->GetPage();
+            
 			$this->Assign ('page_content', $content);
 			$this->Assign ('page_title', $thisPage->GetPageTitle());
 			$this->Assign ('base_path', $this->GetBasePath());
@@ -153,14 +156,18 @@
 	{
 		if (isset($currentRequest))
 		{
+		    $application = $this->GetApplication();
+            $basePath = RouteFactory::ReverseRoute('/');
+            
 			$servicesNames = array();
 			$services = $currentRequest->GetServices();
 			foreach ($services as $name => $instance) 
 				$servicesNames[] = $name;
 			
+            // Se guarda el script en la caché y se agrega a la lista de scripts de la aplicación
 			$script = SkyDataTwig::RenderTemplate (SKYDATA_PATH_CORE.'/Application/Scripts/main_module.twig', array ('services' => $servicesNames), true);
 			$cacheID = $this->GetApplication()->GetCacheManager()->Store ($script, 'services_main_script.js');
-			$this->GetMetadataManager()->AddScript ('Cache/'.$cacheID.'.js');
+			$this->GetMetadataManager()->AddScript ($basePath.'Cache/'.$cacheID.'.js');
 		}
 	}
 	
@@ -384,21 +391,22 @@
 	    $manifest = $this->GetManifest();
 		$configStyle = $manifest['styles'][ $this->GetSelectedStyle()->GetName()];
 		$this->GetMetadataManager()->LoadFromConfiguration ($configStyle);
+        
 		// Ahora hay que corregir los paths de los scripts que vienen del estilo
-		
 		$metadataManager = $this->GetMetadataManager();
 		$path = $this->GetBasePath();
 		$scripts = $metadataManager->GetScripts();
 		$styles = $metadataManager->GetStyles();
+        
 		$metadataManager->ClearAll();
 		foreach ($scripts as $script)
 		{
-			$fullScript = $path.$script;
+		    $fullScript = substr($script, 0,1) !== '/' ? $path.$script : $script; // solo se agrega path si no comienza con un /
 			$metadataManager->AddScript ($fullScript);
 		}		
 		foreach ($styles as $style)
 		{
-			$fullStyle = $path.$style;
+			$fullStyle = substr($style, 0,1) !== '/' ? $path.$style : $style; // solo se agrega path si no comienza con un /
 			$metadataManager->AddStyle ($fullStyle);
 		}		
 	}
