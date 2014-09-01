@@ -24,7 +24,7 @@
  */
  namespace SkyData\Core\Service;
 
- use \SkyData\Core\SkyDataResponseResource;
+ use \SkyData\Core\SkyDataResource;
  use \SkyData\Core\Service\Controller\SkyDataServiceController;
  use \SkyData\Core\Service\View\SkyDataServiceView;
  use \SkyData\Core\Http\Http;
@@ -41,7 +41,7 @@ define ('DOC_COMMENT_RENDER_CLASS_PATTERN',             "/\@renderClass\s*([^\n]
 define ('DOC_COMMENT_RENDER_ATTRIBUTE_PATTERN',         "/\@renderAttribute\s*([^\n]*)/");
 define ('DOC_COMMENT_RENDER_TAG_PARAMETERS_PATTERN',    "/([^\W]*)\s*=\s*('[^']*'|[^\W]*)/");
  
-class SkyDataService extends SkyDataResponseResource implements IService
+class SkyDataService extends SkyDataResource implements IService
 {
 	
 	const DATATYPE_DATA 		= 'data';
