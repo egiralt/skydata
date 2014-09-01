@@ -22,6 +22,8 @@
  */
  namespace SkyData\Core;
  
+ DEFINE ('SKYDATA_VERSION','0.1.0');
+ 
 /**
  * Definiciones esenciales para fijar los paths
  */
