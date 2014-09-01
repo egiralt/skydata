@@ -22,7 +22,7 @@
  */
  namespace SkyData\Core\Module;
  
- use \SkyData\Core\SkyDataResponseResource;
+ use \SkyData\Core\SkyDataResource;
  use \SkyData\Core\ReflectionFactory;
  use \SkyData\Core\Module\View\SkyDataModuleView;
  use \SkyData\Core\Module\Controller\SkyDataModuleController;
@@ -34,7 +34,7 @@
 /**
  * Clase base para un módulo de SkyData
  */
- class SkyDataModule extends SkyDataResponseResource implements IModule
+ class SkyDataModule extends SkyDataResource implements IModule
  {
 	public function Run ()
 	{
