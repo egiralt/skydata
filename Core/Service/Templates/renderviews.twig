@@ -14,8 +14,7 @@
 
 	{% if method.onErrorView|length > 0 %}
 		$http.get ('{{ method.onErrorView }}')
-			.then (function (response)
-			{
+			.then (function (response)	{
 				$($element).html(response.data);
 			});
 	{% endif %}

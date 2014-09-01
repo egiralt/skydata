@@ -1,7 +1,7 @@
 
 {% macro buildLocalDataMethod (serviceName, table, method) %}
 	$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
-		return $http.get ('/postventa/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(") + '/' + encodeURIComponent(_") }}),{% if method.parameters|length > 0 %} + "/" + {{ method.parameters|join('+ "/" + _')|raw }}{% endif %},
+		return $http.get ('/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(") + '/' + encodeURIComponent(_") }}),{% if method.parameters|length > 0 %} + "/" + {{ method.parameters|join('+ "/" + _')|raw }}{% endif %},
 			{ {{ __.responseType(method.contentType) }} }
 		{% endif %}). success ( function (data, status, headers, config) {
 			{% if table.is_enumerable %} 	{# Si es una tabla enumerable se genera un ciclo para agregar cada uno de los registros #}
@@ -40,7 +40,7 @@
 		{% if method.bind_variable|length > 0 %} {#  Si hay algo que retornar #}
 		{% endif  %}
 		{# Llamar al método #}
-		return $http.get ('service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(') + "/" + encodeURIComponent(_')|raw }}),
+		return $http.get ('/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(') + "/" + encodeURIComponent(_')|raw }}),
 		{ {{ __.responseType(method.contentType) }} }
 		{% endif %}){% if method.bind_variable|length > 0 %}.success(function (data, status, headers, config	) { {# tiene una variable que asignar! #}
 
@@ -128,9 +128,6 @@
 								$scope.{{ method.name }}({% if method.parameters|length > 0 %}__{{ method.parameters|join(', __') }}{% endif %})
 								.then (
 									function (response) {
-
-										$log.debug(response);
-
 										if (typeof response.data == "object" &&  response.data.error != null)
 										{
 											skydataPageServices.showError(response.data);
@@ -140,8 +137,8 @@
 										{
 											try {
 												var el = angular.element(response.data);
-												$element.html (el);
-												$compile(el)($scope);
+												var content = $compile(el)($scope);
+												$element.html (content);
 											}
 											catch(e) {
 												$log.error('EXCEPTION', e);
