@@ -49,6 +49,48 @@ function generateFile ($title, $templateName, $filePath, $parameters)
 /**
  * 
  */
+function generateService ($serviceName, $pagePath)
+{
+    $todayDT = new DateTime();
+    $today = $todayDT->format ('d/m/Y H:i');
+    
+    if (is_dir($pagePath))
+    {
+        echo "ERROR! El modulo parece que ya existe. Hay un directorio en Services/ con el mismo nombre.\n";
+        die(-1);
+    }
+
+    try
+    {
+        echo "Creando directorio principal..."; mkdir($pagePath); echo "OK\n";
+        echo "Creando directorio del controller..."; mkdir($pagePath.'/Controller'); echo "OK\n";
+        
+        $parameters = array ('serviceName' => $serviceName, 'today' => $today);
+        
+        /**  Clase principal del módulo **/ 
+        generateFile (
+         'Generando clase principal', 
+         'Service.tpl', 
+         "{$pagePath}/{$serviceName}.class.php", 
+         $parameters);
+    
+        /************* Clase Controller *************/
+        generateFile (
+         'Generando controller', 
+         'ServiceController.tpl', 
+         "{$pagePath}/Controller/{$serviceName}Controller.class.php", 
+         $parameters);
+         
+    }
+    catch (\Exception $e)
+    {
+        echo "ERROR! Intentando crear la estructura de ficheros de la página. Razon: ". $e->getMessage();
+    }
+}
+
+/**
+ * 
+ */
 function generatePage ($pageName, $pagePath)
 {
     $todayDT = new DateTime();
@@ -77,21 +119,28 @@ function generatePage ($pageName, $pagePath)
 		/************* Clase View  *************/
 		generateFile (
 		 'Generando clase view', 
-		 'pageView.tpl', 
+		 'PageView.tpl', 
 		 "{$pagePath}/View/{$pageName}View.class.php", 
 		 $parameters);
 	
-		/************* Template por defecto  *************/
+		/************* Clase Controller *************/
 		generateFile (
-		 'Generando template por defecto', 
-		 'pageTemplate.tpl', 
-		 "{$pagePath}/Templates/index.html", 
+		 'Generando controller', 
+		 'PageController.tpl', 
+		 "{$pagePath}/Controller/{$pageName}Controller.class.php", 
 		 $parameters);
+         
+        /************* Template por defecto  *************/
+        generateFile (
+         'Generando template por defecto', 
+         'PageTemplate.tpl', 
+         "{$pagePath}/Templates/index.html", 
+         $parameters);
 		 
 		/************* Metadata *************/
 		generateFile (
 		 'Generando fichero de metadatos', 
-		 'pageMetadataYML.tpl', 
+		 'PageMetadataYML.tpl', 
 		 "{$pagePath}/metadata.yml", 
 		 $parameters);
 		

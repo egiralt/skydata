@@ -23,6 +23,7 @@
  
  define ('VERSION', '1.0');
 define ('MODULES_PATH', realpath(dirname(__FILE__).'/../Modules'));
+define ('SERVICES_PATH', realpath(dirname(__FILE__).'/../Services'));
 define ('PAGES_PATH', realpath(dirname(__FILE__).'/../Pages'));
 
 include "helper.php";
@@ -52,6 +53,10 @@ switch ($cmd)
 		$itemPath = PAGES_PATH.'/'.$itemName;
 		generatePage ($itemName, $itemPath);
 		break;	
+    case 'service' :
+        $itemPath = SERVICES_PATH.'/'.$itemName;
+        generateService ($itemName, $itemPath);
+        break;  
 	default:
 		echo "ERROR! <{$cmd}> no es un comando valido.";
 		die(-1);
