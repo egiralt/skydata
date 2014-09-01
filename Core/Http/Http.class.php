@@ -28,7 +28,18 @@
   */
  final class Http
  {
+     const CONTENT_TYPE_JSON    = 'application/json';
+     const CONTENT_TYPE_TEXT    = 'text/plain';
+     const CONTENT_TYPE_HTML    = 'text/html';
+     const CONTENT_TYPE_XML     = 'text/xml';
+     const CONTENT_TYPE_JPEG    = 'image/jpeg';
+     const CONTENT_TYPE_PNG     = 'image/png';
+     const CONTENT_TYPE_GIF     = 'image/gif';
+     const CONTENT_TYPE_TIFF    = 'image/tiff';
+     
+     
 	private function __construct() 	{}
+    
 	
 	public static function Raise404()
 	{
@@ -53,42 +64,42 @@
 	
 	public static function GetContentTypeJson()
 	{
-		return 'Content-type: application/json';
+		return 'Content-type: '.Http::CONTENT_TYPE_JSON;
 	}
 	
 	public static function GetContentTypeHtml()
 	{
-		return 'Content-type: text/html';
+		return 'Content-type: '.Http::CONTENT_TYPE_HTML;
 	}
 	
 	public static function GetContentTypeText()
 	{
-		return 'Content-type: text/plain';
+		return 'Content-type: '.Http::CONTENT_TYPE_TEXT;
 	}
 	
 	public static function GetContentTypeXml()
 	{
-		return 'Content-type: text/xml';
+		return 'Content-type: '.Http::CONTENT_TYPE_XML;
 	}
 
 	public static function GetContentTypeImageJpeg()
 	{
-		return 'Content-type: image/jpeg';
+		return 'Content-type: '.Http::CONTENT_TYPE_JPEG;
 	}
 	
 	public static function GetContentTypeImagePng()
 	{
-		return 'Content-type: image/png';
+		return 'Content-type: '.Http::CONTENT_TYPE_PNG;
 	}
 	
 	public static function GetContentTypeImageGif()
 	{
-		return 'Content-type: image/gif';
+		return 'Content-type: '.Http::CONTENT_TYPE_GIF;
 	}
 	
 	public static function GetContentTypeImageTiff()
 	{
-		return 'Content-type: image/tiff';
+		return 'Content-type: '.Http::CONTENT_TYPE_TIFF;
 	}
 	
 	public static function GetRequestMethod ()
