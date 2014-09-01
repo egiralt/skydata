@@ -40,13 +40,15 @@ SkyDataApp.services = angular.module ('SkyDataApp.services', [])
 				toastr.options.timeOut = 3000;
 				toastr['info'](errorInfo.error, title);
 			},
-			dispatchServiceStart : function (serviceName, tagName) {
+			dispatchServiceStart : function (serviceName, tagName, elementInstance, triggerName) {
 				var event = new CustomEvent ('skydata.serviceStart', {
 					detail: {
 						time: new Date(),
 						service : serviceName,
 						tag : tagName,
+						element : elementInstance,
 						downloads_max : $rootScope._max_downloads,
+						trigger : triggerName,
 						downloads: $rootScope._downloads
 					},
 					bubbles : true,
@@ -54,12 +56,14 @@ SkyDataApp.services = angular.module ('SkyDataApp.services', [])
 				});
 				document.body.dispatchEvent (event);
 			},
-			dispatchServiceComplete : function (serviceName, tagName) {
+			dispatchServiceComplete : function (serviceName, tagName, elementInstance,triggerName) {
 				var event = new CustomEvent ('skydata.serviceDone', {
 					detail: {
 						time: new Date(),
 						service : serviceName,
+						element : elementInstance,
 						tag : tagName,
+						trigger : triggerName,
 						downloads_max : $rootScope._max_downloads,
 						downloads: $rootScope._downloads
 					},
