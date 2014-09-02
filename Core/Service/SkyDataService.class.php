@@ -65,6 +65,11 @@ class SkyDataService extends SkyDataResource implements IService
 	const METHOD_PREFIX_POST 	= 'Post';
 	const METHOD_PREFIX_PUT 	= 'Put';
 	
+	public function GetLastModificationTime()
+    {
+        return null;    
+    }
+    
 	/**
 	 * Retorna una instancia de clase por defecto a crear cuando no se encuentre un View para el actual módulo
 	 */

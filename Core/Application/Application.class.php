@@ -22,8 +22,6 @@
  */
 namespace SkyData\Core\Application;
 
-include SKYDATA_PATH_LIBRARIES.'/AltoRouter/AltoRouter.php';
-
 use \SkyData\Core\RouteFactory;
 use \SkyData\Core\Configuration\ConfigurationManager;
 use \SkyData\Core\ReflectionFactory;
@@ -31,6 +29,7 @@ use \SkyData\Core\Metadata\MetadataManager;
 use \SkyData\Core\Http\Http;
 use \SkyData\Core\Cache\File\FileCacheManager;
 use \SkyData\Core\Content\HttpDeliveryChannel;
+use \SkyData\Core\SkyDataResource;
 
 use \SkyData\Core\Metadata\IMetadataContainer;
 use \SkyData\Core\Cache\ICacheContainer;
@@ -52,6 +51,7 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 	private $CacheManager;
 	private $TemplatesCache;
     private $DeliveryChannel;
+    private $NavigationConfiguration;
 
 	public function __construct()
 	{
@@ -63,8 +63,55 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 		$this->LoadConfiguration();
 		/** Las rutas de la aplicación */
 		$this->LoadMetadata();
-        $this->InitDeliveryChannel(); //FIXME: Este método debe quitarse de aquí, y que sea para cada ejecución
+
+        $confManager = $this->GetConfigurationManager();
+        $this->NavigationConfiguration = $confManager->GetMapping ('navigation');
+        $this->ApplicationConfiguration = $confManager->GetMapping ('application');
+        // Estos campos tienen que existir en la configuración
+        if (empty($this->NavigationConfiguration) || empty($this->ApplicationConfiguration))
+            throw new Exception("Configuración no válida para la aplicación", 1);
+
 	}
+
+    /**
+     * Este método esta escrito para tomar el valor de uno de los agentes (producer o consumer) del contenido.
+     */
+    static public function ContentAgentFactory(SkyDataResource $target, $configName)
+    {
+        $result = null;
+
+        // Hay que leer los datos de la configuración del recurso, y si no, de la configuración de la aplicación
+        $config = $target->GetConfigurationManager()->GetMapping ('content');
+
+        if (empty($config))
+        {
+            $thisClassName = ReflectionFactory::getClassShortName($target);
+
+            $appConfManager = $target->GetApplication()->GetConfigurationManager();
+            $config = $appConfManager->GetMapping ('navigation');
+
+            if (!empty($config) && !empty($config[$thisClassName]['content']))
+                $config = $config[$thisClassName]['content']; // se toma el de la configuración de la página
+            else
+                $config = $appConfManager->GetMapping ('content'); // Se toma del default de la aplicación
+        }
+
+        if (!empty($config) && !empty($config[$configName]))
+        {
+            try
+            {
+                $className = $config[$configName];
+                $result = new $className();
+            }
+            catch (Exception $e)
+            {
+                throw new Exception("No se puede crear el '$configName' de contenido para la clase '$thisClassName'.", 1);
+
+            }
+        }
+
+        return $result;
+    }
 
     /**
      * Prepara el canal de entrega que se usará para la solicitud actual. Si no hay ninguno definido en la solicitud
@@ -72,14 +119,16 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
      */
     protected function InitDeliveryChannel ()
     {
-        $this->DeliveryChannel = $this->GetDefaultDeliveryChannel(); // El valor por defecto
+        $currentPage = $this->GetCurrentRequest();
+        $this->DeliveryChannel = static::ContentAgentFactory($currentPage, 'consumer');
+
         if ($this->DeliveryChannel == null)
             throw new \Exception("No se ha podido crear el canal de entrega de contenido.", -1);
     }
-    
+
 	/**
 	 * Este método es el centro de la gestión del framework. Aquí se decide:
-	 * El routing, la creación de los recursos y 
+	 * El routing, la creación de los recursos y
 	 *
 	 */
 	public function Run ()
@@ -87,28 +136,31 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 	    $contentType = Http::CONTENT_TYPE_HTML; // Por defecto es una página html
 	    $allowCache = true;
         $this->LoadRoutes();
-        
+
 		// Organizar el routing de la página según la solicitud
 		$this->ManageRouteRequest();
-        //$this->InitDeliveryChannel(); // FIXME: esto ha de activarse cuando estén escrito el código de DeliveryChannel por Resource
-        
+        $this->InitDeliveryChannel();
+
 		$currentPage = $this->GetCurrentRequest();
         $interfaces = class_implements($currentPage);
         $is_page = in_array('SkyData\Core\Page\IPage', $interfaces);
         $is_service = !$is_page && in_array('SkyData\Core\Service\IService', $interfaces);
-          
+
         // Algunos defaults
         if ($is_page)
             $currentPage->SetRequestParams ($this->CurrentNavigationNode->GetInfoNode()->params);
         elseif ($is_service)
             $allowCache = false; //TODO: Es correcto? Los servicios no tienen caché? sin más configuración?
-            
+
         try
         {
-		  $currentPage->GetController()->Run();
-		  //TODO: Lanzar eventos, que reciben tanto los headers como el contenido. Como idea: beforeRender, beforeHeaders, afterHeaders, afterRender
-		  $content = $this->GetView()->Render();
-        }
+		  	if ($is_page || $is_service)
+			{
+		  		$currentPage->GetController()->Run();
+			    // TODO: Lanzar eventos, que reciben tanto los headers como el contenido. Como idea: beforeRender, beforeHeaders, afterHeaders, afterRender
+		  		$content = $this->GetView()->Render();
+        	}
+		}
         catch (\Yaec\Exceptions\Yaec_ConnectionException $e)
         {
             if ($is_service)
@@ -129,7 +181,7 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
                 $content = new \stdClass();
                 $content->error = $e->getMessage();
                 $content->error_number = $e->getCode();
-                
+
                 $allowCache = false; // No se puede hacer caching con el error
             }
             else
@@ -139,10 +191,14 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
         $this->GetDeliveryChannel()->DeliverContent ($content, $contentType, $allowCache); //TODO: Agregar modification time
 	}
 
+    public function GetApplicationDataRootUri ()
+    {
+        return $this->ApplicationConfiguration['data']['root_uri'];
+    }
+
     public function GetApplicationBaseUrl ()
     {
-        $mainConfig = $this->GetConfigurationManager ()->GetMapping('application');
-        return isset($mainConfig) && !empty($mainConfig['base_url']) ? $mainConfig['base_url'] : null;
+        return !empty($this->ApplicationConfiguration['base_url']) ? $this->ApplicationConfiguration['base_url'] : null;
     }
 
 	protected function LoadRoutes ()
@@ -157,7 +213,7 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 				RouteFactory::Map($routeConfig['methods'], $routeConfig['route'], $routeConfig['target'], $routeName);
 		}
 		/** Ahora las de las páginas **/
-		if (($pages = $this->GetConfigurationManager()->GetMapping ('navigation')) != null)
+		if ($pages = $this->NavigationConfiguration)
 		{
 		    $pagesRouteList = array();
 
@@ -189,8 +245,7 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 	 */
 	public function GetApplicationName ()
 	{
-		$applicationConfig = $this->GetConfigurationManager()->GetMapping ('application');
-		return $applicationConfig['title'];
+		return $this->ApplicationConfiguration['title'];
 	}
 
 	/**
@@ -297,14 +352,12 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 
 		$pageInstance = new $pageClassName();
 
-		$navConfig = $this->GetConfigurationManager()->GetMapping ('navigation');
-
 		// Un nodo para informacion de la navegación
 		$pageNode = new \stdClass();
 
 		$pageNode->path = RouteFactory::ReverseRoute($routeMatch['name']);
 		$pageNode->class = $pageClassName;
-		$pageNode->title = $navConfig[$routeMatch['name']]['title']; // El titulo se saca de la configuración de la app
+		$pageNode->title = $this->NavigationConfiguration[$routeMatch['name']]['title']; // El titulo se saca de la configuración de la app
 		$pageNode->params = $routeMatch['params'];
 
         //echo "<pre>"; print_r ($pageNode);die();
@@ -357,41 +410,39 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 
 	public function GetTimeZone ()
 	{
-	    $appConfig = $this->GetConfigurationManager()->GetMapping('application');
-		return $appConfig['time_zone'];
+		return $this->ApplicationConfiguration['time_zone'];
 	}
 
     public function GetDeliveryChannel()
     {
         return $this->DeliveryChannel;
     }
-    
+
     public function GetDefaultDeliveryChannel ()
     {
         $result = null;
-        $appConfig = $this->GetConfigurationManager()->GetMapping('application');
-        if (isset($appConfig) && !empty($appConfig["deliveryChannel"]))
+        $appConfig = $this->GetConfigurationManager()->GetMapping('content');
+        if (!empty($appConfig) && !empty($appConfig['consumer']))
         {
-            $channelClass =  $appConfig["deliveryChannel"];
-            $result = $channelClass ();
+            $channelClass =  $appConfig['consumer'];
+            $result = new $channelClass();
         }
-        
-        return $result;                
+
+        return $result;
     }
-    
+
     public function GetDefaultProviderChannel ()
     {
         $result = null;
-        $appConfig = $this->GetConfigurationManager()->GetMapping('application');
-        if (isset($appConfig) && !empty($appConfig["deliveryChannel"]))
+        if (!empty($this->ApplicationConfiguration["deliveryChannel"]))
         {
-            $channelClass =  $appConfig["providerChannel"];
+            $channelClass =  $this->ApplicationConfiguration["providerChannel"];
             $result = $channelClass ();
         }
-        
-        return $result;                
+
+        return $result;
     }
-    
+
 
 }
 
