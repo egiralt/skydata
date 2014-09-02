@@ -59,7 +59,7 @@ use \SkyData\Core\RouteFactory;
     public function RenderServices ($pageContent)
     {
         $result = $pageContent;
-        $basePath = RouteFactory::ReverseRoute('Home'); //FIXME: No usar una constante.. Se debe sacar de un fichero de configuraciónu otro path estandar
+        $basePath = RouteFactory::ReverseRoute('/'); 
         if (in_array('SkyData\Core\Service\IServicesBindable', class_implements($this->GetParent())))
         {
             $pageName = $this->GetParent()->GetClassShortName();

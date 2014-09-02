@@ -157,7 +157,7 @@
 		if (isset($currentRequest))
 		{
 		    $application = $this->GetApplication();
-            $basePath = RouteFactory::ReverseRoute('Home');
+            $basePath = RouteFactory::ReverseRoute('/');
 
 			$servicesNames = array();
 			$services = $currentRequest->GetServices();
@@ -217,10 +217,16 @@
 	protected function RenderMetadataStyles ()
 	{
 		$result = null;
-
+        $basePath = RouteFactory::ReverseRoute('/'); //FIXME: No usar una constante.. Se debe sacar de un fichero de configuraciónu otro path estandar
 		foreach ($this->GetMetadataManager()->GetStyles() as $item)
 			if (!empty($item))
+            {
+                // Se le debe agregar la ruta de inicio usada por la aplicación
+                if (substr($item,0,1) !== '/') // Solo rutas relativas!
+                    $item = rtrim($basePath, '/').'/'.$item;
+                    
 				$result .= sprintf ("<link rel=\"stylesheet\" href=\"%s\" >\n\t", $item);
+            }
 
 		return $result;
 	}
@@ -231,10 +237,16 @@
 	protected function RenderMetadataScripts ()
 	{
 		$result = null;
-
+        $basePath = RouteFactory::ReverseRoute('/'); //FIXME: No usar una constante.. Se debe sacar de un fichero de configuraciónu otro path estandar
 		foreach ($this->GetMetadataManager()->GetScripts() as $item)
 			if (!empty($item))
+            {
+                // Se le debe agregar la ruta de inicio usada por la aplicación
+                if (substr($item,0,1) !== '/') // Solo rutas relativas!
+                    $item = rtrim($basePath, '/').'/'.$item;
+                    
 				$result .= sprintf ("<script type=\"text/javascript\" src=\"%s\" ></script>\n\t", $item);
+            }
 
 		return $result;
 	}

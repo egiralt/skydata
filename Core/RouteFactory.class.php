@@ -59,7 +59,13 @@ final class RouteFactory
     public static function ReverseRoute ($route)
     {
         static::CheckRouter();
-        return static::$Router->generate($route);
+        if($route == '/') // El caso especial de la raíz de la aplicación
+        {
+            $result = BootFactory::GetApplication()->GetApplicationBaseUrl ();
+            return $result ? $result : '/';
+        }
+        else 
+            return static::$Router->generate($route);
     }
     
     /**
