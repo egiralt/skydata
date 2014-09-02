@@ -195,7 +195,7 @@ use \SkyData\Core\Twig\TwigHelper;
 	protected function OutputAjaxJsonResult($value, $serviceConfig)
 	{
 		//TODO: Leer los headers que están en la configuración
-		$this->GetApplication()->GetDeliverChannel()->DeliverContent ($value, Http::CONTENT_TYPE_JSON);
+		$this->GetApplication()->GetDeliveryChannel()->DeliverContent ($value, Http::CONTENT_TYPE_JSON);
 	}
 
 	/**
@@ -203,13 +203,13 @@ use \SkyData\Core\Twig\TwigHelper;
 	 */
 	protected function OutputAjaxTextResult($value, $serviceConfig)
 	{
-        $this->GetApplication()->GetDeliverChannel()->DeliverContent ($value, Http::CONTENT_TYPE_TEXT);
+        $this->GetApplication()->GetDeliveryChannel()->DeliverContent ($value, Http::CONTENT_TYPE_TEXT);
 	}
 
 
 	protected function OutputAjaxHtmlResult($value, $serviceConfig)
 	{
-        $this->GetApplication()->GetDeliverChannel()->DeliverContent ($value, Http::CONTENT_TYPE_HTML);
+        $this->GetApplication()->GetDeliveryChannel()->DeliverContent ($value, Http::CONTENT_TYPE_HTML);
 	}
 
 	protected function OutputAjaxXmlResult($value, $serviceConfig)
