@@ -6,5 +6,10 @@ Pages/*
 !Pages/README.md
 Services/*
 !Services/README.md
+Modules/*
+!Modules/MainMenu
+!Modules/Home
+!Modules/README.md
+
 
 
