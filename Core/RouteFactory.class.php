@@ -22,6 +22,8 @@
  */
 namespace SkyData\Core;
 
+include SKYDATA_PATH_LIBRARIES.'/AltoRouter/AltoRouter.php';
+
 use \SkyData\Core\BootFactory;
 
 /**
@@ -47,7 +49,7 @@ final class RouteFactory
             if (!empty($base_path))
                 static::$Router->setBasePath ($base_path);
             
-            static::$Router->map ('GET','/', $base_path, '/');    
+            //static::$Router->map ('GET','/', $base_path, '#root');    
         }
     }
     

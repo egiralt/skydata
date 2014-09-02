@@ -25,13 +25,12 @@
 use \SkyData\Core\SkyDataObject;
 
 use \SkyData\Core\ILayoutNode;
- 
+
  abstract class SkyDataView extends SkyDataObject implements IRenderable, ILayoutNode
  {
 	
 	private $UseCache = false;
 	private $UseDebug = false;
-	private $twig;
 	private $Parent;
 	private $Mappings 	= array();
 

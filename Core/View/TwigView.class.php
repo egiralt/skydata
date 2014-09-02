@@ -27,7 +27,7 @@ use \SkyData\Core\ReflectionFactory;
 	 */
 	public function GetDefaultTemplateFileName ()
 	{
-		return ReflectionFactory::getClassShortName (get_class($this->GetParent())).'.twig';
+		return 'default.twig';
 	}
 	
 	/**
@@ -54,6 +54,9 @@ use \SkyData\Core\ReflectionFactory;
 			
 			if (is_file($defaultTemplateFullFilePath))
 				$this->TwigInstance = $this->TwigEnvironment->loadTemplate ($templateFile); 
+            else                
+                throw new \Exception("No existe el fichero de plantilla '$templateFile' para ".get_class($this->GetParent()), 1);
+                
 		}
 	}
 	
