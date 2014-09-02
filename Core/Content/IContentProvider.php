@@ -22,11 +22,11 @@
  */
 namespace SkyData\Core\Content;
 
-class FileContentProvider extends ProviderChannel
+interface IContentProvider
 {
     
-    function GetContent () 
-    {
-        
-    }
+    public function GetContentID ();
+    
+    public function GetLastModificationTime ();
+    
 }

@@ -24,7 +24,10 @@ namespace SkyData\Core\Content;
 
 use \SkyData\Core\SkyDataObject;
 
-class DeliveryChannel extends SkyDataObject implements IChannel, IConsumer
+/**
+ * Implementación de un consumidor de contenidos básico
+ */
+class DeliveryChannel extends SkyDataObject implements IConsumer
 {
 
         

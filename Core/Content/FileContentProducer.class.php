@@ -1,6 +1,6 @@
 <?php
 /**
- *  SkyData: CMS Framework   -  21/Aug/2014
+ *  SkyData: CMS Framework   -  01/Sep/2014
  *
  * Copyright (C) 2014  Ernesto Giralt (egiralt@gmail.com)
  *  This program is free software: you can redistribute it and/or modify
@@ -16,14 +16,32 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @Author: E. Giralt
- * @Date:   21/Aug/2014
+ * @Date:   01/Sep/2014
  * @Last Modified by:   E. Giralt
- * @Last Modified time: 22/Aug/2014
+ * @Last Modified time: 01/Sep/2014
  */
 namespace SkyData\Core\Content;
 
-interface IChannel 
+use \SkyData\Core\ReflectionFactory;
+
+class FileContentProducer extends ProducerChannel
 {
     
+    /**
+     * Extrae el contenido del fichero especificado como valor el parámetro
+     */
+    public function GetContent () 
+    {
+        $dir = ReflectionFactory::getClassFilePath ($this->GetProvider()).'/Templates' ;
+        $fileName = $this->Configuration['templateFile'];
+        $fullPath = sprintf('%s/%s', $dir, $fileName);
+        echo "<pre>"; echo $fullPath;die();
+        
+        if (is_file($fullPath))
+        {
+            $result = file_get_contents($fullPath);
+            return $result;
+        }
+    }
+    
 }
-

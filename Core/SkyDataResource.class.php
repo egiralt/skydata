@@ -4,6 +4,7 @@
  */
 namespace SkyData\Core;
 
+use \SkyData\Core\Application\Application;
 use \SkyData\Core\Configuration\ConfigurationManager;
 use \SkyData\Core\Metadata\MetadataManager;
 use \SkyData\Core\Service\SkyDataService;
@@ -14,13 +15,14 @@ use \SkyData\Core\Configuration\IConfigurable;
 use \SkyData\Core\Metadata\IMetadataContainer;
 use \SkyData\Core\Controller\IController;
 use \SkyData\Core\View\IRenderable;
+use \SkyData\Core\Content\IContentProvider;
 
  
  /**
   * Clase base para todas las clases del framework, excepto la clase usada
   */
 abstract class SkyDataResource extends SkyDataObject 
-	implements IMetadataContainer, IConfigurable, ILayoutNode, IServicesBindable 
+	implements IMetadataContainer, IConfigurable, ILayoutNode, IServicesBindable, IContentProvider	 
  {
 
 	private $MetadataManager;
@@ -45,6 +47,17 @@ abstract class SkyDataResource extends SkyDataObject
 		$this->GetController()->Run ();
 	}
 	
+    public function GetContentID ()
+    {
+        $appConfig = $this->GetApplication()->GetConfigurationManager()->GetMapping ('application');
+        return sprintf ('%s#%s', $appConfig['data']['root_uri'], ReflectionFactory::getClassShortName($this));    
+    }
+    
+    public function GetLastModificationTime ()
+    {
+        return new DateTime(); // Siempre se retorna la fecha/hora del momento para que no tenga cache
+    }
+    
 	public function GetMetadataManager ()
 	{
 		if (!isset($this->MetadataManager))
@@ -144,6 +157,11 @@ abstract class SkyDataResource extends SkyDataObject
 		
 		return $this->View;
 	}
+    
+    protected function GetContentProducer ()
+    {
+        return Application::ContentAgentFactory($this, 'producer');    
+    }
 
 	/**
 	 * Crea la instancia de View que usará esta página
@@ -151,6 +169,7 @@ abstract class SkyDataResource extends SkyDataObject
 	protected function CreateView ()
 	{
 		$view = null;
+        //
 		// Crear la clase view (si existe) de esta página
 		$viewClassName = ReflectionFactory::getViewClassName (get_class($this));
 		$viewClassFile = ReflectionFactory::getClassFilePath ($viewClassName);
@@ -160,7 +179,16 @@ abstract class SkyDataResource extends SkyDataObject
 			$view =	$this->GetInstanceDefaultViewClass();
 		
 		if ($view !== null)
-			$this->SetView($view);
+        {
+            // Asignar el view a este recurso
+            $this->SetView($view);
+            // Configurar el productor de contenidos y conectarlo al view creado
+            $producer = $this->GetContentProducer();
+            $producer->SetContentProvider($this);
+            $viewsConfig = $this->GetApplication()->GetConfigurationManager()->GetMapping('views');
+            // Asigna la configuración del view 
+            $producer->SetContentConfiguration($viewsConfig [ReflectionFactory::getClassShortName($view)]['content']);
+        }
 		else
 			throw new \Exception("Debe indicarse en la configuración algun tipo de vista o heredar de alguna clase para la clase ".get_class($this), -1000);
 	}

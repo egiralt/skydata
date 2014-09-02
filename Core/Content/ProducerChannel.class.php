@@ -24,7 +24,34 @@ namespace SkyData\Core\Content;
 
 use SkyData\Core\SkyDataObject;
 
-class ProviderChannel extends SkyDataObject implements IChannel, IProducer 
+/**
+ * Implementación de un productor básico.
+ */
+abstract class ProducerChannel extends SkyDataObject implements IProducer 
 {
+    private $ContentProvider;
+    private $Configuration;
     
+    abstract public function GetContent ();
+    
+    /**
+     * Modifica/asigna el valor del proveedor de contenidos asignados a este productor
+     */
+    public function SetContentProvider (IContentProvider $provider)
+    {
+        $this->ContentProvider = $provider;        
+    }
+    
+    /**
+     * Retorna el proveedor de contenidos asignados a este productor
+     */
+    public function GetContentProvider ()
+    {
+        return $this->ContentProvider;
+    }
+    
+    public function SetContentConfiguration ($config)
+    {
+        $this->Configuration = $config;        
+    }
 }

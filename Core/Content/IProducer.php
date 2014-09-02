@@ -22,7 +22,18 @@
  */
 namespace SkyData\Core\Content;
 
+/**
+ * Define un objeto que genera el contenido a partir de un proveedor y lo entrega a una clase usuaria
+ */
 interface IProducer
 {
+    
+    public function SetContentProvider (IContentProvider $provider);
+    
+    public function GetContentProvider ();
+    
+    public function GetContent();
+    
+    public function SetContentConfiguration ($config);
     
 }
