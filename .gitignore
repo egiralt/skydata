@@ -3,5 +3,8 @@
 Cache/*
 Configuration/app.yaml
 Pages/*
+!Pages/README.md
 Services/*
+!Services/README.md
+
 
