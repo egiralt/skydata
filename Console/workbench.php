@@ -34,7 +34,10 @@ echo "\nGenerador de modulos para SkyData  (version ".VERSION.")\n--------------
 
 if (count($argv) == 1)
 {
-	echo "Use: workbench  <NombreModulo>\n\t NombreModulo: Identificador del modulo que se se desea crear\n\n";
+	echo "Use: workbench  [page|service|module]  Nombre \n";
+    echo "\n";
+    echo "\tIndique uno de estos valores para crear una página, un servicio o un módulo. \n";
+    echo "\tNombre: Identificador del modulo que se se desea crear\n\n";
 	die(-1);
 }
 
