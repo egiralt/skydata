@@ -1,4 +1,7 @@
 application:
+  data:  
+    root_uri: http://volkswagen-retail.es/posventa/
+  
   # Título de la aplicación
   title: Posventa
 
@@ -12,9 +15,10 @@ application:
   # Zona horaria usada principalmente para el formato de fechas 
   time_zone: 'Europe/Madrid'
   
-  # Canal por defecto para le entrega de contenido
-  deliveryChannel: SkyData\Core\Content\HttpDeliveryChannel
-  providerChannel: SkyData\Core\Content\FileContentProvider
+content:
+# Canal por defecto para le entrega de contenido
+  consumer: \SkyData\Core\Content\HttpDeliveryChannel
+  producer: \SkyData\Core\Content\FileContentProducer
 
 # Lista de páginas de la aplicación
 navigation:
@@ -98,6 +102,27 @@ storage:
       user: root
       password: qwerty
       database: crm
+      
+ views:
+   HtmlView:
+     content: 
+       templateFile: index.html
+     
+   TwigView:
+     content: 
+       templateFile: default.twig
+     
+   MarkdownView:
+     content: 
+       templateFile: default.md
+     
+   PHPView:
+     content: 
+       templateFile: index.php
+     
+   
+     
+   
       
       
       
