@@ -59,7 +59,7 @@ use \SkyData\Core\RouteFactory;
     public function RenderServices ($pageContent)
     {
         $result = $pageContent;
-        $basePath = RouteFactory::ReverseRoute('/'); 
+        $basePath = rtrim($this->GetApplication()->GetApplicationBaseUrl(), '/');
         if (in_array('SkyData\Core\Service\IServicesBindable', class_implements($this->GetParent())))
         {
             $pageName = $this->GetParent()->GetClassShortName();
@@ -72,12 +72,12 @@ use \SkyData\Core\RouteFactory;
                 if (!empty($globalServiceScript))
                 {
                     $cacheID = $this->GetApplication()->GetCacheManager()->Store ($globalServiceScript, $serviceName.'_globalservice_script.js');
-                    $this->GetApplicationView()->GetSelectedTheme()->GetMetadataManager()->AddScript ($basePath.'Cache/'.$cacheID.'.js');
+                    $this->GetApplicationView()->GetSelectedTheme()->GetMetadataManager()->AddScript ($basePath.'/Cache/'.$cacheID.'.js');
                 }
                 if (!empty($serviceScript))
                 {
                     $cacheID = $this->GetApplication()->GetCacheManager()->Store ($serviceScript, $serviceName.'_service_script.js');
-                    $this->GetApplicationView()->GetSelectedTheme()->GetMetadataManager()->AddScript ($basePath.'Cache/'.$cacheID.'.js');
+                    $this->GetApplicationView()->GetSelectedTheme()->GetMetadataManager()->AddScript ($basePath.'/Cache/'.$cacheID.'.js');
                 }
 
 

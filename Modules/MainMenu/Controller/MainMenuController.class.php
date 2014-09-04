@@ -37,16 +37,20 @@
 	 */
 	private function buildNode ($navName, $navNode, $currentPage)
 	{
-		$result = new \stdClass();
+		$result = null;
         if ($navNode['public'] !== false)
         {
+            $result = new \stdClass();
+            $application = $this->GetApplication();
+            $base_path = rtrim($application->GetApplicationBaseUrl(), '/');
+            
     		$result->label = $navNode['title'];
-            $result->icon = $navNode['icon'];
+            $result->icon = $base_path.'/'.$navNode['icon'];
             $result->active = $navNode['route'] == $currentPage->path;
     		if ($navNode['route'] == '/')
-    			$result->route = $this->GetApplication()->GetApplicationBaseUrl().'/';
+    			$result->route = $base_path.'/';
     		else
-    			$result->route =  $this->GetApplication()->GetApplicationBaseUrl().$navNode['route'];
+    			$result->route =  $base_path.'/'.ltrim($navNode['route'], '/');
     		if ($navNode['subnav'])
     		{
     			$result->childs = array();

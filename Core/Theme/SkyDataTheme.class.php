@@ -93,15 +93,17 @@
 		$pageInstance = $this->GetPage();
 		if ($pageInstance != null)
 		{
+		    $application = $this->GetApplication();
 		    $metadataManager = $this->GetMetadataManager();
 			// Se mezclan los metadatos de la página con los del estilo
-            $metadataManager->Merge ($this->GetApplication()->GetMetadataManager());
+            $metadataManager->Merge ($application->GetMetadataManager());
 			$metadataManager->Merge ($pageInstance->GetMetadataManager());
 
 			$content = $pageInstance->GetView()->Render(); //!! el contenido de la página que se muestra
 			$content = $pageInstance->GetView()->RenderServices($content);
             $thisPage = $this->GetPage();
 
+            $this->Assign ('root_path', $application->GetApplicationBaseUrl());
 			$this->Assign ('page_content', $content);
 			$this->Assign ('page_title', $thisPage->GetPageTitle());
 			$this->Assign ('base_path', $this->GetBasePath());
@@ -157,7 +159,7 @@
 		if (isset($currentRequest))
 		{
 		    $application = $this->GetApplication();
-            $basePath = RouteFactory::ReverseRoute('/');
+            $basePath = rtrim($application->GetApplicationBaseUrl(), '/');
 
 			$servicesNames = array();
 			$services = $currentRequest->GetServices();
@@ -167,7 +169,7 @@
             // Se guarda el script en la caché y se agrega a la lista de scripts de la aplicación
 			$script = TwigHelper::RenderTemplate (SKYDATA_PATH_CORE.'/Application/Scripts/main_module.twig', array ('services' => $servicesNames), true);
 			$cacheID = $this->GetApplication()->GetCacheManager()->Store ($script, 'services_main_script.js');
-			$this->GetMetadataManager()->AddScript ($basePath.'Cache/'.$cacheID.'.js');
+			$this->GetMetadataManager()->AddScript ($basePath.'/Cache/'.$cacheID.'.js');
 		}
 	}
 
@@ -217,7 +219,7 @@
 	protected function RenderMetadataStyles ()
 	{
 		$result = null;
-        $basePath = RouteFactory::ReverseRoute('/'); //FIXME: No usar una constante.. Se debe sacar de un fichero de configuraciónu otro path estandar
+        $basePath = $this->GetApplication()->GetApplicationBaseUrl();
 		foreach ($this->GetMetadataManager()->GetStyles() as $item)
 			if (!empty($item))
             {
@@ -237,7 +239,7 @@
 	protected function RenderMetadataScripts ()
 	{
 		$result = null;
-        $basePath = RouteFactory::ReverseRoute('/'); //FIXME: No usar una constante.. Se debe sacar de un fichero de configuraciónu otro path estandar
+        $basePath = $this->GetApplication()->GetApplicationBaseUrl();
 		foreach ($this->GetMetadataManager()->GetScripts() as $item)
 			if (!empty($item))
             {
@@ -402,10 +404,11 @@
 	{
 	    $manifest = $this->GetManifest();
 		$configStyle = $manifest['styles'][ $this->GetSelectedStyle()->GetName()];
-		$this->GetMetadataManager()->LoadFromConfiguration ($configStyle);
+        
+        $metadataManager = $this->GetMetadataManager();
+		$metadataManager->LoadFromConfiguration ($configStyle);
 
 		// Ahora hay que corregir los paths de los scripts que vienen del estilo
-		$metadataManager = $this->GetMetadataManager();
 		$path = $this->GetBasePath();
 		$scripts = $metadataManager->GetScripts();
 		$styles = $metadataManager->GetStyles();
