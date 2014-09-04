@@ -117,5 +117,10 @@
     {
         return $this->RequestParams;
     }
+    
+    public function AddScript ($scriptPath)
+    {
+        $this->GetMetadataManager()->AddScript ($scriptPath);        
+    }
 
  }
