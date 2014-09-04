@@ -10,6 +10,8 @@ Modules/*
 !Modules/MainMenu
 !Modules/Home
 !Modules/README.md
+Configuration/app.yaml
+Configuration/metadata.yaml	
 
 
 
