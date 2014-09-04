@@ -1,6 +1,8 @@
 .settings
 .project
 Cache/*
+!Cache/index.html
+!Cache/README.md
 Configuration/app.yaml
 Pages/*
 !Pages/README.md
