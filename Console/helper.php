@@ -106,8 +106,9 @@ function generatePage ($pageName, $pagePath)
 	{
 		echo "Creando directorio principal..."; mkdir($pagePath); echo "OK\n";
 		echo "Creando directorio View..."; mkdir($pagePath.'/View'); echo "OK\n";
+		echo "Creando directorio Controller..."; mkdir($pagePath.'/Controller'); echo "OK\n";
 		echo "Creando directorio Templates..."; mkdir($pagePath.'/Templates'); echo "OK\n";
-		
+        
 		$parameters = array ('pageName' => $pageName, 'today' => $today);
 		
 		/**  Clase principal del módulo **/	

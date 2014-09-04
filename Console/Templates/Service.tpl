@@ -11,4 +11,9 @@ use \SkyData\Core\Service\SkyDataService;
 
 class {$serviceName} extends SkyDataService 
 {
+ 	public function __construct ()
+    {
+        parent::__construct(); //Es obligatorio llamar al constructor de la superclase
+    }
+    
 } 
