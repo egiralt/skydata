@@ -8,31 +8,36 @@ var module_{{ serviceName }} = angular.module ('{{ serviceName }}',['SkyDataApp'
 {% import 'misc.twig' as __ %}
 {% import 'services_methods.twig' as factory %}
 
-  	module_{{ serviceName }}.controller ('{{ serviceName }}Controller', ['$scope', '$http', '$sce','$q', 'skydataPageServices', 
-  	function ($scope, $http, $sce, $q, pageServices) 
+  	module_{{ serviceName }}.controller ('{{ serviceName }}Controller', ['$scope', '$http', '$sce','$q', 'skydataPageServices',
+  	function ($scope, $http, $sce, $q, pageServices)
  	{
+ 		{#  Y los métodos que se injectan desde el código #}
+		{% for injectedVariable in injectedVariables %}
+			$scope.{{ injectedVariable.variable }} = {{ injectedVariable.value|raw }};
+		{% endfor %}
+
 			{% for table in tables %}
 				{# Inicializar la variable del modelo. Si son varios parámetros se asigna en un array, si no, un objeto simple #}
-				{# {% if table.fields|length > 1 %} #} 
+				{# {% if table.fields|length > 1 %} #}
 					$scope.{{ table.name }} ={% if table.is_enumerable %} []{% else %} {}{% endif %};
 				{#}
-				{% else  %} 
+				{% else  %}
 					$scope.{{ table.name }} ={% if table.is_enumerable %} []{% else %} null{% endif %};
 				{% endif %}
 				#}
-				
+
 				{# Generar cada uno de los métodos asociados a la tabla de datos #}
 				{% for method in table.methods %}
-					{{ factory.buildLocalDataMethod (serviceName, table, method) }}
+					{{ factory.buildLocalDataMethod (serviceName, table, method, base_path) }}
 				{% endfor %} {# methods #}
-				
+
 			{% endfor %} {# tables #}
-			
+
 		{# Definir el resto de métodos que no están conectados a datos #}
 		{% for method in methods %}
-			{{ factory.buildBindableLocalMethod (serviceName, method) }}
+			{{ factory.buildBindableLocalMethod (serviceName, method, base_path) }}
 		{% endfor %}
-					
+
 		{# Se deben generar los métodos que fueron marcados para ejecutarse al cargar el controller #}
 		{% for table in tables %}
 			{% for method in table.methods %}
@@ -41,31 +46,50 @@ var module_{{ serviceName }} = angular.module ('{{ serviceName }}',['SkyDataApp'
 				{% endif %}
 			{% endfor %}
 		{% endfor %}
-		
+
 		{# Y además los métodos no asociados #}
 		{% for method in methods %}
 			{% if method.run_on_load %}
 				$scope.{{ method.name }}();
 			{% endif %}
 		{% endfor %}
-		
+
+		{#  Y los métodos que se injectan desde el código #}
+		{% for InjectedFunction in InjectedFunctions %}
+		$scope.{{ InjectedFunction.name }} = function (
+			{% if InjectedFunction.parameters|keys|first != 0 %}
+				{{ InjectedFunction.parameters|keys|join(',') }}
+			{% else %}
+				{{ InjectedFunction.parameters|join(',') }}
+			{% endif %}) {
+			{{ InjectedFunction.script|raw }}
+		};
+		{% endfor %}
+
+		{# Los métodos injectados que se han marcado para ejecutarse al inicio #}
+		{% for InjectedFunction in InjectedFunctions %}
+			{% if InjectedFunction.loadOnStart %}
+				$scope.{{ InjectedFunction.name }}({% for name in InjectedFunction.parameters %}{{ value|raw }}{% if loop.last == false %},{% endif %}{% endfor %});
+			{% endif %}
+		{% endfor %}
+
 	}])
 	{# Ahora los métodos con modelos de datos que generan tags #}
 	{% for table in tables %}
 		{% for method in table.methods %}
 			{{ factory.renderAsTag (serviceName, method) }}
-		{% endfor %}		
+		{% endfor %}
 	{% endfor %}
 	{# Y los métodos sin tablas también #}
 	{% for method in methods %}
 		{{ factory.renderAsTag (serviceName, method) }}
 	{% endfor %};
-{# 
+{#
 		.directive ('vehiculoPopup', function ($compile, $rootScope) {
 			return {
 				restrict: 'E',
 				replace: false,
-				link: function (scope, $element, $attrs, controller) 
+				link: function (scope, $element, $attrs, controller)
 				{
 					$attrs.$observe('bastidor', function(bastidor) {
 						scope.GetVehiculoPopup(bastidor)

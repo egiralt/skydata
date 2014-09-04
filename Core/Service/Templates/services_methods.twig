@@ -1,7 +1,7 @@
 
-{% macro buildLocalDataMethod (serviceName, table, method) %}
+{% macro buildLocalDataMethod (serviceName, table, method, base_path) %}
 	$scope.{{ method.name }} = function ({% if method.parameters|length > 0 %}_{{ method.parameters|join(', _') }}{% endif %}) {
-		return $http.get ('/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(") + '/' + encodeURIComponent(_") }}),{% if method.parameters|length > 0 %} + "/" + {{ method.parameters|join('+ "/" + _')|raw }}{% endif %},
+		return $http.get ('{{ base_path }}/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(") + '/' + encodeURIComponent(_") }}),{% if method.parameters|length > 0 %} + "/" + {{ method.parameters|join('+ "/" + _')|raw }}{% endif %},
 			{ {{ __.responseType(method.contentType) }} }
 		{% endif %}). success ( function (data, status, headers, config) {
 			{% if table.is_enumerable %} 	{# Si es una tabla enumerable se genera un ciclo para agregar cada uno de los registros #}
@@ -31,7 +31,7 @@
 	};
 {% endmacro %}
 
-{% macro buildBindableLocalMethod (serviceName, method) %}
+{% macro buildBindableLocalMethod (serviceName, method, base_path) %}
 	{% if method.bind_variable|length > 0 %}
 		$scope.{{ method.bind_variable }} = null; {# Se inicializa la variable conectada al método #}
 	{% endif %}
@@ -40,7 +40,7 @@
 		{% if method.bind_variable|length > 0 %} {#  Si hay algo que retornar #}
 		{% endif  %}
 		{# Llamar al método #}
-		return $http.get ('/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(') + "/" + encodeURIComponent(_')|raw }}),
+		return $http.get ('{{ base_path }}/service/{{ serviceName }}/{{ method.name }}'{% if method.parameters|length > 0 %} + '/' + encodeURIComponent(_{{ method.parameters|join(') + "/" + encodeURIComponent(_')|raw }}),
 		{ {{ __.responseType(method.contentType) }} }
 		{% endif %}){% if method.bind_variable|length > 0 %}.success(function (data, status, headers, config	) { {# tiene una variable que asignar! #}
 
