@@ -1,6 +1,6 @@
 application:
   data:  
-    root_uri: http://volkswagen-retail.es/posventa/
+    root_uri: http://example.org
   
   # Título de la aplicación
   title: Posventa
@@ -24,42 +24,13 @@ content:
 navigation:
   Home:
     route: /
-    icon: /Themes/Jarvis/Styles/main/img/home.png
+    icon: Themes/Jarvis/Styles/main/img/home.png
     title: Inicio
-
-  FichaASP:
-    title: Ficha ASP
-    class: FichaASP
-    route: /ficha_asp
-    icon: /Themes/Jarvis/Styles/main/img/start-icons/stats.png
-    # TODO: Agregar la gestión de roles
-    roles: ASP,DPV
-    # TODO: Hacer que las páginas puedan recibir un template distinto al default
-    template: main/bootstrap
-
-  Presupuestador:
-    title: Presupuestos
-    route: /presupuestos
-    icon: /Themes/Jarvis/Styles/main/img/start-icons/orders.png
-
-  DetalleCliente:
-    title: Resumen del cliente
-    route: /detalles/[*:tipo]/[*:id]
     public: false
 
-  ResumenVehiculo:
-    title: Ficha Taller
-    route: /resumen/[*:bastidor]
-    public: false
-    icon: /UI/img/ficha_resumen.png
-    
-  Search:
-    title: Resultados de búsqueda
-    route: /search/[*:expresion]/[i:nombres]/[i:matriculas]/[i:dni]/[i:telefonos]
-    
 # Todos los temas de la aplicación.   
 themes:
-  Jarvis:
+  BinaryAdmin:
     default: true
     cached: false
     debug: false  
@@ -67,16 +38,11 @@ themes:
 #TODO: Agregar soporte al dataType 'image'
 # Todos los servicios      
 services:
-  HTMLServices:
-    defaultType: html
-    global: true
-
-  PresupuestadorData:
-    dataType: json
-    #TODO: Hay que programar el código que manejar los headers 
-    headers:
-      Cache-Control: no-cache, must-revalidate
-      Expires: Mon, 01 Jul 1900 00:00:00 GMT
+#  SampleData:
+#    dataType: json
+#    headers:
+#      Cache-Control: no-cache, must-revalidate
+#      Expires: Mon, 01 Jul 1900 00:00:00 GMT
 
 # Definición de rutas especiales de la aplicación
 routes:
@@ -89,11 +55,14 @@ routes:
 # ============================== End core routing =========================================
 
 storage:
+  elasticsearch:
+	vgrs:
+		server: ['localhost:9200']
   mysql:
     repository:
       server: localhost
       user: root
-      password: 
+      password: qwerty
       database: vars_cargas
       port: 3306
     crm:
