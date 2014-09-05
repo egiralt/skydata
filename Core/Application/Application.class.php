@@ -25,6 +25,7 @@ namespace SkyData\Core\Application;
 use \SkyData\Core\RouteFactory;
 use \SkyData\Core\Configuration\ConfigurationManager;
 use \SkyData\Core\ReflectionFactory;
+use \SkyData\Core\BootFactory;
 use \SkyData\Core\Metadata\MetadataManager;
 use \SkyData\Core\Http\Http;
 use \SkyData\Core\Cache\File\FileCacheManager;
@@ -43,26 +44,26 @@ use \SkyData\Core\Page\IPage;
 class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 {
 
-	private $Configuration = null;
-	private $View = null;
-	private $CurrentNavigationNode = null;
-	private $MetadataManager;
+    private $Configuration = null;
+    private $View = null;
+    private $CurrentNavigationNode = null;
+    private $MetadataManager;
 
-	private $CacheManager;
-	private $TemplatesCache;
+    private $CacheManager;
+    private $TemplatesCache;
     private $DeliveryChannel;
     private $NavigationConfiguration;
 
-	public function __construct()
-	{
-		$this->View = new ApplicationView();
+    public function __construct()
+    {
+        $this->View = new ApplicationView();
 
-		$this->MetadataManager = new MetadataManager ();
-		$this->CacheManager = new FileCacheManager (SKYDATA_PATH_CACHE);
+        $this->MetadataManager = new MetadataManager ();
+        $this->CacheManager = new FileCacheManager (SKYDATA_PATH_CACHE);
 
-		$this->LoadConfiguration();
-		/** Las rutas de la aplicación */
-		$this->LoadMetadata();
+        $this->LoadConfiguration();
+        /** Las rutas de la aplicación */
+        $this->LoadMetadata();
 
         $confManager = $this->GetConfigurationManager();
         $this->NavigationConfiguration = $confManager->GetMapping ('navigation');
@@ -71,44 +72,49 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
         if (empty($this->NavigationConfiguration) || empty($this->ApplicationConfiguration))
             throw new Exception("Configuración no válida para la aplicación", 1);
 
-	}
+    }
 
     /**
      * Este método esta escrito para tomar el valor de uno de los agentes (producer o consumer) del contenido.
      */
-    static public function ContentAgentFactory(SkyDataResource $target, $configName)
+    static public function ContentAgentFactory(SkyDataResource $target = null, $configName)
     {
         $result = null;
 
-        // Hay que leer los datos de la configuración del recurso, y si no, de la configuración de la aplicación
-        $config = $target->GetConfigurationManager()->GetMapping ('content');
-
-        if (empty($config))
+        if (isset($target))
         {
-            $thisClassName = ReflectionFactory::getClassShortName($target);
+            // Hay que leer los datos de la configuración del recurso, y si no, de la configuración de la aplicación
+            $config = $target->GetConfigurationManager()->GetMapping ('content');
 
-            $appConfManager = $target->GetApplication()->GetConfigurationManager();
-            $config = $appConfManager->GetMapping ('navigation');
-
-            if (!empty($config) && !empty($config[$thisClassName]['content']))
-                $config = $config[$thisClassName]['content']; // se toma el de la configuración de la página
-            else
-                $config = $appConfManager->GetMapping ('content'); // Se toma del default de la aplicación
-        }
-
-        if (!empty($config) && !empty($config[$configName]))
-        {
-            try
+            if (empty($config))
             {
-                $className = $config[$configName];
-                $result = new $className();
-            }
-            catch (Exception $e)
-            {
-                throw new Exception("No se puede crear el '$configName' de contenido para la clase '$thisClassName'.", 1);
+                $thisClassName = ReflectionFactory::getClassShortName($target);
 
+                $appConfManager = $target->GetApplication()->GetConfigurationManager();
+                $config = $appConfManager->GetMapping ('navigation');
+
+                if (!empty($config) && !empty($config[$thisClassName]['content']))
+                    $config = $config[$thisClassName]['content']; // se toma el de la configuración de la página
+                else
+                    $config = $appConfManager->GetMapping ('content'); // Se toma del default de la aplicación
+            }
+
+            if (!empty($config) && !empty($config[$configName]))
+            {
+                try
+                {
+                    $className = $config[$configName];
+                    $result = new $className();
+                }
+                catch (Exception $e)
+                {
+                    throw new Exception("No se puede crear el '$configName' de contenido para la clase '$thisClassName'.", 1);
+
+                }
             }
         }
+        else
+            $result = static::GetDefaultDeliveryChannel();
 
         return $result;
     }
@@ -126,22 +132,22 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
             throw new \Exception("No se ha podido crear el canal de entrega de contenido.", -1);
     }
 
-	/**
-	 * Este método es el centro de la gestión del framework. Aquí se decide:
-	 * El routing, la creación de los recursos y
-	 *
-	 */
-	public function Run ()
-	{
-	    $contentType = Http::CONTENT_TYPE_HTML; // Por defecto es una página html
-	    $allowCache = true;
+    /**
+     * Este método es el centro de la gestión del framework. Aquí se decide:
+     * El routing, la creación de los recursos y
+     *
+     */
+    public function Run ()
+    {
+        $contentType = Http::CONTENT_TYPE_HTML; // Por defecto es una página html
+        $allowCache = true;
         $this->LoadRoutes();
 
-		// Organizar el routing de la página según la solicitud
-		$this->ManageRouteRequest();
+        // Organizar el routing de la página según la solicitud
+        $this->ManageRouteRequest();
         $this->InitDeliveryChannel();
 
-		$currentPage = $this->GetCurrentRequest();
+        $currentPage = $this->GetCurrentRequest();
         $interfaces = class_implements($currentPage);
         $is_page = in_array('SkyData\Core\Page\IPage', $interfaces);
         $is_service = !$is_page && in_array('SkyData\Core\Service\IService', $interfaces);
@@ -154,13 +160,13 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
 
         try
         {
-		  	if ($is_page || $is_service)
-			{
-		  		$currentPage->GetController()->Run();
-			    // TODO: Lanzar eventos, que reciben tanto los headers como el contenido. Como idea: beforeRender, beforeHeaders, afterHeaders, afterRender
-		  		$content = $this->GetView()->Render();
-        	}
-		}
+            if ($is_page || $is_service)
+            {
+                $currentPage->GetController()->Run();
+                // TODO: Lanzar eventos, que reciben tanto los headers como el contenido. Como idea: beforeRender, beforeHeaders, afterHeaders, afterRender
+                $content = $this->GetView()->Render();
+            }
+        }
         catch (\Yaec\Exceptions\Yaec_ConnectionException $e)
         {
             if ($is_service)
@@ -189,7 +195,7 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
         }
 
         $this->GetDeliveryChannel()->DeliverContent ($content, $contentType, $allowCache); //TODO: Agregar modification time
-	}
+    }
 
     public function GetApplicationDataRootUri ()
     {
@@ -201,31 +207,31 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
         return !empty($this->ApplicationConfiguration['base_url']) ? $this->ApplicationConfiguration['base_url'] : null;
     }
 
-	protected function LoadRoutes ()
-	{
-		// Las rutas declaradas en el fichero de configuración
-		$appConfig = $this->GetConfigurationManager ()->GetMapping('routes');
+    protected function LoadRoutes ()
+    {
+        // Las rutas declaradas en el fichero de configuración
+        $appConfig = $this->GetConfigurationManager ()->GetMapping('routes');
 
-		if (isset($appConfig))
-		{
-			// Primero las rutas declaradas
-			foreach ($appConfig as $routeName => $routeConfig)
-				RouteFactory::Map($routeConfig['methods'], $routeConfig['route'], $routeConfig['target'], $routeName);
-		}
-		/** Ahora las de las páginas **/
-		if ($pages = $this->NavigationConfiguration)
-		{
-		    $pagesRouteList = array();
+        if (isset($appConfig))
+        {
+            // Primero las rutas declaradas
+            foreach ($appConfig as $routeName => $routeConfig)
+                RouteFactory::Map($routeConfig['methods'], $routeConfig['route'], $routeConfig['target'], $routeName);
+        }
+        /** Ahora las de las páginas **/
+        if ($pages = $this->NavigationConfiguration)
+        {
+            $pagesRouteList = array();
 
-			$this->GetRoutesFlatList ($pages, $pagesRouteList,'/'); // Aplanar la lista jerárquica de los menús
+            $this->GetRoutesFlatList ($pages, $pagesRouteList,'/'); // Aplanar la lista jerárquica de los menús
             foreach ($pagesRouteList as $pageName => $pageNode)
             {
-				$className = !empty($pageNode->class) ? $pageNode->class : $pageName; // Se pueda usar el nombre de la clase
-				RouteFactory::Map('GET', $pageNode->route, SKYDATA_NAMESPACE_PAGES.'\\'.$className.'\\'.$className, $pageName);
-			}
-		}
-		// Ahora las de los temas, se carga desde ya el tema activo
-		$selectedTheme = $this->GetView()->GetSelectedTheme();
+                $className = !empty($pageNode->class) ? $pageNode->class : $pageName; // Se pueda usar el nombre de la clase
+                RouteFactory::Map('GET', $pageNode->route, SKYDATA_NAMESPACE_PAGES.'\\'.$className.'\\'.$className, $pageName);
+            }
+        }
+        // Ahora las de los temas, se carga desde ya el tema activo
+        $selectedTheme = $this->GetView()->GetSelectedTheme();
         $manifest = $selectedTheme->GetManifest();
         $themeName = $selectedTheme->GetName();
         if (isset($manifest) && !empty($manifest['routes']))
@@ -234,194 +240,202 @@ class Application implements IConfigurable,  ICacheContainer, IMetadataContainer
             foreach ($manifest['routes'] as $routeName => $routeConfig)
             {
                 $methods = !empty($routeConfig['methods']) ? $routeConfig['methods'] : 'GET'; // GET por defecto
-                $targetUrl = 'Themes/'.$themeName.'/Styles/'.$routeConfig['target'];
+                $targetUrl = $this->GetApplicationBaseUrl(). '/Themes/'.$themeName.'/Styles/'.$routeConfig['target'];
                 RouteFactory::Map($methods, $routeConfig['route'], $targetUrl, '@'.$routeName);
             }
         }
-	}
+    }
 
-	/**
-	 * Retorna el nombre de la aplicacion configurada en la sección application del fichero de configuración
-	 */
-	public function GetApplicationName ()
-	{
-		return $this->ApplicationConfiguration['title'];
-	}
+    /**
+     * Retorna el nombre de la aplicacion configurada en la sección application del fichero de configuración
+     */
+    public function GetApplicationName ()
+    {
+        return $this->ApplicationConfiguration['title'];
+    }
 
-	/**
-	 * Genera una lista plana del árbol de navigación
-	 */
-	private function GetRoutesFlatList ($configData, &$list, $currentPath)
-	{
-		foreach ($configData as $itemName => $item)
-		{
-			$nodeBreadcrumb = $breadcrumb.$item['title'];
+    /**
+     * Genera una lista plana del árbol de navigación
+     */
+    private function GetRoutesFlatList ($configData, &$list, $currentPath)
+    {
+        foreach ($configData as $itemName => $item)
+        {
+            $nodeBreadcrumb = $breadcrumb.$item['title'];
 
-			// Se crea una clase anónima que puede contener todos los valores del nodo
-			$node = new \stdClass ();
-			$node->route = $item['route'];;
-			$node->class = $item['class'];
-			$node->name = $itemName;
-			$node->title = $item['title'];
-			$list[$itemName] = $node;
-			if (!empty($item['subnav']))
-				$this->GetRoutesFlatList ($item['subnav'], $list, $nodePath.'/');
-		}
+            // Se crea una clase anónima que puede contener todos los valores del nodo
+            $node = new \stdClass ();
+            $node->route = $item['route'];;
+            $node->class = $item['class'];
+            $node->name = $itemName;
+            $node->title = $item['title'];
+            $list[$itemName] = $node;
+            if (!empty($item['subnav']))
+                $this->GetRoutesFlatList ($item['subnav'], $list, $nodePath.'/');
+        }
 
-	}
-	/**
-	 * Retorna la página actual que coincide con la solicitud de ruta de la aplicación
-	 */
-	protected function ManageRouteRequest()
-	{
-		$result = null;
+    }
+    /**
+     * Retorna la página actual que coincide con la solicitud de ruta de la aplicación
+     */
+    protected function ManageRouteRequest()
+    {
+        $result = null;
 
-		$match = RouteFactory::MatchRequest();
+        $match = RouteFactory::MatchRequest();
 
-		//echo "<pre>==>"; print_r ($match); die();
+        //echo "<pre>==>"; print_r ($match); die();
         $name = $match['name'];
-		switch ($name)
-		{
-			case 'services' : // Se está recibiendo la solicitud de un servicio
-				$result = $this->HandleServiceRequest($match);
-				break;
-			default:
-				if ($match === false) // No está en las rutas, debe ser algún fichero
-				{
-					$this->GetDeliveryChannel()->DeliverFromLocalUrlResource ($_SERVER['REQUEST_URI']);
-				}
-				elseif (substr($name, 0,1) == '@') // Se trata de un fichero que se ha solicitado y que pertenece a algun tema. Se devuelve directamente al browser
+        switch ($name)
+        {
+            case 'services' : // Se está recibiendo la solicitud de un servicio
+                $result = $this->HandleServiceRequest($match);
+                break;
+            default:
+                if ($match === false) // No está en las rutas, debe ser algún fichero
                 {
+                    $this->GetDeliveryChannel()->DeliverFromLocalUrlResource ($_SERVER['REQUEST_URI']);
+                }
+                elseif (substr($name, 0,1) == '@') // Se trata de un fichero que se ha solicitado y que pertenece a algun tema. Se devuelve directamente al browser
+                {
+                    $url = $match['target'].'/'.$match['params']['path'];
                     // sin hacer nada mas.. Lo más veloz posible
-                    $this->GetDeliveryChannel()->DeliverFromLocalUrlResource ($match['target']/**, $match['params']['path'] **/);
+                    $this->GetDeliveryChannel()->DeliverFromLocalUrlResource ($url);
                 }
                 else {
                     // Es una solicitud de una página
-			        $result = $this->HandlePageRequest($match);
+                    $result = $this->HandlePageRequest($match);
                 }
-				break;
+                break;
 
-		}
+        }
 
         $this->CurrentNavigationNode = $result;
-		return $result;
-	}
+        return $result;
+    }
 
-	/**
-	 * Prepara el nodo de navegación para que se atienda la solicitud de un registro
-	 */
-	protected function HandleServiceRequest ($routeMatch)
-	{
-		// Crear el nodo de información de la solicitud
-		$serviceClass = ReflectionFactory::getFullServiceClassName ($routeMatch['params']['name']);
-		$jsonNode = new \stdClass();
-		$jsonNode->serviceName = $routeMatch['params']['name'];
-		$jsonNode->fullServiceName = $serviceClass;
+    /**
+     * Prepara el nodo de navegación para que se atienda la solicitud de un registro
+     */
+    protected function HandleServiceRequest ($routeMatch)
+    {
+        // Crear el nodo de información de la solicitud
+        $serviceClass = ReflectionFactory::getFullServiceClassName ($routeMatch['params']['name']);
+        $jsonNode = new \stdClass();
+        $jsonNode->serviceName = $routeMatch['params']['name'];
+        $jsonNode->fullServiceName = $serviceClass;
 
-		// Si no hay método explícito, se usa el nombre del verb como método, ej: Get, Put, Delete... etc.
-		if (isset($routeMatch['params']['method']))
-			$jsonNode->method = trim($routeMatch['params']['method'], '/');
-		else
-			$jsonNode->method = ucfirst(strtolower(Http::GetRequestMethod()));
+        // Si no hay método explícito, se usa el nombre del verb como método, ej: Get, Put, Delete... etc.
+        if (isset($routeMatch['params']['method']))
+            $jsonNode->method = trim($routeMatch['params']['method'], '/');
+        else
+            $jsonNode->method = ucfirst(strtolower(Http::GetRequestMethod()));
 
-		$jsonNode->verb = Http::GetRequestMethod();
-		// Convertir los parámetros en un array listo para que lo evalue el servicio
-		$jsonNode->params = !empty($routeMatch['params']['params']) ? explode('/', $routeMatch['params']['params']) : array();
+        $jsonNode->verb = Http::GetRequestMethod();
+        // Convertir los parámetros en un array listo para que lo evalue el servicio
+        $jsonNode->params = !empty($routeMatch['params']['params']) ? explode('/', $routeMatch['params']['params']) : array();
 
-		// Ahora crear la clase del servicio y actualizar el nodo de navigación
-		try
-		{
+        // Ahora crear la clase del servicio y actualizar el nodo de navigación
+        try
+        {
 
-			$serviceInstance = new $serviceClass();
-		}
-		catch (\Exception $e)
-		{
-			// Problemas al crear la clase
-			Http::Raise404();
-		}
-		return new NavigationResponseNode ($serviceInstance, $jsonNode);
-	}
+            $serviceInstance = new $serviceClass();
+        }
+        catch (\Exception $e)
+        {
+            // Problemas al crear la clase
+            Http::Raise404();
+        }
+        return new NavigationResponseNode ($serviceInstance, $jsonNode);
+    }
 
-	protected function HandlePageRequest ($routeMatch)
-	{
-	    //echo "<pre>"; print_r ($routeMatch); die();
-		if (isset($routeMatch['target']))
-			$pageClassName = $routeMatch['target'];
-		else
-			$pageClassName = ReflectionFactory::getFullPageClassName ($routeMatch[params]['name']);
+    protected function HandlePageRequest ($routeMatch)
+    {
+        //echo "<pre>"; print_r ($routeMatch); die();
+        if (isset($routeMatch['target']))
+            $pageClassName = $routeMatch['target'];
+        else
+            $pageClassName = ReflectionFactory::getFullPageClassName ($routeMatch[params]['name']);
 
-		$pageInstance = new $pageClassName();
+        $pageInstance = new $pageClassName();
 
-		// Un nodo para informacion de la navegación
-		$pageNode = new \stdClass();
+        // Un nodo para informacion de la navegación
+        $pageNode = new \stdClass();
 
-		$pageNode->path = RouteFactory::ReverseRoute($routeMatch['name']);
-		$pageNode->class = $pageClassName;
-		$pageNode->title = $this->NavigationConfiguration[$routeMatch['name']]['title']; // El titulo se saca de la configuración de la app
-		$pageNode->params = $routeMatch['params'];
+        $pageNode->path = RouteFactory::ReverseRoute($routeMatch['name']);
+        $pageNode->class = $pageClassName;
+        $pageNode->title = $this->NavigationConfiguration[$routeMatch['name']]['title']; // El titulo se saca de la configuración de la app
+        $pageNode->params = $routeMatch['params'];
 
         //echo "<pre>"; print_r ($pageNode);die();
 
-		return new NavigationResponseNode($pageInstance, $pageNode);
-	}
+        return new NavigationResponseNode($pageInstance, $pageNode);
+    }
 
-	public function GetCacheManager ()
-	{
-		return $this->CacheManager;
-	}
+    public function GetCacheManager ()
+    {
+        return $this->CacheManager;
+    }
 
-	public function GetCurrentRequestInfo()
-	{
-		return $this->CurrentNavigationNode->GetInfoNode();
-	}
+    public function GetCurrentRequestInfo()
+    {
+        return $this->CurrentNavigationNode->GetInfoNode();
+    }
 
-	public function GetCurrentRequest()
-	{
-		return $this->CurrentNavigationNode->GetObject();
-	}
+    public function GetCurrentRequest()
+    {
+        $result = null;
+        if (isset($this->CurrentNavigationNode))
+            $result = $this->CurrentNavigationNode->GetObject();
 
-	public function GetConfigurationManager()
-	{
-		return $this->Configuration;
-	}
+        return $result;
+    }
 
-	public function LoadConfiguration ($reload = false)
-	{
-		if ($reload || empty($this->Configuration))           // Inicializa la configuración de la aplicación
-			$this->Configuration = new ConfigurationManager (SKYDATA_PATH_ROOT.'/Configuration');
-	}
+    public function GetConfigurationManager()
+    {
+        return $this->Configuration;
+    }
 
-	public function GetView ()
-	{
-		return $this->View;
-	}
+    public function LoadConfiguration ($reload = false)
+    {
+        if ($reload || empty($this->Configuration))           // Inicializa la configuración de la aplicación
+            $this->Configuration = new ConfigurationManager (SKYDATA_PATH_ROOT.'/Configuration');
+    }
 
-	public function LoadMetadata ()
-	{
-		$config = ConfigurationManager::ReadLocalMetadata(SKYDATA_PATH_CONFIGURATION.'/metadata.yaml')->metadata;
-		//echo "<pre>"; print_r ($config);die();
-		$this->GetMetadataManager()->LoadFromConfiguration ($config);
-	}
+    public function GetView ()
+    {
+        return $this->View;
+    }
 
-	public function GetMetadataManager ()
-	{
-		return $this->MetadataManager;
-	}
+    public function LoadMetadata ()
+    {
+        $config = ConfigurationManager::ReadLocalMetadata(SKYDATA_PATH_CONFIGURATION.'/metadata.yaml')->metadata;
+        //echo "<pre>"; print_r ($config);die();
+        $this->GetMetadataManager()->LoadFromConfiguration ($config);
+    }
 
-	public function GetTimeZone ()
-	{
-		return $this->ApplicationConfiguration['time_zone'];
-	}
+    public function GetMetadataManager ()
+    {
+        return $this->MetadataManager;
+    }
+
+    public function GetTimeZone ()
+    {
+        return $this->ApplicationConfiguration['time_zone'];
+    }
 
     public function GetDeliveryChannel()
     {
+        if (!isset($this->DeliveryChannel))
+            $this->InitDeliveryChannel();
+
         return $this->DeliveryChannel;
     }
 
-    public function GetDefaultDeliveryChannel ()
+    public static function GetDefaultDeliveryChannel ()
     {
         $result = null;
-        $appConfig = $this->GetConfigurationManager()->GetMapping('content');
+        $appConfig = BootFactory::GetApplication()->GetConfigurationManager()->GetMapping('content');
         if (!empty($appConfig) && !empty($appConfig['consumer']))
         {
             $channelClass =  $appConfig['consumer'];
