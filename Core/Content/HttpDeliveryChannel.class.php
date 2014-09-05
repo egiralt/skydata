@@ -24,7 +24,7 @@ namespace SkyData\Core\Content;
 
 use \SkyData\Core\Http\Http;
 
-class HttpDeliveryChannel extends DeliveryChannel 
+class HttpDeliveryChannel extends DeliveryChannel
 {
     const SKYDATA_CUSTOM_HEADER = 'SkyData';
 
@@ -63,16 +63,19 @@ class HttpDeliveryChannel extends DeliveryChannel
         }
 
         header("Content-type: ". $content_type );
-        
+
         // Si el browser puede hacer caching y está solicitando un GET condicional, se revisa
         if ($allowCache)
+            $this->CheckConditionalRequest($etag, $last_modified_time);
+    }
+
+    protected function CheckConditionalRequest ($etag, $last_modified_time)
+    {
+        if ((isset($last_modified_time) && strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time) ||
+            trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag)
         {
-            if ((isset($last_modified_time) && strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time) ||
-                trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag)
-            {
-                header("HTTP/1.1 304 Not Modified"); // Es el mismo que ya envíamos, no se vuelve a tocar
-                exit; // Según http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5 no se debe enviar contenido!
-            }
+            header("HTTP/1.1 304 Not Modified"); // Es el mismo que ya envíamos, no se vuelve a tocar
+            exit; // Según http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5 no se debe enviar contenido!
         }
     }
 
@@ -84,9 +87,12 @@ class HttpDeliveryChannel extends DeliveryChannel
     public function DeliverFromLocalUrlResource ($url_path, $allowCache = true)
     {
         $path = realpath(dirname($_SERVER['SCRIPT_FILENAME'])); //No sé si es muy correcto confiar en la variable Server
+        
+        // Se ha de eliminar del URL el prefijo de la ruta base 
+        $url_path = preg_replace('&^'.$this->GetApplication()->GetApplicationBaseUrl().'&', '', $url_path); 
         $file = sprintf('%s/%s', $path, $url_path);
 
-		if (is_file($file))
+        if (is_file($file))
         {
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $mimeType = finfo_file($finfo, $file);
@@ -94,6 +100,11 @@ class HttpDeliveryChannel extends DeliveryChannel
 
             $last_modified_time = filemtime($file);
             $etag = md5_file($file);
+            
+            // Si el contenido ya ha sido enviado, no se envía otra vez 
+            $this->CheckConditionalRequest($etag, $last_modified_time);
+            
+            // Si llega a este punto es que sí se tiene que enviar el contenido
             $content = file_get_contents($file); // Contenido del fichero
 
             $this->DeliverContent($content, $mimeType, $allowCache, $last_modified_time, $etag);
