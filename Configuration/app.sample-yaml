@@ -56,8 +56,8 @@ routes:
 
 storage:
   elasticsearch:
-	vgrs:
-		server: ['localhost:9200']
+    vgrs:
+      server: ['localhost:9200']
   mysql:
     repository:
       server: localhost
