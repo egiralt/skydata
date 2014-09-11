@@ -1,4 +1,4 @@
 skydata
 ========
 
-## Framework SkyData ( PHP OOP + Angular + Twig + ElasticSearch)
+## Linked Open Data Framework:  OOP + RDF + Angular + Twig + NoSQL
