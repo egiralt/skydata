@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Fichero Fuente SkyDataResponseResource.class.php</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../logo_primer300.png"/></td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="../../annotated.html"><span>Estructuras&#160;de&#160;Datos</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="../../globals.html"><span>Globales</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('df/dc8/a00122_source.html','../../');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Estructuras de Datos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">SkyDataResponseResource.class.php</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../df/dc8/a00122.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span><a class="code" href="../../de/d76/a00134.html">SkyData\Core</a>;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;use \SkyData\Core\Configuration\ConfigurationManager;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;use \SkyData\Core\Metadata\MetadataManager;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;use \SkyData\Core\Service\IServicesBindable;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;use \SkyData\Core\Configuration\IConfigurable;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;use \SkyData\Core\Metadata\IMetadataContainer;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;use \SkyData\Core\Controller\IController;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;use \SkyData\Core\View\IRenderable;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html">   19</a></span>&#160;<span class="keyword">abstract</span> <span class="keyword">class </span><a class="code" href="../../d1/dea/a00054.html">SkyDataResponseResource</a> <span class="keyword">extends</span> <a class="code" href="../../d5/de0/a00050.html">SkyDataObject</a> </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    implements <a class="code" href="../../d3/dfe/a00025.html">IMetadataContainer</a>, <a class="code" href="../../d4/d51/a00017.html">IConfigurable</a>, <a class="code" href="../../d3/d52/a00023.html">ILayoutNode</a>, <a class="code" href="../../dc/d87/a00032.html">IServicesBindable</a> </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">private</span> $MetadataManager;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">private</span> $ConfigurationManager;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">private</span> $Parent;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">private</span> $Services;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">private</span> $Controller;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">private</span> $View;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a095c5d389db211932136b53f25f39685">   30</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a095c5d389db211932136b53f25f39685">__construct</a>()</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a41c446eaf36812b9530b9e8fe3b36173">CreateServices</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a2c660f9cb322cef1ecab1ccc02b08ece">CreateController</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a25778bb944d71bdec838c58a351e9fe6">GetController</a>()-&gt;SetParent($this);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        $this-&gt;<a class="code" href="../../d1/dea/a00054.html#adfa414b380567a60218c6187ba495402">CreateView</a>();                </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        $this-&gt;<a class="code" href="../../d1/dea/a00054.html#abae6438e559d03f47aada6214c86d051">GetView</a>()-&gt;SetParent($this);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a25778bb944d71bdec838c58a351e9fe6">GetController</a>()-&gt;SetView($this-&gt;<a class="code" href="../../d1/dea/a00054.html#abae6438e559d03f47aada6214c86d051">GetView</a>());      </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a13e94df3b35eb8d54c12d9f67dad4841">   40</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a13e94df3b35eb8d54c12d9f67dad4841">Run</a>()</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a25778bb944d71bdec838c58a351e9fe6">GetController</a>()-&gt;Run ();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a28b5b0a1faad2ecc55b1825d177fe202">   45</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a28b5b0a1faad2ecc55b1825d177fe202">GetMetadataManager</a> ()</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">if</span> (!isset($this-&gt;<a class="code" href="../../de/d8c/a00036.html">MetadataManager</a>))</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a18450d27256dc7a932a2b788b97c02e4">LoadMetadata</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">return</span> $this-&gt;MetadataManager;      </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a18450d27256dc7a932a2b788b97c02e4">   53</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a18450d27256dc7a932a2b788b97c02e4">LoadMetadata</a> ()</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">// Los metadatos se cargan de la configuración específica de esta página</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        $this-&gt;<a class="code" href="../../de/d8c/a00036.html">MetadataManager</a> = <span class="keyword">new</span> <a class="code" href="../../de/d8c/a00036.html">MetadataManager</a> ();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        $this-&gt;<a class="code" href="../../de/d8c/a00036.html">MetadataManager</a>-&gt;<a class="code" href="../../de/d8c/a00036.html#a19b2b3e2044a8302f90f98cf5d2fbe82">LoadFromConfiguration</a> ($this-&gt;<a class="code" href="../../d1/dea/a00054.html#a8e7508049b7563430b7c3992b52539c1">GetConfigurationManager</a>()-&gt;GetMapping(<span class="stringliteral">&#39;metadata&#39;</span>));</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a27ad5ec2b4193e03c1c7ad0c1d212b12">   60</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a27ad5ec2b4193e03c1c7ad0c1d212b12">LoadConfiguration</a> ($reload = <span class="keyword">false</span>)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">if</span> (!isset($this-&gt;<a class="code" href="../../dd/dad/a00005.html">ConfigurationManager</a>))</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            $this-&gt;<a class="code" href="../../dd/dad/a00005.html">ConfigurationManager</a> = <span class="keyword">new</span> <a class="code" href="../../dd/dad/a00005.html">ConfigurationManager</a>( dirname(<a class="code" href="../../d5/db6/a00042.html#af6ad114680d39acbbc1f59572552efd5">ReflectionFactory::getClassFilePath</a> (get_class($this))) );</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a8e7508049b7563430b7c3992b52539c1">   66</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a8e7508049b7563430b7c3992b52539c1">GetConfigurationManager</a>()</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">if</span> (!isset($this-&gt;<a class="code" href="../../dd/dad/a00005.html">ConfigurationManager</a>))</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a27ad5ec2b4193e03c1c7ad0c1d212b12">LoadConfiguration</a>();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">return</span> $this-&gt;ConfigurationManager;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#ae7d5f13cda14d28dbfd19857ec14e04a">   74</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#ae7d5f13cda14d28dbfd19857ec14e04a">SetParent</a> (<a class="code" href="../../d3/d52/a00023.html">ILayoutNode</a> $parent)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        $this-&gt;Parent = $parent;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#aa4957320ada1b1e401862296fe14370b">   79</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#aa4957320ada1b1e401862296fe14370b">GetParent</a>()</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> $this-&gt;Parent;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a2c822e52d176d51a63f4eb33e62e3054">   85</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a2c822e52d176d51a63f4eb33e62e3054">GetServices</a>()</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">return</span> $this-&gt;Services;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a41c446eaf36812b9530b9e8fe3b36173">   93</a></span>&#160;    <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a41c446eaf36812b9530b9e8fe3b36173">CreateServices</a> ()</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        $servicesConfig = $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a8e7508049b7563430b7c3992b52539c1">GetConfigurationManager</a>()-&gt;GetMapping(<span class="stringliteral">&#39;services&#39;</span>);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">if</span> (!empty($servicesConfig) &amp;&amp; !empty($servicesConfig[<span class="stringliteral">&#39;use&#39;</span>]))</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            $this-&gt;Services = array();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">foreach</span> ($servicesConfig[<span class="stringliteral">&#39;use&#39;</span>] as $serviceClassName) </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                <span class="comment">// Construye una clase específica de cada servicio que se encuentra en la lista</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                $fullClassName = <a class="code" href="../../d5/db6/a00042.html#a00a75f2f1d675705be910dc60761b912">ReflectionFactory::getFullServiceClassName</a> ($serviceClassName);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                $serviceInstance = <span class="keyword">new</span> $fullClassName();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                $serviceInstance-&gt;SetParent($this);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                $this-&gt;Services[$serviceClassName] = $serviceInstance; <span class="comment">// Y se guarda en la lista de servicios activos de esta página</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }       </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }   </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a521ce5465448eaaebab4e5beec0b8f15">  110</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a521ce5465448eaaebab4e5beec0b8f15">SetController</a>(<a class="code" href="../../db/db2/a00020.html">IController</a> $controllerInstance)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">if</span> ($this-&gt;Controller != $controllerInstance)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            $this-&gt;Controller = $controllerInstance;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">return</span> $this-&gt;Controller;               </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a25778bb944d71bdec838c58a351e9fe6">  118</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a25778bb944d71bdec838c58a351e9fe6">GetController</a>()</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">return</span> $this-&gt;Controller;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a2c660f9cb322cef1ecab1ccc02b08ece">  123</a></span>&#160;    <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a2c660f9cb322cef1ecab1ccc02b08ece">CreateController</a> ()</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        $controllerClassName = <a class="code" href="../../d5/db6/a00042.html#a9a735c616012a04e678ce7cc9f6ecca6">ReflectionFactory::getControllerClassName</a> (get_class($this));</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="comment">// Si existe un controller específico de la clase, se crea y si no se toma el controller genérico</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">if</span> (is_file(<a class="code" href="../../d5/db6/a00042.html#af6ad114680d39acbbc1f59572552efd5">ReflectionFactory::getClassFilePath</a> ($controllerClassName)))</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a521ce5465448eaaebab4e5beec0b8f15">SetController</a> (<span class="keyword">new</span> $controllerClassName());</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a521ce5465448eaaebab4e5beec0b8f15">SetController</a>($this-&gt;GetInstanceDefaultControllerClass());</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#abae6438e559d03f47aada6214c86d051">  134</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#abae6438e559d03f47aada6214c86d051">GetView</a>()</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">return</span> $this-&gt;View;     </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    </div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a3d266c1bc269e5d85738a4dedd7ff5bd">  139</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a3d266c1bc269e5d85738a4dedd7ff5bd">SetView</a>(<a class="code" href="../../d5/d79/a00030.html">IRenderable</a> $viewInstance)</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    {</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">if</span> ($this-&gt;View !== $viewInstance)</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            $this-&gt;View = $viewInstance;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">return</span> $this-&gt;View;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#adfa414b380567a60218c6187ba495402">  150</a></span>&#160;    <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#adfa414b380567a60218c6187ba495402">CreateView</a> ()</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    {</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        $view = null;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="comment">// Crear la clase view (si existe) de esta página</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        $viewClassName = <a class="code" href="../../d5/db6/a00042.html#a692e43ed7224344a4f0793b3f3d804f8">ReflectionFactory::getViewClassName</a> (get_class($this));</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        $viewClassFile = <a class="code" href="../../d5/db6/a00042.html#af6ad114680d39acbbc1f59572552efd5">ReflectionFactory::getClassFilePath</a> ($viewClassName);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">if</span> (is_file($viewClassFile))</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            $view = <span class="keyword">new</span> $viewClassName ();</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            $view = $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a18c9615743aecf431d39df37720504b6">GetInstanceDefaultViewClass</a>();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">if</span> ($view !== null)</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a3d266c1bc269e5d85738a4dedd7ff5bd">SetView</a>($view);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">throw</span> new \Exception(<span class="stringliteral">&quot;Debe indicarse en la configuración algun tipo de vista o heredar de alguna clase para la clase &quot;</span>.get_class($this), -1000);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="../../d1/dea/a00054.html#a18c9615743aecf431d39df37720504b6">  170</a></span>&#160;    <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="../../d1/dea/a00054.html#a18c9615743aecf431d39df37720504b6">GetInstanceDefaultViewClass</a> ()</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        $result = null;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        $pageConfig = $this-&gt;<a class="code" href="../../d1/dea/a00054.html#a8e7508049b7563430b7c3992b52539c1">GetConfigurationManager</a>()-&gt;GetMapping (<span class="stringliteral">&#39;page&#39;</span>);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keywordflow">if</span> (!empty($pageConfig) &amp;&amp; !empty($pageConfig[<span class="stringliteral">&#39;view&#39;</span>]))</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        {</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            $fullViewClass = <span class="stringliteral">&#39;SkyData\Core\View\\&#39;</span>.$pageConfig[<span class="stringliteral">&#39;view&#39;</span>];</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            $result = <span class="keyword">new</span> $fullViewClass();</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        }</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="keywordflow">return</span> $result;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    }</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; }</div>
+<div class="ttc" id="a00054_html_adfa414b380567a60218c6187ba495402"><div class="ttname"><a href="../../d1/dea/a00054.html#adfa414b380567a60218c6187ba495402">SkyData\Core\SkyDataResponseResource\CreateView</a></div><div class="ttdeci">CreateView()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00150">SkyDataResponseResource.class.php:150</a></div></div>
+<div class="ttc" id="a00054_html_aa4957320ada1b1e401862296fe14370b"><div class="ttname"><a href="../../d1/dea/a00054.html#aa4957320ada1b1e401862296fe14370b">SkyData\Core\SkyDataResponseResource\GetParent</a></div><div class="ttdeci">GetParent()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00079">SkyDataResponseResource.class.php:79</a></div></div>
+<div class="ttc" id="a00042_html_a00a75f2f1d675705be910dc60761b912"><div class="ttname"><a href="../../d5/db6/a00042.html#a00a75f2f1d675705be910dc60761b912">SkyData\Core\ReflectionFactory\getFullServiceClassName</a></div><div class="ttdeci">static getFullServiceClassName($className)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d81/a00110_source.html#l00021">ReflectionFactory.class.php:21</a></div></div>
+<div class="ttc" id="a00030_html"><div class="ttname"><a href="../../d5/d79/a00030.html">SkyData\Core\View\IRenderable</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/df8/a00096_source.html#l00028">IRenderable.php:28</a></div></div>
+<div class="ttc" id="a00054_html_a18c9615743aecf431d39df37720504b6"><div class="ttname"><a href="../../d1/dea/a00054.html#a18c9615743aecf431d39df37720504b6">SkyData\Core\SkyDataResponseResource\GetInstanceDefaultViewClass</a></div><div class="ttdeci">GetInstanceDefaultViewClass()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00170">SkyDataResponseResource.class.php:170</a></div></div>
+<div class="ttc" id="a00054_html_ae7d5f13cda14d28dbfd19857ec14e04a"><div class="ttname"><a href="../../d1/dea/a00054.html#ae7d5f13cda14d28dbfd19857ec14e04a">SkyData\Core\SkyDataResponseResource\SetParent</a></div><div class="ttdeci">SetParent(ILayoutNode $parent)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00074">SkyDataResponseResource.class.php:74</a></div></div>
+<div class="ttc" id="a00054_html_a25778bb944d71bdec838c58a351e9fe6"><div class="ttname"><a href="../../d1/dea/a00054.html#a25778bb944d71bdec838c58a351e9fe6">SkyData\Core\SkyDataResponseResource\GetController</a></div><div class="ttdeci">GetController()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00118">SkyDataResponseResource.class.php:118</a></div></div>
+<div class="ttc" id="a00023_html"><div class="ttname"><a href="../../d3/d52/a00023.html">SkyData\Core\ILayoutNode</a></div><div class="ttdef"><b>Definition:</b> <a href="../../db/ddf/a00088_source.html#l00010">ILayoutNode.php:10</a></div></div>
+<div class="ttc" id="a00050_html"><div class="ttname"><a href="../../d5/de0/a00050.html">SkyData\Core\SkyDataObject</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d87/a00118_source.html#l00013">SkyDataObject.class.php:13</a></div></div>
+<div class="ttc" id="a00054_html_a27ad5ec2b4193e03c1c7ad0c1d212b12"><div class="ttname"><a href="../../d1/dea/a00054.html#a27ad5ec2b4193e03c1c7ad0c1d212b12">SkyData\Core\SkyDataResponseResource\LoadConfiguration</a></div><div class="ttdeci">LoadConfiguration($reload=false)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00060">SkyDataResponseResource.class.php:60</a></div></div>
+<div class="ttc" id="a00054_html_a3d266c1bc269e5d85738a4dedd7ff5bd"><div class="ttname"><a href="../../d1/dea/a00054.html#a3d266c1bc269e5d85738a4dedd7ff5bd">SkyData\Core\SkyDataResponseResource\SetView</a></div><div class="ttdeci">SetView(IRenderable $viewInstance)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00139">SkyDataResponseResource.class.php:139</a></div></div>
+<div class="ttc" id="a00054_html_a095c5d389db211932136b53f25f39685"><div class="ttname"><a href="../../d1/dea/a00054.html#a095c5d389db211932136b53f25f39685">SkyData\Core\SkyDataResponseResource\__construct</a></div><div class="ttdeci">__construct()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00030">SkyDataResponseResource.class.php:30</a></div></div>
+<div class="ttc" id="a00054_html_a18450d27256dc7a932a2b788b97c02e4"><div class="ttname"><a href="../../d1/dea/a00054.html#a18450d27256dc7a932a2b788b97c02e4">SkyData\Core\SkyDataResponseResource\LoadMetadata</a></div><div class="ttdeci">LoadMetadata()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00053">SkyDataResponseResource.class.php:53</a></div></div>
+<div class="ttc" id="a00054_html_a2c660f9cb322cef1ecab1ccc02b08ece"><div class="ttname"><a href="../../d1/dea/a00054.html#a2c660f9cb322cef1ecab1ccc02b08ece">SkyData\Core\SkyDataResponseResource\CreateController</a></div><div class="ttdeci">CreateController()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00123">SkyDataResponseResource.class.php:123</a></div></div>
+<div class="ttc" id="a00054_html_a521ce5465448eaaebab4e5beec0b8f15"><div class="ttname"><a href="../../d1/dea/a00054.html#a521ce5465448eaaebab4e5beec0b8f15">SkyData\Core\SkyDataResponseResource\SetController</a></div><div class="ttdeci">SetController(IController $controllerInstance)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00110">SkyDataResponseResource.class.php:110</a></div></div>
+<div class="ttc" id="a00054_html_a28b5b0a1faad2ecc55b1825d177fe202"><div class="ttname"><a href="../../d1/dea/a00054.html#a28b5b0a1faad2ecc55b1825d177fe202">SkyData\Core\SkyDataResponseResource\GetMetadataManager</a></div><div class="ttdeci">GetMetadataManager()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00045">SkyDataResponseResource.class.php:45</a></div></div>
+<div class="ttc" id="a00054_html_a8e7508049b7563430b7c3992b52539c1"><div class="ttname"><a href="../../d1/dea/a00054.html#a8e7508049b7563430b7c3992b52539c1">SkyData\Core\SkyDataResponseResource\GetConfigurationManager</a></div><div class="ttdeci">GetConfigurationManager()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00066">SkyDataResponseResource.class.php:66</a></div></div>
+<div class="ttc" id="a00017_html"><div class="ttname"><a href="../../d4/d51/a00017.html">SkyData\Core\Configuration\IConfigurable</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/a00082_source.html#l00031">IConfigurable.php:31</a></div></div>
+<div class="ttc" id="a00005_html"><div class="ttname"><a href="../../dd/dad/a00005.html">SkyData\Core\Configuration\ConfigurationManager</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d2/db1/a00070_source.html#l00030">ConfigurationManager.class.php:30</a></div></div>
+<div class="ttc" id="a00134_html"><div class="ttname"><a href="../../de/d76/a00134.html">SkyData\Core</a></div></div>
+<div class="ttc" id="a00032_html"><div class="ttname"><a href="../../dc/d87/a00032.html">SkyData\Core\Service\IServicesBindable</a></div><div class="ttdef"><b>Definition:</b> <a href="../../da/d74/a00099_source.html#l00030">IServicesBindable.php:30</a></div></div>
+<div class="ttc" id="a00054_html_a13e94df3b35eb8d54c12d9f67dad4841"><div class="ttname"><a href="../../d1/dea/a00054.html#a13e94df3b35eb8d54c12d9f67dad4841">SkyData\Core\SkyDataResponseResource\Run</a></div><div class="ttdeci">Run()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00040">SkyDataResponseResource.class.php:40</a></div></div>
+<div class="ttc" id="a00036_html_a19b2b3e2044a8302f90f98cf5d2fbe82"><div class="ttname"><a href="../../de/d8c/a00036.html#a19b2b3e2044a8302f90f98cf5d2fbe82">SkyData\Core\Metadata\MetadataManager\LoadFromConfiguration</a></div><div class="ttdeci">LoadFromConfiguration($config)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d1e/a00103_source.html#l00039">MetadataManager.class.php:39</a></div></div>
+<div class="ttc" id="a00020_html"><div class="ttname"><a href="../../db/db2/a00020.html">SkyData\Core\Controller\IController</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d13/a00085_source.html#l00030">IController.php:30</a></div></div>
+<div class="ttc" id="a00054_html_a2c822e52d176d51a63f4eb33e62e3054"><div class="ttname"><a href="../../d1/dea/a00054.html#a2c822e52d176d51a63f4eb33e62e3054">SkyData\Core\SkyDataResponseResource\GetServices</a></div><div class="ttdeci">GetServices()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00085">SkyDataResponseResource.class.php:85</a></div></div>
+<div class="ttc" id="a00042_html_a692e43ed7224344a4f0793b3f3d804f8"><div class="ttname"><a href="../../d5/db6/a00042.html#a692e43ed7224344a4f0793b3f3d804f8">SkyData\Core\ReflectionFactory\getViewClassName</a></div><div class="ttdeci">static getViewClassName($className)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d81/a00110_source.html#l00049">ReflectionFactory.class.php:49</a></div></div>
+<div class="ttc" id="a00054_html"><div class="ttname"><a href="../../d1/dea/a00054.html">SkyData\Core\SkyDataResponseResource</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00019">SkyDataResponseResource.class.php:19</a></div></div>
+<div class="ttc" id="a00025_html"><div class="ttname"><a href="../../d3/dfe/a00025.html">SkyData\Core\Metadata\IMetadataContainer</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dec/a00090_source.html#l00026">IMetadataContainer.php:26</a></div></div>
+<div class="ttc" id="a00042_html_a9a735c616012a04e678ce7cc9f6ecca6"><div class="ttname"><a href="../../d5/db6/a00042.html#a9a735c616012a04e678ce7cc9f6ecca6">SkyData\Core\ReflectionFactory\getControllerClassName</a></div><div class="ttdeci">static getControllerClassName($className)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d81/a00110_source.html#l00040">ReflectionFactory.class.php:40</a></div></div>
+<div class="ttc" id="a00042_html_af6ad114680d39acbbc1f59572552efd5"><div class="ttname"><a href="../../d5/db6/a00042.html#af6ad114680d39acbbc1f59572552efd5">SkyData\Core\ReflectionFactory\getClassFilePath</a></div><div class="ttdeci">static getClassFilePath($className)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d81/a00110_source.html#l00058">ReflectionFactory.class.php:58</a></div></div>
+<div class="ttc" id="a00054_html_a41c446eaf36812b9530b9e8fe3b36173"><div class="ttname"><a href="../../d1/dea/a00054.html#a41c446eaf36812b9530b9e8fe3b36173">SkyData\Core\SkyDataResponseResource\CreateServices</a></div><div class="ttdeci">CreateServices()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00093">SkyDataResponseResource.class.php:93</a></div></div>
+<div class="ttc" id="a00036_html"><div class="ttname"><a href="../../de/d8c/a00036.html">SkyData\Core\Metadata\MetadataManager</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d1e/a00103_source.html#l00028">MetadataManager.class.php:28</a></div></div>
+<div class="ttc" id="a00054_html_abae6438e559d03f47aada6214c86d051"><div class="ttname"><a href="../../d1/dea/a00054.html#abae6438e559d03f47aada6214c86d051">SkyData\Core\SkyDataResponseResource\GetView</a></div><div class="ttdeci">GetView()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc8/a00122_source.html#l00134">SkyDataResponseResource.class.php:134</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_562abdcd8625d4bf7bad2fe6fe01354c.html">web</a></li><li class="navelem"><a class="el" href="../../dir_327b0b45fe7ef59e08c9f1ccbdd6d4f2.html">Core</a></li><li class="navelem"><a class="el" href="../../df/dc8/a00122.html">SkyDataResponseResource.class.php</a></li>
+    <li class="footer">Generado el Jueves, 11 de Septiembre de 2014 16:53:59 por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

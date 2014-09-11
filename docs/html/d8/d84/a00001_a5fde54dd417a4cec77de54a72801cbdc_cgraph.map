@@ -1,0 +1,5 @@
+<map id="HandleServiceRequest" name="HandleServiceRequest">
+<area shape="rect" id="node2" href="$d5/db6/a00042.html#a00a75f2f1d675705be910dc60761b912" title="SkyData\\Core\\ReflectionFactory\l\\getFullServiceClassName" alt="" coords="205,5,413,47"/>
+<area shape="rect" id="node3" href="$da/d45/a00011.html#af9c161535ce51c4eca9846f51fcc811c" title="SkyData\\Core\\Http\\Http\l\\GetRequestMethod" alt="" coords="230,71,389,112"/>
+<area shape="rect" id="node4" href="$da/d45/a00011.html#a8fb02dfc3db4538748308904f73463ed" title="SkyData\\Core\\Http\\Http\l\\Raise404" alt="" coords="230,136,389,177"/>
+</map>

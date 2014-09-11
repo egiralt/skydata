@@ -1,0 +1,995 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Referencia de la Clase MySQLManager</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../logo_primer300.png"/></td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespaces</span></a></li>
+      <li class="current"><a href="../../annotated.html"><span>Estructuras&#160;de&#160;Datos</span></a></li>
+      <li><a href="../../files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../annotated.html"><span>Estructura&#160;de&#160;datos</span></a></li>
+      <li><a href="../../classes.html"><span>Índice&#160;de&#160;estructura&#160;de&#160;datos</span></a></li>
+      <li><a href="../../inherits.html"><span>Jerarquía&#160;de&#160;la&#160;clase</span></a></li>
+      <li><a href="../../functions.html"><span>Campos&#160;de&#160;datos</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('d1/dc6/a00037.html','../../');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Estructuras de Datos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos públicos</a> &#124;
+<a href="#pub-attribs">Campos de datos</a> &#124;
+<a href="#pro-attribs">Atributos protegidos</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia de la Clase MySQLManager</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Diagrama de herencias de MySQLManager</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d6/db6/a00241.png" border="0" usemap="#_my_s_q_l_manager_inherit__map" alt="Inheritance graph"/></div>
+<map name="_my_s_q_l_manager_inherit__map" id="_my_s_q_l_manager_inherit__map">
+<area shape="rect" id="node2" href="../../d5/de0/a00050.html" title="{SkyDataObject\n||+ __construct()\l+ GetApplication()\l+ GetApplicationView()\l+ GetClassShortName()\l+ GetClassNamespace()\l+ GetClassDirectory()\l}" alt="" coords="5,27,171,178"/><area shape="rect" id="node3" href="../../d0/dc0/a00033.html" title="{IStorage\n||+ GetStorageType()\l+ Connect()\l+ Disconnect()\l+ GetOne()\l+ GetAll()\l+ Match()\l+ GetLastError()\l+ Version()\l+ ObjectExists()\l}" alt="" coords="195,5,331,200"/></map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:a87775a749d522fdb426c31ce7ee74478"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#a87775a749d522fdb426c31ce7ee74478">__construct</a> ($connectionName=null, $options=array())</td></tr>
+<tr class="separator:a87775a749d522fdb426c31ce7ee74478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a707018bbc6f4080fb7a7611b631d8d50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#a707018bbc6f4080fb7a7611b631d8d50">GetStorageType</a> ()</td></tr>
+<tr class="separator:a707018bbc6f4080fb7a7611b631d8d50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59b16f3efd1296a175b6364f2cde31b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#a59b16f3efd1296a175b6364f2cde31b8">GetStorageConfiguration</a> ()</td></tr>
+<tr class="separator:a59b16f3efd1296a175b6364f2cde31b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c5d26c14d58265ef5711e3e6b6c7715"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#a3c5d26c14d58265ef5711e3e6b6c7715">Connect</a> ($connectionName= 'default', $options=array())</td></tr>
+<tr class="separator:a3c5d26c14d58265ef5711e3e6b6c7715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f058af2bc54c4f5be0179014bc28464"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#a6f058af2bc54c4f5be0179014bc28464">GetOne</a> ($object, $value, $id= 'id', $fields=null)</td></tr>
+<tr class="separator:a6f058af2bc54c4f5be0179014bc28464"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad378ec8154323de294f26c45e6267d45"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#ad378ec8154323de294f26c45e6267d45">GetAll</a> ($object, $fields=null)</td></tr>
+<tr class="separator:ad378ec8154323de294f26c45e6267d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace2b1244aa33ab675db2a82d2dec58e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#ace2b1244aa33ab675db2a82d2dec58e5">Match</a> ($query, $count)</td></tr>
+<tr class="separator:ace2b1244aa33ab675db2a82d2dec58e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20e772f238f493a81ce0c398fde46338"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#a20e772f238f493a81ce0c398fde46338">GetLastError</a> ()</td></tr>
+<tr class="separator:a20e772f238f493a81ce0c398fde46338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec617d8b732c15e5d5be216fee2b9bf5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#aec617d8b732c15e5d5be216fee2b9bf5">Disconnect</a> ()</td></tr>
+<tr class="separator:aec617d8b732c15e5d5be216fee2b9bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5176c4ac13415a527e1d95b366cd136a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#a5176c4ac13415a527e1d95b366cd136a">Version</a> ()</td></tr>
+<tr class="separator:a5176c4ac13415a527e1d95b366cd136a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6337eefb0e76831d42014a7f130f1e88"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#a6337eefb0e76831d42014a7f130f1e88">ObjectExists</a> ($object)</td></tr>
+<tr class="separator:a6337eefb0e76831d42014a7f130f1e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98cf2dac4fa0980807551ab18be0de78"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78">GetApplication</a> ()</td></tr>
+<tr class="separator:a98cf2dac4fa0980807551ab18be0de78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29e8bfee83115eebd30aad72e37287c4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/de0/a00050.html#a29e8bfee83115eebd30aad72e37287c4">GetApplicationView</a> ()</td></tr>
+<tr class="separator:a29e8bfee83115eebd30aad72e37287c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae440f2091c527beadd24409572ce2289"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/de0/a00050.html#ae440f2091c527beadd24409572ce2289">GetClassShortName</a> ()</td></tr>
+<tr class="separator:ae440f2091c527beadd24409572ce2289"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc36fe4c2707dbf6fb35e302684c28e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/de0/a00050.html#abc36fe4c2707dbf6fb35e302684c28e3">GetClassNamespace</a> ()</td></tr>
+<tr class="separator:abc36fe4c2707dbf6fb35e302684c28e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1c4ef63122a44b489087b143aab3e1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/de0/a00050.html#af1c4ef63122a44b489087b143aab3e1b">GetClassDirectory</a> ()</td></tr>
+<tr class="separator:af1c4ef63122a44b489087b143aab3e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf493780ad94c1ac734b9c222dd8adb6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dc0/a00033.html#acf493780ad94c1ac734b9c222dd8adb6">GetOne</a> ($object, $uniquid)</td></tr>
+<tr class="separator:acf493780ad94c1ac734b9c222dd8adb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Campos de datos</h2></td></tr>
+<tr class="memitem:a4d63edae677da674efa3b8a5208abaa0"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#a4d63edae677da674efa3b8a5208abaa0">MYSQL_DEFAUL_PORT</a> = 3306</td></tr>
+<tr class="separator:a4d63edae677da674efa3b8a5208abaa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Atributos protegidos</h2></td></tr>
+<tr class="memitem:ae10cc045c1502f148d1aa728183898e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#ae10cc045c1502f148d1aa728183898e7">$Database</a></td></tr>
+<tr class="separator:ae10cc045c1502f148d1aa728183898e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae729e6b7f8621e185a1200b8621908d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#aae729e6b7f8621e185a1200b8621908d">$ConnectOptions</a></td></tr>
+<tr class="separator:aae729e6b7f8621e185a1200b8621908d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a960bacfc2d78aa53f51806f93668098f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc6/a00037.html#a960bacfc2d78aa53f51806f93668098f">$ConnectionName</a></td></tr>
+<tr class="separator:a960bacfc2d78aa53f51806f93668098f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock">
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00029">29</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a class="anchor" id="a87775a749d522fdb426c31ce7ee74478"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__construct </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$connectionName</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$options</em> = <code>array()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00038">38</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+
+<p>Hace referencia a <a class="el" href="../../d0/dc2/a00104_source.html#l00066">MySQLManager\Connect()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> ($connectionName != null)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            $this-&gt;<a class="code" href="../../d1/dc6/a00037.html#a3c5d26c14d58265ef5711e3e6b6c7715">Connect</a>($connectionName, $options);    </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="ttc" id="a00037_html_a3c5d26c14d58265ef5711e3e6b6c7715"><div class="ttname"><a href="../../d1/dc6/a00037.html#a3c5d26c14d58265ef5711e3e6b6c7715">SkyData\Core\Storage\MySQL\MySQLManager\Connect</a></div><div class="ttdeci">Connect($connectionName= 'default', $options=array())</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dc2/a00104_source.html#l00066">MySQLManager.class.php:66</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/dc6/a00037_a87775a749d522fdb426c31ce7ee74478_cgraph.png" border="0" usemap="#d1/dc6/a00037_a87775a749d522fdb426c31ce7ee74478_cgraph" alt=""/></div>
+<map name="d1/dc6/a00037_a87775a749d522fdb426c31ce7ee74478_cgraph" id="d1/dc6/a00037_a87775a749d522fdb426c31ce7ee74478_cgraph">
+<area shape="rect" id="node2" href="../../d1/dc6/a00037.html#a3c5d26c14d58265ef5711e3e6b6c7715" title="Connect" alt="" coords="144,35,215,61"/><area shape="rect" id="node3" href="../../d1/dc6/a00037.html#a59b16f3efd1296a175b6364f2cde31b8" title="GetStorageConfiguration" alt="" coords="263,35,425,61"/><area shape="rect" id="node4" href="../../d1/dc6/a00037.html#a707018bbc6f4080fb7a7611b631d8d50" title="GetStorageType" alt="" coords="513,5,629,32"/><area shape="rect" id="node5" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78" title="SkyData\\Core\\SkyDataObject\l\\GetApplication" alt="" coords="473,57,668,98"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a class="anchor" id="a3c5d26c14d58265ef5711e3e6b6c7715"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Connect </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$connectionName</em> = <code>'default'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$options</em> = <code>array()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Conecta a la base de datos</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$parametersSectionName</td><td>Nombre de la sección de la configuración que contiene los datos de conexión </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implementa <a class="el" href="../../d0/dc0/a00033.html#a3c5d26c14d58265ef5711e3e6b6c7715">IStorage</a>.</p>
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00066">66</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+
+<p>Hace referencia a <a class="el" href="../../d0/dc2/a00104_source.html#l00049">MySQLManager\GetStorageConfiguration()</a> y <a class="el" href="../../d0/dc2/a00104_source.html#l00032">MySQLManager\MYSQL_DEFAUL_PORT</a>.</p>
+
+<p>Referenciado por <a class="el" href="../../d0/dc2/a00104_source.html#l00038">MySQLManager\__construct()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        $storageConfig = $this-&gt;<a class="code" href="../../d1/dc6/a00037.html#a59b16f3efd1296a175b6364f2cde31b8">GetStorageConfiguration</a>();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">if</span> ($storageConfig != null &amp;&amp;  !empty($storageConfig[$connectionName]))</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            $configOptions = $storageConfig[$connectionName];</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">if</span> (!isset($this-&gt;Database)) </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                $this-&gt;Database = new \mysqli (</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        $configOptions[<span class="stringliteral">&#39;server&#39;</span>],</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                        $configOptions[<span class="stringliteral">&#39;user&#39;</span>],</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                        $configOptions[<span class="stringliteral">&#39;password&#39;</span>],</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                        $configOptions[<span class="stringliteral">&#39;database&#39;</span>],</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                        !empty($configOptions[<span class="stringliteral">&#39;port&#39;</span>]) ? $configOptions[<span class="stringliteral">&#39;port&#39;</span>] : <a class="code" href="../../d1/dc6/a00037.html#a4d63edae677da674efa3b8a5208abaa0">MySQLManager::MYSQL_DEFAUL_PORT</a></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                 );</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                 </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keywordflow">if</span>($this-&gt;Database-&gt;connect_errno)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                    $message = sprintf(<span class="stringliteral">&#39;Error #%s:%s&#39;</span>, $this-&gt;Database-&gt;connect_errno, $this-&gt;Database-&gt;connect_error);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                    <span class="keywordflow">throw</span> new \Exception($message, 1);<span class="comment">//TODO: Agregarle el mensaje que devuelve el server</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                $this-&gt;ConnectionName = $connectionName;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">foreach</span> ($options as $optionName =&gt; $optionValue) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    $status = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                    <span class="keywordflow">switch</span> ($optionName) {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        <span class="keywordflow">case</span> <span class="stringliteral">&#39;autocommit&#39;</span>:  $status = $this-&gt;Database-&gt;autocommit ($optionValue); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        <span class="keywordflow">case</span> <span class="stringliteral">&quot;charset&quot;</span>:     $status = $this-&gt;Database-&gt;set_charset($optionValue); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                    }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                    <span class="keywordflow">if</span> (!$status)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        <span class="keywordflow">throw</span> new \Exception(<span class="stringliteral">&quot;Error inicializando opciones: [$optionName]&quot;</span>, 1);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                }                   </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            $this-&gt;ConnectOptions = $configOptions;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="keywordflow">throw</span> new \Exception(<span class="stringliteral">&quot;Error en los parámetros de configuración de la base de datos&quot;</span>, 1);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;             </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
+<div class="ttc" id="a00037_html_a59b16f3efd1296a175b6364f2cde31b8"><div class="ttname"><a href="../../d1/dc6/a00037.html#a59b16f3efd1296a175b6364f2cde31b8">SkyData\Core\Storage\MySQL\MySQLManager\GetStorageConfiguration</a></div><div class="ttdeci">GetStorageConfiguration()</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dc2/a00104_source.html#l00049">MySQLManager.class.php:49</a></div></div>
+<div class="ttc" id="a00037_html_a4d63edae677da674efa3b8a5208abaa0"><div class="ttname"><a href="../../d1/dc6/a00037.html#a4d63edae677da674efa3b8a5208abaa0">SkyData\Core\Storage\MySQL\MySQLManager\MYSQL_DEFAUL_PORT</a></div><div class="ttdeci">const MYSQL_DEFAUL_PORT</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dc2/a00104_source.html#l00032">MySQLManager.class.php:32</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/dc6/a00037_a3c5d26c14d58265ef5711e3e6b6c7715_cgraph.png" border="0" usemap="#d1/dc6/a00037_a3c5d26c14d58265ef5711e3e6b6c7715_cgraph" alt=""/></div>
+<map name="d1/dc6/a00037_a3c5d26c14d58265ef5711e3e6b6c7715_cgraph" id="d1/dc6/a00037_a3c5d26c14d58265ef5711e3e6b6c7715_cgraph">
+<area shape="rect" id="node2" href="../../d1/dc6/a00037.html#a59b16f3efd1296a175b6364f2cde31b8" title="GetStorageConfiguration" alt="" coords="124,35,287,61"/><area shape="rect" id="node3" href="../../d1/dc6/a00037.html#a707018bbc6f4080fb7a7611b631d8d50" title="GetStorageType" alt="" coords="374,5,490,32"/><area shape="rect" id="node4" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78" title="SkyData\\Core\\SkyDataObject\l\\GetApplication" alt="" coords="335,57,529,98"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/dc6/a00037_a3c5d26c14d58265ef5711e3e6b6c7715_icgraph.png" border="0" usemap="#d1/dc6/a00037_a3c5d26c14d58265ef5711e3e6b6c7715_icgraph" alt=""/></div>
+<map name="d1/dc6/a00037_a3c5d26c14d58265ef5711e3e6b6c7715_icgraph" id="d1/dc6/a00037_a3c5d26c14d58265ef5711e3e6b6c7715_icgraph">
+<area shape="rect" id="node2" href="../../d1/dc6/a00037.html#a87775a749d522fdb426c31ce7ee74478" title="__construct" alt="" coords="124,5,215,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aec617d8b732c15e5d5be216fee2b9bf5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Disconnect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="../../d0/dc0/a00033.html#aec617d8b732c15e5d5be216fee2b9bf5">IStorage</a>.</p>
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00159">159</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">if</span>(isset($this-&gt;Database))</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            $this-&gt;Database-&gt;close();</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            $this-&gt;Database = null;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    }     </div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ad378ec8154323de294f26c45e6267d45"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetAll </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$fields</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="../../d0/dc0/a00033.html#ad378ec8154323de294f26c45e6267d45">IStorage</a>.</p>
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00125">125</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        $query = <span class="stringliteral">&#39;SELECT &#39;</span>.($fields !== null &amp;&amp; is_array($fields) ? join(<span class="stringliteral">&#39;, &#39;</span>, $fields) : <span class="stringliteral">&#39;*&#39;</span> );</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        $query .= <span class="stringliteral">&quot; FROM $object;&quot;</span>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        $result = array();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">if</span> ($rset = $this-&gt;Database-&gt;query($query))</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keywordflow">while</span> ($row = $rset-&gt;fetch_object())</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                $result[] = $row;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">return</span> $result;   </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a98cf2dac4fa0980807551ab18be0de78"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetApplication </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d8/d87/a00118_source.html#l00020">20</a> del archivo <a class="el" href="../../d8/d87/a00118_source.html">SkyDataObject.class.php</a>.</p>
+
+<p>Referenciado por <a class="el" href="../../d8/dfa/a00121_source.html#l00171">SkyDataResource\CreateView()</a>, <a class="el" href="../../d1/d09/a00077_source.html#l00087">HttpDeliveryChannel\DeliverFromLocalUrlResource()</a>, <a class="el" href="../../d8/d87/a00118_source.html#l00025">SkyDataObject\GetApplicationView()</a>, <a class="el" href="../../d7/d12/a00126_source.html#l00402">SkyDataTheme\GetBasePath()</a>, <a class="el" href="../../d8/dfa/a00121_source.html#l00054">SkyDataResource\GetContentID()</a>, <a class="el" href="../../df/d6a/a00119_source.html#l00103">SkyDataPage\GetPageIcon()</a>, <a class="el" href="../../df/d6a/a00119_source.html#l00043">SkyDataPage\GetPageTitle()</a>, <a class="el" href="../../d0/dc2/a00104_source.html#l00049">MySQLManager\GetStorageConfiguration()</a>, <a class="el" href="../../d2/da3/a00115_source.html#l00103">SkyDataController\GetTheme()</a>, <a class="el" href="../../dc/ddf/a00067_source.html#l00049">ApplicationView\LoadThemes()</a>, <a class="el" href="../../dc/ddf/a00067_source.html#l00131">ApplicationView\ManageAjaxRequest()</a>, <a class="el" href="../../dc/ddf/a00067_source.html#l00112">ApplicationView\ManagePageRequest()</a>, <a class="el" href="../../dc/ddf/a00067_source.html#l00220">ApplicationView\OutputAjaxHtmlResult()</a>, <a class="el" href="../../dc/ddf/a00067_source.html#l00205">ApplicationView\OutputAjaxJsonResult()</a>, <a class="el" href="../../dc/ddf/a00067_source.html#l00214">ApplicationView\OutputAjaxTextResult()</a>, <a class="el" href="../../d7/d12/a00126_source.html#l00157">SkyDataTheme\PublishServicesMainScript()</a>, <a class="el" href="../../d9/dcc/a00102_source.html#l00033">MarkdownView\Render()</a>, <a class="el" href="../../dc/ddf/a00067_source.html#l00080">ApplicationView\Render()</a>, <a class="el" href="../../d7/d12/a00126_source.html#l00086">SkyDataTheme\Render()</a>, <a class="el" href="../../d7/d12/a00126_source.html#l00244">SkyDataTheme\RenderMetadataScripts()</a>, <a class="el" href="../../d7/d12/a00126_source.html#l00224">SkyDataTheme\RenderMetadataStyles()</a>, <a class="el" href="../../da/d72/a00124_source.html#l00188">SkyDataService\RenderServiceJavascript()</a> y <a class="el" href="../../d9/da5/a00075_source.html#l00059">HTMLView\RenderServices()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        return \SkyData\Core\BootFactory::GetApplication();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/de0/a00050_a98cf2dac4fa0980807551ab18be0de78_icgraph.png" border="0" usemap="#d5/de0/a00050_a98cf2dac4fa0980807551ab18be0de78_icgraph" alt=""/></div>
+<map name="d5/de0/a00050_a98cf2dac4fa0980807551ab18be0de78_icgraph" id="d5/de0/a00050_a98cf2dac4fa0980807551ab18be0de78_icgraph">
+<area shape="rect" id="node2" href="../../dc/dee/a00053.html#adfa414b380567a60218c6187ba495402" title="SkyData\\Core\\SkyDataResource\l\\CreateView" alt="" coords="173,5,385,47"/><area shape="rect" id="node4" href="../../df/d86/a00012.html#a560dcc9d0cd196a253f0caf3dc73c4a4" title="SkyData\\Core\\Content\l\\HttpDeliveryChannel\l\\DeliverFromLocalUrlResource" alt="" coords="181,71,377,127"/><area shape="rect" id="node5" href="../../d5/de0/a00050.html#a29e8bfee83115eebd30aad72e37287c4" title="GetApplicationView" alt="" coords="212,202,347,229"/><area shape="rect" id="node6" href="../../d7/dec/a00010.html#a3ad34e1fd87b6444afdc2924bfb71d4a" title="SkyData\\Core\\View\\HTMLView\l\\RenderServices" alt="" coords="468,165,669,207"/><area shape="rect" id="node7" href="../../d7/df7/a00058.html#abf7c688f93fc18a0f64130dd37766421" title="SkyData\\Core\\Theme\l\\SkyDataTheme\\GetBasePath" alt="" coords="181,304,378,345"/><area shape="rect" id="node9" href="../../d7/df7/a00058.html#a1a6915de89093bc6383d7c1f18ab81e2" title="SkyData\\Core\\Theme\l\\SkyDataTheme\\Render" alt="" coords="782,363,942,404"/><area shape="rect" id="node10" href="../../dc/dee/a00053.html#a95bf298f470e483f5a1251dcdb1eb9e0" title="SkyData\\Core\\SkyDataResource\l\\GetContentID" alt="" coords="173,369,385,411"/><area shape="rect" id="node11" href="../../d2/d79/a00051.html#a01484fc334fc35aacd70b2b91e10710c" title="SkyData\\Core\\Page\\SkyData\lPage\\GetPageIcon" alt="" coords="184,435,375,476"/><area shape="rect" id="node12" href="../../d2/d79/a00051.html#a570ef0336ec763e7c978412a685a605f" title="SkyData\\Core\\Page\\SkyData\lPage\\GetPageTitle" alt="" coords="184,500,375,541"/><area shape="rect" id="node13" href="../../d1/dc6/a00037.html#a59b16f3efd1296a175b6364f2cde31b8" title="SkyData\\Core\\Storage\l\\MySQL\\MySQLManager\\GetStorage\lConfiguration" alt="" coords="160,843,399,899"/><area shape="rect" id="node16" href="../../d6/d2d/a00047.html#ac2fed41b5b44b83a83e2845a7fc7eaa5" title="SkyData\\Core\\Controller\l\\SkyDataController\\GetTheme" alt="" coords="182,617,377,659"/><area shape="rect" id="node17" href="../../d7/d46/a00002.html#a5906ec381a66efa252d776bf035f0c6e" title="SkyData\\Core\\Application\l\\ApplicationView\\LoadThemes" alt="" coords="181,1331,377,1372"/><area shape="rect" id="node20" href="../../d7/d46/a00002.html#a1a6915de89093bc6383d7c1f18ab81e2" title="SkyData\\Core\\Application\l\\ApplicationView\\Render" alt="" coords="1033,1236,1204,1277"/><area shape="rect" id="node21" href="../../d7/d46/a00002.html#a014e4dd8fb02861811d3602dfc0858d6" title="SkyData\\Core\\Application\l\\ApplicationView\\ManagePageRequest" alt="" coords="739,1360,985,1401"/><area shape="rect" id="node22" href="../../d7/d46/a00002.html#a889eeaf079aafd7fd5aa721df1e1837a" title="SkyData\\Core\\Application\l\\ApplicationView\\ManageAjaxRequest" alt="" coords="741,1112,983,1153"/><area shape="rect" id="node23" href="../../d7/d46/a00002.html#aee5fb2cbd03342eb7ac4379c3869c57d" title="SkyData\\Core\\Application\l\\ApplicationView\\OutputAjaxHtml\lResult" alt="" coords="172,1185,387,1241"/><area shape="rect" id="node25" href="../../d7/d46/a00002.html#ae503264714ac3152778f5f0018d1e2b0" title="SkyData\\Core\\Application\l\\ApplicationView\\OutputAjaxJson\lResult" alt="" coords="172,1025,387,1081"/><area shape="rect" id="node26" href="../../d7/d46/a00002.html#a2538f92182de74b8e12bafba9bee5fbd" title="SkyData\\Core\\Application\l\\ApplicationView\\OutputAjaxText\lResult" alt="" coords="173,1105,385,1161"/><area shape="rect" id="node27" href="../../d7/df7/a00058.html#a619d36848b9b7cee1a6aefb831b1e66f" title="SkyData\\Core\\Theme\l\\SkyDataTheme\\PublishServices\lMainScript" alt="" coords="463,490,674,546"/><area shape="rect" id="node28" href="../../d4/d8c/a00035.html#a1a6915de89093bc6383d7c1f18ab81e2" title="SkyData\\Core\\View\\Markdown\lView\\Render" alt="" coords="180,1265,379,1307"/><area shape="rect" id="node29" href="../../d7/df7/a00058.html#afbcb6c18765db345df7678e56d99995f" title="SkyData\\Core\\Theme\l\\SkyDataTheme\\RenderMetadata\lScripts" alt="" coords="172,763,387,819"/><area shape="rect" id="node31" href="../../d7/df7/a00058.html#a98a69391a233a6a66dfdcb6db77e1c11" title="SkyData\\Core\\Theme\l\\SkyDataTheme\\RenderMetadata\lStyles" alt="" coords="172,683,387,739"/><area shape="rect" id="node32" href="../../d9/d2e/a00056.html#af9dd7a3a73f6c220abe21463853347e1" title="SkyData\\Core\\Service\l\\SkyDataService\\RenderService\lJavascript" alt="" coords="177,1447,382,1503"/><area shape="rect" id="node3" href="../../dc/dee/a00053.html#a095c5d389db211932136b53f25f39685" title="SkyData\\Core\\SkyDataResource\l\\__construct" alt="" coords="463,5,675,47"/><area shape="rect" id="node8" href="../../d7/df7/a00058.html#a18450d27256dc7a932a2b788b97c02e4" title="SkyData\\Core\\Theme\l\\SkyDataTheme\\LoadMetadata" alt="" coords="468,363,669,404"/><area shape="rect" id="node14" href="../../d1/dc6/a00037.html#a3c5d26c14d58265ef5711e3e6b6c7715" title="SkyData\\Core\\Storage\l\\MySQL\\MySQLManager\\Connect" alt="" coords="459,851,679,892"/><area shape="rect" id="node15" href="../../d1/dc6/a00037.html#a87775a749d522fdb426c31ce7ee74478" title="SkyData\\Core\\Storage\l\\MySQL\\MySQLManager\\\l__construct" alt="" coords="776,843,948,899"/><area shape="rect" id="node18" href="../../d7/d46/a00002.html#a928787566fd7789dc1776649fba548e8" title="SkyData\\Core\\Application\l\\ApplicationView\\GetSelectedTheme" alt="" coords="452,1331,685,1372"/><area shape="rect" id="node19" href="../../d7/d46/a00002.html#a8354032b85b3028d02f4485cee6a3eff" title="SkyData\\Core\\Application\l\\ApplicationView\\Assign" alt="" coords="777,1295,947,1336"/><area shape="rect" id="node24" href="../../d7/d46/a00002.html#a67e3816da04aa389f8865b17bb6d2e37" title="SkyData\\Core\\Application\l\\ApplicationView\\RenderAjaxResult" alt="" coords="455,1112,682,1153"/><area shape="rect" id="node30" href="../../d7/df7/a00058.html#a8ab422cae74114ac8ba2e23cc596a963" title="SkyData\\Core\\Theme\l\\SkyDataTheme\\RenderPageMetadata" alt="" coords="447,691,691,732"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a29e8bfee83115eebd30aad72e37287c4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetApplicationView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d8/d87/a00118_source.html#l00025">25</a> del archivo <a class="el" href="../../d8/d87/a00118_source.html">SkyDataObject.class.php</a>.</p>
+
+<p>Hace referencia a <a class="el" href="../../d8/d87/a00118_source.html#l00020">SkyDataObject\GetApplication()</a>.</p>
+
+<p>Referenciado por <a class="el" href="../../d9/da5/a00075_source.html#l00059">HTMLView\RenderServices()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">return</span> $this-&gt;<a class="code" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78">GetApplication</a>()-&gt;GetView();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
+<div class="ttc" id="a00050_html_a98cf2dac4fa0980807551ab18be0de78"><div class="ttname"><a href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78">SkyData\Core\SkyDataObject\GetApplication</a></div><div class="ttdeci">GetApplication()</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d87/a00118_source.html#l00020">SkyDataObject.class.php:20</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/de0/a00050_a29e8bfee83115eebd30aad72e37287c4_cgraph.png" border="0" usemap="#d5/de0/a00050_a29e8bfee83115eebd30aad72e37287c4_cgraph" alt=""/></div>
+<map name="d5/de0/a00050_a29e8bfee83115eebd30aad72e37287c4_cgraph" id="d5/de0/a00050_a29e8bfee83115eebd30aad72e37287c4_cgraph">
+<area shape="rect" id="node2" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78" title="GetApplication" alt="" coords="188,5,295,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/de0/a00050_a29e8bfee83115eebd30aad72e37287c4_icgraph.png" border="0" usemap="#d5/de0/a00050_a29e8bfee83115eebd30aad72e37287c4_icgraph" alt=""/></div>
+<map name="d5/de0/a00050_a29e8bfee83115eebd30aad72e37287c4_icgraph" id="d5/de0/a00050_a29e8bfee83115eebd30aad72e37287c4_icgraph">
+<area shape="rect" id="node2" href="../../d7/dec/a00010.html#a3ad34e1fd87b6444afdc2924bfb71d4a" title="SkyData\\Core\\View\\HTMLView\l\\RenderServices" alt="" coords="188,5,389,47"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="af1c4ef63122a44b489087b143aab3e1b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetClassDirectory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d8/d87/a00118_source.html#l00041">41</a> del archivo <a class="el" href="../../d8/d87/a00118_source.html">SkyDataObject.class.php</a>.</p>
+
+<p>Hace referencia a <a class="el" href="../../d4/d81/a00110_source.html#l00075">ReflectionFactory\getClassDirectory()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="../../d5/db6/a00042.html#a7b68f0f9a3d23195e81c9122fd4b2ca7">ReflectionFactory::getClassDirectory</a> (get_class($this));     </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="ttc" id="a00042_html_a7b68f0f9a3d23195e81c9122fd4b2ca7"><div class="ttname"><a href="../../d5/db6/a00042.html#a7b68f0f9a3d23195e81c9122fd4b2ca7">SkyData\Core\ReflectionFactory\getClassDirectory</a></div><div class="ttdeci">static getClassDirectory($className)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d81/a00110_source.html#l00075">ReflectionFactory.class.php:75</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/de0/a00050_af1c4ef63122a44b489087b143aab3e1b_cgraph.png" border="0" usemap="#d5/de0/a00050_af1c4ef63122a44b489087b143aab3e1b_cgraph" alt=""/></div>
+<map name="d5/de0/a00050_af1c4ef63122a44b489087b143aab3e1b_cgraph" id="d5/de0/a00050_af1c4ef63122a44b489087b143aab3e1b_cgraph">
+<area shape="rect" id="node2" href="../../d5/db6/a00042.html#a7b68f0f9a3d23195e81c9122fd4b2ca7" title="SkyData\\Core\\ReflectionFactory\l\\getClassDirectory" alt="" coords="181,5,389,47"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="abc36fe4c2707dbf6fb35e302684c28e3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetClassNamespace </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d8/d87/a00118_source.html#l00036">36</a> del archivo <a class="el" href="../../d8/d87/a00118_source.html">SkyDataObject.class.php</a>.</p>
+
+<p>Hace referencia a <a class="el" href="../../d4/d81/a00110_source.html#l00098">ReflectionFactory\getClassNamespace()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="../../d5/db6/a00042.html#a59258cdb374bc181103fcf020014c042">ReflectionFactory::getClassNamespace</a> (get_class($this));     </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="ttc" id="a00042_html_a59258cdb374bc181103fcf020014c042"><div class="ttname"><a href="../../d5/db6/a00042.html#a59258cdb374bc181103fcf020014c042">SkyData\Core\ReflectionFactory\getClassNamespace</a></div><div class="ttdeci">static getClassNamespace($className)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d81/a00110_source.html#l00098">ReflectionFactory.class.php:98</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/de0/a00050_abc36fe4c2707dbf6fb35e302684c28e3_cgraph.png" border="0" usemap="#d5/de0/a00050_abc36fe4c2707dbf6fb35e302684c28e3_cgraph" alt=""/></div>
+<map name="d5/de0/a00050_abc36fe4c2707dbf6fb35e302684c28e3_cgraph" id="d5/de0/a00050_abc36fe4c2707dbf6fb35e302684c28e3_cgraph">
+<area shape="rect" id="node2" href="../../d5/db6/a00042.html#a59258cdb374bc181103fcf020014c042" title="SkyData\\Core\\ReflectionFactory\l\\getClassNamespace" alt="" coords="199,5,407,47"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae440f2091c527beadd24409572ce2289"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetClassShortName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d8/d87/a00118_source.html#l00031">31</a> del archivo <a class="el" href="../../d8/d87/a00118_source.html">SkyDataObject.class.php</a>.</p>
+
+<p>Hace referencia a <a class="el" href="../../d4/d81/a00110_source.html#l00089">ReflectionFactory\getClassShortName()</a>.</p>
+
+<p>Referenciado por <a class="el" href="../../df/d6a/a00119_source.html#l00103">SkyDataPage\GetPageIcon()</a>, <a class="el" href="../../df/d6a/a00119_source.html#l00043">SkyDataPage\GetPageTitle()</a> y <a class="el" href="../../da/d72/a00124_source.html#l00188">SkyDataService\RenderServiceJavascript()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="../../d5/db6/a00042.html#adfe52bd823898d4908161ebccf877b85">ReflectionFactory::getClassShortName</a> (get_class($this));     </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
+<div class="ttc" id="a00042_html_adfe52bd823898d4908161ebccf877b85"><div class="ttname"><a href="../../d5/db6/a00042.html#adfe52bd823898d4908161ebccf877b85">SkyData\Core\ReflectionFactory\getClassShortName</a></div><div class="ttdeci">static getClassShortName($className)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d81/a00110_source.html#l00089">ReflectionFactory.class.php:89</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/de0/a00050_ae440f2091c527beadd24409572ce2289_cgraph.png" border="0" usemap="#d5/de0/a00050_ae440f2091c527beadd24409572ce2289_cgraph" alt=""/></div>
+<map name="d5/de0/a00050_ae440f2091c527beadd24409572ce2289_cgraph" id="d5/de0/a00050_ae440f2091c527beadd24409572ce2289_cgraph">
+<area shape="rect" id="node2" href="../../d5/db6/a00042.html#adfe52bd823898d4908161ebccf877b85" title="SkyData\\Core\\ReflectionFactory\l\\getClassShortName" alt="" coords="195,5,403,47"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/de0/a00050_ae440f2091c527beadd24409572ce2289_icgraph.png" border="0" usemap="#d5/de0/a00050_ae440f2091c527beadd24409572ce2289_icgraph" alt=""/></div>
+<map name="d5/de0/a00050_ae440f2091c527beadd24409572ce2289_icgraph" id="d5/de0/a00050_ae440f2091c527beadd24409572ce2289_icgraph">
+<area shape="rect" id="node2" href="../../d2/d79/a00051.html#a01484fc334fc35aacd70b2b91e10710c" title="SkyData\\Core\\Page\\SkyData\lPage\\GetPageIcon" alt="" coords="202,5,393,47"/><area shape="rect" id="node3" href="../../d2/d79/a00051.html#a570ef0336ec763e7c978412a685a605f" title="SkyData\\Core\\Page\\SkyData\lPage\\GetPageTitle" alt="" coords="202,71,393,112"/><area shape="rect" id="node4" href="../../d9/d2e/a00056.html#af9dd7a3a73f6c220abe21463853347e1" title="SkyData\\Core\\Service\l\\SkyDataService\\RenderService\lJavascript" alt="" coords="195,137,400,193"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a20e772f238f493a81ce0c398fde46338"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetLastError </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="../../d0/dc0/a00033.html#a20e772f238f493a81ce0c398fde46338">IStorage</a>.</p>
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00154">154</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">return</span> mysql_error();</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="acf493780ad94c1ac734b9c222dd8adb6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetOne </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$uniquid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6f058af2bc54c4f5be0179014bc28464"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetOne </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$id</em> = <code>'id'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$fields</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00115">115</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        $query = <span class="stringliteral">&#39;SELECT &#39;</span>.($fields !== null &amp;&amp; is_array($fields) ? join(<span class="stringliteral">&#39;, &#39;</span>, $fields) : <span class="stringliteral">&#39;*&#39;</span> );</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        $query .= <span class="stringliteral">&quot;FROM $object WHERE $id=$value LIMIT 1&quot;</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">if</span> ($rset = $this-&gt;Database-&gt;query($query))</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            $result = $rset-&gt;fetch_object();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">return</span> $result;   </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a59b16f3efd1296a175b6364f2cde31b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetStorageConfiguration </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00049">49</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+
+<p>Hace referencia a <a class="el" href="../../d8/d87/a00118_source.html#l00020">SkyDataObject\GetApplication()</a> y <a class="el" href="../../d0/dc2/a00104_source.html#l00044">MySQLManager\GetStorageType()</a>.</p>
+
+<p>Referenciado por <a class="el" href="../../d0/dc2/a00104_source.html#l00066">MySQLManager\Connect()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        $type = $this-&gt;<a class="code" href="../../d1/dc6/a00037.html#a707018bbc6f4080fb7a7611b631d8d50">GetStorageType</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        $storageConfig = $this-&gt;<a class="code" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78">GetApplication</a>()-&gt;GetConfigurationManager()-&gt;GetMapping(<span class="stringliteral">&#39;storage&#39;</span>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span> (!empty($storageConfig[$type]))</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">return</span> $storageConfig[$type];</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">return</span> null;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="ttc" id="a00050_html_a98cf2dac4fa0980807551ab18be0de78"><div class="ttname"><a href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78">SkyData\Core\SkyDataObject\GetApplication</a></div><div class="ttdeci">GetApplication()</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d87/a00118_source.html#l00020">SkyDataObject.class.php:20</a></div></div>
+<div class="ttc" id="a00037_html_a707018bbc6f4080fb7a7611b631d8d50"><div class="ttname"><a href="../../d1/dc6/a00037.html#a707018bbc6f4080fb7a7611b631d8d50">SkyData\Core\Storage\MySQL\MySQLManager\GetStorageType</a></div><div class="ttdeci">GetStorageType()</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dc2/a00104_source.html#l00044">MySQLManager.class.php:44</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/dc6/a00037_a59b16f3efd1296a175b6364f2cde31b8_cgraph.png" border="0" usemap="#d1/dc6/a00037_a59b16f3efd1296a175b6364f2cde31b8_cgraph" alt=""/></div>
+<map name="d1/dc6/a00037_a59b16f3efd1296a175b6364f2cde31b8_cgraph" id="d1/dc6/a00037_a59b16f3efd1296a175b6364f2cde31b8_cgraph">
+<area shape="rect" id="node2" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78" title="SkyData\\Core\\SkyDataObject\l\\GetApplication" alt="" coords="216,5,411,47"/><area shape="rect" id="node3" href="../../d1/dc6/a00037.html#a707018bbc6f4080fb7a7611b631d8d50" title="GetStorageType" alt="" coords="255,71,371,98"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/dc6/a00037_a59b16f3efd1296a175b6364f2cde31b8_icgraph.png" border="0" usemap="#d1/dc6/a00037_a59b16f3efd1296a175b6364f2cde31b8_icgraph" alt=""/></div>
+<map name="d1/dc6/a00037_a59b16f3efd1296a175b6364f2cde31b8_icgraph" id="d1/dc6/a00037_a59b16f3efd1296a175b6364f2cde31b8_icgraph">
+<area shape="rect" id="node2" href="../../d1/dc6/a00037.html#a3c5d26c14d58265ef5711e3e6b6c7715" title="Connect" alt="" coords="216,5,287,32"/><area shape="rect" id="node3" href="../../d1/dc6/a00037.html#a87775a749d522fdb426c31ce7ee74478" title="__construct" alt="" coords="335,5,425,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a707018bbc6f4080fb7a7611b631d8d50"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetStorageType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="../../d0/dc0/a00033.html#a707018bbc6f4080fb7a7611b631d8d50">IStorage</a>.</p>
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00044">44</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+
+<p>Referenciado por <a class="el" href="../../d0/dc2/a00104_source.html#l00049">MySQLManager\GetStorageConfiguration()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span> <span class="stringliteral">&#39;mysql&#39;</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/dc6/a00037_a707018bbc6f4080fb7a7611b631d8d50_icgraph.png" border="0" usemap="#d1/dc6/a00037_a707018bbc6f4080fb7a7611b631d8d50_icgraph" alt=""/></div>
+<map name="d1/dc6/a00037_a707018bbc6f4080fb7a7611b631d8d50_icgraph" id="d1/dc6/a00037_a707018bbc6f4080fb7a7611b631d8d50_icgraph">
+<area shape="rect" id="node2" href="../../d1/dc6/a00037.html#a59b16f3efd1296a175b6364f2cde31b8" title="GetStorageConfiguration" alt="" coords="169,5,332,32"/><area shape="rect" id="node3" href="../../d1/dc6/a00037.html#a3c5d26c14d58265ef5711e3e6b6c7715" title="Connect" alt="" coords="380,5,451,32"/><area shape="rect" id="node4" href="../../d1/dc6/a00037.html#a87775a749d522fdb426c31ce7ee74478" title="__construct" alt="" coords="499,5,589,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ace2b1244aa33ab675db2a82d2dec58e5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Match </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="../../d0/dc0/a00033.html#ace2b1244aa33ab675db2a82d2dec58e5">IStorage</a>.</p>
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00138">138</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        $result = array();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">if</span> (!preg_match(<span class="stringliteral">&#39;/\s?LIMIT\s/&#39;</span>, $query))</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            $query.= <span class="stringliteral">&quot; LIMIT $count&quot;</span>;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">if</span> ($rset = $this-&gt;Database-&gt;query($query)) {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keywordflow">while</span> ($obj = $rset-&gt;fetch_object())</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                $result[] = $obj;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        }</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">return</span> $result;   </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a6337eefb0e76831d42014a7f130f1e88"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObjectExists </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$object</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="../../d0/dc0/a00033.html#a6337eefb0e76831d42014a7f130f1e88">IStorage</a>.</p>
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00173">173</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;       $result = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;       </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">if</span> (isset($this-&gt;Database)) </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            $info = $this-&gt;Query(<span class="stringliteral">&quot;SHOW TABLES LIKE &quot;</span>.$object);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            $result = !empty($info); </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        }</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="keywordflow">return</span> $result;   </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a5176c4ac13415a527e1d95b366cd136a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Version </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="../../d0/dc0/a00033.html#a5176c4ac13415a527e1d95b366cd136a">IStorage</a>.</p>
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00168">168</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="keywordflow">return</span> $this-&gt;Query(<span class="stringliteral">&quot;SELECT version() version&quot;</span>);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de los campos</h2>
+<a class="anchor" id="a960bacfc2d78aa53f51806f93668098f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">$ConnectionName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00036">36</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aae729e6b7f8621e185a1200b8621908d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">$ConnectOptions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00035">35</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae10cc045c1502f148d1aa728183898e7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">$Database</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00034">34</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4d63edae677da674efa3b8a5208abaa0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const MYSQL_DEFAUL_PORT = 3306</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="../../d0/dc2/a00104_source.html#l00032">32</a> del archivo <a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a>.</p>
+
+<p>Referenciado por <a class="el" href="../../d0/dc2/a00104_source.html#l00066">MySQLManager\Connect()</a>.</p>
+
+</div>
+</div>
+<hr/>La documentación para esta clase fue generada a partir del siguiente fichero:<ul>
+<li><a class="el" href="../../d0/dc2/a00104_source.html">MySQLManager.class.php</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../d0/de8/a00133.html">SkyData</a></li><li class="navelem"><a class="el" href="../../de/d76/a00134.html">Core</a></li><li class="navelem"><a class="el" href="../../d6/daa/a00187.html">Storage</a></li><li class="navelem"><a class="el" href="../../da/deb/a00189.html">MySQL</a></li><li class="navelem"><a class="el" href="../../d1/dc6/a00037.html">MySQLManager</a></li>
+    <li class="footer">Generado el Jueves, 11 de Septiembre de 2014 16:54:11 por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

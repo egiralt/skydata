@@ -1,0 +1,12 @@
+<map id="GetConfigurationManager" name="GetConfigurationManager">
+<area shape="rect" id="node2" href="$dc/dee/a00053.html#a41c446eaf36812b9530b9e8fe3b36173" title="CreateServices" alt="" coords="523,5,632,32"/>
+<area shape="rect" id="node4" href="$d9/d2e/a00056.html#afead90c469515dac3f303b53b8ed1a3d" title="SkyData\\Core\\Service\l\\SkyDataService\\GetDataModel" alt="" coords="221,65,427,106"/>
+<area shape="rect" id="node6" href="$dc/dee/a00053.html#a18c9615743aecf431d39df37720504b6" title="GetInstanceDefaultViewClass" alt="" coords="227,133,421,160"/>
+<area shape="rect" id="node8" href="$dc/dee/a00053.html#a18450d27256dc7a932a2b788b97c02e4" title="LoadMetadata" alt="" coords="272,185,376,212"/>
+<area shape="rect" id="node3" href="$dc/dee/a00053.html#a095c5d389db211932136b53f25f39685" title="__construct" alt="" coords="778,51,869,77"/>
+<area shape="rect" id="node5" href="$d9/d2e/a00056.html#af9dd7a3a73f6c220abe21463853347e1" title="SkyData\\Core\\Service\l\\SkyDataService\\RenderService\lJavascript" alt="" coords="475,56,680,112"/>
+<area shape="rect" id="node7" href="$dc/dee/a00053.html#adfa414b380567a60218c6187ba495402" title="CreateView" alt="" coords="533,136,621,163"/>
+<area shape="rect" id="node9" href="$dc/dee/a00053.html#a28b5b0a1faad2ecc55b1825d177fe202" title="GetMetadataManager" alt="" coords="504,187,651,213"/>
+<area shape="rect" id="node10" href="$d2/d79/a00051.html#a67441c9ccd1bde74435a6783d30f5e27" title="SkyData\\Core\\Page\\SkyData\lPage\\AddScript" alt="" coords="728,146,919,187"/>
+<area shape="rect" id="node11" href="$d9/d2e/a00056.html#a67441c9ccd1bde74435a6783d30f5e27" title="SkyData\\Core\\Service\l\\SkyDataService\\AddScript" alt="" coords="734,211,913,253"/>
+</map>

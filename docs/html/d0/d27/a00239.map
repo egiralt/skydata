@@ -1,0 +1,7 @@
+<map id="SkyDataServiceController" name="SkyDataServiceController">
+<area shape="rect" id="node2" href="$d2/dee/a00049.html" title="{SkyDataModuleController\n||+ Run()\l}" alt="" coords="155,461,325,539"/>
+<area shape="rect" id="node3" href="$d6/d2d/a00047.html" title="{SkyDataController\n||+ Run()\l+ SetView()\l+ GetView()\l+ GetParent()\l+ SetParent()\l+ Assign()\l+ AssignError()\l+ SetError()\l+ GetRequestParams()\l+ GetTheme()\l}" alt="" coords="162,204,318,413"/>
+<area shape="rect" id="node4" href="$d5/de0/a00050.html" title="{SkyDataObject\n||+ __construct()\l+ GetApplication()\l+ GetApplicationView()\l+ GetClassShortName()\l+ GetClassNamespace()\l+ GetClassDirectory()\l}" alt="" coords="5,5,171,156"/>
+<area shape="rect" id="node5" href="$db/db2/a00020.html" title="{IController\n||+ Run()\l+ GetView()\l+ SetView()\l}" alt="" coords="195,27,285,134"/>
+<area shape="rect" id="node6" href="$d3/d52/a00023.html" title="{ILayoutNode\n||+ SetParent()\l+ GetParent()\l}" alt="" coords="309,35,411,127"/>
+</map>

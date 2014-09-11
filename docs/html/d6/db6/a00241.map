@@ -1,0 +1,4 @@
+<map id="MySQLManager" name="MySQLManager">
+<area shape="rect" id="node2" href="$d5/de0/a00050.html" title="{SkyDataObject\n||+ __construct()\l+ GetApplication()\l+ GetApplicationView()\l+ GetClassShortName()\l+ GetClassNamespace()\l+ GetClassDirectory()\l}" alt="" coords="5,27,171,178"/>
+<area shape="rect" id="node3" href="$d0/dc0/a00033.html" title="{IStorage\n||+ GetStorageType()\l+ Connect()\l+ Disconnect()\l+ GetOne()\l+ GetAll()\l+ Match()\l+ GetLastError()\l+ Version()\l+ ObjectExists()\l}" alt="" coords="195,5,331,200"/>
+</map>

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Fichero Fuente RouteFactory.class.php</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../logo_primer300.png"/></td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="../../annotated.html"><span>Estructuras&#160;de&#160;Datos</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="../../globals.html"><span>Globales</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('d3/d00/a00113_source.html','../../');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Estructuras de Datos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">RouteFactory.class.php</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d3/d00/a00113.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span><a class="code" href="../../de/d76/a00134.html">SkyData\Core</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;include <a class="code" href="../../de/d76/a00134.html#ae3ee4970ad3a0ed753214a4ea1a98928">SKYDATA_PATH_LIBRARIES</a>.<span class="stringliteral">&#39;/AltoRouter/AltoRouter.php&#39;</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;use \SkyData\Core\BootFactory;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="../../d6/d97/a00045.html">   32</a></span>&#160;<span class="keyword">final</span> <span class="keyword">class </span><a class="code" href="../../d6/d97/a00045.html">RouteFactory</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> $Router;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Para evitar instancias</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">private</span> <span class="keyword">function</span> __constructor () {}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">function</span> CheckRouter()</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">if</span> (!isset(static::$Router)) </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            $application = <a class="code" href="../../d1/d7c/a00003.html#af3fc45df017663990737ff7cafb5526a">BootFactory::GetApplication</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            static::$Router = new \AltoRouter ();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            $base_path = $application-&gt;GetApplicationBaseUrl();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">if</span> (!empty($base_path))</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                static::$Router-&gt;setBasePath ($base_path);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="comment">//static::$Router-&gt;map (&#39;GET&#39;,&#39;/&#39;, $base_path, &#39;#root&#39;);    </span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="../../d6/d97/a00045.html#a6e47b2b933e5cab8e07774390960c1ab">   59</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="../../d6/d97/a00045.html#a6e47b2b933e5cab8e07774390960c1ab">ReverseRoute</a> ($route)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        static::CheckRouter();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">if</span>($route == <span class="charliteral">&#39;/&#39;</span>) <span class="comment">// El caso especial de la raíz de la aplicación</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            $result = <a class="code" href="../../d1/d7c/a00003.html#af3fc45df017663990737ff7cafb5526a">BootFactory::GetApplication</a>()-&gt;GetApplicationBaseUrl ();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">return</span> $result ? $result : <span class="charliteral">&#39;/&#39;</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">return</span> static::$Router-&gt;generate($route);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="../../d6/d97/a00045.html#a8ef6634bfac4e8082ceee69e679531d5">   74</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="../../d6/d97/a00045.html#a8ef6634bfac4e8082ceee69e679531d5">Map</a> ($method, $route, $target, $name = null)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        static::CheckRouter();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment">// Se agrega la base del url si las rutas no vienen precedidas por un /</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">        $target = (substr($relativeTarget, 0, 1) != &#39;/&#39;) </span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">            ? BootFactory::GetApplication()-&gt;GetApplicationBaseUrl().&#39;/&#39;.$relativeTarget</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">            : $relativeTarget;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">        */</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;          </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> static::$Router-&gt;map ($method, $route, $target, $name);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="../../d6/d97/a00045.html#a85247bae478e1df89ae18f2602f337c5">   90</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="../../d6/d97/a00045.html#a85247bae478e1df89ae18f2602f337c5">MatchRequest</a> ()</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> static::$Router-&gt;match();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="ttc" id="a00134_html_ae3ee4970ad3a0ed753214a4ea1a98928"><div class="ttname"><a href="../../de/d76/a00134.html#ae3ee4970ad3a0ed753214a4ea1a98928">SkyData\Core\SKYDATA_PATH_LIBRARIES</a></div><div class="ttdeci">const SKYDATA_PATH_LIBRARIES</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00033">BootFactory.class.php:33</a></div></div>
+<div class="ttc" id="a00045_html_a6e47b2b933e5cab8e07774390960c1ab"><div class="ttname"><a href="../../d6/d97/a00045.html#a6e47b2b933e5cab8e07774390960c1ab">SkyData\Core\RouteFactory\ReverseRoute</a></div><div class="ttdeci">static ReverseRoute($route)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d00/a00113_source.html#l00059">RouteFactory.class.php:59</a></div></div>
+<div class="ttc" id="a00045_html_a8ef6634bfac4e8082ceee69e679531d5"><div class="ttname"><a href="../../d6/d97/a00045.html#a8ef6634bfac4e8082ceee69e679531d5">SkyData\Core\RouteFactory\Map</a></div><div class="ttdeci">static Map($method, $route, $target, $name=null)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d00/a00113_source.html#l00074">RouteFactory.class.php:74</a></div></div>
+<div class="ttc" id="a00045_html_a85247bae478e1df89ae18f2602f337c5"><div class="ttname"><a href="../../d6/d97/a00045.html#a85247bae478e1df89ae18f2602f337c5">SkyData\Core\RouteFactory\MatchRequest</a></div><div class="ttdeci">static MatchRequest()</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d00/a00113_source.html#l00090">RouteFactory.class.php:90</a></div></div>
+<div class="ttc" id="a00134_html"><div class="ttname"><a href="../../de/d76/a00134.html">SkyData\Core</a></div></div>
+<div class="ttc" id="a00045_html"><div class="ttname"><a href="../../d6/d97/a00045.html">SkyData\Core\RouteFactory</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d00/a00113_source.html#l00032">RouteFactory.class.php:32</a></div></div>
+<div class="ttc" id="a00003_html_af3fc45df017663990737ff7cafb5526a"><div class="ttname"><a href="../../d1/d7c/a00003.html#af3fc45df017663990737ff7cafb5526a">SkyData\Core\BootFactory\GetApplication</a></div><div class="ttdeci">static GetApplication()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00130">BootFactory.class.php:130</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_562abdcd8625d4bf7bad2fe6fe01354c.html">web</a></li><li class="navelem"><a class="el" href="../../dir_327b0b45fe7ef59e08c9f1ccbdd6d4f2.html">Core</a></li><li class="navelem"><a class="el" href="../../d3/d00/a00113.html">RouteFactory.class.php</a></li>
+    <li class="footer">Generado el Jueves, 11 de Septiembre de 2014 16:53:59 por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

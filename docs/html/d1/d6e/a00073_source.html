@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Fichero Fuente FileCacheManager.class.php</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../logo_primer300.png"/></td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="../../annotated.html"><span>Estructuras&#160;de&#160;Datos</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="../../globals.html"><span>Globales</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('d1/d6e/a00073_source.html','../../');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Estructuras de Datos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">FileCacheManager.class.php</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d1/d6e/a00073.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="../../d5/db1/a00140.html">   23</a></span>&#160;  <span class="keyword">namespace </span><a class="code" href="../../d5/db1/a00140.html">SkyData\Core\Cache\File</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  use <a class="code" href="../../de/df3/a00185.html">SkyData\Core\SkyDataObject</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  use \SkyData\Core\Cache\ICacheManager;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  use \SkyData\Core\IManager;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="../../d5/db1/a00140.html#a6c2caedb641624751bccc03297497235">   30</a></span>&#160; define (<span class="stringliteral">&#39;PATTERN_IS_HTML_JS&#39;</span>, <span class="stringliteral">&#39;/(\.js|\.html)$/i&#39;</span>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="../../d4/dee/a00008.html">   36</a></span>&#160; <span class="keyword">class </span><a class="code" href="../../d4/dee/a00008.html">FileCacheManager</a> <span class="keyword">extends</span> <a class="code" href="../../d5/de0/a00050.html">SkyDataObject</a> implements <a class="code" href="../../dc/de2/a00024.html">IManager</a>, <a class="code" href="../../dd/d1b/a00015.html">ICacheManager</a></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="../../d4/dee/a00008.html#aa6fec15387a040f93df6eaaaa0f88d62">   39</a></span>&#160;    <span class="keyword">protected</span>  <a class="code" href="../../d4/dee/a00008.html#aa6fec15387a040f93df6eaaaa0f88d62">$StoreID</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">private</span> $Directory;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="../../d4/dee/a00008.html#a5e497defd579842c50a82cf2f9525eed">   46</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d4/dee/a00008.html#a5e497defd579842c50a82cf2f9525eed">__construct</a>($directory = <a class="code" href="../../de/d76/a00134.html#ae94d678fa9b978ffdb17e87117ece1a8">SKYDATA_PATH_CACHE</a>)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        parent::__construct();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        $this-&gt;InitializeDirectory($directory);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        $this-&gt;Directory = $directory;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        $this-&gt;StoreID = uniqid();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">private</span> <span class="keyword">function</span> InitializeDirectory ($directory)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">if</span> (!is_dir($directory))</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                mkdir($directory, 0777, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">catch</span> (\Exception $e)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keywordflow">throw</span> new \Exception(<span class="stringliteral">&quot;No se pudo crear el almacen para el caché en &lt;$directory&gt;. Razón: {$e-&gt;getMessage()}&quot;</span>, -100);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="../../d4/dee/a00008.html#a15125a89d880ec5951996418ffa2dcfa">   79</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d4/dee/a00008.html#a15125a89d880ec5951996418ffa2dcfa">Store</a>($value, $uniqueID = null, \DateInterval $expiration = null)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        $defaultStoreExtension = <span class="stringliteral">&#39;.val&#39;</span>; <span class="comment">// Para adicionarla al nombre del fichero que se usará para guardar el contenido</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">//Calcular el ID si no lo pasan como valor, que es realmente un checksum del valor serializado</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">if</span> (!isset($uniqueID))</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            $uniqueID = md5(serialize($value));</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">if</span> (preg_match(<a class="code" href="../../d5/db1/a00140.html#a6c2caedb641624751bccc03297497235">PATTERN_IS_HTML_JS</a>, $uniqueID, $extension))</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                $defaultStoreExtension = $extension[0];</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="comment">// Preparar el contenido a almacenar</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        $objectToStore = new \stdClass();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        $objectToStore-&gt;id = $uniqueID;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        $objectToStore-&gt;expiration = $expiration;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        $objectToStore-&gt;stored = new \DateTime();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        $objectToStore-&gt;is_serialized = !is_string($value);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        $objectToStore-&gt;file = !is_string($value);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="comment">// El valor se almacena como un valor serializable</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        $contentToStore = serialize($objectToStore);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="comment">// Guardar el fichero de índice</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            $idxFilePath = $this-&gt;<a class="code" href="../../d4/dee/a00008.html#aa27a48468376aa9e4d3b83825571f36c">GetFilePath</a>($uniqueID).<span class="stringliteral">&#39;.idx&#39;</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            file_put_contents($idxFilePath, $contentToStore);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="comment">// Guardar el fichero de contenidos</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            $contentFilePath = $this-&gt;<a class="code" href="../../d4/dee/a00008.html#aa27a48468376aa9e4d3b83825571f36c">GetFilePath</a>($uniqueID).$defaultStoreExtension;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="keywordflow">if</span> (!is_string($value))</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                $value = serialize($value);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            file_put_contents($contentFilePath, $value);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">catch</span> (\Exception $e)</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keywordflow">throw</span> new \Exception(<span class="stringliteral">&quot;No se pudo guardar el objeto &lt;$uniqueID&gt; en el almacen de caché&quot;</span>, -1000);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span> md5($uniqueID);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="../../d4/dee/a00008.html#aee89346890c8d5dc55b10b877dcba449">  124</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d4/dee/a00008.html#aee89346890c8d5dc55b10b877dcba449">Remove</a>($uniqueID)</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        $filePath = $this-&gt;<a class="code" href="../../d4/dee/a00008.html#aa27a48468376aa9e4d3b83825571f36c">GetFilePath</a>($uniqueID);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">if</span> (is_file($filePath.<span class="stringliteral">&#39;.idx&#39;</span>))</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                unlink($filePath.<span class="stringliteral">&#39;.idx&#39;</span>);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                unlink($filePath.<span class="stringliteral">&#39;.val&#39;</span>);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordflow">catch</span> (\Exception $e)</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                <span class="keywordflow">throw</span> new \Exception(<span class="stringliteral">&quot;No se pudo eliminar el objeto &lt;$uniqueID&gt; del almacen de caché&quot;</span>, -1000);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="../../d4/dee/a00008.html#a55e67515a870269ad32061ce447db54c">  146</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d4/dee/a00008.html#a55e67515a870269ad32061ce447db54c">Get</a> ($uniqueID)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        $result = null;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        $filePath = $this-&gt;<a class="code" href="../../d4/dee/a00008.html#aa27a48468376aa9e4d3b83825571f36c">GetFilePath</a>($uniqueID).<span class="stringliteral">&#39;.idx&#39;</span>;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">if</span> (is_file($filePath))</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            $cachedContent = file_get_contents($filePath);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            $cachedObject = unserialize($cachedContent);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="comment">//echo &quot;&lt;pre&gt;&quot;;print_r ($cachedObject); die();</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="comment">// Hay que averiguar si ha pasado el tiempo de expiración indicado</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            $cachedTime = new \DateTime (); <span class="comment">// Por defecto igual que ahora</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            $now = new \DateTime();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keywordflow">if</span> (!empty($cachedObject-&gt;expiration))</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                $cachedTime = $cachedObject-&gt;stored-&gt;add ($cachedObject-&gt;expiration);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="comment">// Solo se retorna el valor si no ha pasado suficiente tiempo para desecharlo o si es &quot;eterno&quot;</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            $cachedSecondsDiff = $cachedTime-&gt;diff($now)-&gt;format(<span class="stringliteral">&#39;%R%s&#39;</span>) * 1;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">if</span> ($cachedSecondsDiff &lt;= 0)</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            {</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                $contentFilePath = $this-&gt;<a class="code" href="../../d4/dee/a00008.html#aa27a48468376aa9e4d3b83825571f36c">GetFilePath</a>($cachedObject-&gt;id);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                <span class="comment">//echo $contentFilePath; die();</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                <span class="keywordflow">if</span> (preg_match(<a class="code" href="../../d5/db1/a00140.html#a6c2caedb641624751bccc03297497235">PATTERN_IS_HTML_JS</a>, $cachedObject-&gt;id, $extension))</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                    $contentFilePath .= $extension[0];</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                    $contentFilePath .= <span class="stringliteral">&#39;.val&#39;</span>;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                $result = file_get_contents($contentFilePath);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                <span class="keywordflow">if</span> ($result &amp;&amp; $cachedObject-&gt;is_serialized)</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    $result = unserialize($result);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            }</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                $this-&gt;<a class="code" href="../../d4/dee/a00008.html#aee89346890c8d5dc55b10b877dcba449">Remove</a>($uniqueID); <span class="comment">// Se aprovecha y se elimina del cache por que ya está obsoleto</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">return</span> $result;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="../../d4/dee/a00008.html#aa27a48468376aa9e4d3b83825571f36c">  187</a></span>&#160;    <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="../../d4/dee/a00008.html#aa27a48468376aa9e4d3b83825571f36c">GetFilePath</a> ($uniqueID)</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">return</span> sprintf(<span class="stringliteral">&#39;%s/%s&#39;</span>,$this-&gt;Directory, md5($uniqueID));</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; }</div>
+<div class="ttc" id="a00024_html"><div class="ttname"><a href="../../dc/de2/a00024.html">SkyData\Core\IManager</a></div><div class="ttdef"><b>Definition:</b> <a href="../../db/dab/a00089_source.html#l00010">IManager.php:10</a></div></div>
+<div class="ttc" id="a00015_html"><div class="ttname"><a href="../../dd/d1b/a00015.html">SkyData\Core\Cache\ICacheManager</a></div><div class="ttdef"><b>Definition:</b> <a href="../../da/dec/a00080_source.html#l00007">ICacheManager.php:7</a></div></div>
+<div class="ttc" id="a00050_html"><div class="ttname"><a href="../../d5/de0/a00050.html">SkyData\Core\SkyDataObject</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d87/a00118_source.html#l00013">SkyDataObject.class.php:13</a></div></div>
+<div class="ttc" id="a00008_html_aa6fec15387a040f93df6eaaaa0f88d62"><div class="ttname"><a href="../../d4/dee/a00008.html#aa6fec15387a040f93df6eaaaa0f88d62">SkyData\Core\Cache\File\FileCacheManager\$StoreID</a></div><div class="ttdeci">$StoreID</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d6e/a00073_source.html#l00039">FileCacheManager.class.php:39</a></div></div>
+<div class="ttc" id="a00134_html_ae94d678fa9b978ffdb17e87117ece1a8"><div class="ttname"><a href="../../de/d76/a00134.html#ae94d678fa9b978ffdb17e87117ece1a8">SkyData\Core\SKYDATA_PATH_CACHE</a></div><div class="ttdeci">const SKYDATA_PATH_CACHE</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00035">BootFactory.class.php:35</a></div></div>
+<div class="ttc" id="a00008_html_a15125a89d880ec5951996418ffa2dcfa"><div class="ttname"><a href="../../d4/dee/a00008.html#a15125a89d880ec5951996418ffa2dcfa">SkyData\Core\Cache\File\FileCacheManager\Store</a></div><div class="ttdeci">Store($value, $uniqueID=null,\DateInterval $expiration=null)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d6e/a00073_source.html#l00079">FileCacheManager.class.php:79</a></div></div>
+<div class="ttc" id="a00140_html_a6c2caedb641624751bccc03297497235"><div class="ttname"><a href="../../d5/db1/a00140.html#a6c2caedb641624751bccc03297497235">SkyData\Core\Cache\File\PATTERN_IS_HTML_JS</a></div><div class="ttdeci">const PATTERN_IS_HTML_JS</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d6e/a00073_source.html#l00030">FileCacheManager.class.php:30</a></div></div>
+<div class="ttc" id="a00008_html_a55e67515a870269ad32061ce447db54c"><div class="ttname"><a href="../../d4/dee/a00008.html#a55e67515a870269ad32061ce447db54c">SkyData\Core\Cache\File\FileCacheManager\Get</a></div><div class="ttdeci">Get($uniqueID)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d6e/a00073_source.html#l00146">FileCacheManager.class.php:146</a></div></div>
+<div class="ttc" id="a00008_html_a5e497defd579842c50a82cf2f9525eed"><div class="ttname"><a href="../../d4/dee/a00008.html#a5e497defd579842c50a82cf2f9525eed">SkyData\Core\Cache\File\FileCacheManager\__construct</a></div><div class="ttdeci">__construct($directory=SKYDATA_PATH_CACHE)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d6e/a00073_source.html#l00046">FileCacheManager.class.php:46</a></div></div>
+<div class="ttc" id="a00140_html"><div class="ttname"><a href="../../d5/db1/a00140.html">SkyData\Core\Cache\File</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d6e/a00073_source.html#l00023">FileCacheManager.class.php:23</a></div></div>
+<div class="ttc" id="a00008_html_aa27a48468376aa9e4d3b83825571f36c"><div class="ttname"><a href="../../d4/dee/a00008.html#aa27a48468376aa9e4d3b83825571f36c">SkyData\Core\Cache\File\FileCacheManager\GetFilePath</a></div><div class="ttdeci">GetFilePath($uniqueID)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d6e/a00073_source.html#l00187">FileCacheManager.class.php:187</a></div></div>
+<div class="ttc" id="a00008_html"><div class="ttname"><a href="../../d4/dee/a00008.html">SkyData\Core\Cache\File\FileCacheManager</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d6e/a00073_source.html#l00036">FileCacheManager.class.php:36</a></div></div>
+<div class="ttc" id="a00185_html"><div class="ttname"><a href="../../de/df3/a00185.html">SkyDataObject</a></div></div>
+<div class="ttc" id="a00008_html_aee89346890c8d5dc55b10b877dcba449"><div class="ttname"><a href="../../d4/dee/a00008.html#aee89346890c8d5dc55b10b877dcba449">SkyData\Core\Cache\File\FileCacheManager\Remove</a></div><div class="ttdeci">Remove($uniqueID)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d6e/a00073_source.html#l00124">FileCacheManager.class.php:124</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_562abdcd8625d4bf7bad2fe6fe01354c.html">web</a></li><li class="navelem"><a class="el" href="../../dir_327b0b45fe7ef59e08c9f1ccbdd6d4f2.html">Core</a></li><li class="navelem"><a class="el" href="../../dir_79afbbae154b479521b0a702221e93ca.html">Cache</a></li><li class="navelem"><a class="el" href="../../dir_9c90b9d28380219caeffcc9620734f3c.html">File</a></li><li class="navelem"><a class="el" href="../../d1/d6e/a00073.html">FileCacheManager.class.php</a></li>
+    <li class="footer">Generado el Jueves, 11 de Septiembre de 2014 16:53:59 por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

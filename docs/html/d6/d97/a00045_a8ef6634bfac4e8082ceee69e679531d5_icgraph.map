@@ -1,0 +1,6 @@
+<map id="Map" name="Map">
+<area shape="rect" id="node2" href="$d8/d84/a00001.html#a24d90c4aea5cbf7d65ffb171cab5cf79" title="SkyData\\Core\\Application\l\\Application\\InitAdminstration\lDefaults" alt="" coords="106,5,297,61"/>
+<area shape="rect" id="node4" href="$d8/d84/a00001.html#af017062bdf72148cf333084d89b16d25" title="SkyData\\Core\\Application\l\\Application\\LoadRoutes" alt="" coords="116,86,287,127"/>
+<area shape="rect" id="node5" href="$d8/d84/a00001.html#ac487dda2d0ddaffc53daa81169a4c49b" title="SkyData\\Core\\Application\l\\Application\\LoadThemeRoutes" alt="" coords="100,151,303,193"/>
+<area shape="rect" id="node3" href="$d8/d84/a00001.html#a13e94df3b35eb8d54c12d9f67dad4841" title="SkyData\\Core\\Application\l\\Application\\Run" alt="" coords="351,50,521,91"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="ManageAjaxRequest" name="ManageAjaxRequest">
+<area shape="rect" id="node2" href="$d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78" title="SkyData\\Core\\SkyDataObject\l\\GetApplication" alt="" coords="569,46,764,87"/>
+<area shape="rect" id="node3" href="$d7/d46/a00002.html#a67e3816da04aa389f8865b17bb6d2e37" title="RenderAjaxResult" alt="" coords="196,79,323,105"/>
+<area shape="rect" id="node4" href="$d7/d46/a00002.html#ae503264714ac3152778f5f0018d1e2b0" title="OutputAjaxJsonResult" alt="" coords="371,28,521,55"/>
+<area shape="rect" id="node5" href="$d7/d46/a00002.html#aee5fb2cbd03342eb7ac4379c3869c57d" title="OutputAjaxHtmlResult" alt="" coords="371,79,521,105"/>
+<area shape="rect" id="node6" href="$d7/d46/a00002.html#a2538f92182de74b8e12bafba9bee5fbd" title="OutputAjaxTextResult" alt="" coords="371,129,521,156"/>
+<area shape="rect" id="node7" href="$d7/d46/a00002.html#a3e2f5ce8dcbd6664fccd7a5eba0c9932" title="OutputAjaxXmlResult" alt="" coords="373,180,519,207"/>
+</map>

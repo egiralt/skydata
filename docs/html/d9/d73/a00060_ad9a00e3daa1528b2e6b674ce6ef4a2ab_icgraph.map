@@ -1,0 +1,7 @@
+<map id="SetDebug" name="SetDebug">
+<area shape="rect" id="node2" href="$d7/d46/a00002.html#ab22f9441ffeee586f728d69947a2ec31" title="SkyData\\Core\\Application\l\\ApplicationView\\SetSelectedTheme" alt="" coords="132,39,364,80"/>
+<area shape="rect" id="node3" href="$d7/d46/a00002.html#a928787566fd7789dc1776649fba548e8" title="SkyData\\Core\\Application\l\\ApplicationView\\GetSelectedTheme" alt="" coords="412,39,645,80"/>
+<area shape="rect" id="node4" href="$d7/d46/a00002.html#a8354032b85b3028d02f4485cee6a3eff" title="SkyData\\Core\\Application\l\\ApplicationView\\Assign" alt="" coords="731,5,902,47"/>
+<area shape="rect" id="node6" href="$d7/d46/a00002.html#a014e4dd8fb02861811d3602dfc0858d6" title="SkyData\\Core\\Application\l\\ApplicationView\\ManagePageRequest" alt="" coords="693,71,940,112"/>
+<area shape="rect" id="node5" href="$d7/d46/a00002.html#a1a6915de89093bc6383d7c1f18ab81e2" title="SkyData\\Core\\Application\l\\ApplicationView\\Render" alt="" coords="988,39,1159,80"/>
+</map>

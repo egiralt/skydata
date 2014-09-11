@@ -1,0 +1,6 @@
+<map id="IController" name="IController">
+<area shape="rect" id="node2" href="$d6/d2d/a00047.html" title="{SkyDataController\n||+ Run()\l+ SetView()\l+ GetView()\l+ GetParent()\l+ SetParent()\l+ Assign()\l+ AssignError()\l+ SetError()\l+ GetRequestParams()\l+ GetTheme()\l}" alt="" coords="105,160,261,369"/>
+<area shape="rect" id="node3" href="$d2/dee/a00049.html" title="{SkyDataModuleController\n||+ Run()\l}" alt="" coords="5,417,175,495"/>
+<area shape="rect" id="node5" href="$d1/d84/a00052.html" title="{SkyDataPageController\n||+ Run()\l}" alt="" coords="199,417,357,495"/>
+<area shape="rect" id="node4" href="$d1/d22/a00057.html" title="{SkyDataServiceController\n||+ NewDataRow()\l}" alt="" coords="5,543,175,620"/>
+</map>

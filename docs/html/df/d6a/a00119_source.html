@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Fichero Fuente SkyDataPage.class.php</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../logo_primer300.png"/></td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="../../annotated.html"><span>Estructuras&#160;de&#160;Datos</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="../../globals.html"><span>Globales</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('df/d6a/a00119_source.html','../../');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Estructuras de Datos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">SkyDataPage.class.php</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../df/d6a/a00119.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; <span class="keyword">namespace </span><a class="code" href="../../d1/d0d/a00171.html">SkyData\Core\Page</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; use \SkyData\Core\SkyDataResource;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; use \SkyData\Core\ReflectionFactory;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; use \SkyData\Core\Views\SkyDataView;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; use \SkyData\Core\Page\View\SkyDataPageView;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; use \SkyData\Core\Page\Controller\SkyDataPageController;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; <span class="comment">//TODO: Las clases deben implementar un campo de LastModification, para que pueda saberse cuándo se ha generado la página</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; <span class="comment">// de &quot;verdad&quot; por última vez. Dependerá de si está cacheada o no, si es puro HTML, plantilla, etc.</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html">   35</a></span>&#160; <span class="keyword">class </span><a class="code" href="../../d2/d79/a00051.html">SkyDataPage</a> <span class="keyword">extends</span> <a class="code" href="../../dc/dee/a00053.html">SkyDataResource</a> implements <a class="code" href="../../dc/d3c/a00028.html">IPage</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">private</span> $RequestParams;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html#a32eef442aa2c3adf63adf846b2a4e240">   38</a></span>&#160;    <span class="keyword">protected</span> <a class="code" href="../../d2/d79/a00051.html#a32eef442aa2c3adf63adf846b2a4e240">$SiteName</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html#a570ef0336ec763e7c978412a685a605f">   43</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d2/d79/a00051.html#a570ef0336ec763e7c978412a685a605f">GetPageTitle</a>()</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        $configManager = $this-&gt;<a class="code" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78">GetApplication</a>()-&gt;GetConfigurationManager();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        $appConfiguration = $configManager-&gt;GetMapping (<span class="stringliteral">&#39;application&#39;</span>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        $format = $appConfiguration[<span class="stringliteral">&#39;title_format&#39;</span>];</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        $app_title = $appConfiguration[<span class="stringliteral">&#39;title&#39;</span>];</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        $navConfiguration = $this-&gt;<a class="code" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78">GetApplication</a>()-&gt;GetConfigurationManager()-&gt;GetMapping (<span class="stringliteral">&#39;navigation&#39;</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        $pageClass = $this-&gt;<a class="code" href="../../d5/de0/a00050.html#ae440f2091c527beadd24409572ce2289">GetClassShortName</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span> (isset($this-&gt;SiteName))</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            $pageClass = <span class="charliteral">&#39;@&#39;</span>.$this-&gt;SiteName.<span class="charliteral">&#39;/&#39;</span>.$pageClass;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        $page_title = $navConfiguration[$pageClass][<span class="stringliteral">&#39;title&#39;</span>];</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">//echo &quot;&lt;pre&gt;&quot;; print_r ($navConfiguration); die();</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span> (!empty($format))</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            $result = str_replace(<span class="stringliteral">&#39;{app_title}&#39;</span>, $format, $app_title);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            $result = str_replace(<span class="stringliteral">&#39;{page_title}&#39;</span>, $result, $page_title);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">else</span> $result = $page_title;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">return</span> $result;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html#aaa7a93ccc109a2bfceb41a7479d064e8">   74</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d2/d79/a00051.html#aaa7a93ccc109a2bfceb41a7479d064e8">SetPageTitle</a>($title)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        $this-&gt;ChangePageConfigName(<span class="stringliteral">&#39;title&#39;</span>, $title);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html#a6a3feefd5d5e6e0b489c0891da520535">   79</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d2/d79/a00051.html#a6a3feefd5d5e6e0b489c0891da520535">SetPageIcon</a> ($icon_url)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        $this-&gt;ChangePageConfigName(<span class="stringliteral">&#39;icon&#39;</span>, $icon_url);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">private</span> <span class="keyword">function</span> ChangePageConfigName ($name, $value)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        $configManager = $this-&gt;<a class="code" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78">GetApplication</a>()-&gt;GetConfigurationManager();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        $pageName = $this-&gt;<a class="code" href="../../d5/de0/a00050.html#ae440f2091c527beadd24409572ce2289">GetClassShortName</a>();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="comment">// Se tomará el valor actual y se modificará solo el nombre indicado, y luego se asignará todo!</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        $currentMapping = $configManager-&gt;GetMapping (<span class="stringliteral">&#39;navigation&#39;</span>);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        $pageConfig = $currentMapping[$pageName]; <span class="comment">// Se toma toda la configuración de la página</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        $pageConfig[$name] = $value;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="comment">// Y ahora se actualiza el valor</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        $configManager-&gt;SetName (<span class="stringliteral">&#39;navigation&#39;</span>, $pageName, $pageConfig);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html#a01484fc334fc35aacd70b2b91e10710c">  103</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d2/d79/a00051.html#a01484fc334fc35aacd70b2b91e10710c">GetPageIcon</a>()</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        $navConfiguration = $this-&gt;<a class="code" href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78">GetApplication</a>()-&gt;GetConfigurationManager()-&gt;GetMapping (<span class="stringliteral">&#39;navigation&#39;</span>);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        $pageClass = $this-&gt;<a class="code" href="../../d5/de0/a00050.html#ae440f2091c527beadd24409572ce2289">GetClassShortName</a>();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">if</span> (!isset($this-&gt;SiteName))</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            $pageClass = <span class="charliteral">&#39;@&#39;</span>.$this-&gt;SiteName.<span class="charliteral">&#39;/&#39;</span>.$pageClass;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordflow">return</span> $navConfiguration[$pageClass][<span class="stringliteral">&#39;icon&#39;</span>];</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html#a5722d674b72fa2b563a821c58809d6bc">  118</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d2/d79/a00051.html#a5722d674b72fa2b563a821c58809d6bc">GetInstanceDefaultControllerClass</a>()</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="../../d1/d84/a00052.html">SkyDataPageController</a> ();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html#a9a08b5786ddc4832096cfabdc8f32037">  123</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d2/d79/a00051.html#a9a08b5786ddc4832096cfabdc8f32037">SetRequestParams</a> ($params = array())</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        $this-&gt;RequestParams = $params;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html#a6b5fa00b6c4ee567ac6af1fb377f602a">  128</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d2/d79/a00051.html#a6b5fa00b6c4ee567ac6af1fb377f602a">GetRequestParams</a> ()</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">return</span> $this-&gt;RequestParams;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html#a67441c9ccd1bde74435a6783d30f5e27">  133</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d2/d79/a00051.html#a67441c9ccd1bde74435a6783d30f5e27">AddScript</a> ($scriptPath)</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        $this-&gt;<a class="code" href="../../dc/dee/a00053.html#a28b5b0a1faad2ecc55b1825d177fe202">GetMetadataManager</a>()-&gt;AddScript ($scriptPath);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="../../d2/d79/a00051.html#a26aa42b7f5f78031ef66112be7e9dadc">  138</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d2/d79/a00051.html#a26aa42b7f5f78031ef66112be7e9dadc">SetSiteName</a> ($siteName)</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        $this-&gt;SiteName = $siteName;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; }</div>
+<div class="ttc" id="a00051_html_a9a08b5786ddc4832096cfabdc8f32037"><div class="ttname"><a href="../../d2/d79/a00051.html#a9a08b5786ddc4832096cfabdc8f32037">SkyData\Core\Page\SkyDataPage\SetRequestParams</a></div><div class="ttdeci">SetRequestParams($params=array())</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00123">SkyDataPage.class.php:123</a></div></div>
+<div class="ttc" id="a00051_html_a6a3feefd5d5e6e0b489c0891da520535"><div class="ttname"><a href="../../d2/d79/a00051.html#a6a3feefd5d5e6e0b489c0891da520535">SkyData\Core\Page\SkyDataPage\SetPageIcon</a></div><div class="ttdeci">SetPageIcon($icon_url)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00079">SkyDataPage.class.php:79</a></div></div>
+<div class="ttc" id="a00051_html_a6b5fa00b6c4ee567ac6af1fb377f602a"><div class="ttname"><a href="../../d2/d79/a00051.html#a6b5fa00b6c4ee567ac6af1fb377f602a">SkyData\Core\Page\SkyDataPage\GetRequestParams</a></div><div class="ttdeci">GetRequestParams()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00128">SkyDataPage.class.php:128</a></div></div>
+<div class="ttc" id="a00050_html_ae440f2091c527beadd24409572ce2289"><div class="ttname"><a href="../../d5/de0/a00050.html#ae440f2091c527beadd24409572ce2289">SkyData\Core\SkyDataObject\GetClassShortName</a></div><div class="ttdeci">GetClassShortName()</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d87/a00118_source.html#l00031">SkyDataObject.class.php:31</a></div></div>
+<div class="ttc" id="a00053_html_a28b5b0a1faad2ecc55b1825d177fe202"><div class="ttname"><a href="../../dc/dee/a00053.html#a28b5b0a1faad2ecc55b1825d177fe202">SkyData\Core\SkyDataResource\GetMetadataManager</a></div><div class="ttdeci">GetMetadataManager()</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dfa/a00121_source.html#l00065">SkyDataResource.class.php:65</a></div></div>
+<div class="ttc" id="a00051_html_a01484fc334fc35aacd70b2b91e10710c"><div class="ttname"><a href="../../d2/d79/a00051.html#a01484fc334fc35aacd70b2b91e10710c">SkyData\Core\Page\SkyDataPage\GetPageIcon</a></div><div class="ttdeci">GetPageIcon()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00103">SkyDataPage.class.php:103</a></div></div>
+<div class="ttc" id="a00050_html_a98cf2dac4fa0980807551ab18be0de78"><div class="ttname"><a href="../../d5/de0/a00050.html#a98cf2dac4fa0980807551ab18be0de78">SkyData\Core\SkyDataObject\GetApplication</a></div><div class="ttdeci">GetApplication()</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d87/a00118_source.html#l00020">SkyDataObject.class.php:20</a></div></div>
+<div class="ttc" id="a00051_html_aaa7a93ccc109a2bfceb41a7479d064e8"><div class="ttname"><a href="../../d2/d79/a00051.html#aaa7a93ccc109a2bfceb41a7479d064e8">SkyData\Core\Page\SkyDataPage\SetPageTitle</a></div><div class="ttdeci">SetPageTitle($title)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00074">SkyDataPage.class.php:74</a></div></div>
+<div class="ttc" id="a00051_html_a32eef442aa2c3adf63adf846b2a4e240"><div class="ttname"><a href="../../d2/d79/a00051.html#a32eef442aa2c3adf63adf846b2a4e240">SkyData\Core\Page\SkyDataPage\$SiteName</a></div><div class="ttdeci">$SiteName</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00038">SkyDataPage.class.php:38</a></div></div>
+<div class="ttc" id="a00051_html_a5722d674b72fa2b563a821c58809d6bc"><div class="ttname"><a href="../../d2/d79/a00051.html#a5722d674b72fa2b563a821c58809d6bc">SkyData\Core\Page\SkyDataPage\GetInstanceDefaultControllerClass</a></div><div class="ttdeci">GetInstanceDefaultControllerClass()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00118">SkyDataPage.class.php:118</a></div></div>
+<div class="ttc" id="a00052_html"><div class="ttname"><a href="../../d1/d84/a00052.html">SkyData\Core\Page\Controller\SkyDataPageController</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d98/a00120_source.html#l00030">SkyDataPageController.class.php:30</a></div></div>
+<div class="ttc" id="a00051_html_a26aa42b7f5f78031ef66112be7e9dadc"><div class="ttname"><a href="../../d2/d79/a00051.html#a26aa42b7f5f78031ef66112be7e9dadc">SkyData\Core\Page\SkyDataPage\SetSiteName</a></div><div class="ttdeci">SetSiteName($siteName)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00138">SkyDataPage.class.php:138</a></div></div>
+<div class="ttc" id="a00051_html_a67441c9ccd1bde74435a6783d30f5e27"><div class="ttname"><a href="../../d2/d79/a00051.html#a67441c9ccd1bde74435a6783d30f5e27">SkyData\Core\Page\SkyDataPage\AddScript</a></div><div class="ttdeci">AddScript($scriptPath)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00133">SkyDataPage.class.php:133</a></div></div>
+<div class="ttc" id="a00053_html"><div class="ttname"><a href="../../dc/dee/a00053.html">SkyData\Core\SkyDataResource</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dfa/a00121_source.html#l00024">SkyDataResource.class.php:24</a></div></div>
+<div class="ttc" id="a00028_html"><div class="ttname"><a href="../../dc/d3c/a00028.html">SkyData\Core\Page\IPage</a></div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d54/a00094_source.html#l00029">IPage.php:29</a></div></div>
+<div class="ttc" id="a00051_html"><div class="ttname"><a href="../../d2/d79/a00051.html">SkyData\Core\Page\SkyDataPage</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00035">SkyDataPage.class.php:35</a></div></div>
+<div class="ttc" id="a00051_html_a570ef0336ec763e7c978412a685a605f"><div class="ttname"><a href="../../d2/d79/a00051.html#a570ef0336ec763e7c978412a685a605f">SkyData\Core\Page\SkyDataPage\GetPageTitle</a></div><div class="ttdeci">GetPageTitle()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6a/a00119_source.html#l00043">SkyDataPage.class.php:43</a></div></div>
+<div class="ttc" id="a00171_html"><div class="ttname"><a href="../../d1/d0d/a00171.html">SkyData\Core\Page</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_562abdcd8625d4bf7bad2fe6fe01354c.html">web</a></li><li class="navelem"><a class="el" href="../../dir_327b0b45fe7ef59e08c9f1ccbdd6d4f2.html">Core</a></li><li class="navelem"><a class="el" href="../../dir_990208e1d3fa1918447b63a7f438cb45.html">Page</a></li><li class="navelem"><a class="el" href="../../df/d6a/a00119.html">SkyDataPage.class.php</a></li>
+    <li class="footer">Generado el Jueves, 11 de Septiembre de 2014 16:53:59 por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

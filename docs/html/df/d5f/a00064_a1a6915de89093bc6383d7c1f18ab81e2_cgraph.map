@@ -1,0 +1,13 @@
+<map id="Render" name="Render">
+<area shape="rect" id="node2" href="$d9/d73/a00060.html#a7c173b2eec008080f6d649800730cca4" title="SkyData\\Core\\View\\SkyData\lView\\GetMappings" alt="" coords="116,136,305,177"/>
+<area shape="rect" id="node3" href="$df/d5f/a00064.html#ab69c95f1185c6ddd85f5a3e42d055c3a" title="PrepareRender" alt="" coords="157,202,265,229"/>
+<area shape="rect" id="node4" href="$d9/d73/a00060.html#a5fbdb18fbab7d358f43f9d384723a251" title="SkyData\\Core\\View\\SkyData\lView\\GetCache" alt="" coords="359,5,548,47"/>
+<area shape="rect" id="node5" href="$d9/d73/a00060.html#a169e75098f5a7138556452c5beead7f1" title="SkyData\\Core\\View\\SkyData\lView\\GetCacheDirectory" alt="" coords="359,71,548,112"/>
+<area shape="rect" id="node6" href="$d9/d73/a00060.html#ac63ccff0e7ca56b412086714ca0244d0" title="SkyData\\Core\\View\\SkyData\lView\\GetDebug" alt="" coords="359,136,548,177"/>
+<area shape="rect" id="node7" href="$df/d5f/a00064.html#abe778c94c86aaa4dd6179d79d7c63dfe" title="GetDefaultTemplateFileName" alt="" coords="358,202,549,229"/>
+<area shape="rect" id="node8" href="$d9/d73/a00060.html#aa4957320ada1b1e401862296fe14370b" title="SkyData\\Core\\View\\SkyData\lView\\GetParent" alt="" coords="611,237,800,279"/>
+<area shape="rect" id="node9" href="$df/d5f/a00064.html#aae139ebbeb402bb05da4d626b47b7133" title="GetTemplateDirectory" alt="" coords="379,303,527,330"/>
+<area shape="rect" id="node11" href="$d4/de8/a00061.html#a835f3d8013aa1ae0d9e7045e90a35a41" title="SkyData\\Core\\Twig\\TwigHelper\l\\getTwigInstance" alt="" coords="353,357,553,399"/>
+<area shape="rect" id="node10" href="$d5/db6/a00042.html#a7b68f0f9a3d23195e81c9122fd4b2ca7" title="SkyData\\Core\\ReflectionFactory\l\\getClassDirectory" alt="" coords="601,303,809,344"/>
+<area shape="rect" id="node12" href="$d1/d7c/a00003.html#af3fc45df017663990737ff7cafb5526a" title="SkyData\\Core\\BootFactory\l\\GetApplication" alt="" coords="616,368,795,409"/>
+</map>

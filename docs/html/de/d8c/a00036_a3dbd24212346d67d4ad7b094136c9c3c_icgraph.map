@@ -1,0 +1,9 @@
+<map id="ClearAll" name="ClearAll">
+<area shape="rect" id="node2" href="$de/d8c/a00036.html#a19b2b3e2044a8302f90f98cf5d2fbe82" title="LoadFromConfiguration" alt="" coords="120,78,275,105"/>
+<area shape="rect" id="node3" href="$dc/dee/a00053.html#a18450d27256dc7a932a2b788b97c02e4" title="SkyData\\Core\\SkyDataResource\l\\LoadMetadata" alt="" coords="324,37,536,79"/>
+<area shape="rect" id="node7" href="$d1/dea/a00054.html#a18450d27256dc7a932a2b788b97c02e4" title="SkyData\\Core\\SkyDataResponse\lResource\\LoadMetadata" alt="" coords="323,103,537,144"/>
+<area shape="rect" id="node4" href="$dc/dee/a00053.html#a28b5b0a1faad2ecc55b1825d177fe202" title="SkyData\\Core\\SkyDataResource\l\\GetMetadataManager" alt="" coords="587,37,799,79"/>
+<area shape="rect" id="node5" href="$d2/d79/a00051.html#a67441c9ccd1bde74435a6783d30f5e27" title="SkyData\\Core\\Page\\SkyData\lPage\\AddScript" alt="" coords="848,5,1039,47"/>
+<area shape="rect" id="node6" href="$d9/d2e/a00056.html#a67441c9ccd1bde74435a6783d30f5e27" title="SkyData\\Core\\Service\l\\SkyDataService\\AddScript" alt="" coords="854,71,1033,112"/>
+<area shape="rect" id="node8" href="$d1/dea/a00054.html#a28b5b0a1faad2ecc55b1825d177fe202" title="SkyData\\Core\\SkyDataResponse\lResource\\GetMetadataManager" alt="" coords="585,103,800,144"/>
+</map>

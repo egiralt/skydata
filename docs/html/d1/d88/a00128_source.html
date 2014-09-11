@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Fichero Fuente SkyDataView.class.php</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../logo_primer300.png"/></td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="../../annotated.html"><span>Estructuras&#160;de&#160;Datos</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="../../globals.html"><span>Globales</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('d1/d88/a00128_source.html','../../');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Estructuras de Datos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">SkyDataView.class.php</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d1/d88/a00128.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; <span class="keyword">namespace </span><a class="code" href="../../dc/d57/a00194.html">SkyData\Core\View</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;use \SkyData\Core\SkyDataObject;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;use \SkyData\Core\ILayoutNode;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html">   29</a></span>&#160; <span class="keyword">abstract</span> <span class="keyword">class </span><a class="code" href="../../d9/d73/a00060.html">SkyDataView</a> <span class="keyword">extends</span> <a class="code" href="../../d5/de0/a00050.html">SkyDataObject</a> implements <a class="code" href="../../d5/d79/a00030.html">IRenderable</a>, <a class="code" href="../../d3/d52/a00023.html">ILayoutNode</a></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">private</span> $UseCache = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">private</span> $UseDebug = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">private</span> $Parent;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">private</span> $Mappings   = array();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#a095c5d389db211932136b53f25f39685">   37</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#a095c5d389db211932136b53f25f39685">__construct</a>()</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        parent::__construct();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        $this-&gt;Mappings = array();  </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#a1a6915de89093bc6383d7c1f18ab81e2">Render</a> ();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#abf2fb4eeb0c6bd8d1069fd6181fc1ca8">   50</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#abf2fb4eeb0c6bd8d1069fd6181fc1ca8">Assign</a> ($varName, $value)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        $this-&gt;Mappings[$varName] = $value;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#ad15060c0154c482a75f61e984e05f552">   58</a></span>&#160;     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#ad15060c0154c482a75f61e984e05f552">ClearMappings</a>()</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;     {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        $this-&gt;Mappings = array();       </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;     }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;     </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#a7c173b2eec008080f6d649800730cca4">   66</a></span>&#160;     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#a7c173b2eec008080f6d649800730cca4">GetMappings</a>()</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;     {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;         <span class="keywordflow">return</span> $this-&gt;Mappings;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;     }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#ae54af27739b9fdc7866fbbc08f363467">   74</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#ae54af27739b9fdc7866fbbc08f363467">SetCache</a> ($state)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        $this-&gt;UseCache = $state;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }   </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#a5fbdb18fbab7d358f43f9d384723a251">   82</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#a5fbdb18fbab7d358f43f9d384723a251">GetCache</a>()</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> $this-&gt;UseCache;     </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#ad9a00e3daa1528b2e6b674ce6ef4a2ab">   90</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#ad9a00e3daa1528b2e6b674ce6ef4a2ab">SetDebug</a> ($state)</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        $this-&gt;UseDebug = $state;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#ac63ccff0e7ca56b412086714ca0244d0">   98</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#ac63ccff0e7ca56b412086714ca0244d0">GetDebug</a>()</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">return</span> $this-&gt;UseDebug;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#a169e75098f5a7138556452c5beead7f1">  106</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#a169e75098f5a7138556452c5beead7f1">GetCacheDirectory</a>()</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="../../de/d76/a00134.html#ae94d678fa9b978ffdb17e87117ece1a8">SKYDATA_PATH_CACHE</a>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#ae7d5f13cda14d28dbfd19857ec14e04a">  111</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#ae7d5f13cda14d28dbfd19857ec14e04a">SetParent</a> (<a class="code" href="../../d3/d52/a00023.html">ILayoutNode</a> $parent)</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        $this-&gt;Parent = $parent;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="../../d9/d73/a00060.html#aa4957320ada1b1e401862296fe14370b">  116</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="../../d9/d73/a00060.html#aa4957320ada1b1e401862296fe14370b">GetParent</a>()</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span> $this-&gt;Parent;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; } </div>
+<div class="ttc" id="a00060_html_a5fbdb18fbab7d358f43f9d384723a251"><div class="ttname"><a href="../../d9/d73/a00060.html#a5fbdb18fbab7d358f43f9d384723a251">SkyData\Core\View\SkyDataView\GetCache</a></div><div class="ttdeci">GetCache()</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00082">SkyDataView.class.php:82</a></div></div>
+<div class="ttc" id="a00060_html_a7c173b2eec008080f6d649800730cca4"><div class="ttname"><a href="../../d9/d73/a00060.html#a7c173b2eec008080f6d649800730cca4">SkyData\Core\View\SkyDataView\GetMappings</a></div><div class="ttdeci">GetMappings()</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00066">SkyDataView.class.php:66</a></div></div>
+<div class="ttc" id="a00060_html_ad15060c0154c482a75f61e984e05f552"><div class="ttname"><a href="../../d9/d73/a00060.html#ad15060c0154c482a75f61e984e05f552">SkyData\Core\View\SkyDataView\ClearMappings</a></div><div class="ttdeci">ClearMappings()</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00058">SkyDataView.class.php:58</a></div></div>
+<div class="ttc" id="a00030_html"><div class="ttname"><a href="../../d5/d79/a00030.html">SkyData\Core\View\IRenderable</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/df8/a00096_source.html#l00028">IRenderable.php:28</a></div></div>
+<div class="ttc" id="a00023_html"><div class="ttname"><a href="../../d3/d52/a00023.html">SkyData\Core\ILayoutNode</a></div><div class="ttdef"><b>Definition:</b> <a href="../../db/ddf/a00088_source.html#l00010">ILayoutNode.php:10</a></div></div>
+<div class="ttc" id="a00060_html_a169e75098f5a7138556452c5beead7f1"><div class="ttname"><a href="../../d9/d73/a00060.html#a169e75098f5a7138556452c5beead7f1">SkyData\Core\View\SkyDataView\GetCacheDirectory</a></div><div class="ttdeci">GetCacheDirectory()</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00106">SkyDataView.class.php:106</a></div></div>
+<div class="ttc" id="a00050_html"><div class="ttname"><a href="../../d5/de0/a00050.html">SkyData\Core\SkyDataObject</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d87/a00118_source.html#l00013">SkyDataObject.class.php:13</a></div></div>
+<div class="ttc" id="a00060_html_a1a6915de89093bc6383d7c1f18ab81e2"><div class="ttname"><a href="../../d9/d73/a00060.html#a1a6915de89093bc6383d7c1f18ab81e2">SkyData\Core\View\SkyDataView\Render</a></div><div class="ttdeci">Render()</div></div>
+<div class="ttc" id="a00134_html_ae94d678fa9b978ffdb17e87117ece1a8"><div class="ttname"><a href="../../de/d76/a00134.html#ae94d678fa9b978ffdb17e87117ece1a8">SkyData\Core\SKYDATA_PATH_CACHE</a></div><div class="ttdeci">const SKYDATA_PATH_CACHE</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00035">BootFactory.class.php:35</a></div></div>
+<div class="ttc" id="a00060_html_ac63ccff0e7ca56b412086714ca0244d0"><div class="ttname"><a href="../../d9/d73/a00060.html#ac63ccff0e7ca56b412086714ca0244d0">SkyData\Core\View\SkyDataView\GetDebug</a></div><div class="ttdeci">GetDebug()</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00098">SkyDataView.class.php:98</a></div></div>
+<div class="ttc" id="a00060_html_ae54af27739b9fdc7866fbbc08f363467"><div class="ttname"><a href="../../d9/d73/a00060.html#ae54af27739b9fdc7866fbbc08f363467">SkyData\Core\View\SkyDataView\SetCache</a></div><div class="ttdeci">SetCache($state)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00074">SkyDataView.class.php:74</a></div></div>
+<div class="ttc" id="a00060_html_aa4957320ada1b1e401862296fe14370b"><div class="ttname"><a href="../../d9/d73/a00060.html#aa4957320ada1b1e401862296fe14370b">SkyData\Core\View\SkyDataView\GetParent</a></div><div class="ttdeci">GetParent()</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00116">SkyDataView.class.php:116</a></div></div>
+<div class="ttc" id="a00060_html_abf2fb4eeb0c6bd8d1069fd6181fc1ca8"><div class="ttname"><a href="../../d9/d73/a00060.html#abf2fb4eeb0c6bd8d1069fd6181fc1ca8">SkyData\Core\View\SkyDataView\Assign</a></div><div class="ttdeci">Assign($varName, $value)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00050">SkyDataView.class.php:50</a></div></div>
+<div class="ttc" id="a00060_html"><div class="ttname"><a href="../../d9/d73/a00060.html">SkyData\Core\View\SkyDataView</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00029">SkyDataView.class.php:29</a></div></div>
+<div class="ttc" id="a00060_html_ad9a00e3daa1528b2e6b674ce6ef4a2ab"><div class="ttname"><a href="../../d9/d73/a00060.html#ad9a00e3daa1528b2e6b674ce6ef4a2ab">SkyData\Core\View\SkyDataView\SetDebug</a></div><div class="ttdeci">SetDebug($state)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00090">SkyDataView.class.php:90</a></div></div>
+<div class="ttc" id="a00060_html_ae7d5f13cda14d28dbfd19857ec14e04a"><div class="ttname"><a href="../../d9/d73/a00060.html#ae7d5f13cda14d28dbfd19857ec14e04a">SkyData\Core\View\SkyDataView\SetParent</a></div><div class="ttdeci">SetParent(ILayoutNode $parent)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00111">SkyDataView.class.php:111</a></div></div>
+<div class="ttc" id="a00194_html"><div class="ttname"><a href="../../dc/d57/a00194.html">SkyData\Core\View</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/da5/a00075_source.html#l00023">HTMLView.class.php:23</a></div></div>
+<div class="ttc" id="a00060_html_a095c5d389db211932136b53f25f39685"><div class="ttname"><a href="../../d9/d73/a00060.html#a095c5d389db211932136b53f25f39685">SkyData\Core\View\SkyDataView\__construct</a></div><div class="ttdeci">__construct()</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d88/a00128_source.html#l00037">SkyDataView.class.php:37</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_562abdcd8625d4bf7bad2fe6fe01354c.html">web</a></li><li class="navelem"><a class="el" href="../../dir_327b0b45fe7ef59e08c9f1ccbdd6d4f2.html">Core</a></li><li class="navelem"><a class="el" href="../../dir_180281e98c45c3ea4f22407550f725c4.html">View</a></li><li class="navelem"><a class="el" href="../../d1/d88/a00128.html">SkyDataView.class.php</a></li>
+    <li class="footer">Generado el Jueves, 11 de Septiembre de 2014 16:53:59 por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>

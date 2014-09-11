@@ -1,0 +1,11 @@
+<map id="GetStyles" name="GetStyles">
+<area shape="rect" id="node2" href="$d7/df7/a00058.html#a64b65d6bf6c2a2d3083f14dfa15b687e" title="GetSelectedStyle" alt="" coords="319,85,443,111"/>
+<area shape="rect" id="node8" href="$d7/df7/a00058.html#a98a69391a233a6a66dfdcb6db77e1c11" title="RenderMetadataStyles" alt="" coords="304,186,459,213"/>
+<area shape="rect" id="node10" href="$d7/df7/a00058.html#a4086749697c59454410f68d6763787d4" title="SetSelectedStyle" alt="" coords="133,135,256,162"/>
+<area shape="rect" id="node3" href="$d7/df7/a00058.html#abf7c688f93fc18a0f64130dd37766421" title="GetBasePath" alt="" coords="552,34,652,61"/>
+<area shape="rect" id="node4" href="$d7/df7/a00058.html#a18450d27256dc7a932a2b788b97c02e4" title="LoadMetadata" alt="" coords="767,9,871,35"/>
+<area shape="rect" id="node6" href="$d7/df7/a00058.html#abe778c94c86aaa4dd6179d79d7c63dfe" title="GetDefaultTemplateFileName" alt="" coords="507,85,697,111"/>
+<area shape="rect" id="node7" href="$d7/df7/a00058.html#aae139ebbeb402bb05da4d626b47b7133" title="GetTemplateDirectory" alt="" coords="528,135,676,162"/>
+<area shape="rect" id="node5" href="$d7/df7/a00058.html#a1a6915de89093bc6383d7c1f18ab81e2" title="Render" alt="" coords="940,59,1003,86"/>
+<area shape="rect" id="node9" href="$d7/df7/a00058.html#a8ab422cae74114ac8ba2e23cc596a963" title="RenderPageMetadata" alt="" coords="745,135,892,162"/>
+</map>

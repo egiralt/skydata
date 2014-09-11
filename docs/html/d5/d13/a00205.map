@@ -1,0 +1,5 @@
+<map id="Application" name="Application">
+<area shape="rect" id="node2" href="$d4/d51/a00017.html" title="{IConfigurable\n||+ GetConfigurationManager()\l+ LoadConfiguration()\l}" alt="" coords="5,5,193,97"/>
+<area shape="rect" id="node3" href="$d2/de7/a00014.html" title="{ICacheContainer\n||+ GetCacheManager()\l}" alt="" coords="217,13,368,90"/>
+<area shape="rect" id="node4" href="$d3/dfe/a00025.html" title="{IMetadataContainer\n||+ GetMetadataManager()\l+ LoadMetadata()\l}" alt="" coords="392,5,559,97"/>
+</map>

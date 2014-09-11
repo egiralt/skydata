@@ -1,0 +1,5 @@
+<map id="Channel" name="Channel">
+<area shape="rect" id="node4" href="$d7/dd4/a00013.html" title="{HttpFilesystemChannel\n|+ SKYDATA_CUSTOM_HEADER\l|+ DeliverUrlResource()\l+ DeliverContent()\l# SendHeaders()\l}" alt="" coords="49,329,268,436"/>
+<area shape="rect" id="node2" href="$d5/de0/a00050.html" title="{SkyDataObject\n||+ __construct()\l+ GetApplication()\l+ GetApplicationView()\l+ GetClassShortName()\l+ GetClassNamespace()\l+ GetClassDirectory()\l}" alt="" coords="5,5,171,156"/>
+<area shape="rect" id="node3" href="$d7/d7a/a00016.html" title="{IChannel\n||}" alt="" coords="195,42,267,119"/>
+</map>

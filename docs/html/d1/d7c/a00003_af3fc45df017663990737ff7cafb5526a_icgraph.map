@@ -1,0 +1,11 @@
+<map id="GetApplication" name="GetApplication">
+<area shape="rect" id="node2" href="$d8/d84/a00001.html#a9a99f58070ed2daf4a4ec8ab2f6f7348" title="SkyData\\Core\\Application\l\\Application\\GetDefaultDelivery\lChannel" alt="" coords="160,5,360,61"/>
+<area shape="rect" id="node3" href="$d4/de8/a00061.html#a835f3d8013aa1ae0d9e7045e90a35a41" title="SkyData\\Core\\Twig\\TwigHelper\l\\getTwigInstance" alt="" coords="160,86,360,127"/>
+<area shape="rect" id="node7" href="$d6/d97/a00045.html#a6e47b2b933e5cab8e07774390960c1ab" title="SkyData\\Core\\RouteFactory\l\\ReverseRoute" alt="" coords="167,151,353,193"/>
+<area shape="rect" id="node4" href="$df/d5f/a00064.html#ab69c95f1185c6ddd85f5a3e42d055c3a" title="SkyData\\Core\\View\\TwigView\l\\PrepareRender" alt="" coords="417,86,611,127"/>
+<area shape="rect" id="node5" href="$d7/df7/a00058.html#a1a6915de89093bc6383d7c1f18ab81e2" title="SkyData\\Core\\Theme\l\\SkyDataTheme\\Render" alt="" coords="699,21,859,62"/>
+<area shape="rect" id="node6" href="$df/d5f/a00064.html#a1a6915de89093bc6383d7c1f18ab81e2" title="SkyData\\Core\\View\\TwigView\l\\Render" alt="" coords="683,86,876,127"/>
+<area shape="rect" id="node8" href="$d8/d84/a00001.html#abdcfbc7f5c28aab3fe84dbee190768d0" title="SkyData\\Core\\Application\l\\Application\\HandlePageRequest" alt="" coords="408,151,620,193"/>
+<area shape="rect" id="node9" href="$d8/d84/a00001.html#a79e5b0a4f29490a1a310f62b984f2c3b" title="SkyData\\Core\\Application\l\\Application\\ManageRouteRequest" alt="" coords="668,151,891,193"/>
+<area shape="rect" id="node10" href="$d8/d84/a00001.html#a13e94df3b35eb8d54c12d9f67dad4841" title="SkyData\\Core\\Application\l\\Application\\Run" alt="" coords="939,151,1109,193"/>
+</map>

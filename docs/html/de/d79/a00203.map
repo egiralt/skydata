@@ -1,0 +1,11 @@
+<map id="SkyDataResource" name="SkyDataResource">
+<area shape="rect" id="node8" href="$d4/dca/a00048.html" title="{SkyDataModule\n||+ Run()\l+ GetInstanceDefaultController\lClass()\l}" alt="" coords="242,806,441,913"/>
+<area shape="rect" id="node9" href="$d2/d79/a00051.html" title="{SkyDataPage\n|# $SiteName\l|+ GetPageTitle()\l+ SetPageTitle()\l+ SetPageIcon()\l+ GetPageIcon()\l+ GetInstanceDefaultController\lClass()\l+ SetRequestParams()\l+ GetRequestParams()\l+ AddScript()\l+ SetSiteName()\l}" alt="" coords="465,755,663,964"/>
+<area shape="rect" id="node10" href="$d9/d2e/a00056.html" title="{SkyDataService\n|+ DATATYPE_DATA\l+ DATATYPE_JSON\l+ DATATYPE_HTML\l+ DATATYPE_XML\l+ DATATYPE_TEXT\l+ DATATYPE_IMAGE_JPG\l+ DATATYPE_IMAGE_PNG\l+ DATATYPE_IMAGE_GIF\l+ DATATYPE_IMAGE_TIFF\l+ HTTP_VERB_GET\l+ HTTP_VERB_PUT\l+ HTTP_VERB_DELETE\l+ HTTP_VERB_POST\l+ HTTP_VERB_HEAD\l+ METHOD_PREFIX_GET\l+ METHOD_PREFIX_DELETE\l+ METHOD_PREFIX_POST\l+ METHOD_PREFIX_PUT\l|+ InjectFunction()\l+ InjectVariable()\l+ GetLastModificationTime()\l+ GetInstanceDefaultViewClass()\l+ GetInstanceDefaultController\lClass()\l+ Exec()\l+ IsGlobal()\l+ RenderGlobalServiceJavascript()\l+ RenderServiceJavascript()\l+ GetDataModel()\l+ GetAjaxMethods()\l+ AddScript()\l}" alt="" coords="688,608,907,1111"/>
+<area shape="rect" id="node2" href="$d5/de0/a00050.html" title="{SkyDataObject\n||+ __construct()\l+ GetApplication()\l+ GetApplicationView()\l+ GetClassShortName()\l+ GetClassNamespace()\l+ GetClassDirectory()\l}" alt="" coords="5,5,171,156"/>
+<area shape="rect" id="node3" href="$d3/dfe/a00025.html" title="{IMetadataContainer\n||+ GetMetadataManager()\l+ LoadMetadata()\l}" alt="" coords="195,35,362,127"/>
+<area shape="rect" id="node4" href="$d4/d51/a00017.html" title="{IConfigurable\n||+ GetConfigurationManager()\l+ LoadConfiguration()\l}" alt="" coords="386,35,574,127"/>
+<area shape="rect" id="node5" href="$d3/d52/a00023.html" title="{ILayoutNode\n||+ SetParent()\l+ GetParent()\l}" alt="" coords="599,35,700,127"/>
+<area shape="rect" id="node6" href="$dc/d87/a00032.html" title="{IServicesBindable\n||+ GetServices()\l}" alt="" coords="725,42,849,119"/>
+<area shape="rect" id="node7" href="$dd/da2/a00019.html" title="{IContentProvider\n||+ GetContentID()\l+ GetLastModificationTime()\l}" alt="" coords="873,35,1058,127"/>
+</map>

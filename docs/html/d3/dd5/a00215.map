@@ -1,0 +1,4 @@
+<map id="IConsumer" name="IConsumer">
+<area shape="rect" id="node2" href="$de/d5e/a00007.html" title="{DeliveryChannel\n||}" alt="" coords="57,131,172,208"/>
+<area shape="rect" id="node3" href="$df/d86/a00012.html" title="{HttpDeliveryChannel\n|+ SKYDATA_CUSTOM_HEADER\l|+ DeliverFromLocalUrlResource()\l+ DeliverContent()\l# SendHeaders()\l# CheckConditionalRequest()\l}" alt="" coords="5,256,224,377"/>
+</map>

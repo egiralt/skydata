@@ -1,0 +1,10 @@
+<map id="SkyDataService" name="SkyDataService">
+<area shape="rect" id="node2" href="$dc/dee/a00053.html" title="{SkyDataResource\n||+ __construct()\l+ Run()\l+ GetContentID()\l+ GetLastModificationTime()\l+ GetMetadataManager()\l+ LoadMetadata()\l+ LoadConfiguration()\l+ GetConfigurationManager()\l+ SetParent()\l+ GetParent()\l+ GetServices()\l+ SetController()\l+ GetController()\l+ GetView()\l+ SetView()\l# CreateServices()\l# CreateController()\l# GetContentProducer()\l# CreateView()\l# GetInstanceDefaultViewClass()\l}" alt="" coords="458,204,670,560"/>
+<area shape="rect" id="node3" href="$d5/de0/a00050.html" title="{SkyDataObject\n||+ __construct()\l+ GetApplication()\l+ GetApplicationView()\l+ GetClassShortName()\l+ GetClassNamespace()\l+ GetClassDirectory()\l}" alt="" coords="5,5,171,156"/>
+<area shape="rect" id="node4" href="$d3/dfe/a00025.html" title="{IMetadataContainer\n||+ GetMetadataManager()\l+ LoadMetadata()\l}" alt="" coords="195,35,362,127"/>
+<area shape="rect" id="node5" href="$d4/d51/a00017.html" title="{IConfigurable\n||+ GetConfigurationManager()\l+ LoadConfiguration()\l}" alt="" coords="386,35,574,127"/>
+<area shape="rect" id="node6" href="$d3/d52/a00023.html" title="{ILayoutNode\n||+ SetParent()\l+ GetParent()\l}" alt="" coords="599,35,700,127"/>
+<area shape="rect" id="node7" href="$dc/d87/a00032.html" title="{IServicesBindable\n||+ GetServices()\l}" alt="" coords="725,42,849,119"/>
+<area shape="rect" id="node8" href="$dd/da2/a00019.html" title="{IContentProvider\n||+ GetContentID()\l+ GetLastModificationTime()\l}" alt="" coords="873,35,1058,127"/>
+<area shape="rect" id="node9" href="$df/d61/a00031.html" title="{IService\n||}" alt="" coords="695,343,761,421"/>
+</map>

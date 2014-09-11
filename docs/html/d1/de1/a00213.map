@@ -1,0 +1,5 @@
+<map id="FileContentProducer" name="FileContentProducer">
+<area shape="rect" id="node2" href="$dd/d32/a00041.html" title="{ProducerChannel\n||+ GetContent()\l+ SetContentProvider()\l+ GetContentProvider()\l+ SetContentConfiguration()\l}" alt="" coords="95,204,278,325"/>
+<area shape="rect" id="node3" href="$d5/de0/a00050.html" title="{SkyDataObject\n||+ __construct()\l+ GetApplication()\l+ GetApplicationView()\l+ GetClassShortName()\l+ GetClassNamespace()\l+ GetClassDirectory()\l}" alt="" coords="5,5,171,156"/>
+<area shape="rect" id="node4" href="$d5/d16/a00029.html" title="{IProducer\n||+ SetContentProvider()\l+ GetContentProvider()\l+ GetContent()\l+ SetContentConfiguration()\l}" alt="" coords="195,20,378,141"/>
+</map>

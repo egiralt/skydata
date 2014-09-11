@@ -1,0 +1,10 @@
+<map id="GetMetadataManager" name="GetMetadataManager">
+<area shape="rect" id="node2" href="$d7/df7/a00058.html#a18450d27256dc7a932a2b788b97c02e4" title="LoadMetadata" alt="" coords="449,5,553,32"/>
+<area shape="rect" id="node3" href="$d7/df7/a00058.html#a1a6915de89093bc6383d7c1f18ab81e2" title="Render" alt="" coords="637,107,700,133"/>
+<area shape="rect" id="node4" href="$d7/df7/a00058.html#a619d36848b9b7cee1a6aefb831b1e66f" title="PublishServicesMainScript" alt="" coords="413,107,589,133"/>
+<area shape="rect" id="node5" href="$d7/df7/a00058.html#ac2adf256d7d1e53a6fd89f2b92c7e2cb" title="RenderMetadataHeaders" alt="" coords="200,157,365,184"/>
+<area shape="rect" id="node7" href="$d7/df7/a00058.html#afbcb6c18765db345df7678e56d99995f" title="RenderMetadataScripts" alt="" coords="203,208,362,235"/>
+<area shape="rect" id="node8" href="$d7/df7/a00058.html#a98a69391a233a6a66dfdcb6db77e1c11" title="RenderMetadataStyles" alt="" coords="205,259,360,285"/>
+<area shape="rect" id="node9" href="$d7/df7/a00058.html#a6e9e130dccc2a7f2e0a9307872589a9c" title="SetMetadataHeaders" alt="" coords="429,271,573,297"/>
+<area shape="rect" id="node6" href="$d7/df7/a00058.html#a8ab422cae74114ac8ba2e23cc596a963" title="RenderPageMetadata" alt="" coords="428,183,575,209"/>
+</map>

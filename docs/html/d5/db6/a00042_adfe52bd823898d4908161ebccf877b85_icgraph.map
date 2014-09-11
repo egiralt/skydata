@@ -1,0 +1,11 @@
+<map id="getClassShortName" name="getClassShortName">
+<area shape="rect" id="node2" href="$d8/d84/a00001.html#aaf490fe2423e7770578b332aff5ed0a0" title="SkyData\\Core\\Application\l\\Application\\ContentAgentFactory" alt="" coords="192,5,409,47"/>
+<area shape="rect" id="node4" href="$dc/dee/a00053.html#adfa414b380567a60218c6187ba495402" title="SkyData\\Core\\SkyDataResource\l\\CreateView" alt="" coords="717,35,929,76"/>
+<area shape="rect" id="node6" href="$d5/de0/a00050.html#ae440f2091c527beadd24409572ce2289" title="SkyData\\Core\\SkyDataObject\l\\GetClassShortName" alt="" coords="203,123,398,164"/>
+<area shape="rect" id="node10" href="$dc/dee/a00053.html#a95bf298f470e483f5a1251dcdb1eb9e0" title="SkyData\\Core\\SkyDataResource\l\\GetContentID" alt="" coords="195,188,407,229"/>
+<area shape="rect" id="node3" href="$dc/dee/a00053.html#ac3add9224b3ebd373cd973f9169da244" title="SkyData\\Core\\SkyDataResource\l\\GetContentProducer" alt="" coords="457,5,669,47"/>
+<area shape="rect" id="node5" href="$dc/dee/a00053.html#a095c5d389db211932136b53f25f39685" title="SkyData\\Core\\SkyDataResource\l\\__construct" alt="" coords="977,35,1189,76"/>
+<area shape="rect" id="node7" href="$d2/d79/a00051.html#a570ef0336ec763e7c978412a685a605f" title="SkyData\\Core\\Page\\SkyData\lPage\\GetPageTitle" alt="" coords="468,123,659,164"/>
+<area shape="rect" id="node8" href="$d2/d79/a00051.html#a01484fc334fc35aacd70b2b91e10710c" title="SkyData\\Core\\Page\\SkyData\lPage\\GetPageIcon" alt="" coords="468,188,659,229"/>
+<area shape="rect" id="node9" href="$d9/d2e/a00056.html#af9dd7a3a73f6c220abe21463853347e1" title="SkyData\\Core\\Service\l\\SkyDataService\\RenderService\lJavascript" alt="" coords="461,254,666,310"/>
+</map>

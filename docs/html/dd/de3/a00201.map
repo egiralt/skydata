@@ -1,0 +1,5 @@
+<map id="IManager" name="IManager">
+<area shape="rect" id="node2" href="$d4/dee/a00008.html" title="{FileCacheManager\n|# $StoreID\l|+ __construct()\l+ Store()\l+ Remove()\l+ Get()\l# GetFilePath()\l}" alt="" coords="5,219,136,355"/>
+<area shape="rect" id="node3" href="$dd/dad/a00005.html" title="{ConfigurationManager\n||+ __construct()\l+ GetMapping()\l+ SetName()\l+ LoadAllFromDirectory()\l+ ReadLocalMetadata()\l}" alt="" coords="161,219,327,355"/>
+<area shape="rect" id="node4" href="$de/d8c/a00036.html" title="{MetadataManager\n|# $Headers\l# $Styles\l# $Scripts\l|+ LoadFromConfiguration()\l+ Merge()\l+ GetHeaders()\l+ GetScripts()\l+ GetStyles()\l+ AddHeader()\l+ RemoveHeader()\l+ AddScript()\l+ RemoveScript()\l+ GetScriptID()\l+ AddStyle()\l+ RemoveStyle()\l+ GetStyleID()\l+ ClearAll()\l# parseHeader()\l}" alt="" coords="351,131,526,443"/>
+</map>

@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.8"/>
+<title>Fichero Fuente BootFactory.class.php</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../logo_primer300.png"/></td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.8 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="../../annotated.html"><span>Estructuras&#160;de&#160;Datos</span></a></li>
+      <li class="current"><a href="../../files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="../../globals.html"><span>Globales</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('da/d24/a00068_source.html','../../');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Estructuras de Datos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">BootFactory.class.php</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../da/d24/a00068.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; <span class="keyword">namespace </span><a class="code" href="../../de/d76/a00134.html">SkyData\Core</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; DEFINE (<span class="stringliteral">&#39;SKYDATA_VERSION&#39;</span>,<span class="stringliteral">&#39;0.1.0&#39;</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a5aa352292614ce347648477b55bd1706">   30</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_PATH_ROOT&#39;</span>,            realpath(dirname(__FILE__).<span class="stringliteral">&#39;/..&#39;</span>));</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a5e344090631070df3e733ec924d965cf">   31</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_PATH_CONFIGURATION&#39;</span>,   <a class="code" href="../../de/d76/a00134.html#a5aa352292614ce347648477b55bd1706">SKYDATA_PATH_ROOT</a>.<span class="stringliteral">&#39;/Configuration&#39;</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a9115d76b418b224b013e3173824c91a6">   32</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_PATH_MODULES&#39;</span>,         <a class="code" href="../../de/d76/a00134.html#a5aa352292614ce347648477b55bd1706">SKYDATA_PATH_ROOT</a>.<span class="stringliteral">&#39;/Modules&#39;</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#ae3ee4970ad3a0ed753214a4ea1a98928">   33</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_PATH_LIBRARIES&#39;</span>,       <a class="code" href="../../de/d76/a00134.html#a5aa352292614ce347648477b55bd1706">SKYDATA_PATH_ROOT</a>.<span class="stringliteral">&#39;/Libraries&#39;</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a0a32fa2007daa2efdd01fc93ed6d82fb">   34</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_PATH_CORE&#39;</span>,            <a class="code" href="../../de/d76/a00134.html#a5aa352292614ce347648477b55bd1706">SKYDATA_PATH_ROOT</a>.<span class="stringliteral">&#39;/Core&#39;</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#ae94d678fa9b978ffdb17e87117ece1a8">   35</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_PATH_CACHE&#39;</span>,           <a class="code" href="../../de/d76/a00134.html#a5aa352292614ce347648477b55bd1706">SKYDATA_PATH_ROOT</a>.<span class="stringliteral">&#39;/Cache&#39;</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a0bc1beee20a3b6948149d72cd374759e">   36</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_PATH_PAGES&#39;</span>,           <a class="code" href="../../de/d76/a00134.html#a5aa352292614ce347648477b55bd1706">SKYDATA_PATH_ROOT</a>.<span class="stringliteral">&#39;/Pages&#39;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a769948b8741f57d3ac4a26b8b1f1db14">   37</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_PATH_THEMES&#39;</span>,          <a class="code" href="../../de/d76/a00134.html#a5aa352292614ce347648477b55bd1706">SKYDATA_PATH_ROOT</a>.<span class="stringliteral">&#39;/Themes&#39;</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a6f45268873532b4e6df10a58db13186c">   38</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_PATH_UI&#39;</span>,              <a class="code" href="../../de/d76/a00134.html#a5aa352292614ce347648477b55bd1706">SKYDATA_PATH_ROOT</a>.<span class="stringliteral">&#39;/UI&#39;</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a4b8274b33ac2b09bc30a071906537243">   40</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_NAMESPACE_ROOT&#39;</span>,       <span class="stringliteral">&#39;SkyData&#39;</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#aa8cd4b295200764c27e7fcae363b7c71">   41</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_NAMESPACE_CORE&#39;</span>,       <a class="code" href="../../de/d76/a00134.html#a4b8274b33ac2b09bc30a071906537243">SKYDATA_NAMESPACE_ROOT</a>.<span class="stringliteral">&#39;\\Core&#39;</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#abeac20fe09bb8c2e417695512767a2d3">   42</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_NAMESPACE_PAGES&#39;</span>,      <a class="code" href="../../de/d76/a00134.html#a4b8274b33ac2b09bc30a071906537243">SKYDATA_NAMESPACE_ROOT</a>.<span class="stringliteral">&#39;\\Pages&#39;</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a4c1be5872a37478865db32a5f1a70ed3">   43</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_NAMESPACE_SERVICES&#39;</span>,   <a class="code" href="../../de/d76/a00134.html#a4b8274b33ac2b09bc30a071906537243">SKYDATA_NAMESPACE_ROOT</a>.<span class="stringliteral">&#39;\\Services&#39;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#ad2e94aaa491986a9f5be0c2b068c9969">   44</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_NAMESPACE_THEMES&#39;</span>,     <a class="code" href="../../de/d76/a00134.html#a4b8274b33ac2b09bc30a071906537243">SKYDATA_NAMESPACE_ROOT</a>.<span class="stringliteral">&#39;\\Themes&#39;</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a1f1d0233a7d11bf9d9013da16a58db3b">   46</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_URL_THEMES&#39;</span>,           <span class="stringliteral">&#39;Themes&#39;</span>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a6059da17848c624f257a11b62ddab781">   47</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_URL_PAGES&#39;</span>,            <span class="stringliteral">&#39;Pages&#39;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#ae402fca3bb0205b3498d9805a537efc8">   48</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_URL_SERVICES&#39;</span>,         <span class="stringliteral">&#39;Services&#39;</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#ad5b78a1a6201194857c73acb7a1224a0">   49</a></span>&#160;define (<span class="stringliteral">&#39;SKYDATA_URL_MODULES&#39;</span>,          <span class="stringliteral">&#39;Modules&#39;</span>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="../../de/d76/a00134.html#a758c150b67e476ecf77478f16b387c61">   51</a></span>&#160;define (<span class="stringliteral">&#39;DEBUG&#39;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;include_once <span class="stringliteral">&#39;ReflectionFactory.class.php&#39;</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;use \SkyData\Core\Application\Application;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">// Inicializar el engine de twig</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;require_once <a class="code" href="../../de/d76/a00134.html#ae3ee4970ad3a0ed753214a4ea1a98928">SKYDATA_PATH_LIBRARIES</a>.<span class="stringliteral">&#39;/Twig/Autoloader.php&#39;</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;require_once <a class="code" href="../../de/d76/a00134.html#ae3ee4970ad3a0ed753214a4ea1a98928">SKYDATA_PATH_LIBRARIES</a>.<span class="stringliteral">&#39;/Yaec/Autoloader.php&#39;</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">// Inicializar ReadBean</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;require_once <a class="code" href="../../de/d76/a00134.html#ae3ee4970ad3a0ed753214a4ea1a98928">SKYDATA_PATH_LIBRARIES</a>.<span class="stringliteral">&#39;/RedBeanPHP/RedBeanPHP/loader.php&#39;</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="../../d1/d7c/a00003.html">   64</a></span>&#160; <span class="keyword">class </span><a class="code" href="../../d1/d7c/a00003.html">BootFactory</a> </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> $applicationInstance;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">function</span> initPHPEnvironment ()</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="../../de/d76/a00134.html#a758c150b67e476ecf77478f16b387c61">DEBUG</a> == <span class="keyword">true</span>)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            ini_set(<span class="stringliteral">&#39;display_errors&#39;</span>, <span class="stringliteral">&#39;On&#39;</span>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            ini_set(<span class="stringliteral">&#39;display_errors&#39;</span>, <span class="stringliteral">&#39;Off&#39;</span>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            error_reporting(0);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">// Iniciar las sesiones de PHP  </span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        session_start();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="../../d1/d7c/a00003.html#a9a710779ae474b18326cdbe5cc00dc8e">   90</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="../../d1/d7c/a00003.html#a9a710779ae474b18326cdbe5cc00dc8e">init</a> ($applicationClassName)</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        static::initPHPEnvironment();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">if</span> (!isset(static::$applicationInstance))</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="comment">// Sesiones de usuario</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="comment">// Agregar el cargador de clases automáticos        </span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">if</span> (version_compare(phpversion(), <span class="stringliteral">&#39;5.3.0&#39;</span>, <span class="stringliteral">&#39;&gt;=&#39;</span>)) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                spl_autoload_register(array(__CLASS__, <span class="stringliteral">&#39;__classloader&#39;</span>), <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                spl_autoload_register(array(__CLASS__, <span class="stringliteral">&#39;__classloader&#39;</span>));</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="comment">// Iniciar el cargador del Twig</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            \Twig_Autoloader::register();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            \Yaec_Loader::register();</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="comment">// Instalar un gestor de errores</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="comment">//set_error_handler(array(__CLASS__, &#39;__errorhandler&#39;), E_ERROR);</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="comment">// Crea una nueva aplicación que servirá como base para ejecutar todo el framework</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            static::$applicationInstance = <span class="keyword">new</span> $applicationClassName();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="comment">// Otras inicializaciones para el PHP</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            $timezone = static::$applicationInstance-&gt;GetTimeZone();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keywordflow">if</span> (isset($timezone))</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                date_default_timezone_set($timezone);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <span class="keywordflow">return</span> static::$applicationInstance;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <span class="keywordflow">throw</span> new \Exception(<span class="stringliteral">&quot;ERROR! Se intenta inicializar la aplicacion por segunda vez&quot;</span>, -1000);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="../../d1/d7c/a00003.html#af3fc45df017663990737ff7cafb5526a">  130</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="../../d1/d7c/a00003.html#af3fc45df017663990737ff7cafb5526a">GetApplication</a> ()</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">return</span> static::$applicationInstance;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="../../d1/d7c/a00003.html#a9cbce7fcb354e6c9fc59bc2fb091ca61">  135</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="../../d1/d7c/a00003.html#a9cbce7fcb354e6c9fc59bc2fb091ca61">__errorhandler</a>($err_severity, $err_msg, $err_filename, $err_linenum, $vars)</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="comment">//TODO: esto no funciona bien, revisar este código, y agregar log</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">if</span> ($err_severity == E_ERROR)</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keywordflow">throw</span> new \ErrorException ($err_msg, 0, $err_severity, $err_filename, $err_linenum); <span class="comment">// Se transforma en una excepción</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">function</span> __classloader ($class)</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">if</span> (0 !== strpos($class, <span class="stringliteral">&#39;SkyData\\&#39;</span>)) </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        $className = <a class="code" href="../../d5/db6/a00042.html#adfe52bd823898d4908161ebccf877b85">ReflectionFactory::getClassShortName</a>($class);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="comment">// Las interfaces deben comenzar con I y el nombre a continuación el nombre con al menos la primera letra mayúscula</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">if</span> (preg_match(<span class="stringliteral">&#39;/^I[A-Z]/&#39;</span>, $className))</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            $classFullPath = <a class="code" href="../../d5/db6/a00042.html#a3d6e0c1c5c5e9e2416361e760af474b6">ReflectionFactory::getInterfaceFilePath</a> ($class);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            $classFullPath = <a class="code" href="../../d5/db6/a00042.html#af6ad114680d39acbbc1f59572552efd5">ReflectionFactory::getClassFilePath</a> ($class);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">if</span> (is_file($classFullPath ))</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="comment">//echo &quot;OK\n&quot;;</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            require $classFullPath;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    } </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; }</div>
+<div class="ttc" id="a00134_html_ae3ee4970ad3a0ed753214a4ea1a98928"><div class="ttname"><a href="../../de/d76/a00134.html#ae3ee4970ad3a0ed753214a4ea1a98928">SkyData\Core\SKYDATA_PATH_LIBRARIES</a></div><div class="ttdeci">const SKYDATA_PATH_LIBRARIES</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00033">BootFactory.class.php:33</a></div></div>
+<div class="ttc" id="a00003_html"><div class="ttname"><a href="../../d1/d7c/a00003.html">SkyData\Core\BootFactory</a></div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00064">BootFactory.class.php:64</a></div></div>
+<div class="ttc" id="a00042_html_adfe52bd823898d4908161ebccf877b85"><div class="ttname"><a href="../../d5/db6/a00042.html#adfe52bd823898d4908161ebccf877b85">SkyData\Core\ReflectionFactory\getClassShortName</a></div><div class="ttdeci">static getClassShortName($className)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d81/a00110_source.html#l00089">ReflectionFactory.class.php:89</a></div></div>
+<div class="ttc" id="a00134_html_a5aa352292614ce347648477b55bd1706"><div class="ttname"><a href="../../de/d76/a00134.html#a5aa352292614ce347648477b55bd1706">SkyData\Core\SKYDATA_PATH_ROOT</a></div><div class="ttdeci">const SKYDATA_PATH_ROOT</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00030">BootFactory.class.php:30</a></div></div>
+<div class="ttc" id="a00134_html"><div class="ttname"><a href="../../de/d76/a00134.html">SkyData\Core</a></div></div>
+<div class="ttc" id="a00042_html_a3d6e0c1c5c5e9e2416361e760af474b6"><div class="ttname"><a href="../../d5/db6/a00042.html#a3d6e0c1c5c5e9e2416361e760af474b6">SkyData\Core\ReflectionFactory\getInterfaceFilePath</a></div><div class="ttdeci">static getInterfaceFilePath($className)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d81/a00110_source.html#l00066">ReflectionFactory.class.php:66</a></div></div>
+<div class="ttc" id="a00003_html_a9cbce7fcb354e6c9fc59bc2fb091ca61"><div class="ttname"><a href="../../d1/d7c/a00003.html#a9cbce7fcb354e6c9fc59bc2fb091ca61">SkyData\Core\BootFactory\__errorhandler</a></div><div class="ttdeci">static __errorhandler($err_severity, $err_msg, $err_filename, $err_linenum, $vars)</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00135">BootFactory.class.php:135</a></div></div>
+<div class="ttc" id="a00003_html_a9a710779ae474b18326cdbe5cc00dc8e"><div class="ttname"><a href="../../d1/d7c/a00003.html#a9a710779ae474b18326cdbe5cc00dc8e">SkyData\Core\BootFactory\init</a></div><div class="ttdeci">static init($applicationClassName)</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00090">BootFactory.class.php:90</a></div></div>
+<div class="ttc" id="a00042_html_af6ad114680d39acbbc1f59572552efd5"><div class="ttname"><a href="../../d5/db6/a00042.html#af6ad114680d39acbbc1f59572552efd5">SkyData\Core\ReflectionFactory\getClassFilePath</a></div><div class="ttdeci">static getClassFilePath($className)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d81/a00110_source.html#l00058">ReflectionFactory.class.php:58</a></div></div>
+<div class="ttc" id="a00003_html_af3fc45df017663990737ff7cafb5526a"><div class="ttname"><a href="../../d1/d7c/a00003.html#af3fc45df017663990737ff7cafb5526a">SkyData\Core\BootFactory\GetApplication</a></div><div class="ttdeci">static GetApplication()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00130">BootFactory.class.php:130</a></div></div>
+<div class="ttc" id="a00134_html_a758c150b67e476ecf77478f16b387c61"><div class="ttname"><a href="../../de/d76/a00134.html#a758c150b67e476ecf77478f16b387c61">SkyData\Core\DEBUG</a></div><div class="ttdeci">const DEBUG</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00051">BootFactory.class.php:51</a></div></div>
+<div class="ttc" id="a00134_html_a4b8274b33ac2b09bc30a071906537243"><div class="ttname"><a href="../../de/d76/a00134.html#a4b8274b33ac2b09bc30a071906537243">SkyData\Core\SKYDATA_NAMESPACE_ROOT</a></div><div class="ttdeci">const SKYDATA_NAMESPACE_ROOT</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d24/a00068_source.html#l00040">BootFactory.class.php:40</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_562abdcd8625d4bf7bad2fe6fe01354c.html">web</a></li><li class="navelem"><a class="el" href="../../dir_327b0b45fe7ef59e08c9f1ccbdd6d4f2.html">Core</a></li><li class="navelem"><a class="el" href="../../da/d24/a00068.html">BootFactory.class.php</a></li>
+    <li class="footer">Generado el Jueves, 11 de Septiembre de 2014 16:53:59 por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
+  </ul>
+</div>
+</body>
+</html>
